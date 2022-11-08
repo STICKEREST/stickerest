@@ -8,11 +8,14 @@ import { useFonts } from 'expo-font';
 
 import{ ImagesAssets } from './assets/ImagesAssets';
 
+import Navbar from './components/Navbar';
+
 export default function App() {
 
   return (
     <View>
         <Loading_page/>
+        <Navbar />
     </View>
   );
   

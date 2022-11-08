@@ -26,7 +26,15 @@ const styles = StyleSheet.create({
         height: 150, 
         marginTop: -100,
         marginBottom: 10
-      }
+      },
+    flexRow: {
+        flexDirection: "row"
+    },
+    expand: {
+        flexBasis: "auto",
+        flexGrow: 1,
+        flexShrink: 0
+    }
    
 });
 

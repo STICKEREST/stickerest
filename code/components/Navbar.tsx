@@ -1,23 +1,25 @@
 import React from "react";
-import { View, Button, TouchableOpacity, Image } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
+
+import { ImagesAssets } from '../assets/ImagesAssets';
 
 import {styles} from "../style";
+
+const NabarButton = ({image}:{image: string}) => {
+    return (
+        <TouchableOpacity style={styles.expand}>
+            <Image source={image} style={styles.centered} />
+        </TouchableOpacity>
+    )
+}
 
 export default function Navbar() {
     return (
         <View style={styles.flexRow}>
-            <TouchableOpacity style={styles.expand}>
-                <Image source={require("../assets/icons/home.png")} style={styles.centered} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.expand}>
-                <Image source={require("../assets/icons/star.png")} style={styles.centered} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.expand}>
-                <Image source={require("../assets/icons/settings.png")} style={styles.centered} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.expand}>
-                <Image source={require("../assets/icons/user.png")} style={styles.centered} />
-            </TouchableOpacity>
+            <NabarButton image={ImagesAssets.iconHome} />
+            <NabarButton image={ImagesAssets.iconStar} />
+            <NabarButton image={ImagesAssets.iconSettings} />
+            <NabarButton image={ImagesAssets.iconUser} />
         </View>
     );
 }

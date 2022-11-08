@@ -36,7 +36,7 @@ const EmailField = () => {
 }
 
 const PasswordField = () => {
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [text, onChangeText] = React.useState("");
 
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"

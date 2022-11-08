@@ -1,23 +1,23 @@
 import React from "react";
-import { View, Button } from "react-native";
+import { View, Button, TouchableOpacity, Image } from "react-native";
 
 import {styles} from "../style";
 
 export default function Navbar() {
     return (
         <View style={styles.flexRow}>
-            <View style={styles.expand}>
-                <Button title="Home" onPress={() => {}} />
-            </View>
-            <View style={styles.expand}>
-                <Button title="Favourites" onPress={() => {}} />
-            </View>
-            <View style={styles.expand}>
-                <Button title="Settings" onPress={() => {}} />
-            </View>
-            <View style={styles.expand}>
-                <Button title="Users" onPress={() => {}} />
-            </View>
+            <TouchableOpacity style={styles.expand}>
+                <Image source={require("../assets/icons/home.png")} style={styles.centered} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.expand}>
+                <Image source={require("../assets/icons/star.png")} style={styles.centered} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.expand}>
+                <Image source={require("../assets/icons/settings.png")} style={styles.centered} />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.expand}>
+                <Image source={require("../assets/icons/user.png")} style={styles.centered} />
+            </TouchableOpacity>
         </View>
     );
 }

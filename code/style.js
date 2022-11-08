@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
         flexBasis: "auto",
         flexGrow: 1,
         flexShrink: 0
+    },
+    centered: {
+        alignSelf: "center"
     }
    
 });

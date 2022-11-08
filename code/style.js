@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import{ ImagesAssets } from './assets/ImagesAssets';
+
 const styles = StyleSheet.create({
 
     container: {
@@ -41,8 +43,38 @@ const styles = StyleSheet.create({
         height: 150, 
         marginTop: -100,
         marginBottom: 10
+      },
+      input: {
+        height: 50,
+        //backgroundColor: "#f1f1f1",
+        margin: 0,
+        //borderWidth: 1,
+        padding: 10,
+        textAlignVertical: 'center',
+        background: ImagesAssets.logo
+      },
+      inputs: {
+        flexDirection: "row",
+        //paddingBottom: 20,
+        marginBottom: 10,
+        backgroundColor: "#f1f1f1",
+        borderRadius: 10,
+        //borderWidth: 1
+      },
+      inputs_picture: {
+        height: 30,
+        width: 30,
+        marginTop: 10,
+        marginLeft: 10,
+        alignContent: 'center',
+        textAlignVertical: 'center'
+      },
+      input_container: {
+        alignContent: 'space-between',
+        alignContent: 'center',
+        textAlignVertical: 'center',
+        marginTop: 20
       }
-   
 });
 
 export { styles }

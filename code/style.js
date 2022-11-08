@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 40,
       },
+      textLogin: {
+        fontFamily: "popblack",
+        color: 'black',
+        fontSize: 35,
+      },
       text_view: {
         position: 'absolute', 
         top: 0, 
@@ -20,6 +25,16 @@ const styles = StyleSheet.create({
         bottom: 0, 
         justifyContent: 'center', 
         alignItems: 'center'
+      }, 
+      text_view_login: {
+        position: 'absolute', 
+        //top: 60, 
+        top: 0,
+        left: 0, 
+        right: 0, 
+        bottom: 0, 
+        alignItems: 'center',
+        //textAlignVertical: 'top'
       }, 
       logo : {
         width: 150,

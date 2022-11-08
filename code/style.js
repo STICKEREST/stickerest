@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
       inputs: { //the group of text and icon
         flexDirection: "row",
         marginBottom: 10,
-        backgroundColor: "#f1f1f1",
         borderRadius: 10,
       },
       inputs_picture: { //the icon of the mail and the lock

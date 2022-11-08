@@ -1,6 +1,7 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import { Dimensions, ImageBackground, SafeAreaView, TextInput} from 'react-native';
-import { Text, View, Image, Button, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
@@ -8,33 +9,65 @@ import { styles } from "../style";
 
 import{ ImagesAssets } from '../assets/ImagesAssets';
 
+//TODO: put together the common things of email and password field
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-//this component renders the possibility to enter the mail and the password
-const TextFields = () => {
+const EmailField = () => {
+  const [text, onChangeText] = React.useState("Useless Text");
+  let yellow:string = "#fcf7d9"
+  let gray:string = "#f1f1f1"
 
+  const [yellowText, setTextColor] = useState<string>(gray)
+
+  return (
+    <Pressable onPress={() => setTextColor(yellow)}>
+      <View style={[styles.inputs, {backgroundColor: yellowText}]}>
+          <Image style={styles.inputs_picture} source={ImagesAssets.mail}/>
+          <TextInput
+            style={[styles.input, {width: windowWidth*0.7}]}
+            onChangeText={onChangeText}
+            placeholder={"Email"}
+          />
+      </View>
+    </Pressable>
+  )
+}
+
+const PasswordField = () => {
   const [text, onChangeText] = React.useState("Useless Text");
 
+  let yellow:string = "#fcf7d9"
+  let gray:string = "#f1f1f1"
+
+  let emptyText:boolean = text===""
+  let color:string = gray
+
+  if (emptyText)
+    color = gray
+  else
+    color = yellow
+
+  return (
+      <View style={[styles.inputs, {backgroundColor: color}]}>
+            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
+              <TextInput
+                style={[styles.input, {width: windowWidth*0.7}]}
+                onChangeText={onChangeText}
+                placeholder={"Password"}
+              />
+       </View>
+  )
+}
+
+//this component renders the possibility to enter the mail and the password
+const TextFields = () => {
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <View style={styles.inputs}>
-                  <Image style={styles.inputs_picture} source={ImagesAssets.mail}/>
-                  <TextInput
-                    style={[styles.input, {width: windowWidth*0.7}]}
-                    onChangeText={onChangeText}
-                    placeholder={"Email"}
-                  />
-              </View>
-              <View style={styles.inputs}>
-                  <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
-                  <TextInput
-                    style={[styles.input, {width: windowWidth*0.7}]}
-                    onChangeText={onChangeText}
-                    placeholder={"Password"}
-                  />
-              </View>
+              <EmailField/>
+              <PasswordField/>
           </View>
       </SafeAreaView>
   )

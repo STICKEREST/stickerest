@@ -32,7 +32,7 @@ export default function Login_page() {
                 <SafeAreaView>
                    <View style={[styles.input_container, {flexDirection:"column"}]}>
                         <View style={styles.inputs}>
-                            <Image style={styles.inputs_picture} source={ImagesAssets.logo}/>
+                            <Image style={styles.inputs_picture} source={ImagesAssets.mail}/>
                             <TextInput
                               style={[styles.input, {width: windowWidth*0.7}]}
                               onChangeText={onChangeText}
@@ -40,7 +40,7 @@ export default function Login_page() {
                             />
                         </View>
                         <View style={styles.inputs}>
-                            <Image style={styles.inputs_picture}  source={ImagesAssets.logo}/>
+                            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
                             <TextInput
                               style={[styles.input, {width: windowWidth*0.7}]}
                               onChangeText={onChangeText}

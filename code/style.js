@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginLeft: 10,
         alignContent: 'center',
-        textAlignVertical: 'center'
+        textAlignVertical: 'center',
+        resizeMode: 'contain'
       },
       input_container: {
         alignContent: 'space-between',

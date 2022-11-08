@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dimensions, ImageBackground, SafeAreaView, TextInput} from 'react-native';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Button, TouchableOpacity } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
@@ -14,6 +14,8 @@ export default function Login_page() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('../assets/fonts/poppins/popblack.otf'),
+    'poplight': require('../assets/fonts/poppins/Poppins-Light.otf'),
+    'popregular': require('../assets/fonts/poppins/Poppins-Regular.otf')
   });
 
   if (!fontsLoaded) {
@@ -44,11 +46,21 @@ export default function Login_page() {
                             <TextInput
                               style={[styles.input, {width: windowWidth*0.7}]}
                               onChangeText={onChangeText}
-                              placeholder={"Email"}
+                              placeholder={"Password"}
                             />
                         </View>
                     </View>
                 </SafeAreaView>
+                <View style={{marginTop: 20, alignSelf: 'center'}}>
+                  <TouchableOpacity
+                    onPress={null}
+                    style={[styles.logInButton, {width: windowWidth/2}]}>
+                    <Text
+                      style={styles.logInButtonFont}>
+                      Sign In
+                    </Text>
+                  </TouchableOpacity>
+                </View>
             </View>
         </ImageBackground>
     </View>

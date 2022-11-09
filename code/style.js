@@ -9,6 +9,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
+      backgroundPicture : {
+      },
       text: {
         fontFamily: "popblack",
         color: 'white',
@@ -50,16 +52,16 @@ const styles = StyleSheet.create({
         backgroundColor: "#f5cb08",
         borderRadius: 10,
         height: 40,
-        alignSelf: 'center',
+        textAlign: 'center',
         textAlignVertical: 'center',
+        alignItems:'center',
+        alignSelf: 'center',
       },
       logInButtonFont: { //the text inside the button
         fontSize: 15,
         height: 40,
-        alignSelf: 'center',
         color: 'white',
-        alignSelf: 'center',
-        textAlignVertical: 'center',
+        marginTop: 8,
         fontFamily: "popregular",
       },
       //-- Email and password TextInput in Login_page --
@@ -90,6 +92,14 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         resizeMode: 'contain'
       },
+      style_signInButton : {
+        marginTop: 20, 
+        alignSelf: 'center',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        alignItems:'center',
+        alignSelf: 'center'
+      }
 });
 
 export { styles }

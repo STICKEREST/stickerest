@@ -15,23 +15,23 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const EmailField = () => {
-  const [text, onChangeText] = React.useState("Useless Text");
+  const [text, onChangeText] = React.useState("");
+
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"
 
-  const [yellowText, setTextColor] = useState<string>(gray)
+  let emptyText:boolean = text===""
+  let color = emptyText?gray: yellow
 
   return (
-    <Pressable onPress={() => setTextColor(yellow)}>
-      <View style={[styles.inputs, {backgroundColor: yellowText}]}>
-          <Image style={styles.inputs_picture} source={ImagesAssets.mail}/>
-          <TextInput
-            style={[styles.input, {width: windowWidth*0.7}]}
-            onChangeText={onChangeText}
-            placeholder={"Email"}
-          />
-      </View>
-    </Pressable>
+      <View style={[styles.inputs, {backgroundColor: color}]}>
+            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.mail}/>
+              <TextInput
+                style={[styles.input, {width: windowWidth*0.7}]}
+                onChangeText={onChangeText}
+                placeholder={"Email"}
+              />
+       </View>
   )
 }
 
@@ -42,12 +42,7 @@ const PasswordField = () => {
   let gray:string = "#f1f1f1"
 
   let emptyText:boolean = text===""
-  let color:string = gray
-
-  if (emptyText)
-    color = gray
-  else
-    color = yellow
+  let color = emptyText?gray: yellow
 
   return (
       <View style={[styles.inputs, {backgroundColor: color}]}>
@@ -63,6 +58,7 @@ const PasswordField = () => {
 
 //this component renders the possibility to enter the mail and the password
 const TextFields = () => {
+
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
@@ -101,15 +97,15 @@ export default function Login_page() {
 
   return (
     <View style={styles.container}>
-        <ImageBackground source={ImagesAssets.bannerList2} style={{height: windowHeight, width: windowWidth}}>
-            <View style={styles.text_view_login}>
-                <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
-                <TextFields/>
-                <View style={{marginTop: 20, alignSelf: 'center'}}>
-                  <SignInButton/>
-                </View>
-            </View>
-        </ImageBackground>
+          <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
+              <View style={styles.text_view_login}>
+                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
+                  <TextFields/>
+                  <View style={styles.style_signInButton}>
+                    <SignInButton/>
+                  </View>
+              </View>
+          </ImageBackground>
     </View>
   );
 }

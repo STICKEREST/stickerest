@@ -9,8 +9,6 @@ import { styles } from "../style";
 
 import{ ImagesAssets } from '../assets/ImagesAssets';
 
-//TODO: put together the common things of email and password field
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -48,6 +46,7 @@ const PasswordField = () => {
       <View style={[styles.inputs, {backgroundColor: color}]}>
             <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
               <TextInput
+                secureTextEntry={true}
                 style={[styles.input, {width: windowWidth*0.7}]}
                 onChangeText={onChangeText}
                 placeholder={"Password"}

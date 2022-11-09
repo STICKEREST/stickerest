@@ -15,16 +15,33 @@ const windowHeight = Dimensions.get('window').height;
 const EmailField = () => {
   const [text, onChangeText] = React.useState("");
 
+  const [rightAnswer, setRightAnswer] = useState<boolean>(true);
+
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"
+  let red:string = "#ffcccc"
 
   let emptyText:boolean = text===""
-  let color = emptyText?gray: yellow
+  let color = gray;
+  
+  if (rightAnswer)
+    color = emptyText? gray: yellow
+  else if (emptyText)
+    setRightAnswer(true)
+  else
+    color = red
+
+  const validateEmail = () => {
+    let regexValidMail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+    let test = regexValidMail.test(text)
+    test?setRightAnswer(true):setRightAnswer(false)
+  };
 
   return (
       <View style={[styles.inputs, {backgroundColor: color}]}>
             <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.mail}/>
               <TextInput
+                onBlur={() => validateEmail()}
                 style={[styles.input, {width: windowWidth*0.7}]}
                 onChangeText={onChangeText}
                 placeholder={"Email"}

@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
     },
     centered: {
         alignSelf: "center"
+    },
+    shadow: {
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        elevation: 5
     }
    
 });

@@ -51,24 +51,48 @@ const EmailField = () => {
 }
 
 const PasswordField = () => {
+
   const [text, onChangeText] = React.useState("");
+
+  const [rightAnswer, setRightAnswer] = useState<boolean>(true);
 
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"
+  let red:string = "#ffcccc"
 
   let emptyText:boolean = text===""
-  let color = emptyText?gray: yellow
+  let color = gray;
+  
+  if (rightAnswer)
+    color = emptyText? gray: yellow
+  else if (emptyText)
+    setRightAnswer(true)
+  else
+    color = red
+
+  const validatePassword = () => {
+    let regexValidPassword = new RegExp("^(?=.*\d).{4,8}$");
+    let test = regexValidPassword.test(text)
+    test?setRightAnswer(true):setRightAnswer(false)
+  };
+
 
   return (
+    <View>
       <View style={[styles.inputs, {backgroundColor: color}]}>
             <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
-              <TextInput
-                secureTextEntry={true}
-                style={[styles.input, {width: windowWidth*0.7}]}
-                onChangeText={onChangeText}
-                placeholder={"Password"}
-              />
+            <TextInput
+              secureTextEntry={true}
+              onBlur={() => validatePassword()}
+              style={[styles.input, {width: windowWidth*0.7}]}
+              onChangeText={onChangeText}
+              placeholder={"Password"}
+            />
        </View>
+       <View style={{width: windowWidth*0.7}}>
+        {rightAnswer?null:<Text style={{textAlignVertical: 'center'}}>The password must be at least 4 chars long and contain a digit</Text>}
+       </View>
+    </View>
   )
 }
 

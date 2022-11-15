@@ -4,5 +4,6 @@ export const ImagesAssets = {
     group: require('./Group.png'),
     mail: require('./Mail.png'),
     logo: require('./football.png'),
+    lines: require('./lines.png')
     ///you can add more many images like this here.
 };

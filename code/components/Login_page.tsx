@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { Dimensions, ImageBackground, SafeAreaView, TextInput} from 'react-native';
+import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -8,11 +8,13 @@ import { useFonts } from 'expo-font';
 import { styles } from "../style";
 
 import{ ImagesAssets } from '../assets/ImagesAssets';
+import { assets } from '../react-native.config';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const EmailField = () => {
+
   const [text, onChangeText] = React.useState("");
 
   const [rightAnswer, setRightAnswer] = useState<boolean>(true);
@@ -143,6 +145,15 @@ export default function Login_page() {
                   <TextFields/>
                   <View style={styles.style_signInButton}>
                     <SignInButton/>
+                  </View>
+                  <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.25}}>
+          
+                    <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
+                    <Text style={{color: 'blue', textAlign:'center', fontSize: 15}}
+                          onPress={() => Linking.openURL('http://google.com')}>
+                      Sign Up
+                    </Text>
+                    </Text>
                   </View>
               </View>
           </ImageBackground>

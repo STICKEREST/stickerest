@@ -8,11 +8,13 @@ import { useFonts } from 'expo-font';
 
 import{ ImagesAssets } from './assets/ImagesAssets';
 
+import SingleSticker from './components/pages/stickers/SingleSticker';
+
 export default function App() {
 
   return (
     <View>
-        <Loading_page/>
+        <SingleSticker/>
     </View>
   );
   

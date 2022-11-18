@@ -1,17 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+import{ ImagesAssets } from './assets/ImagesAssets';
 
-    container: {
+const styles = StyleSheet.create({ 
+      container: {
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
       },
-      text: {
-        fontFamily: "popblack",
-        color: 'white',
-        fontSize: 40,
-      },
+      //-- Positioning the background pictures --
       text_view: {
         position: 'absolute', 
         top: 0, 
@@ -20,14 +17,18 @@ const styles = StyleSheet.create({
         bottom: 0, 
         justifyContent: 'center', 
         alignItems: 'center'
-      }, 
+      }, // -- The logo --
       logo : {
         width: 150,
         height: 150, 
         marginTop: -100,
         marginBottom: 10
-      }
-   
+      },
+      text: {
+        fontFamily: "popblack",
+        color: 'white',
+        fontSize: 40,
+      },
 });
 
 export { styles }

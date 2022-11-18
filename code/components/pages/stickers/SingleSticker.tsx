@@ -28,8 +28,7 @@ const IconPack = () => {
     return (
 
         <View>
-            <Image source={ImagesAssets.computer}>
-            </Image>
+            <Image source={ImagesAssets.computer}/>
         </View>
     );
 }
@@ -39,8 +38,7 @@ const Sticker = ({icon}:{icon:Image}) => {
     return (
 
         <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
-            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}}>
-            </Image>
+            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}}/>
         </View>
 
     );
@@ -95,3 +93,55 @@ export default function SingleSticker() {
     </View>
   );
 }
+
+export const data = [
+    {
+      id: 1,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 2,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 3,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 4,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 5,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 6,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 7,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 8,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 9,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 10,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 11,
+      sticker: <SingleSticker/>,
+    },
+    {
+      id: 12,
+      sticker: <SingleSticker/>,
+    },
+  ];
+  

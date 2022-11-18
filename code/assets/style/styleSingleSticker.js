@@ -31,7 +31,7 @@ const styleSingleSticker = StyleSheet.create({
         width: 300,
         height: 200, 
         backgroundColor: '#8D08F5',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#8D08F5',
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.5,
@@ -41,13 +41,13 @@ const styleSingleSticker = StyleSheet.create({
         width: 120,
         height: 120, 
         backgroundColor: '#8D08F5',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#8D08F5'
       },
-      btnContainer {
+      btnContainer: {
         height: 50,
         backgroundColor: '#F5CB08',
-        borderRadius: '10px'
+        borderRadius: 10
       }
    
 });

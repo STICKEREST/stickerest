@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, ImageBackground } from 'react-native';
+import { Dimensions, ImageBackground,  TouchableHighlight  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -12,11 +12,19 @@ const ButtonInteraction = () => {
 
     return (
 
-        <View style={[styleSingleSticker.btnContainer, {padding: 5}]}>
+        <View style={[styleSingleSticker.btnContainer, {padding: 5, flexDirection: 'row', alignItems: 'center', width: 175}]}>
 
-            {/* <Clickable>
+            <TouchableHighlight>
+                <Image source={ImagesAssets.hearth} style={{height: 30, width: 30, marginLeft: 10, marginRight: 10}} />                
+            </TouchableHighlight>
 
-            </Clickable> */}
+            <TouchableHighlight>
+                <Image source={ImagesAssets.bookmark} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
+            </TouchableHighlight>
+
+            <TouchableHighlight>
+                <Image source={ImagesAssets.export} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
+            </TouchableHighlight>
 
         </View>
 
@@ -28,8 +36,7 @@ const IconPack = () => {
     return (
 
         <View>
-            <Image source={ImagesAssets.computer}>
-            </Image>
+            <Image source={ImagesAssets.computer} />
         </View>
     );
 }
@@ -38,9 +45,8 @@ const Sticker = ({icon}:{icon:Image}) => {
 
     return (
 
-        <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
-            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}}>
-            </Image>
+        <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: 15}]}>
+            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}} />
         </View>
 
     );
@@ -88,7 +94,7 @@ export default function SingleSticker() {
                 <Sticker icon={ImagesAssets.computer}/>
                 <Sticker icon={ImagesAssets.computer}/>
             </View>
-            <Text>Trendy Computer</Text> 
+            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:20}}>Trendy Computer</Text> 
             {/* TODO rendi tutto uno state usando hooks*/}
             <ButtonInteraction />
         </View>

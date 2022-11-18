@@ -38,13 +38,13 @@ const styleSingleSticker = StyleSheet.create({
         shadowRadius: 10,
       },
       stickerView: {
-        width: 120,
-        height: 120, 
+        width: 100,
+        height: 100, 
         backgroundColor: '#8D08F5',
         borderRadius: '20px',
         shadowColor: '#8D08F5'
       },
-      btnContainer {
+      btnContainer: {
         height: 50,
         backgroundColor: '#F5CB08',
         borderRadius: '10px'

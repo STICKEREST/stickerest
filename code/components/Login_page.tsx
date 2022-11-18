@@ -5,7 +5,7 @@ import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-na
 
 import { useFonts } from 'expo-font';
 
-import { styles } from "../style";
+import { styles } from "../style_Login_page";
 
 import{ ImagesAssets } from '../assets/ImagesAssets';
 import { assets } from '../react-native.config';
@@ -143,7 +143,7 @@ export default function Login_page() {
               <View style={styles.text_view_login}>
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
                   <TextFields/>
-                  <View style={styles.style_signInButton}>
+                  <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
                     <SignInButton/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>

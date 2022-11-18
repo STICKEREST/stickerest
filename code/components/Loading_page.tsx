@@ -4,7 +4,7 @@ import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
-import { styles } from "../style";
+import { styles } from "../style_Loading_page";
 
 import{ ImagesAssets } from '../assets/ImagesAssets';
 

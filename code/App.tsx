@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <View>
-        <Login_page/>
+        <Loading_page/>
     </View>
   );
   

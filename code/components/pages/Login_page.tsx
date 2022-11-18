@@ -13,6 +13,10 @@ import { assets } from '../../react-native.config';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const paddingWidth = () => {
+
+}
+
 const EmailField = () => {
 
   const [text, onChangeText] = React.useState("");
@@ -147,7 +151,7 @@ export default function Login_page() {
                     <SignInButton/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
-                    <Text style={{color: 'blue', textAlign:'center', fontSize: 15}}
+                    <Text style={styles.urlText}
                             onPress={() => Linking.openURL('http://google.com')}>
                         Forgot the password?
                       </Text>
@@ -155,7 +159,7 @@ export default function Login_page() {
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
-                    <Text style={{color: 'blue', textAlign:'center', fontSize: 15}}
+                    <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
                       Sign Up
                     </Text>

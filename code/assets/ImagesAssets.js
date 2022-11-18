@@ -5,5 +5,6 @@ export const ImagesAssets = {
     mail: require('./Mail.png'),
     logo: require('./football.png'),
     lines: require('./lines.png')
-    ///you can add more many images like this here.
+    rectangleTop: require('./rectangleTop.png'),
+    computer: require('./computer.png')
 };

@@ -1,26 +1,22 @@
 import React from 'react'
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions } from 'react-native';
+import { Dimensions, ImageBackground } from 'react-native';
 import { StyleSheet, Text, View, Image } from 'react-native';
+
+import { useFonts } from 'expo-font';
 
 import{ ImagesAssets } from './assets/ImagesAssets';
 
+//FOR TESTING PURPOSES:
+//import SingleSticker from './components/pages/stickers/SingleSticker';
+//import Loading_page from './components/pages/Loading_page';
+//import Login_page from './components/pages/Login_page';
+
 export default function App() {
 
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
-
   return (
-    <View style={styles.container}>
-      <Image style={{height: windowHeight, width: windowWidth}} source={ImagesAssets.bannerList1}/>
+    <View>
+        {/*put your page here*/}
     </View>
   );
+  
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

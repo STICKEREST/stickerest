@@ -74,7 +74,12 @@ export default function SingleSticker() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
+    // 'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf')
   });
+
+//   const [fontsLoaded] = useFonts({
+//     'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf'),
+//   });
 
   if (!fontsLoaded) {
     return null;
@@ -94,7 +99,8 @@ export default function SingleSticker() {
                 <Sticker icon={ImagesAssets.computer}/>
                 <Sticker icon={ImagesAssets.computer}/>
             </View>
-            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:20}}>Trendy Computer</Text> 
+            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:5}}>Trendy Computer</Text> 
+            <Text style={{/*fontFamily: "poppinsLight",*/ fontSize: 20, paddingBottom:20}}>3 download</Text> 
             {/* TODO rendi tutto uno state usando hooks*/}
             <ButtonInteraction />
         </View>

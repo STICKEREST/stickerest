@@ -5,10 +5,10 @@ import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-na
 
 import { useFonts } from 'expo-font';
 
-import { styles } from "../style_Login_page";
+import { styles } from "./../../assets/style/styleLoginPage";
 
-import{ ImagesAssets } from '../assets/ImagesAssets';
-import { assets } from '../react-native.config';
+import{ ImagesAssets } from '../../assets/ImagesAssets';
+import { assets } from '../../react-native.config';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

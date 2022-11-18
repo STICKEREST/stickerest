@@ -6,7 +6,7 @@ import { useFonts } from 'expo-font';
 
 import { styles } from "../style_Loading_page";
 
-import{ ImagesAssets } from '../assets/ImagesAssets';
+import{ ImagesAssets } from '../../assets/ImagesAssets';
 
 export default function Loading_page() {
   

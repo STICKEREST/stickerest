@@ -28,8 +28,7 @@ const IconPack = () => {
     return (
 
         <View>
-            <Image source={ImagesAssets.computer}>
-            </Image>
+            <Image source={ImagesAssets.computer}/>
         </View>
     );
 }
@@ -39,8 +38,7 @@ const Sticker = ({icon}:{icon:Image}) => {
     return (
 
         <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
-            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}}>
-            </Image>
+            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}}/>
         </View>
 
     );

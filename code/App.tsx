@@ -10,11 +10,13 @@ import{ ImagesAssets } from './assets/ImagesAssets';
 
 import SingleSticker from './components/pages/stickers/SingleSticker';
 
+import DicoveryPage from './components/pages/discovery/DiscoveryPage';
+
 export default function App() {
 
   return (
     <View>
-        <SingleSticker/>
+        <DicoveryPage/>
     </View>
   );
   

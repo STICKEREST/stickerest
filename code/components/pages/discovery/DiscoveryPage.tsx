@@ -36,7 +36,7 @@ const IconPack = () => {
     return (
 
         <View>
-            <Image source={ImagesAssets.computer} />
+            <Image source={ImagesAssets.questionMark} />
         </View>
     );
 }
@@ -68,7 +68,7 @@ const MainStickerView = () => {
 
 
 
-export default function SingleSticker() {
+export default function DicoveryPage() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
@@ -92,15 +92,20 @@ export default function SingleSticker() {
         </ImageBackground>
 
         <View style={{marginTop: 30}}>
+
+            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:5}}>Discovery</Text>
+            <Text style={{/*fontFamily: "poppinsLight",*/ fontSize: 15, paddingBottom:20}}>Shake the device for a random sticker pack</Text> 
+
+            
             <MainStickerView/>
             <View style={{marginTop: 20, flexDirection: 'row'}}>
-                <Sticker icon={ImagesAssets.computer}/>
-                <Sticker icon={ImagesAssets.computer}/>
+                <Sticker icon={ImagesAssets.questionMark}/>
+                <Sticker icon={ImagesAssets.questionMark}/>
             </View>
-            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:5}}>Trendy Computer</Text> 
-            <Text style={{/*fontFamily: "poppinsLight",*/ fontSize: 20, paddingBottom:20}}>3 download</Text> 
+            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:5}}>???</Text> 
+            <Text style={{/*fontFamily: "poppinsLight",*/ fontSize: 20, paddingBottom:20}}>??</Text> 
             {/* TODO rendi tutto uno state usando hooks*/}
-            <ButtonInteraction />
+            {/* <ButtonInteraction /> */}
         </View>
     </View>
   );

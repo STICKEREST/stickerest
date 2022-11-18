@@ -5,6 +5,7 @@ export const ImagesAssets = {
     computer: require('./computer.png'),
     hearth: require('./hearth.png'),
     bookmark: require('./bookmark.png'),
-    export: require('./export.png')
+    export: require('./export.png'),
+    questionMark: require('./questionMark.png')
     ///you can add more many images like this here.
 };

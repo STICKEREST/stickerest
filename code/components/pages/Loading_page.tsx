@@ -4,14 +4,14 @@ import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
-import { styles } from "../style_Loading_page";
+import { styles } from "./../../assets/style/styleLoadingPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
+import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 export default function Loading_page() {
   
   const [fontsLoaded] = useFonts({
-    'popblack': require('../assets/fonts/poppins/popblack.otf'),
+    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
   });
 
   if (!fontsLoaded) {

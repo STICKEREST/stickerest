@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
-
 const styles = StyleSheet.create({ 
       container: {
         backgroundColor: '#fff',

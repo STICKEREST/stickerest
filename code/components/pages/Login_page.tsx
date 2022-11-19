@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, {useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
@@ -7,15 +6,10 @@ import { useFonts } from 'expo-font';
 
 import { styles } from "./../../assets/style/styleLoginPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
-import { assets } from '../../react-native.config';
+import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const paddingWidth = () => {
-
-}
 
 const EmailField = () => {
 
@@ -132,9 +126,9 @@ const SignInButton = () => {
 export default function Login_page() {
   
   const [fontsLoaded] = useFonts({
-    'popblack': require('../assets/fonts/poppins/popblack.otf'),
-    'poplight': require('../assets/fonts/poppins/Poppins-Light.otf'),
-    'popregular': require('../assets/fonts/poppins/Poppins-Regular.otf')
+    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
+    'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
+    'popregular': require('./../../assets/fonts/poppins/Poppins-Regular.otf')
   });
 
   if (!fontsLoaded) {

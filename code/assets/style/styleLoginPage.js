@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
+//import{ ImagesAssets } from 'C:\\Users\\Alice\\Desktop\\stickerest\\code\\assets\\ImagesAssets';
 
 const styles = StyleSheet.create({ 
     container: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
-        background: ImagesAssets.logo
+        //background: ImagesAssets.logo
       },
       input_container: {
         alignContent: 'space-between',
@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
         alignItems:'center',
         alignSelf: 'center',
       },
+      urlText : {
+        color: 'blue', 
+        textAlign:'center', 
+        fontSize: 15
+      }, 
       logInButtonFont: { //the text inside the button
         fontSize: 15,
         height: 40,

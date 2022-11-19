@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-//import{ ImagesAssets } from 'C:\\Users\\Alice\\Desktop\\stickerest\\code\\assets\\ImagesAssets';
-
 const styles = StyleSheet.create({ 
     container: {
         backgroundColor: '#fff',
@@ -20,7 +18,6 @@ const styles = StyleSheet.create({
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
-        //background: ImagesAssets.logo
       },
       input_container: {
         alignContent: 'space-between',

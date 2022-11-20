@@ -6,6 +6,8 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Loading_page from './components/pages/Loading_page';
 import Login_page from './components/pages/Login_page';
 
+import DicoveryPage from './components/pages/discovery/DiscoveryPage';
+
 export default function App() {
 
   return (

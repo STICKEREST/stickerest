@@ -6,5 +6,10 @@ export const ImagesAssets = {
     logo: require('./football.png'),
     lines: require('./lines.png'),
     rectangleTop: require('./rectangleTop.png'),
-    computer: require('./computer.png')
+    computer: require('./computer.png'),
+    hearth: require('./hearth.png'),
+    bookmark: require('./bookmark.png'),
+    export: require('./export.png'),
+    questionMark: require('./questionMark.png')
+    ///you can add more many images like this here.
 };

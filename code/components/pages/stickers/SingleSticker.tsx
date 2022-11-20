@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, ImageBackground,  TouchableHighlight  } from 'react-native';
+import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -7,77 +7,72 @@ import { useFonts } from 'expo-font';
 import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 
-const ButtonInteraction = () => {
-    const windowWidth = Dimensions.get('window').width;
+import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 
-    return (
+import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
-        <View style={[styleSingleSticker.btnContainer, {padding: 5, flexDirection: 'row', alignItems: 'center', width: 175}]}>
-
-            <TouchableHighlight>
-                <Image source={ImagesAssets.hearth} style={{height: 30, width: 30, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
-
-            <TouchableHighlight>
-                <Image source={ImagesAssets.bookmark} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
-
-            <TouchableHighlight>
-                <Image source={ImagesAssets.export} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
-
-        </View>
-
-    );
-}
-
-const IconPack = () => {
+const RightPartInfo = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
+    
+    const [fontsLoaded] = useFonts({
+        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
+        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
+      });
     
     return (
+        <View style={{flexDirection: 'column', padding: 20 }}>
+            <Text style= {{fontFamily: "popbold", fontSize: 19}}>{name}</Text>
+            <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {author}</Text>
+            <Text style= {{fontFamily: "popbold", fontSize: 19, marginTop: 10}}>{numSticker}</Text>
+            <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
+            <Text style= {{fontFamily: "popbold", fontSize: 19, marginTop: 10}}>{downloads}</Text>
+            <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
+        </View>
+    );
+}
 
+const LeftPartIcon = ({img}: {img: ImageSourcePropType}) => {
+        
+    return (
+        <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
+            <Image source={img} style={{height: 85, width: 100}}/>
+        </View>
+    );
+}
+
+const RightPartButton = () => {
+    return (
         <View>
-            <Image source={ImagesAssets.computer} />
+            <TouchableHighlight style={{height: 40, width: 40}}>
+                <Image source={ImagesAssets.hearth} style={{height: 25, width: 25, }}/>
+            </TouchableHighlight>
         </View>
     );
 }
 
-const Sticker = ({icon}:{icon:Image}) => {
+const BigStickerPack2 = ({img, name, author, numSticker, downloads} : {img: ImageSourcePropType, name : string, author : string, numSticker : number, downloads : number}) => {
+    
 
     return (
-
-        <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: 15}]}>
-            <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}} />
-        </View>
-
-    );
-}
-
-
-const MainStickerView = () => {
-
-    return (
-        <View style={[styleSingleSticker.mainStickerView, {alignItems: 'center', justifyContent: 'center', padding: 20}]} >
-                <IconPack/>
-
-            {/* <View style={{flex: 1}}>
-
-            </View> */}
+        <View style={[styleSingleSticker.bigStickerPack2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
+            <View style={{flex : 3}}>
+                <LeftPartIcon img={img} />
+            </View>
+            <View style={{flex : 4, marginLeft : 13}}>
+                <RightPartInfo name={name} author={author} numSticker={numSticker} downloads={downloads}/>
+            </View>
+            <View style={{flex : 1}}>
+                <RightPartButton />
+            </View>
         </View>
     )
+    
 }
-
-
 
 export default function SingleSticker() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
-    // 'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf')
   });
-
-//   const [fontsLoaded] = useFonts({
-//     'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf'),
-//   });
 
   if (!fontsLoaded) {
     return null;
@@ -92,15 +87,16 @@ export default function SingleSticker() {
         </ImageBackground>
 
         <View style={{marginTop: 30}}>
-            <MainStickerView/>
+            <BigStickerPack2 img={ImagesAssets.computer} name={"Trendy Computer"} author={"Francesco"} numSticker={23} downloads={1990}/>
             <View style={{marginTop: 20, flexDirection: 'row'}}>
-                <Sticker icon={ImagesAssets.computer}/>
-                <Sticker icon={ImagesAssets.computer}/>
+                <View style={{marginRight: 15}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer} />
+                </View>
+                <View style={{marginRight: 15}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer}/>
+                </View>
             </View>
-            <Text style={{fontFamily: "popblack", fontSize: 25, paddingTop: 20, paddingBottom:5}}>Trendy Computer</Text> 
-            <Text style={{/*fontFamily: "poppinsLight",*/ fontSize: 20, paddingBottom:20}}>3 download</Text> 
             {/* TODO rendi tutto uno state usando hooks*/}
-            <ButtonInteraction />
         </View>
     </View>
   );

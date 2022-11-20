@@ -43,7 +43,7 @@ const RightPartButton = () => {
     return (
         <View>
             <TouchableHighlight style={{height: 40, width: 40}}>
-                <Image source={ImagesAssets.hearth} style={{height: 25, width: 25, }}/>
+                <Image source={ImagesAssets.hearth} style={{height: 25, width: 25, shadowColor: '#090909',shadowOffset: {width: 0, height: 1},shadowOpacity: 0.8,shadowRadius: 1}}/>
             </TouchableHighlight>
         </View>
     );

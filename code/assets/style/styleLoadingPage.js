@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
-
 const styles = StyleSheet.create({ 
       container: {
         backgroundColor: '#fff',
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
         fontFamily: "popblack",
         color: 'white',
         fontSize: 40,
-      },
+      }
 });
 
 export { styles }

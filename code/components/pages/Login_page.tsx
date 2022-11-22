@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, {useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
@@ -7,8 +6,7 @@ import { useFonts } from 'expo-font';
 
 import { styles } from "./../../assets/style/styleLoginPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
-import { assets } from '../../react-native.config';
+import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -128,9 +126,9 @@ const SignInButton = () => {
 export default function Login_page() {
   
   const [fontsLoaded] = useFonts({
-    'popblack': require('../assets/fonts/poppins/popblack.otf'),
-    'poplight': require('../assets/fonts/poppins/Poppins-Light.otf'),
-    'popregular': require('../assets/fonts/poppins/Poppins-Regular.otf')
+    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
+    'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
+    'popregular': require('./../../assets/fonts/poppins/Poppins-Regular.otf')
   });
 
   if (!fontsLoaded) {
@@ -147,7 +145,7 @@ export default function Login_page() {
                     <SignInButton/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
-                    <Text style={{color: 'blue', textAlign:'center', fontSize: 15}}
+                    <Text style={styles.urlText}
                             onPress={() => Linking.openURL('http://google.com')}>
                         Forgot the password?
                       </Text>
@@ -155,7 +153,7 @@ export default function Login_page() {
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
-                    <Text style={{color: 'blue', textAlign:'center', fontSize: 15}}
+                    <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
                       Sign Up
                     </Text>

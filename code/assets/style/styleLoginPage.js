@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
-
 const styles = StyleSheet.create({ 
     container: {
         backgroundColor: '#fff',
@@ -20,7 +18,6 @@ const styles = StyleSheet.create({
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
-        background: ImagesAssets.logo
       },
       input_container: {
         alignContent: 'space-between',
@@ -52,6 +49,11 @@ const styles = StyleSheet.create({
         alignItems:'center',
         alignSelf: 'center',
       },
+      urlText : {
+        color: 'blue', 
+        textAlign:'center', 
+        fontSize: 15
+      }, 
       logInButtonFont: { //the text inside the button
         fontSize: 15,
         height: 40,

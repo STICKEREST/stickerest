@@ -1,20 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react'
 
-//FOR TESTING PURPOSES:
-//import SingleSticker from './components/pages/stickers/SingleSticker';
-import Loading_page from './components/pages/Loading_page';
-import Login_page from './components/pages/Login_page';
-
-import DicoveryPage from './components/pages/discovery/DiscoveryPage';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './components/TabNavigator';
 
 export default function App() {
-
-  return (
-    <View>
-        {/*put your page here*/}
-        <Loading_page/>
-    </View>
-  );
-  
+	return (
+		<NavigationContainer>
+			<TabNavigator />
+		</NavigationContainer>
+	);
 }

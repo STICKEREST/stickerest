@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.4.1",
     "@react-navigation/native": "^6.0.14",
+    "@expo/vector-icons": "^13.0.0",
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.16",

@@ -1,36 +1,35 @@
-import React from "react";
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
-
 import { ImagesAssets } from "../assets/ImagesAssets";
-
 import {styles} from "../style";
 
-const NabarButton = ({image}:{image: string}) => {
-	return (
-		<TouchableOpacity style={styles.expand}>
-			<Image source={image} style={styles.centered} />
-		</TouchableOpacity>
-	);
-}
 
-const MiddleButton = ({image}:{image: string}) => {
-	return (
-		<View style={[navbarStyles.circle, styles.shadow, navbarStyles.button]}>
-			<TouchableOpacity>
-				<Image source={image} style={[styles.centered]} />
-			</TouchableOpacity>
-		</View>
-	);
-}
-
-export default function Navbar() {
+// This function defines the appearance of the tab navigator.
+export default function Navbar({state, descriptors, navigation}) {
 	return (
 		<View style={[navbarStyles.background, styles.flexRow]}>
-			<NabarButton image={ImagesAssets.iconHome} />
-			<NabarButton image={ImagesAssets.iconStar} />
-			<MiddleButton image={ImagesAssets.iconDocument} />
-			<NabarButton image={ImagesAssets.iconSettings} />
-			<NabarButton image={ImagesAssets.iconUser} />
+			{
+				state.routes.map((route, index) => {
+					const buttons = state.routes.length;
+					const middleButton = (buttons % 2 === 0 ? buttons : buttons - 1) / 2;
+					const navigate = () => {
+						navigation.navigate({
+							name: route.name,
+							merge: true
+						});
+					}
+					return index === middleButton ? (
+						<View style={[navbarStyles.circleButton, styles.shadow]} key={index}>
+							<TouchableOpacity onPress={navigate}>
+								<Image source={route.params.icon} style={styles.centered} />
+							</TouchableOpacity>
+						</View>
+					) : (
+						<TouchableOpacity style={styles.expand} onPress={navigate} key={index}>
+							<Image source={route.params.icon} style={styles.centered} />
+						</TouchableOpacity>
+					);
+				})
+			}
 		</View>
 	);
 }
@@ -38,20 +37,17 @@ export default function Navbar() {
 const navbarStyles = StyleSheet.create({
 	background: {
 		backgroundColor: "#f5cb08",
-		paddingTop: 15,
-		paddingBottom: 30,
-		marginTop: -30,
-		borderRadius: 20
+		paddingBottom: 15,
+		paddingTop: 10,
+		borderTopLeftRadius: 20,
+		borderTopRightRadius: 20
 	},
-	circle: {
+	circleButton: {
+		backgroundColor: "#f5cb08",
+		paddingTop: 15,
+		marginTop: -60,
 		height: 90,
 		width: 90,
 		borderRadius: 90,
-	},
-	button: {
-		backgroundColor: "#f5cb08",
-		paddingTop: 15,
-		marginBottom: 60,
-		marginTop: -60,
 	}
 });

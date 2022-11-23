@@ -38,16 +38,45 @@ const styleSingleSticker = StyleSheet.create({
         shadowRadius: 10,
       },
       stickerView: {
-        width: 120,
-        height: 120, 
-        backgroundColor: '#8D08F5',
+        width: 115,
+        height: 115, 
+        backgroundColor: '#fff',
         borderRadius: 20,
-        shadowColor: '#8D08F5'
+        shadowColor: '#090909',
+        shadowOffset: {width: 0, height: 5},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
       },
       btnContainer: {
         height: 50,
         backgroundColor: '#F5CB08',
         borderRadius: 10
+      },
+      bigStickerPack2: {
+        width: 300,
+        height: 200, 
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        shadowColor: '#090909',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+      },
+      mainStickerView2 : {
+        width: 130,
+        height: 200, 
+        backgroundColor: '#8D08F5',
+        borderRadius: 20,
+        shadowColor: '#8D08F5',
+        shadowOffset: {width: 0, height: 0},
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+      },
+      likeButton : {
+        shadowColor: '#090909', 
+        shadowOffset: {width: 0, height: 1}, 
+        shadowOpacity: 0.8,
+        shadowRadius: 1
       }
    
 });

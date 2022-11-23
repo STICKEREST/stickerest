@@ -1,26 +1,25 @@
-import React from 'react'
-import { Dimensions, ImageBackground } from 'react-native';
-import { StyleSheet, Text, View, Image } from 'react-native';
 
-import Loading_page from './components/Loading_page';
+            import React from 'react'
+            import { Dimensions, ImageBackground } from 'react-native';
+            import { StyleSheet, Text, View, Image } from 'react-native';
 
-import { useFonts } from 'expo-font';
+            import Loading_page from './components/Loading_page';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
+            import { useFonts } from 'expo-font';
 
-import SingleSticker from './components/pages/stickers/SingleSticker';
+            import{ ImagesAssets } from './assets/ImagesAssets';
 
-import Carousel from './components/pages/stickers/Carousel';
+            import SingleSticker from './components/pages/stickers/SingleSticker';
 
-import HomePage from './components/pages/homepage/Homepage';
-//                    code\components\Loading_page.tsx
-//                    ./components/pages/homepage/Homepage
-export default function App() {
+            import Carousel from './components/subcomponents/stickers-carousel/Carousel';
 
-  return (
-    <View>
-        <Carousel/>
-    </View>
-  );
-  
-}
+            import HomePage from './components/pages/homepage/Homepage';
+            //                    code\components\Loading_page.tsx
+            //                    ./components/pages/homepage/Homepage
+            export default function App() {
+
+              return (
+                <Carousel/>
+              );
+              
+            }

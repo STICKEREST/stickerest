@@ -11,7 +11,9 @@
 
             import SingleSticker from './components/pages/stickers/SingleSticker';
 
-            import Carousel from './components/subcomponents/stickers-carousel/Carousel';
+            import BigStickerCarousel from './components/subcomponents/stickers-carousel/CarouselBigSticker';
+
+            import StickerCarousel from './components/subcomponents/stickers-carousel/CarouselSticker';
 
             import HomePage from './components/pages/homepage/Homepage';
             //                    code\components\Loading_page.tsx
@@ -19,7 +21,10 @@
             export default function App() {
 
               return (
-                <Carousel/>
+                <View>
+                <StickerCarousel/>
+                <BigStickerCarousel/>
+                </View>
               );
               
             }

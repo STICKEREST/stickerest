@@ -68,7 +68,7 @@ const MainStickerView = () => {
 
 
 
-export default function DicoveryPage() {
+export default function DiscoveryPage() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),

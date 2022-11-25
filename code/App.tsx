@@ -2,18 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 //FOR TESTING PURPOSES:
+//import SingleSticker from './components/pages/stickers/SingleSticker';
 import Loading_page from './components/pages/Loading_page';
 import Login_page from './components/pages/Login_page';
 
-import DiscoveryPage from './components/pages/discovery/DiscoveryPage';
+import DicoveryPage from './components/pages/discovery/DiscoveryPage';
 
 export default function App() {
-
-  return (
-    <View>
-        {/*put your page here*/}
-        <DiscoveryPage/>
-    </View>
-  );
-  
+	return (
+      <View><Login_page/></View>
+	);
 }

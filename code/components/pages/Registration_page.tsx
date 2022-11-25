@@ -123,7 +123,7 @@ const SignInButton = () => {
   )
 }
 
-export default function Login_page() {
+export default function Registration_page() {
   
   const [fontsLoaded] = useFonts({
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
@@ -139,23 +139,17 @@ export default function Login_page() {
     <View style={styles.container}>
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
               <View style={styles.text_view_login}>
-                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
+                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Create your account</Text>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
                     <SignInButton/>
                   </View>
-                  <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
-                    <Text style={styles.urlText}
-                            onPress={() => Linking.openURL('http://google.com')}>
-                        Forgot the password?
-                      </Text>
-                  </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
-                    <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
+                    <Text style={{textAlign:'center', fontSize: 15}}>Already have an account? <Text></Text>
                     <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
-                      Sign Up
+                      Sign In
                     </Text>
                     </Text>
                   </View>

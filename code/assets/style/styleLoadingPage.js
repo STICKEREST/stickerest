@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         fontFamily: "popblack",
         color: 'white',
         fontSize: 40,
-      },
+      }
 });
 
 export { styles }

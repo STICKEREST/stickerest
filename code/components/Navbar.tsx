@@ -1,6 +1,5 @@
 import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
 import { ImagesAssets } from "../assets/ImagesAssets";
-import {styles} from "../style";
 
 
 // This function defines the appearance of the tab navigator.
@@ -36,6 +35,8 @@ export default function Navbar({state, descriptors, navigation}) {
 
 const navbarStyles = StyleSheet.create({
 	background: {
+		position: "absolute",
+		bottom: 0,
 		flexDirection: "row",
 		backgroundColor: "#f5cb08",
 		paddingBottom: 15,

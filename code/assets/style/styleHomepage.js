@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
 	},
 	innerContainer: {
 		paddingTop: 20,
-		paddingBottom: 100
+		paddingBottom: 180
 	}
 });
 

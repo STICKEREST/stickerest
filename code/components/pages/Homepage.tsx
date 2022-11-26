@@ -19,14 +19,6 @@ export default function Homepage() {
 					<Text style={styles.header}>
 						New
 					</Text>
-					{
-					    /*This only exists for testing purposes*/
-						Array.from(Array(20).keys()).map(() => (
-							<Text style={styles.header}>
-								Header added for testing purposes
-							</Text>
-						))
-					}
 				</ScrollView>
 			</View>
 		</View>

@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { ImagesAssets } from '../assets/ImagesAssets';
 
+import Homepage from './pages/Homepage';
+
 import Navbar from './Navbar';
 
 const Tabs = createBottomTabNavigator();
@@ -12,8 +14,8 @@ const Tabs = createBottomTabNavigator();
 // 'initialParams' is used to pass params to the navigation route.
 export default function TabNavigator() {
 	return (
-		<Tabs.Navigator screenOptions={{headerShown: true}} tabBar={Navbar} >
-			<Tabs.Screen name="Home" component={View} initialParams={{icon: ImagesAssets.iconHome}} />
+		<Tabs.Navigator screenOptions={{headerShown: false}} tabBar={Navbar} >
+			<Tabs.Screen name="Home" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
 			<Tabs.Screen name="Favourites" component={View} initialParams={{icon: ImagesAssets.iconStar}} />
 			<Tabs.Screen name="Add" component={View} initialParams={{icon: ImagesAssets.iconDocument}} />
 			<Tabs.Screen name="Settings" component={View} initialParams={{icon: ImagesAssets.iconSettings}} />

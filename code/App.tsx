@@ -8,8 +8,13 @@ import Login_page from './components/pages/Login_page';
 
 import DicoveryPage from './components/pages/discovery/DiscoveryPage';
 
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './components/TabNavigator';
+
 export default function App() {
 	return (
-      <View><Login_page/></View>
+		<NavigationContainer>
+			<TabNavigator />
+		</NavigationContainer>
 	);
 }

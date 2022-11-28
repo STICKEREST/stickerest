@@ -1,26 +1,15 @@
-import React from 'react'
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions } from 'react-native';
+import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-import{ ImagesAssets } from './assets/ImagesAssets';
+//FOR TESTING PURPOSES:
+//import SingleSticker from './components/pages/stickers/SingleSticker';
+import Loading_page from './components/pages/Loading_page';
+import Login_page from './components/pages/Login_page';
+
+import DicoveryPage from './components/pages/discovery/DiscoveryPage';
 
 export default function App() {
-
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
-
-  return (
-    <View style={styles.container}>
-      <Image style={{height: windowHeight, width: windowWidth}} source={ImagesAssets.bannerList1}/>
-    </View>
-  );
+	return (
+      <View><Login_page/></View>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

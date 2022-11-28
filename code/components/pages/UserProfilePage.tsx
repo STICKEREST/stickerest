@@ -7,13 +7,14 @@ import { useFonts } from 'expo-font';
 import { styles } from "./../../assets/style/styleUserProfilePage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
+import { isNonNullExpression } from 'typescript';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 type validateFunctionType = (string) => boolean 
 
-const Field = ({input, validate, placeholder, pictureName}: {input:string, validate: validateFunctionType, placeholder:string, pictureName:string}) => {
+const Field = ({input, validate, placeholder, pictureName}: {input:string, validate: validateFunctionType, placeholder:string, pictureName:any}) => {
 
   const [text, onChangeText] = React.useState(input);
 
@@ -33,6 +34,20 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
   else
     color = red
 
+    /*
+  let color="gray"
+
+  let originalText:string = input
+
+  if (text===originalText)
+    color = gray
+  else {
+    if (rightAnswer)
+        color = yellow
+    else 
+        color = red
+  } */
+
   function validateField() {
     let compatibility:boolean = validate(text)
     console.log(compatibility)
@@ -41,7 +56,7 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
 
   return (
       <View style={[styles.inputs, {backgroundColor: color}]}>
-            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={require('./../../assets/' + pictureName)}/>
+            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={pictureName}/>
               <TextInput
                 onBlur={validateField}
                 style={[styles.input, {width: windowWidth*0.7}]}
@@ -72,9 +87,9 @@ const TextFields = () => {
     return (
         <SafeAreaView>
             <View style={[styles.input_container, {flexDirection:"column"}]}>
-                <Field input={name} validate={() => true} placeholder={"name + surname"} pictureName={"Mail.png"}/>
-                <Field input={username} validate={() => true} placeholder={"username"} pictureName={"Mail.png"}/>
-                <Field input={email_address} validate={validateEmail} placeholder={"email"} pictureName={"Mail.png"}/>
+                <Field input={name} validate={() => true} placeholder={"name + surname"} pictureName={isNonNullExpression}/>
+                <Field input={username} validate={() => true} placeholder={"username"} pictureName={null}/>
+                <Field input={email_address} validate={validateEmail} placeholder={"email"} pictureName={require('./../../assets/Mail.png')}/>
             </View>
         </SafeAreaView>
     )

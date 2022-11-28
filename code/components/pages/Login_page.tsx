@@ -11,6 +11,7 @@ import{ ImagesAssets } from './../../assets/ImagesAssets';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//a component to render the email text field
 const EmailField = () => {
 
   const [text, onChangeText] = React.useState("");
@@ -50,6 +51,7 @@ const EmailField = () => {
   )
 }
 
+//a component to render the password text field
 const PasswordField = () => {
 
   const [text, onChangeText] = React.useState("");

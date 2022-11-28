@@ -14,6 +14,7 @@ const windowHeight = Dimensions.get('window').height;
 
 type validateFunctionType = (string) => boolean 
 
+//component used to create text fields
 const Field = ({input, validate, placeholder, pictureName}: {input:string, validate: validateFunctionType, placeholder:string, pictureName:any}) => {
 
   const [text, onChangeText] = React.useState(input);
@@ -57,7 +58,7 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
   )
 }
 
-//this component renders the possibility to enter the mail and the password
+//this component renders the text fields
 const TextFields = () => {
 
     let name = "name surname"
@@ -84,6 +85,7 @@ const TextFields = () => {
     )
 }
 
+//by pressing this component, the user wants to update his infos
 const SaveButton = () => {
     return (
       <TouchableOpacity

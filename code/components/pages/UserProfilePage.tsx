@@ -24,17 +24,6 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
   let gray:string = "#f1f1f1"
   let red:string = "#ffcccc"
 
-  let emptyText:boolean = text===""
-  let color = gray;
-  
-  if (rightAnswer)
-    color = emptyText? gray: yellow
-  else if (emptyText)
-    setRightAnswer(true)
-  else
-    color = red
-
-    /*
   let color="gray"
 
   let originalText:string = input
@@ -46,7 +35,7 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
         color = yellow
     else 
         color = red
-  } */
+  }
 
   function validateField() {
     let compatibility:boolean = validate(text)
@@ -87,7 +76,7 @@ const TextFields = () => {
     return (
         <SafeAreaView>
             <View style={[styles.input_container, {flexDirection:"column"}]}>
-                <Field input={name} validate={() => true} placeholder={"name + surname"} pictureName={isNonNullExpression}/>
+                <Field input={name} validate={() => true} placeholder={"name + surname"} pictureName={null}/>
                 <Field input={username} validate={() => true} placeholder={"username"} pictureName={null}/>
                 <Field input={email_address} validate={validateEmail} placeholder={"email"} pictureName={require('./../../assets/Mail.png')}/>
             </View>

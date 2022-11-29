@@ -46,7 +46,6 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
 
   return (
       <View style={[styles.inputs, {backgroundColor: color}]}>
-            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={pictureName}/>
               <TextInput
                 onBlur={validateField}
                 style={[styles.input, {width: windowWidth*0.7}]}
@@ -54,6 +53,7 @@ const Field = ({input, validate, placeholder, pictureName}: {input:string, valid
                 placeholder={placeholder}
                 value={text}
               />
+              <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={pictureName}/>
        </View>
   )
 }

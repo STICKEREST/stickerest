@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 const styleCarousel = StyleSheet.create({
 
     container: {
-        backgroundColor: '#fff',
+//        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingLeft: 30,
-        marginTop: 22,
+//        paddingLeft: 30,
+//        marginTop: 22,
       }
    
 });

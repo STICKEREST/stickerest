@@ -1,15 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-//FOR TESTING PURPOSES:
-import Loading_page from './components/pages/Loading_page';
-import Login_page from './components/pages/Login_page';
-import UserProfilePage from './components/pages/UserProfilePage';
-import DicoveryPage from './components/pages/discovery/DiscoveryPage';
-import Registration_page from './components/pages/Registration_page';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './components/TabNavigator';
 
 export default function App() {
 	return (
-      <View><Loading_page/></View>
+		<NavigationContainer>
+			<TabNavigator />
+		</NavigationContainer>
 	);
 }

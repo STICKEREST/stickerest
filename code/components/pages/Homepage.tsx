@@ -4,6 +4,9 @@ import { styles } from './../../assets/style/styleHomepage';
 
 import SearchBar from '../SearchBar';
 
+import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
+import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
+
 export default function Homepage() {
 	return (
 		<View style={styles.container}>
@@ -13,12 +16,15 @@ export default function Homepage() {
 					<Text style={styles.header}>
 						Recommended for you
 					</Text>
+					<CarouselBigSticker />
 					<Text style={styles.header}>
 						Trending
 					</Text>
+					<CarouselSticker />
 					<Text style={styles.header}>
 						New
 					</Text>
+					<CarouselSticker />
 				</ScrollView>
 			</View>
 		</View>

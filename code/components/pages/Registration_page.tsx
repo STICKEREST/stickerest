@@ -70,11 +70,11 @@ const NicknameField = () => {
 
   return (
       <View style={[styles.inputs, {backgroundColor: color}]}>
-        <View style={[styles.inputs_picture, {marginLeft: 4}]}>
+        <View style={[styles.inputs_picture, {marginLeft: 7}]}>
             <Icon
               name='user'            
               type='evilicon'
-              size={40}
+              size={35}
               color="black"
         />
         </View>

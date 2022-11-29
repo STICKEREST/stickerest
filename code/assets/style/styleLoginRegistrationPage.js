@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
       },
       inputs_picture: { //the icon of the mail and the lock
-        height: 30,
         marginTop: 10,
         marginLeft: 10,
         alignContent: 'center',

@@ -8,9 +8,9 @@ const styles = StyleSheet.create({
     },
     //-- Text used in the Login_page --
     textLogin: {
-    fontFamily: "popblack",
-    color: 'black',
-    fontSize: 35,
+      fontFamily: "popblack",
+      color: 'black',
+      fontSize: 35,
     },
     //--- the text field for the email and the password ---
     input: { //the text inside the TextInput
@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
       },
       inputs_picture: { //the icon of the mail and the lock
         height: 30,
-        width: 30,
         marginTop: 10,
         marginLeft: 10,
         alignContent: 'center',

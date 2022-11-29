@@ -8,6 +8,8 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
+import { Icon } from '@rneui/themed';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -46,6 +48,40 @@ const EmailField = () => {
                 style={[styles.input, {width: windowWidth*0.7}]}
                 onChangeText={onChangeText}
                 placeholder={"Email"}
+              />
+       </View>
+  )
+}
+
+const NicknameField = () => {
+
+  const [text, onChangeText] = React.useState("");
+
+  let yellow:string = "#fcf7d9"
+  let gray:string = "#f1f1f1"
+
+  let emptyText:boolean = text===""
+  let color = gray;
+ 
+  if (emptyText)
+    color = gray
+  else 
+    color = yellow
+
+  return (
+      <View style={[styles.inputs, {backgroundColor: color}]}>
+        <View style={[styles.inputs_picture, {marginLeft: 4}]}>
+            <Icon
+              name='user'            
+              type='evilicon'
+              size={40}
+              color="black"
+        />
+        </View>
+              <TextInput
+                style={[styles.input, {width: windowWidth*0.7}]}
+                onChangeText={onChangeText}
+                placeholder={"Nickname"}
               />
        </View>
   )
@@ -106,6 +142,7 @@ const TextFields = () => {
           <View style={[styles.input_container, {flexDirection:"column"}]}>
               <EmailField/>
               <PasswordField/>
+              <NicknameField/>
           </View>
       </SafeAreaView>
   )

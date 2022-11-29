@@ -7,9 +7,10 @@ import Loading_page from './components/pages/Loading_page';
 import Login_page from './components/pages/Login_page';
 
 import DicoveryPage from './components/pages/discovery/DiscoveryPage';
+import Registration_page from './components/pages/Registration_page';
 
 export default function App() {
 	return (
-      <View><Login_page/></View>
+      <View><Registration_page/></View>
 	);
 }

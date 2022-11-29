@@ -11,6 +11,7 @@ import{ ImagesAssets } from './../../assets/ImagesAssets';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+//a component to render the email text field
 const EmailField = () => {
 
   const [text, onChangeText] = React.useState("");
@@ -50,6 +51,7 @@ const EmailField = () => {
   )
 }
 
+//a component to render the password test field
 const PasswordField = () => {
 
   const [text, onChangeText] = React.useState("");
@@ -109,15 +111,15 @@ const TextFields = () => {
   )
 }
 
-//this component renders the sign in button (not an actual button)
-const SignInButton = () => {
+//this component renders the sign up button (not an actual button)
+const SignUpButton = () => {
   return (
     <TouchableOpacity
                     onPress={null}
                     style={[styles.logInButton, {width: windowWidth/2}]}>
                     <Text
                       style={styles.logInButtonFont}>
-                      Sign In
+                      Sign Up
                     </Text>
     </TouchableOpacity>
   )
@@ -142,14 +144,14 @@ export default function Registration_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SignInButton/>
+                    <SignUpButton/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={{textAlign:'center', fontSize: 15}}>Already have an account? <Text></Text>
                     <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
-                      Sign In
+                      Sign Up
                     </Text>
                     </Text>
                   </View>

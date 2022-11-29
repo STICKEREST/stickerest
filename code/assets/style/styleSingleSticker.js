@@ -31,7 +31,7 @@ const styleSingleSticker = StyleSheet.create({
         width: 300,
         height: 200, 
         backgroundColor: '#8D08F5',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#8D08F5',
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.5,
@@ -41,7 +41,7 @@ const styleSingleSticker = StyleSheet.create({
         width: 115,
         height: 115, 
         backgroundColor: '#fff',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#090909',
         shadowOffset: {width: 0, height: 5},
         shadowOpacity: 0.3,
@@ -50,13 +50,13 @@ const styleSingleSticker = StyleSheet.create({
       btnContainer: {
         height: 50,
         backgroundColor: '#F5CB08',
-        borderRadius: '10px'
+        borderRadius: 10
       },
       bigStickerPack2: {
         width: 300,
         height: 200, 
         backgroundColor: '#fff',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#090909',
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.3,
@@ -66,7 +66,7 @@ const styleSingleSticker = StyleSheet.create({
         width: 130,
         height: 200, 
         backgroundColor: '#8D08F5',
-        borderRadius: '20px',
+        borderRadius: 20,
         shadowColor: '#8D08F5',
         shadowOffset: {width: 0, height: 0},
         shadowOpacity: 0.5,

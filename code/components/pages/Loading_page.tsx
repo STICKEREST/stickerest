@@ -8,8 +8,8 @@ import { styles } from "./../../assets/style/styleLoadingPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
-export default function Loading_page() {
-  
+export default function Homepage() {
+  /*
   const [fontsLoaded] = useFonts({
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
   });
@@ -17,7 +17,7 @@ export default function Loading_page() {
   if (!fontsLoaded) {
     return null;
   }
-
+*/
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 

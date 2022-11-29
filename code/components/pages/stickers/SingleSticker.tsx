@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableOpacity  } from 'react-native';
+import React from 'react'
+import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -10,29 +10,13 @@ import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 
 import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const ImportButton = () => {
-    const [fontsLoaded] = useFonts({
-        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
-        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
-      });
-    return (
-        <View>
-            <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>
-                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>Import Pack</Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
 
 const RightPartInfo = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
     
     const [fontsLoaded] = useFonts({
         'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
-        'popbold': require('./../../../assets/fonts/poppins/Poppins-Regular.otf')
+        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
       });
-    
     return (
         <View style={{flexDirection: 'column', padding: 20 }}>
             <Text style= {{fontFamily: "popbold", fontSize: 19}}>{name}</Text>
@@ -55,22 +39,11 @@ const LeftPartIcon = ({img}: {img: ImageSourcePropType}) => {
 }
 
 const RightPartButton = () => {
-
-    const [favourite, setFavourite] = useState<boolean>(false);
-
-    const addToFav = () => {
-        setFavourite(!favourite);
-    }
-
     return (
         <View>
-            <TouchableOpacity onPress={() => addToFav()}>
-                <Ionicons
-                name='md-heart'
-                size={40}
-                color={favourite ? "#F44336" : '#9E9E9E'}
-                />
-            </TouchableOpacity>
+            <TouchableHighlight style={{height: 40, width: 40}}>
+                <Image source={ImagesAssets.hearth} style={{height: 25, width: 25, shadowColor: '#090909',shadowOffset: {width: 0, height: 1},shadowOpacity: 0.8,shadowRadius: 1}}/>
+            </TouchableHighlight>
         </View>
     );
 }
@@ -83,10 +56,10 @@ const BigStickerPack2 = ({img, name, author, numSticker, downloads} : {img: Imag
             <View style={{flex : 3}}>
                 <LeftPartIcon img={img} />
             </View>
-            <View style={{flex : 4, marginLeft : 20}}>
+            <View style={{flex : 4, marginLeft : 13}}>
                 <RightPartInfo name={name} author={author} numSticker={numSticker} downloads={downloads}/>
             </View>
-            <View style={{flex : 1.5}}>
+            <View style={{flex : 1}}>
                 <RightPartButton />
             </View>
         </View>
@@ -114,7 +87,6 @@ export default function SingleSticker() {
 
         <View style={{marginTop: 30}}>
             <BigStickerPack2 img={ImagesAssets.computer} name={"Trendy Computer"} author={"Francesco"} numSticker={23} downloads={1990}/>
-            
             <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
                 <ImportButton />
             </View>

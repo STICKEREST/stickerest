@@ -139,7 +139,7 @@ export default function Registration_page() {
     <View style={styles.container}>
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
               <View style={styles.text_view_login}>
-                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Create your account</Text>
+                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
                     <SignInButton/>

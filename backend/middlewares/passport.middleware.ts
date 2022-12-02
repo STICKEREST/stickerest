@@ -11,70 +11,81 @@ const connection : Database = getDb();
 
 // console.log("I do taht");
 
-passport.use(
-    new LocalStrategy({
-        usernameField : "username",
-        passwordField : "password"
-    },
-    async (username, password, done ) => {
+let callOneTimeOnly = false;
+
+export function setupPassport(){
+
+    if (callOneTimeOnly)
+        return;
         
-        const user  : any = await ((username) => {
+    passport.use(
+        new LocalStrategy({
+            usernameField : "username",
+            passwordField : "password"
+        },
+        async (username, password, done ) => {
+
+            console.log('here yes');
+            
+            const user  : any = await ((username) => {
+                connection.query(
+                    `SELECT * FROM Utilizer U WHERE U.nickname = '${username}';`, 
+                    function (err: any, rows: any, fields: any) {
+                        if (err) throw err
+
+                        console.log(rows[0]);
+                    
+                        return rows[0];
+                    }); 
+            })(username);
+
+            // Modwel.findUsernam()
+
+            console.log(username);
+            console.log(user);
+
+            const checkPassword = async (password : string, passExisting : string) : Promise<boolean>  => {
+
+                return await bcrypt.compare(password, passExisting);
+                // return await true;
+            }
+        
+            if(user && (await checkPassword(password, user.password)))
+                done(null, user);
+            else
+                done(null, false);
+        }
+        )
+    );
+
+    passport.serializeUser((user : any, done) => {
+
+        done(null, user.email);
+
+    });
+
+
+    passport.deserializeUser (async (req : Request, email : string, done : any) => {
+
+        try {
+        const user  : any = await ((email) => {
             connection.query(
-                `SELECT * FROM Utilizer U WHERE U.nickname = '${username}';`, 
+                `SELECT * FROM Utilizer U WHERE U.email = '${email}';`, 
                 function (err: any, rows: any, fields: any) {
                     if (err) throw err
-
-                    console.log(rows[0]);
                 
                     return rows[0];
                 }); 
-        })(username);
+        })();
 
-        // Modwel.findUsernam()
+        done(null, user);
 
-        console.log(username);
-        console.log(user);
-
-        const checkPassword = async (password : string, passExisting : string) : Promise<boolean>  => {
-
-            return await bcrypt.compare(password, passExisting);
-            // return await true;
-        }
-    
-        if(user && (await checkPassword(password, user.password)))
-            done(null, user);
-        else
-            done(null, false);
+    } catch (error) {
+        done(error);
     }
-    )
-);
 
-passport.serializeUser((user : any, done) => {
+    })
 
-    done(null, user.email);
+    callOneTimeOnly = true;
 
-});
-
-
-passport.deserializeUser (async (req : Request, email : string, done : any) => {
-
-    try {
-    const user  : any = await ((email) => {
-        connection.query(
-            `SELECT * FROM Utilizer U WHERE U.email = '${email}';`, 
-            function (err: any, rows: any, fields: any) {
-                if (err) throw err
-            
-                return rows[0];
-            }); 
-    })();
-
-    done(null, user);
-
-} catch (error) {
-    done(error);
 }
-
-})
-
-export default passport;

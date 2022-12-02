@@ -4,11 +4,14 @@ import { initDb, getDb, Database } from './db';
 import usersRoutes from './routes/users';
 import auth from './routes/auth/auth';
 import sessionMiddleware from './middlewares/session.middleware';
-import passport from './middlewares/passport.middleware';
+import passport from 'passport';
+import { setupPassport } from './middlewares/passport.middleware';
 
 const app: Express = express();
 
 const port = process.env.PORT || 5000;
+
+setupPassport();
 
 const connection : Database = getDb();
 

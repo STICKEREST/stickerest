@@ -33,7 +33,7 @@ export const createUser = (connection: Database) : any => {
 export const logUser = (connection: Database) : any => {
 
     return  (req : Request, res : Response, next : NextFunction) : void => {
-        return passport.authenticate("local", (error, user, info) => {
+        passport.authenticate("local", (error, user, info) => {
             if(!user) return res.status(401).json({
                 message: "username or password is not matched"
             })
@@ -45,7 +45,7 @@ export const logUser = (connection: Database) : any => {
                     user
                 });
             })
-        });
+        })(req,res,next);
     }
 
 }

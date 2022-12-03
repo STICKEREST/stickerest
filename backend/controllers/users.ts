@@ -18,7 +18,9 @@ export const createUser = (connection: Database) : any => {
     return async (req : any, res : any) : Promise<void> => {
         const user = req.body;
 
-        const hashedPw = await bcrypt.hash(user.password, ""); //salt not used atm
+        const hashedPw = await bcrypt.hash(user.password, 0); //salt not used atm
+
+        // console.log(user.email + " " + user.nickname + " " + hashedPw);
 
         connection.query(
             `INSERT INTO Utilizer (email,nickname, password) VALUES ('${user.email}', '${user.nickname}','${hashedPw}');`, 
@@ -41,9 +43,7 @@ export const logUser = (connection: Database) : any => {
             req.login(user , (err) => {
                 if(err) throw err;
 
-                res.status(201).json({
-                    user
-                });
+                res.status(201).json("Successfully logged in!");
             })
         })(req,res,next);
     }

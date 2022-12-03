@@ -7,48 +7,61 @@ import { Database, getDb } from "../db";
 import bcrypt from 'bcrypt';
 import { Request } from "express";
 
-const connection : Database = getDb();
 
-// console.log("I do taht");
 
 let callOneTimeOnly = false;
 
 export function setupPassport(){
+
+    const connection : Database = getDb();
 
     if (callOneTimeOnly)
         return;
         
     passport.use(
         new LocalStrategy({
-            usernameField : "username",
+            usernameField : "email",
             passwordField : "password"
         },
-        async (username, password, done ) => {
+        async (email, password, done ) => {
 
             console.log('here yes');
             
-            const user  : any = await ((username) => {
+            
+
+            console.log("se spera");
+
+            const user : any = ((email : string) => {
                 connection.query(
-                    `SELECT * FROM Utilizer U WHERE U.nickname = '${username}';`, 
+                    `SELECT * FROM Utilizer U WHERE U.email = '${email}';`, 
                     function (err: any, rows: any, fields: any) {
                         if (err) throw err
-
-                        console.log(rows[0]);
+        
+                        // console.log(rows);
                     
-                        return rows[0];
-                    }); 
-            })(username);
+                        console.log(rows[0]);
+                });
+            })(email);
+
+            console.log('here yes');
 
             // Modwel.findUsernam()
 
-            console.log(username);
-            console.log(user);
+            // console.log(email);
+            // console.log("The user is");
+            // console.log(user);
 
             const checkPassword = async (password : string, passExisting : string) : Promise<boolean>  => {
+
+                // console.log(password);
+                // console.log(passExisting);
 
                 return await bcrypt.compare(password, passExisting);
                 // return await true;
             }
+
+            // console.log(password);
+            // console.log(user.password);
         
             if(user && (await checkPassword(password, user.password)))
                 done(null, user);

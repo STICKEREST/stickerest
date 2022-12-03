@@ -52,13 +52,15 @@ export const logUser = (connection: Database) : any => {
 
 export const getUser = (connection: Database) : any => {
 
-    return (req : any, res : any) : void => {
+    return (req : Request, res : Response) : void => {
         const { nickname } = req.params;
     
         connection.query(
             `SELECT * FROM Utilizer U WHERE U.nickname = '${nickname}';`, 
             function (err: any, rows: any, fields: any) {
                 if (err) throw err
+
+                console.log(rows);
             
                 res.send(rows)
             })

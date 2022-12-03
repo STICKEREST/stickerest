@@ -25,44 +25,27 @@ export function setupPassport(){
         },
         async (email, password, done ) => {
 
-            console.log('here yes');
-            
-            
-
-            console.log("se spera");
-
-            const user : any = ((email : string) => {
-                connection.query(
-                    `SELECT * FROM Utilizer U WHERE U.email = '${email}';`, 
-                    function (err: any, rows: any, fields: any) {
-                        if (err) throw err
-        
-                        // console.log(rows);
-                    
-                        console.log(rows[0]);
+            async function getUserByEmail (email : string) {
+                let pro = new Promise((resolve, reject) => {
+                    let query = `SELECT * FROM Utilizer U WHERE U.email = '${email}';`;
+                    connection.query(query, function(err: any, rows: any[]) {
+                        if(err) throw err;
+                        resolve(rows[0]);
+                    });
                 });
-            })(email);
 
-            console.log('here yes');
+                return pro.then((val) => { return val;});
+            }
+
+            const user : any = await getUserByEmail(email);
 
             // Modwel.findUsernam()
 
-            // console.log(email);
-            // console.log("The user is");
-            // console.log(user);
-
             const checkPassword = async (password : string, passExisting : string) : Promise<boolean>  => {
 
-                // console.log(password);
-                // console.log(passExisting);
-
                 return await bcrypt.compare(password, passExisting);
-                // return await true;
             }
 
-            // console.log(password);
-            // console.log(user.password);
-        
             if(user && (await checkPassword(password, user.password)))
                 done(null, user);
             else

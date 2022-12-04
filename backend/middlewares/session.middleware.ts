@@ -1,15 +1,31 @@
-import { NextFunction, Request, Response } from "express";
+// import { getDb, Database } from "../db";
+// import * as express from "express";
+// import {Request, Response, NextFunction}  from 'express';
+// import session, * as expressSession from "express-session";
+// import expressMySqlSession from "express-mysql-session";
 
-import session from 'express-session';
+// // import connection from 
 
-const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
+// // const connection : any = getDb();
 
-    return session({
-        secret: process.env.SESSION_SECRET!,
-        resave: false,
-        saveUninitialized: false
-    })(req,res,next);
 
-}
+// // const MySQLStore   = expressMySqlSession(expressSession);
 
-export default sessionMiddleware;
+
+
+// // const sessionStore = new MySQLStore({}, connection);
+
+// const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
+
+//     // req.session.save();
+
+//     return session({
+//         secret: process.env.SESSION_SECRET!,
+//         resave: false,
+//         saveUninitialized: false,
+//         // store: sessionStore,
+//         // store: new 
+//     })(req,res,next);
+// }
+
+// export default sessionMiddleware;

@@ -54,31 +54,36 @@ export function setupPassport(){
         )
     );
 
-    passport.serializeUser((user : any, done) => {
+    passport.serializeUser((user : any, done : any) => {
 
-        done(null, user.email);
+        done(null, user.email); 
 
     });
 
 
-    passport.deserializeUser (async (req : Request, email : string, done : any) => {
+    passport.deserializeUser (async (email : string, done : any) => {
+
+        async function getUserByEmail (email : string) {
+            let pro = new Promise((resolve, reject) => {
+                let query = `SELECT * FROM Utilizer U WHERE U.email = '${email}';`;
+                connection.query(query, function(err: any, rows: any[]) {
+                    if(err) throw err;
+                    resolve(rows[0]);
+                });
+            });
+
+            return pro.then((val) => { return val;});
+        }
 
         try {
-        const user  : any = await ((email) => {
-            connection.query(
-                `SELECT * FROM Utilizer U WHERE U.email = '${email}';`, 
-                function (err: any, rows: any, fields: any) {
-                    if (err) throw err
-                
-                    return rows[0];
-                }); 
-        })();
 
-        done(null, user);
+            const user : any = await getUserByEmail(email);
 
-    } catch (error) {
-        done(error);
-    }
+            done(null, user);
+
+        } catch (error) {
+            done(error);
+        }
 
     })
 

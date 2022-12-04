@@ -20,8 +20,6 @@ export const createUser = (connection: Database) : any => {
 
         const hashedPw = await bcrypt.hash(user.password, 0); //salt not used atm
 
-        // console.log(user.email + " " + user.nickname + " " + hashedPw);
-
         connection.query(
             `INSERT INTO Utilizer (email,nickname, password) VALUES ('${user.email}', '${user.nickname}','${hashedPw}');`, 
             function (err: any, rows: any, fields: any) {
@@ -42,6 +40,8 @@ export const logUser = (connection: Database) : any => {
 
             req.login(user , (err) => {
                 if(err) throw err;
+
+                req.session.save();
 
                 res.status(201).json("Successfully logged in!");
             })
@@ -68,45 +68,45 @@ export const getUser = (connection: Database) : any => {
 
 }
 
-export const deleteUser = (connection : Database) : any => {
-    return (req : any, res : any) : void => {
-        const { nickname } = req.params;
+// export const deleteUser = (connection : Database) : any => {
+//     return (req : any, res : any) : void => {
+//         const { nickname } = req.params;
     
-        connection.query(
-            `DELETE FROM Utilizer U WHERE U.nickname = '${nickname}';`, 
-            function (err: any, rows: any, fields: any) {
-                if (err) throw err
+//         connection.query(
+//             `DELETE FROM Utilizer U WHERE U.nickname = '${nickname}';`, 
+//             function (err: any, rows: any, fields: any) {
+//                 if (err) throw err
             
-                res.send(rows)
-            })
-    }
-}
+//                 res.send(rows)
+//             })
+//     }
+// }
 
-export const updateUser = (connection : Database) : any => {
-    return (req : any, res : any) : void => {
-        const { nickname } = req.params;
-        const { email, password } = req.body; 
+// export const updateUser = (connection : Database) : any => {
+//     return (req : any, res : any) : void => {
+//         const { nickname } = req.params;
+//         const { email, password } = req.body; 
     
-        let updates : string[] = [];
+//         let updates : string[] = [];
     
-        if(email)
-            updates.push(`U.email = '${email}'`);
-        if(password)
-            updates.push(`U.password = '${password}'`);
+//         if(email)
+//             updates.push(`U.email = '${email}'`);
+//         if(password)
+//             updates.push(`U.password = '${password}'`);
     
-        const query : string = updates.reduce((acc : string, update : string, index : number) => 
-                                            acc = acc + update + (index !== updates.length-1 ? "," : "")
-                                        ,"");
+//         const query : string = updates.reduce((acc : string, update : string, index : number) => 
+//                                             acc = acc + update + (index !== updates.length-1 ? "," : "")
+//                                         ,"");
     
-        if(updates.length != 0)
-            connection.query(
-                `UPDATE Utilizer U SET ${query} WHERE U.nickname = '${nickname}';`, 
-                function (err: any, rows: any, fields: any) {
-                    if (err) throw err
+//         if(updates.length != 0)
+//             connection.query(
+//                 `UPDATE Utilizer U SET ${query} WHERE U.nickname = '${nickname}';`, 
+//                 function (err: any, rows: any, fields: any) {
+//                     if (err) throw err
                 
-                    res.send(rows)
-                })
-        else
-            res.send("No modifications have been made");
-    }
-}
+//                     res.send(rows)
+//                 })
+//         else
+//             res.send("No modifications have been made");
+//     }
+// }

@@ -1,6 +1,6 @@
 import express, { Router } from 'express';
 import { getDb, Database } from '../db';
-import { createUser, deleteUser, getUser, getUsers, updateUser, logUser } from '../controllers/users';
+import { createUser, getUser, getUsers, logUser } from '../controllers/users.controller';
 
 const router: Router = express.Router();
 const connection: Database = getDb();
@@ -15,9 +15,9 @@ router.post('/login', logUser(connection));
 
 router.get('/:nickname', getUser(connection));
 
-router.delete('/:nickname', deleteUser(connection));
+// router.delete('/:nickname', deleteUser(connection));
 
-router.patch('/:nickname', updateUser(connection));
+// router.patch('/:nickname', updateUser(connection));
 
 
 

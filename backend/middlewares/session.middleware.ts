@@ -1,31 +1,48 @@
-// import { getDb, Database } from "../db";
-// import * as express from "express";
-// import {Request, Response, NextFunction}  from 'express';
-// import session, * as expressSession from "express-session";
-// import expressMySqlSession from "express-mysql-session";
+import { getDb, Database } from "../db";
+import * as express from "express";
+import {Request, Response, NextFunction}  from 'express';
+const session = require('express-session');
+const mysqlStore = require('express-mysql-session')(session);
 
-// // import connection from 
+// import connection from 
 
-// // const connection : any = getDb();
-
-
-// // const MySQLStore   = expressMySqlSession(expressSession);
+// const connection : any = getDb();
 
 
+// const MySQLStore   = expressMySqlSession(expressSession);
 
-// // const sessionStore = new MySQLStore({}, connection);
 
-// const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
 
-//     // req.session.save();
+// const sessionStore = new MySQLStore({}, connection);
 
-//     return session({
-//         secret: process.env.SESSION_SECRET!,
-//         resave: false,
-//         saveUninitialized: false,
-//         // store: sessionStore,
-//         // store: new 
-//     })(req,res,next);
-// }
+const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
 
-// export default sessionMiddleware;
+    const options = {
+        connectionLimit: 10,
+        password: process.env.DB_PASS,
+        user: process.env.DB_USER,
+        database: process.env.MYSQL_DB,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        createDatabaseTable: true,
+        ssl: {
+          rejectUnauthorized: true,
+        }
+      };
+      
+    const sessionStore = new mysqlStore(options);
+
+    return session({
+        name: process.env.SESSION_NAME,
+        resave: false,
+        saveUninitialized: false,
+        store: sessionStore,
+        secret: process.env.SESSION_SECRET,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 2,
+            sameSite: true
+        }
+    })(req,res,next);
+}
+
+export default sessionMiddleware;

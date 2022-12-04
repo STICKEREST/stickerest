@@ -20,35 +20,8 @@ setupPassport();
 
 const connection : Database = getDb();
 
-// const options = {
-//   connectionLimit: 10,
-//   password: process.env.DB_PASS,
-//   user: process.env.DB_USER,
-//   database: process.env.MYSQL_DB,
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT,
-//   createDatabaseTable: true,
-//   ssl: {
-//     rejectUnauthorized: true,
-//   }
-// };
-
-// const sessionStore = new mysqlStore(options);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// app.use(session({
-//   name: process.env.SESSION_NAME,
-//   resave: false,
-//   saveUninitialized: false,
-//   store: sessionStore,
-//   secret: process.env.SESSION_SECRET,
-//   cookie: {
-//       maxAge: 1000 * 60 * 60 * 2,
-//       sameSite: true
-//   }
-// }))
 
 app.use(sessionMiddleware);
 app.use(passport.initialize());
@@ -61,7 +34,7 @@ app.get("/api/demo", (req,res) => {
 
 app.use('/users', usersRoutes);
 
-// app.use('/auth', sessionMiddleware, auth);
+app.use('/auth', sessionMiddleware, auth);
 
 app.get('/', (req, res) => res.send('Hello from Homepage') );
 

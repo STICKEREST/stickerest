@@ -4,17 +4,6 @@ import {Request, Response, NextFunction}  from 'express';
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 
-// import connection from 
-
-// const connection : any = getDb();
-
-
-// const MySQLStore   = expressMySqlSession(expressSession);
-
-
-
-// const sessionStore = new MySQLStore({}, connection);
-
 const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
 
     const options = {

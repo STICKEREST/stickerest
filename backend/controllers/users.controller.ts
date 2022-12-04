@@ -41,11 +41,22 @@ export const logUser = (connection: Database) : any => {
             req.login(user , (err) => {
                 if(err) throw err;
 
-                req.session.save();
 
                 res.status(201).json("Successfully logged in!");
             })
         })(req,res,next);
+    }
+
+}
+
+export const logOut = () : any => {
+
+    return  (req : Request, res : Response, next : NextFunction) : void => {
+        req.logout(function(err) {
+            if (err) { return next(err); }
+            // res.redirect('/login');
+          });
+        res.status(204).json("Successfully loged out");
     }
 
 }

@@ -20,10 +20,6 @@ export default function CreatePack() {
   }
 
   const UploadButton = () => {
-    const [fontsLoaded] = useFonts({
-        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
-        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
-      });
     return (
         <View>
             <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>

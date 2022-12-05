@@ -1,13 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-const styleCarousel = StyleSheet.create({
+const styleCreatePack = StyleSheet.create({
 
     container: {
-//        backgroundColor: '#fff',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
       }
-   
 });
 
-export { styleCarousel }
+export { styleCreatePack }

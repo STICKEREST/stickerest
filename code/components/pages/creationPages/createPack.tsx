@@ -32,15 +32,47 @@ export default function CreatePack() {
         </View>
     )
 }
+
+const StickersPreview = () => {
+  return (
+  <View>
+    <View style={{marginTop: 20, flexDirection: 'row'}}>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer} />
+                </View>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer}/>
+                </View>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer}/>
+                </View>
+    </View>
+    <View style={{marginTop: 20, flexDirection: 'row'}}>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer} />
+                </View>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer}/>
+                </View>
+                <View style={{marginRight: 4}}>
+                    <SmallStickerPackBox img={ImagesAssets.computer}/>
+                </View>
+    </View>
+    <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
+      <UploadButton />
+    </View>
+  </View>
+  );
+}
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
   return (
-    <View>
-        <View style={styleCreatePack.background}>
+    <View style={styleCreatePack.container}>
+        <View>
             <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
         </View>
-        <View style={styleCreatePack.container}>
+        <View>
             <Text style= {{fontFamily: "popbold", fontSize: 19, alignContent: 'stretch'}}>Add your sticker pack</Text>
             <TextInput
                 //onChangeText={onChangeText}
@@ -51,12 +83,7 @@ export default function CreatePack() {
             <Text style= {{fontFamily: "popbold", fontSize: 19, alignContent: 'stretch'}}>Stickers</Text>
             
         </View>
-        <View>
-          <SmallStickerPackBox img={ImagesAssets.computer}/>
-        </View>
-        <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
-                <UploadButton />
-            </View>
+        <StickersPreview/>
     </View>
   );
 }

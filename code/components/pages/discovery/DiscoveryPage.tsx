@@ -36,7 +36,8 @@ const IconPack = () => {
     return (
 
         <View>
-            <Image source={ImagesAssets.questionMark} />
+            {/*I need to change it here*/}
+            <Image source={ImagesAssets.questionMark}/>
         </View>
     );
 }
@@ -57,8 +58,7 @@ const MainStickerView = () => {
 
     return (
         <View style={[styleSingleSticker.mainStickerView, {alignItems: 'center', justifyContent: 'center', padding: 20}]} >
-                <IconPack/>
-
+            <IconPack/>
             {/* <View style={{flex: 1}}>
 
             </View> */}

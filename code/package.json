@@ -20,7 +20,6 @@
     "expo-status-bar": "~1.4.0",
     "glob": "^8.0.3",
     "react": "18.0.0",
-    "react-horizontal-scrolling-menu": "^3.2.3",
     "react-native": "0.69.6",
     "react-native-ionicons": "^4.6.5",
     "react-native-screens": "~3.15.0",

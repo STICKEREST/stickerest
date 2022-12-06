@@ -17,14 +17,15 @@ export default function TabNavigator() {
 	return (
 		<Tabs.Navigator screenOptions={{headerShown: false}} tabBar={Navbar} >
 			<Tabs.Screen name="Home" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
-			<Tabs.Screen name="Discovery" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconStar}} />
+			<Tabs.Screen name="View" component={View} initialParams={{icon: ImagesAssets.iconStar}} />
 			<Tabs.Screen name="Create" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
-			<Tabs.Screen name="Settings" component={View} initialParams={{icon: ImagesAssets.iconSettings}} />
+			<Tabs.Screen name="Discovery" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconSettings}} />
 			<Tabs.Screen name="User" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />
 		</Tabs.Navigator>
 	);
 }
 
+// Navbar defines the appearance of the bottom navigation bar
 function Navbar({state, descriptors, navigation}) {
 	return (
 		<View style={navbarStyles.background}>

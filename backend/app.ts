@@ -24,10 +24,10 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/api/demo", (req,res) => {
-  console.log(req.isAuthenticated());
-  res.json({sessionId : req.sessionID});
-})
+// app.get("/api/demo", (req,res) => {
+//   console.log(req.isAuthenticated());
+//   res.json({sessionId : req.sessionID});
+// })
 
 app.use('/users', usersRoutes);
 

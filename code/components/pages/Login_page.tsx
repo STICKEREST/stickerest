@@ -112,10 +112,10 @@ const TextFields = () => {
 }
 
 //this component renders the sign in button (not an actual button)
-const SignInButton = () => {
+const SignInButton = ({onSubmit} : {onSubmit : any}) => {
   return (
     <TouchableOpacity
-                    onPress={null}
+                    onPress={onSubmit}
                     style={[styles.logInButton, {width: windowWidth/2}]}>
                     <Text
                       style={styles.logInButtonFont}>
@@ -137,6 +137,34 @@ export default function Login_page() {
     return null;
   }
 
+  const handleLogin = () => {
+
+    let formBody = [];
+
+    formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent("francesco"));
+    formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent("ciaociao"));
+
+    //@ts-ignore
+    formBody = formBody.join("&");
+    
+
+    fetch("http://localhost:5000/users/login", {
+      method: 'POST',
+      //@ts-ignore
+      body: formBody,//post body 
+      headers: {//Header Defination 
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+    } ).then((response) => response.json())
+    .then((responseData) => {
+        console.log(responseData);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+  }
+
   return (
     <View style={styles.container}>
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
@@ -144,7 +172,7 @@ export default function Login_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SignInButton/>
+                    <SignInButton onSubmit = {handleLogin}/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
                     <Text style={styles.urlText}

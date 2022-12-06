@@ -1,10 +1,10 @@
 import { getDb, Database } from "../db";
-import * as express from "express";
+import e, * as express from "express";
 import {Request, Response, NextFunction}  from 'express';
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 
-const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
+export const sessionMiddleware = (req : Request, res: Response, next : NextFunction) => {
 
     const options = {
         connectionLimit: 10,
@@ -34,4 +34,12 @@ const sessionMiddleware = (req : Request, res: Response, next : NextFunction) =>
     })(req,res,next);
 }
 
-export default sessionMiddleware;
+export const checkAuthentication = (req: Request, res: Response, next: NextFunction) => {
+  
+    if(req.isAuthenticated()) 
+      next()
+    else
+      res.status(500).json("Unauthorized");
+
+}
+ 

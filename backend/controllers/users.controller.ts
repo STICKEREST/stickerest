@@ -54,9 +54,9 @@ export const logOut = () : any => {
     return  (req : Request, res : Response, next : NextFunction) : void => {
         req.logout(function(err) {
             if (err) { return next(err); }
-            // res.redirect('/login');
+            res.status(204).json("Successfully loged out");
           });
-        res.status(204).json("Successfully loged out");
+        
     }
 
 }

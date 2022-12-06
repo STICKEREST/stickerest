@@ -9,15 +9,7 @@ import { styles } from "./../../assets/style/styleLoadingPage";
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 export default function Homepage() {
-  /*
-  const [fontsLoaded] = useFonts({
-    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-*/
+ 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 

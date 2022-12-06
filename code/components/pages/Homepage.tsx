@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, Button } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 
 import { styles } from './../../assets/style/styleHomepage';
 
@@ -7,14 +7,16 @@ import SearchBar from '../SearchBar';
 import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
 
+import SingleSticker from './stickers/SingleSticker';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
 export const Homepage = () => (
-	<Stack.Navigator>
+	<Stack.Navigator screenOptions={{headerShown: false}} >
 		<Stack.Screen name="Home" component={Home} />
-		<Stack.Screen name="Test" component={View} />
+		<Stack.Screen name="SingleSticker" component={SingleSticker} />
 	</Stack.Navigator>
 );
 
@@ -26,16 +28,15 @@ const Home = ({navigation}) => (
 				<Text style={styles.header}>
 					Recommended for you
 				</Text>
-				<CarouselBigSticker />
+				<CarouselBigSticker onStickerPress={() => navigation.navigate("SingleSticker")} />
 				<Text style={styles.header}>
 					Trending
 				</Text>
-				<CarouselSticker />
+				<CarouselSticker onStickerPress={() => navigation.navigate("SingleSticker")} />
 				<Text style={styles.header}>
 					New
 				</Text>
-				<CarouselSticker />
-				<Button title="Test" onPress={() => navigation.navigate("Test")} />
+				<CarouselSticker onStickerPress={() => navigation.navigate("SingleSticker")} />
 			</ScrollView>
 		</View>
 	</View>

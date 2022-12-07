@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './components/TabNavigator';
 
+import Login_page from './components/pages/Login_page';
 import Loading_page from './components/pages/Loading_page';
 
 export default function App() {
 	const [ready, setReady] = useState(false);
+	const loggedIn = false; // TODO: Simulates the user being logged in or not, change this when actual login is implemented
 	useEffect(() => {
 		async function load() {
 			try {
@@ -20,10 +22,13 @@ export default function App() {
 		}
 		load();
 	});
-	// TODO: Use more than just one 'ready' state to show either Loading, Login, or TabNavigator
-	return ready ? (
+	return ready ? loggedIn ? (
 		<NavigationContainer>
 			<TabNavigator />
 		</NavigationContainer>
-	) : <Loading_page />;
+	) : (
+		<Login_page />
+	) : (
+		<Loading_page />
+	);
 }

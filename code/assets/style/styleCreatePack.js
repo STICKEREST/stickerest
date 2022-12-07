@@ -24,7 +24,11 @@ const styleCreatePack = StyleSheet.create({
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
-      }
+      }, scrollView: {
+        marginHorizontal: 20,
+        marginTop: 10, 
+        flexDirection: 'row', 
+      },
 });
 
 export { styleCreatePack }

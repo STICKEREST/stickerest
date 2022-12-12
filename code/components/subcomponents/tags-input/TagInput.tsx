@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
-import { TextInput, TouchableOpacity, TouchableHighlight, Text, View, Button  } from 'react-native';
+import { TextInput, TouchableOpacity, Text, View, Dimensions  } from 'react-native';
 import { styleTagInput } from '../../../assets/style/styleTagInput';
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const TagInput = () => {
 
@@ -87,10 +91,10 @@ const TagInput = () => {
                 onChange={(newText) => handleOnChangeText(newText)}
                 editable={isEditable}
             />
-          <View style={{flexWrap: 'wrap', borderWidth:1.5, borderColor:'black', borderRadius: 10, height: 130, width: 320, padding: 4}}>
+          <View style={{flexWrap: 'wrap', borderWidth:1.5, borderColor:'black', borderRadius: 10, height: 130, width: windowWidth*0.8, padding: 4}}>
           
             {tags.map((tag, index) => (
-                <View style={{backgroundColor: '#8D08F5', borderRadius: 20, width: 100, height: 30, margin: 2}}>
+                <View style={{backgroundColor: '#8D08F5', borderRadius: 20, width: windowWidth * 0.25, height: 30, margin: 2}}>
                   <View  style={{flexDirection: 'row', height: 20}}>
                     <View style={{flex: 1}}>
                       <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 14, textAlign:"center"}}>{tag}</Text>

@@ -7,20 +7,9 @@ import SearchBar from '../SearchBar';
 import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
 
-import SingleSticker from './stickers/SingleSticker';
 
-import { createStackNavigator } from '@react-navigation/stack';
-
-const Stack = createStackNavigator();
-
-export const Homepage = () => (
-	<Stack.Navigator screenOptions={{headerTransparent: true, headerTitle: '', headerTintColor: 'white'}} >
-		<Stack.Screen name="Home" component={Home} />
-		<Stack.Screen name="SingleSticker" component={SingleSticker} />
-	</Stack.Navigator>
-);
-
-const Home = ({navigation}) => (
+// Homepage component. Used in TabNavigator.
+export const Homepage = ({navigation}) => (
 	<View style={styles.container}>
 		<SearchBar/>
 		<View style={styles.innerContainer}>

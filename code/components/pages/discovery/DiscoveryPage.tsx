@@ -36,7 +36,7 @@ const IconPack = ({id}:{id:number}) => {
     
     return (
         <View>
-            <Image style={{height: 200, width: 200}} source={{uri: "https://picsum.photos/id/" + id + "/200/300"}}/>
+            <Image style={{height: 200, width: 300, borderRadius: 20}} source={{uri: "https://picsum.photos/id/" + id + "/200/300"}}/>
         </View>
     );
 }
@@ -94,7 +94,6 @@ const MainStickerView = () => {
     return (
         <View style={[styleSingleSticker.mainStickerView, {alignItems: 'center', justifyContent: 'center', padding: 20}]} >
             <IconPack id={randomValue}/>
-            <Text>{y}</Text>
             {/* <View style={{flex: 1}}>
 
             </View> */}

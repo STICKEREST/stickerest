@@ -55,28 +55,30 @@ const Sticker = ({icon}:{icon:Image}) => {
 
 const MainStickerView = () => {
 
-    const [randomValue, setRandomValue] = useState<number>(Math.floor(Math.random()*200));
+    const [randomValue, setRandomValue] = useState<number>(0);
 
     const [{ x, y, z }, setData] = useState({
         x: 0,
         y: 0,
         z: 0,
-      });
+     });
     const [subscription, setSubscription] = useState(null);
 
-    //problem to be fixed here
+    let sensitivity = 12
 
-    if (Math.abs(y)>2)
-    {
-        setRandomValue(Math.floor(Math.random()*200))
-    }
+    useEffect(() => {
+          if (y>sensitivity)
+          {
+            setRandomValue(Math.floor(Math.random()*200))
+          }
+    }, [y>sensitivity]);
 
     const _subscribe = () => {
-    setSubscription(
-        Gyroscope.addListener(gyroscopeData => {
-        setData(gyroscopeData);
-        })
-    );
+        setSubscription(
+            Gyroscope.addListener(gyroscopeData => {
+            setData(gyroscopeData);
+            })
+        );
     };
 
     const _unsubscribe = () => {

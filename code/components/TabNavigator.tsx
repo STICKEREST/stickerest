@@ -1,5 +1,4 @@
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { ImagesAssets } from '../assets/ImagesAssets';
 
@@ -8,7 +7,11 @@ import DiscoveryPage from './pages/discovery/DiscoveryPage';
 import UserProfilePage from './pages/UserProfilePage';
 import CreatePack from './pages/creationPages/createPack';
 
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+
 const Tabs = createBottomTabNavigator();
+
 
 // Handles the navigation between Homepage, Favourites, CreatePack, DiscoveryPage, UserProfilePage.
 // Homepage then uses the StackNavigator to control the navigation between this TabNavigator and the SingleSticker page.

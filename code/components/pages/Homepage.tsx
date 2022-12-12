@@ -2,8 +2,7 @@ import { View, ScrollView, Text } from 'react-native';
 
 import { styles } from './../../assets/style/styleHomepage';
 
-import SearchBar from '../SearchBar';
-
+import { SearchBar } from '../subcomponents/SearchBar';
 import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
 

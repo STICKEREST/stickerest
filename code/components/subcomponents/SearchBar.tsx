@@ -2,7 +2,8 @@ import { React, useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
-export default function SearchBar() {
+// SearchBar used in Homepage.
+export const SearchBar = () => {
 	const [focused, setFocused] = useState(false);
 	const [text, setText] = useState("");
 	return (

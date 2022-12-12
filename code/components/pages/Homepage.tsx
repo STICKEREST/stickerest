@@ -14,7 +14,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 export const Homepage = () => (
-	<Stack.Navigator screenOptions={{headerShown: false}} >
+	<Stack.Navigator screenOptions={{headerTransparent: true, headerTitle: '', headerTintColor: 'white'}} >
 		<Stack.Screen name="Home" component={Home} />
 		<Stack.Screen name="SingleSticker" component={SingleSticker} />
 	</Stack.Navigator>

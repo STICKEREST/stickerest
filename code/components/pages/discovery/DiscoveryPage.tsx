@@ -1,5 +1,5 @@
-import React from 'react'
-import { Dimensions, ImageBackground,  TouchableHighlight  } from 'react-native';
+import React, {useState, useEffect} from 'react'
+import { Dimensions, ImageBackground,  TouchableHighlight } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -7,8 +7,9 @@ import { useFonts } from 'expo-font';
 import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 
+import { Gyroscope } from 'expo-sensors';
+
 const ButtonInteraction = () => {
-    const windowWidth = Dimensions.get('window').width;
 
     return (
 
@@ -31,13 +32,11 @@ const ButtonInteraction = () => {
     );
 }
 
-const IconPack = () => {
+const IconPack = ({id}:{id:number}) => {
     
     return (
-
         <View>
-            {/*I need to change it here*/}
-            <Image source={ImagesAssets.questionMark}/>
+            <Image style={{height: 200, width: 300, borderRadius: 20}} source={{uri: "https://picsum.photos/id/" + id + "/200/300"}}/>
         </View>
     );
 }
@@ -56,9 +55,45 @@ const Sticker = ({icon}:{icon:Image}) => {
 
 const MainStickerView = () => {
 
+    const [randomValue, setRandomValue] = useState<number>(0);
+
+    const [{ x, y, z }, setData] = useState({
+        x: 0,
+        y: 0,
+        z: 0,
+     });
+    const [subscription, setSubscription] = useState(null);
+
+    let sensitivity = 12
+
+    useEffect(() => {
+          if (y>sensitivity)
+          {
+            setRandomValue(Math.floor(Math.random()*200))
+          }
+    }, [y>sensitivity]);
+
+    const _subscribe = () => {
+        setSubscription(
+            Gyroscope.addListener(gyroscopeData => {
+            setData(gyroscopeData);
+            })
+        );
+    };
+
+    const _unsubscribe = () => {
+    subscription && subscription.remove();
+    setSubscription(null);
+    };
+    
+    useEffect(() => {
+        _subscribe();
+        return () => _unsubscribe();
+    }, []); 
+
     return (
         <View style={[styleSingleSticker.mainStickerView, {alignItems: 'center', justifyContent: 'center', padding: 20}]} >
-            <IconPack/>
+            <IconPack id={randomValue}/>
             {/* <View style={{flex: 1}}>
 
             </View> */}

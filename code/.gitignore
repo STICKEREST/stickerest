@@ -1,3 +1,4 @@
+# React/Expo
 node_modules/
 .expo/
 dist/
@@ -9,6 +10,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+
+# External editors
+.vscode/
+.idea/
 
 # macOS
 .DS_Store

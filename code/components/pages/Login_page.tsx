@@ -12,9 +12,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //a component to render the email text field
-const EmailField = () => {
+const EmailField = ({email, setEmail} : {email : string, setEmail : any}) => {
 
-  const [text, onChangeText] = React.useState("");
+  // const [text, onChangeText] = React.useState("");
 
   const [rightAnswer, setRightAnswer] = useState<boolean>(true);
 
@@ -22,7 +22,7 @@ const EmailField = () => {
   let gray:string = "#f1f1f1"
   let red:string = "#ffcccc"
 
-  let emptyText:boolean = text===""
+  let emptyText:boolean = email===""
   let color = gray;
   
   if (rightAnswer)
@@ -34,7 +34,7 @@ const EmailField = () => {
 
   const validateEmail = () => {
     let regexValidMail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-    let test = regexValidMail.test(text)
+    let test = regexValidMail.test(email)
     test?setRightAnswer(true):setRightAnswer(false)
   };
 
@@ -44,7 +44,7 @@ const EmailField = () => {
               <TextInput
                 onBlur={() => validateEmail()}
                 style={[styles.input, {width: windowWidth*0.7}]}
-                onChangeText={onChangeText}
+                onChangeText={(value) => setEmail(value)}
                 placeholder={"Email"}
               />
        </View>
@@ -52,9 +52,9 @@ const EmailField = () => {
 }
 
 //a component to render the password text field
-const PasswordField = () => {
+const PasswordField = ({password, setPassword} : {password : string, setPassword : any}) => {
 
-  const [text, onChangeText] = React.useState("");
+  // const [text, onChangeText] = React.useState("");
 
   const [rightAnswer, setRightAnswer] = useState<boolean>(true);
 
@@ -62,7 +62,7 @@ const PasswordField = () => {
   let gray:string = "#f1f1f1"
   let red:string = "#ffcccc"
 
-  let emptyText:boolean = text===""
+  let emptyText:boolean = password===""
   let color = gray;
   
   if (rightAnswer)
@@ -74,7 +74,7 @@ const PasswordField = () => {
 
   const validatePassword = () => {
     let regexValidPassword = new RegExp("^(?=.*\d).{4,8}$");
-    let test = regexValidPassword.test(text)
+    let test = regexValidPassword.test(password)
     test?setRightAnswer(true):setRightAnswer(false)
   };
 
@@ -87,7 +87,7 @@ const PasswordField = () => {
               secureTextEntry={true}
               onBlur={() => validatePassword()}
               style={[styles.input, {width: windowWidth*0.7}]}
-              onChangeText={onChangeText}
+              onChangeText={(value) => setPassword(value)}
               placeholder={"Password"}
             />
        </View>
@@ -99,13 +99,13 @@ const PasswordField = () => {
 }
 
 //this component renders the possibility to enter the mail and the password
-const TextFields = () => {
+const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: any, setPassword : any}) => {
 
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <EmailField/>
-              <PasswordField/>
+              <EmailField email={email} setEmail={setEmail}/>
+              <PasswordField password={password} setPassword={setPassword}/>
           </View>
       </SafeAreaView>
   )
@@ -126,6 +126,9 @@ const SignInButton = ({onSubmit} : {onSubmit : any}) => {
 }
 
 export default function Login_page() {
+
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   
   const [fontsLoaded] = useFonts({
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
@@ -141,14 +144,13 @@ export default function Login_page() {
 
     let formBody = [];
 
-    formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent("francesco"));
-    formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent("ciaociao"));
+    formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent(email));
+    formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent(password));
 
     //@ts-ignore
-    formBody = formBody.join("&");
-    
+    formBody = formBody.join("&");    
 
-    fetch("http://localhost:5000/users/login", {
+    fetch("https://stickerest.herokuapp.com/users/login", {
       method: 'POST',
       //@ts-ignore
       body: formBody,//post body 
@@ -170,7 +172,7 @@ export default function Login_page() {
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
               <View style={styles.text_view_login}>
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
-                  <TextFields/>
+                  <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
                     <SignInButton onSubmit = {handleLogin}/>
                   </View>

@@ -149,10 +149,10 @@ const TextFields = () => {
 }
 
 //this component renders the sign up button (not an actual button)
-const SignUpButton = () => {
+const SignUpButton = ({onSubmit} : {onSubmit : any}) => {
   return (
     <TouchableOpacity
-                    onPress={null}
+                    onPress={onSubmit}
                     style={[styles.logInButton, {width: windowWidth/2}]}>
                     <Text
                       style={styles.logInButtonFont}>
@@ -160,6 +160,33 @@ const SignUpButton = () => {
                     </Text>
     </TouchableOpacity>
   )
+}
+
+const handleSignUp = () => {
+
+  let formBody = [];
+
+  formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent(email));
+  formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent(password));
+
+  //@ts-ignore
+  formBody = formBody.join("&");    
+
+  fetch("https://stickerest.herokuapp.com/users/register", {
+    method: 'POST',
+    //@ts-ignore
+    body: formBody,//post body 
+    headers: {//Header Defination 
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+  } ).then((response) => response.json())
+  .then((responseData) => {
+      console.log(responseData);
+  })
+  .catch((error) => {
+      console.log(error);
+  });
+
 }
 
 export default function Registration_page() {
@@ -181,7 +208,7 @@ export default function Registration_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SignUpButton/>
+                    <SignUpButton onSubmit = {SignUpButton}/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>

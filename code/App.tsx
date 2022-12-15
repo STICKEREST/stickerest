@@ -8,7 +8,7 @@ import Login_page from './components/pages/Login_page';
 export default function App() {
 	return (
 		<NavigationContainer>
-			<Login_page />
+			<TabNavigator />
 		</NavigationContainer>
 	);
 }

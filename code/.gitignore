@@ -11,6 +11,9 @@ npm-debug.*
 *.orig.*
 web-build/
 
+# Private API Keys
+api_keys.js
+
 # External editors
 .vscode/
 .idea/

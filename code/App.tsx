@@ -9,7 +9,7 @@ import Registration_page from './components/pages/Registration_page';
 export default function App() {
 	return (
 		<NavigationContainer>
-			<Registration_page />
+			<TabNavigator />
 		</NavigationContainer>
 	);
 }

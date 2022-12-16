@@ -5,7 +5,6 @@ import { ImagesAssets } from '../assets/ImagesAssets';
 
 import Homepage from './pages/Homepage';
 import Favorites from './pages/Favorites';
-import Discovery from './pages/discovery/DiscoveryPage';
 import UserProfilePage from './pages/UserProfilePage';
 import CreatePack from './pages/creationPages/createPack';
 
@@ -20,7 +19,7 @@ export default function TabNavigator() {
 	return (
 		<Tabs.Navigator screenOptions={{headerShown: false}} tabBar={Navbar} >
 			<Tabs.Screen name="Home" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
-			<Tabs.Screen name="Discovery" component={Discovery} initialParams={{icon: ImagesAssets.iconStar}} />
+			<Tabs.Screen name="Favorites" component={Favorites} initialParams={{icon: ImagesAssets.iconStar}} />
 			<Tabs.Screen name="Create" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
 			<Tabs.Screen name="Settings" component={View} initialParams={{icon: ImagesAssets.iconSettings}} />
 			<Tabs.Screen name="User" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />

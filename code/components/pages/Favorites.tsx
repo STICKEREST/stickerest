@@ -6,6 +6,7 @@ import SearchBar from '../SearchBar';
 
 import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
+import CarouselVertical from '../subcomponents/stickers-carousel/CarouselVertical';
 
 export default function Homepage() {
 	return (
@@ -20,8 +21,8 @@ export default function Homepage() {
 				</ScrollView>
                 <Text style={styles.header}>
 						More that you liked
-					</Text>
-				<CarouselSticker/>
+				</Text>
+				<CarouselVertical/>
 			</View>
 		</View>
 	);

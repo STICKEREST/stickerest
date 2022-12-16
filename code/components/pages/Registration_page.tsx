@@ -9,14 +9,14 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 import { Icon } from '@rneui/themed';
+import { setEmitFlags } from 'typescript';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 //a component to render the email text field
-const EmailField = () => {
+const EmailField = ({email, setEmail}:{email:string, setEmail:any}) => {
 
-  const [text, onChangeText] = React.useState("");
 
   const [rightAnswer, setRightAnswer] = useState<boolean>(true);
 
@@ -24,7 +24,7 @@ const EmailField = () => {
   let gray:string = "#f1f1f1"
   let red:string = "#ffcccc"
 
-  let emptyText:boolean = text===""
+  let emptyText:boolean = email===""
   let color = gray;
   
   if (rightAnswer)
@@ -36,7 +36,7 @@ const EmailField = () => {
 
   const validateEmail = () => {
     let regexValidMail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-    let test = regexValidMail.test(text)
+    let test = regexValidMail.test(email)
     test?setRightAnswer(true):setRightAnswer(false)
   };
 
@@ -46,21 +46,21 @@ const EmailField = () => {
               <TextInput
                 onBlur={() => validateEmail()}
                 style={[styles.input, {width: windowWidth*0.7}]}
-                onChangeText={onChangeText}
+                onChangeText={(val)=>setEmail(val)}
                 placeholder={"Email"}
               />
        </View>
   )
 }
 
-const NicknameField = () => {
+const NicknameField = ({nickname, setNickname}:{nickname:string, setNickname:any}) => {
 
-  const [text, onChangeText] = React.useState("");
+  // const [text, onChangeText] = React.useState("");
 
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"
 
-  let emptyText:boolean = text===""
+  let emptyText:boolean = nickname===""
   let color = gray;
  
   if (emptyText)
@@ -80,7 +80,7 @@ const NicknameField = () => {
         </View>
               <TextInput
                 style={[styles.input, {width: windowWidth*0.7}]}
-                onChangeText={onChangeText}
+                onChangeText={(val)=> setNickname(val)}
                 placeholder={"Nickname"}
               />
        </View>
@@ -88,9 +88,9 @@ const NicknameField = () => {
 }
 
 //a component to render the password test field
-const PasswordField = () => {
+const PasswordField = ({password, setPassword}:{password:string, setPassword:any}) => {
 
-  const [text, onChangeText] = React.useState("");
+  // const [text, onChangeText] = React.useState("");
 
   const [rightAnswer, setRightAnswer] = useState<boolean>(true);
 
@@ -98,7 +98,7 @@ const PasswordField = () => {
   let gray:string = "#f1f1f1"
   let red:string = "#ffcccc"
 
-  let emptyText:boolean = text===""
+  let emptyText:boolean = password===""
   let color = gray;
   
   if (rightAnswer)
@@ -110,7 +110,7 @@ const PasswordField = () => {
 
   const validatePassword = () => {
     let regexValidPassword = new RegExp("^(?=.*\d).{4,8}$");
-    let test = regexValidPassword.test(text)
+    let test = regexValidPassword.test(password)
     test?setRightAnswer(true):setRightAnswer(false)
   };
 
@@ -123,7 +123,7 @@ const PasswordField = () => {
               secureTextEntry={true}
               onBlur={() => validatePassword()}
               style={[styles.input, {width: windowWidth*0.7}]}
-              onChangeText={onChangeText}
+              onChangeText={(val)=>setPassword(val)}
               placeholder={"Password"}
             />
        </View>
@@ -135,24 +135,24 @@ const PasswordField = () => {
 }
 
 //this component renders the possibility to enter the mail and the password
-const TextFields = () => {
+const TextFields = ({email, password, setEmail, setPassword, nickname, setNickname} : {email:string, password:string, setEmail:any, setPassword:any, nickname: string, setNickname: any}) => {
 
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <EmailField/>
-              <PasswordField/>
-              <NicknameField/>
+              <EmailField email={email} setEmail={setEmail}/>
+              <PasswordField password={password} setPassword={setPassword}/>
+              <NicknameField nickname={nickname} setNickname={setNickname}/>
           </View>
       </SafeAreaView>
   )
 }
 
 //this component renders the sign up button (not an actual button)
-const SignUpButton = () => {
+const SignUpButton = ({onSubmit} : {onSubmit : any}) => {
   return (
     <TouchableOpacity
-                    onPress={null}
+                    onPress={onSubmit}
                     style={[styles.logInButton, {width: windowWidth/2}]}>
                     <Text
                       style={styles.logInButtonFont}>
@@ -162,7 +162,50 @@ const SignUpButton = () => {
   )
 }
 
+
+
 export default function Registration_page() {
+
+  const [email, setEmail] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSignUp = (emailSign : string, nickSign :string, pwSign : string) => {
+
+
+    let formBody = [];
+  
+    formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent(emailSign));
+    
+    formBody.push(encodeURIComponent("nickname") + "=" + encodeURIComponent(nickSign));
+    
+    formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent(pwSign));
+
+    console.log(formBody)
+    
+  
+    //@ts-ignore
+    formBody = formBody.join("&");    
+  
+    fetch("https://stickerest.herokuapp.com/users/register", {
+      method: 'POST',
+      //@ts-ignore
+      body: formBody,//post body 
+      headers: {//Header Defination 
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+    } )
+    .then((response) => {
+      if(response.status === 201)
+        console.log('Successful registration');
+      else
+        console.log('Something went wrong during the registration');
+    })
+    .catch((error) => {
+      console.log('Something went wrong during the registration');
+    });
+  
+  }
   
   const [fontsLoaded] = useFonts({
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
@@ -179,9 +222,9 @@ export default function Registration_page() {
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
               <View style={styles.text_view_login}>
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
-                  <TextFields/>
+                  <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SignUpButton/>
+                    <SignUpButton onSubmit = {()=>handleSignUp(email,nickname,password)}/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>

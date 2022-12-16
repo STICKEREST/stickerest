@@ -47,7 +47,7 @@ export default function CarouselVertical() {
             data = {data}
             renderItem={({ item }) => {
                 return (
-                    <View>
+                    <View style={{padding: 15}}>
                         {mapOfComponents[item.id]}
                     </View>
                 )
@@ -55,7 +55,7 @@ export default function CarouselVertical() {
             }
         
             keyExtractor={item => item.id}
-            style={{height: windowHeight*0.4}}
+            style={{height: windowHeight*0.3, marginBottom: 40}}
         />
     </View>
     </SafeAreaView>

@@ -3,7 +3,7 @@ import { BigStickerPack } from '../BigStickerPack';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { styleCarousel } from "../../../assets/style/styleCarousel";
 
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
 const data= [
     {
@@ -32,20 +32,18 @@ const mapOfComponents = {
     comp5: <SmallStickerPackBox img={ImagesAssets.computer}/>
   };
 
-export default function Carousel() {
+export default function Carousel({onStickerPress} : {onStickerPress: () => void}) {
 
-    return (// style={styles.container}>
+    return (
         <View style={styleCarousel.container}> 
             <FlatList
                 horizontal
                 ItemSeparatorComponent={() => <View style={{marginRight: 25}} />}
                 showsHorizontalScrollIndicator={false}
                 data = {data}
-                renderItem={({ item }) => {
-                    return (
-                      mapOfComponents[item.id]
-                    )
-                }
+                renderItem={({ item }) => (
+                    <SmallStickerPackBox img={ImagesAssets.computer} onPress={onStickerPress} />
+                )
                 }
                
                 keyExtractor={item => item.id}

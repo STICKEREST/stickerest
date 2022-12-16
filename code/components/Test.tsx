@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Alert, Button, Linking, View } from "react-native";
+import React, { useCallback, useState } from "react";
+import { Alert, Button, Linking, View, TextInput } from "react-native";
 
 // TODO: I tried to make this work using .env but kept getting 'undefined'
 import { TelegramApiKey } from "../api_keys";
@@ -21,15 +21,29 @@ const AddStickersButton = ({packName}: {packName: string}) => {
 	);
 }
 
-// Uses the telegram api to get information about the bot
-// TODO: Import stickers with https://core.telegram.org/api/stickers
-const fetchAPI = () => {
-	return fetch('https://api.telegram.org/bot' + TelegramApiKey + '/getMe').then((response) => response.json()).then((json) => {
-		console.log(json)
-	}).catch((error) => {
-		console.error(error);
-	});
+const getBotInfo = () => {
+	return fetch('https://api.telegram.org/bot' + TelegramApiKey + '/getMe')
+		.then(response => response.json())
+		.then(response => {
+			if(response.ok)
+				return response.result;
+			throw new Error(response);
+		});
 };
+
+interface Sticker {
+	url: string,
+	emoji: string
+}
+
+const createStickerPack = (name: string, title: string, sticker: Sticker) => {
+	getBotInfo().then(botInfo => {
+		fetch('https://api.telegram.org/bot' + TelegramApiKey + '/createNewStickerSet?user_id=' + botInfo.id + "&name=" + name + "&title=" + title + "&png_sticker=" + sticker.url + "&emojis=" + sticker.emoji)
+			.then(response => response.json())
+			.then(json => console.log(json))
+			.catch(error => console.error(error));
+	}).catch(error => console.error(error));
+}
 
 // This is just a test
 export const Test = () => (
@@ -39,9 +53,10 @@ export const Test = () => (
 			<AddStickersButton packName="Kiritsu" />
 			<AddStickersButton packName="Kurolily" />
 			<AddStickersButton packName="thehuskies" />
+			<AddStickersButton packName="RedShibaInu" />
 		</View>
 		<View style={{paddingTop: 100}}>
-			<Button title="Use API" onPress={fetchAPI} />
+			<Button title="Print bot info" onPress={() => getBotInfo().then(info => console.log(info)).catch(error => console.error(error))} />
 		</View>
 	</View>
 );

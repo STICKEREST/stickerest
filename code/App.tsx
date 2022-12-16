@@ -8,7 +8,7 @@ import Loading_page from './components/pages/Loading_page';
 
 export default function App() {
 	const [ready, setReady] = useState(false);
-	const loggedIn = false; // TODO: Simulates the user being logged in or not, change this when actual login is implemented
+	const [loggedIn, setLoggedIn] = useState(true); // TODO: Simulates the user being logged in or not, change this when actual login is implemented
 	useEffect(() => {
 		async function load() {
 			try {

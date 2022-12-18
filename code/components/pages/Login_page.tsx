@@ -8,93 +8,47 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-//a component to render the email text field
-const EmailField = ({email, setEmail} : {email : string, setEmail : any}) => {
-
-  // const [text, onChangeText] = React.useState("");
-
-  const [rightAnswer, setRightAnswer] = useState<boolean>(true);
-
-  let yellow:string = "#fcf7d9"
-  let gray:string = "#f1f1f1"
-  let red:string = "#ffcccc"
-
-  let emptyText:boolean = email===""
-  let color = gray;
-  
-  if (rightAnswer)
-    color = emptyText? gray: yellow
-  else if (emptyText)
-    setRightAnswer(true)
-  else
-    color = red
-
-  const validateEmail = () => {
-    let regexValidMail = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-    let test = regexValidMail.test(email)
-    test?setRightAnswer(true):setRightAnswer(false)
-  };
-
-  return (
-      <View style={[styles.inputs, {backgroundColor: color}]}>
-            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.mail}/>
-              <TextInput
-                onBlur={() => validateEmail()}
-                style={[styles.input, {width: windowWidth*0.7}]}
-                onChangeText={(value) => setEmail(value)}
-                placeholder={"Email"}
-              />
-       </View>
-  )
+const generateIcon = (iconName: string) => {
+  if (iconName==="md-checkmark-circle")
+  {
+    return (
+      <Ionicons 
+          name="md-checkmark-circle" 
+          size={30} 
+          color="green" 
+          style={styles.inputs_picture}
+      />
+    )
+  }
 }
 
-//a component to render the password text field
-const PasswordField = ({password, setPassword} : {password : string, setPassword : any}) => {
-
-  // const [text, onChangeText] = React.useState("");
-
-  const [rightAnswer, setRightAnswer] = useState<boolean>(true);
+const Field = ({name, placeholder, setName, picture}:{name:string, placeholder:string, setName:any, picture:string}) => {
 
   let yellow:string = "#fcf7d9"
   let gray:string = "#f1f1f1"
-  let red:string = "#ffcccc"
 
-  let emptyText:boolean = password===""
+  let emptyText:boolean = name===""
   let color = gray;
   
-  if (rightAnswer)
-    color = emptyText? gray: yellow
-  else if (emptyText)
-    setRightAnswer(true)
+  if (emptyText)
+    color = gray
   else
-    color = red
-
-  const validatePassword = () => {
-    let regexValidPassword = new RegExp("^(?=.*\d).{4,8}$");
-    let test = regexValidPassword.test(password)
-    test?setRightAnswer(true):setRightAnswer(false)
-  };
-
+    color = yellow
 
   return (
-    <View>
       <View style={[styles.inputs, {backgroundColor: color}]}>
-            <Image style={[styles.inputs_picture, {width: 30, height: 30}]}  source={ImagesAssets.group}/>
-            <TextInput
-              secureTextEntry={true}
-              onBlur={() => validatePassword()}
+          {generateIcon(picture)}
+          <TextInput
               style={[styles.input, {width: windowWidth*0.7}]}
-              onChangeText={(value) => setPassword(value)}
-              placeholder={"Password"}
-            />
+              onChangeText={(value) => setName(value)}
+              placeholder={placeholder}
+          />
        </View>
-       <View style={{width: windowWidth*0.7}}>
-        {rightAnswer?null:<Text style={{textAlignVertical: 'center'}}>The password must be at least 4 chars long and contain a digit</Text>}
-       </View>
-    </View>
   )
 }
 
@@ -104,8 +58,8 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <EmailField email={email} setEmail={setEmail}/>
-              <PasswordField password={password} setPassword={setPassword}/>
+              <Field name={email} placeholder={"email"} setName={setEmail} picture={"md-checkmark-circle"}/>
+              <Field name={password} placeholder={"password"} setName={setPassword} picture={"md-checkmark-circle"}/>
           </View>
       </SafeAreaView>
   )

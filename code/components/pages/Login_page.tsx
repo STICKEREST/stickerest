@@ -8,49 +8,10 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
+import FieldComponent from "./../subcomponents/Field"
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-const generateIcon = (iconName: string) => {
-  if (iconName==="md-checkmark-circle")
-  {
-    return (
-      <Ionicons 
-          name="md-checkmark-circle" 
-          size={30} 
-          color="green" 
-          style={styles.inputs_picture}
-      />
-    )
-  }
-}
-
-const Field = ({name, placeholder, setName, picture}:{name:string, placeholder:string, setName:any, picture:string}) => {
-
-  let yellow:string = "#fcf7d9"
-  let gray:string = "#f1f1f1"
-
-  let emptyText:boolean = name===""
-  let color = gray;
-  
-  if (emptyText)
-    color = gray
-  else
-    color = yellow
-
-  return (
-      <View style={[styles.inputs, {backgroundColor: color}]}>
-          {generateIcon(picture)}
-          <TextInput
-              style={[styles.input, {width: windowWidth*0.7}]}
-              onChangeText={(value) => setName(value)}
-              placeholder={placeholder}
-          />
-       </View>
-  )
-}
 
 //this component renders the possibility to enter the mail and the password
 const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: any, setPassword : any}) => {
@@ -58,23 +19,22 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <Field name={email} placeholder={"email"} setName={setEmail} picture={"md-checkmark-circle"}/>
-              <Field name={password} placeholder={"password"} setName={setPassword} picture={"md-checkmark-circle"}/>
+              <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"}/>
+              <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"}/>
           </View>
       </SafeAreaView>
   )
 }
 
-//this component renders the sign in button (not an actual button)
 const SignInButton = ({onSubmit} : {onSubmit : any}) => {
   return (
     <TouchableOpacity
-                    onPress={onSubmit}
-                    style={[styles.logInButton, {width: windowWidth/2}]}>
-                    <Text
-                      style={styles.logInButtonFont}>
-                      Sign In
-                    </Text>
+          onPress={onSubmit}
+          style={[styles.logInButton, {width: windowWidth/2}]}>
+          <Text
+            style={styles.logInButtonFont}>
+            Sign In
+          </Text>
     </TouchableOpacity>
   )
 }
@@ -129,12 +89,6 @@ export default function Login_page() {
                   <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
                     <SignInButton onSubmit = {handleLogin}/>
-                  </View>
-                  <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
-                    <Text style={styles.urlText}
-                            onPress={() => Linking.openURL('http://google.com')}>
-                        Forgot the password?
-                      </Text>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>

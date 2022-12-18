@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StackNavigator } from './components/StackNavigator';
 
+import {View} from 'react-native'
+
 import Login_page from './components/pages/Login_page';
 import Loading_page from './components/pages/Loading_page';
+import Registration_page from './components/pages/Registration_page';
 
 export default function App() {
+
 	const [ready, setReady] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false); // TODO: Simulates the user being logged in or not, change this when actual login is implemented
 	useEffect(() => {
@@ -31,4 +35,5 @@ export default function App() {
 	) : (
 		<Loading_page />
 	);
+
 }

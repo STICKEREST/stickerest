@@ -13,6 +13,14 @@ export default function Homepage() {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
+  const [fontsLoaded] = useFonts({
+    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
         <ImageBackground source={ImagesAssets.bannerList1} style={{height: windowHeight, width: windowWidth}}>

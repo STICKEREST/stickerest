@@ -104,7 +104,7 @@ export default function Registration_page() {
   const [password, setPassword] = useState<string>("");
 
   //this component renders the sign up button (not an actual button)
-  const SignUpButton = ({onSubmit} : {onSubmit : any}) => {
+  const SignUpButton = () => {
     return (
       <TouchableOpacity
                       onPress={startHandlingData}
@@ -119,7 +119,7 @@ export default function Registration_page() {
 
   function startHandlingData()
   {
-    handleSignUp(email, password, nickname)
+    handleSignUp(email, nickname, password)
   }
   
   const [fontsLoaded] = useFonts({
@@ -139,14 +139,14 @@ export default function Registration_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-                    <SignUpButton onSubmit = {()=>handleSignUp(email,nickname,password)}/>
+                    <SignUpButton/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={{textAlign:'center', fontSize: 15}}>Already have an account? <Text></Text>
                     <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
-                      Sign Up
+                      Sign In
                     </Text>
                     </Text>
                   </View>

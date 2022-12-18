@@ -31,7 +31,7 @@ export default function App() {
 			<StackNavigator />
 		</NavigationContainer>
 	) : (
-		<Registration_page />
+		<Login_page />
 	) : (
 		<Loading_page />
 	);

@@ -1,20 +1,20 @@
 import React from 'react'
 import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 
 import { useFonts } from 'expo-font';
 
 import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
 
-const SmallStickerPackBox = ({img} : {img : ImageSourcePropType}) => {
+const SmallStickerPackBox = ({img, onPress} : {img : ImageSourcePropType, onPress: () => void}) => {
 
     return (
-        <View >
+        <TouchableOpacity onPress={onPress}>
             <View style={[styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
                 <Image source={img} style={{height: 70, width: 90}} />
             </View>
-        </View>
+        </TouchableOpacity>
       );
 
 }

@@ -32,7 +32,7 @@ const mapOfComponents = {
     comp5: <BigStickerPack img={ImagesAssets.computer} title =""/>
   };
 
-export default function Carousel() {
+export default function Carousel({onStickerPress} : {onStickerPress: () => void}) {
 
     return (// style={styles.container}>
         <View style={styleCarousel.container}> 
@@ -41,11 +41,9 @@ export default function Carousel() {
                 ItemSeparatorComponent={() => <View style={{marginRight: 25}} />}
                 showsHorizontalScrollIndicator={false}
                 data = {data}
-                renderItem={({ item }) => {
-                    return (
-                      mapOfComponents[item.id]
-                    )
-                }
+                renderItem={({ item }) => (
+                    <BigStickerPack img={ImagesAssets.computer} onPress={onStickerPress} />
+                )
                 }
                
                 keyExtractor={item => item.id}

@@ -20,9 +20,9 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"}/>
-              <FieldComponent name={nickname} placeholder={"nickname"} setName={setNickname} picture={"person-outline"}/>
-              <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"}/>
+              <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"} hide={false} />
+              <FieldComponent name={nickname} placeholder={"nickname"} setName={setNickname} picture={"person-outline"} hide={false} />
+              <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"} hide={true} />
           </View>
       </SafeAreaView>
   )
@@ -44,16 +44,14 @@ const handleSignUp = (emailSign : string, nickSign :string, pwSign : string) => 
   {
     Alert.alert(
       "Info missing",
-      "Email address and/or password are missing, please enter them",
+      "Some of the fields are empty, please fill them.",
       [
         { text: "OK", onPress: () => console.log("OK Pressed") }
       ]
     );
   } else {
       formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent(emailSign));
-    
       formBody.push(encodeURIComponent("nickname") + "=" + encodeURIComponent(nickSign));
-      
       formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent(pwSign));
     
       console.log(formBody)
@@ -73,11 +71,26 @@ const handleSignUp = (emailSign : string, nickSign :string, pwSign : string) => 
       .then((response) => {
         if(response.status === 201)
           console.log('Successful registration');
-        else
+        else {
           console.log('Something went wrong during the registration');
+          Alert.alert(
+            "Error",
+            "Something went wrong during the registration. Please try again and control that you are not already registered.",
+            [
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ]
+          );
+        }
       })
       .catch((error) => {
         console.log('Something went wrong during the registration');
+        Alert.alert(
+          "Error",
+          "Something went wrong during the registration. Please try again and control that you are not already registered.",
+          [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+          ]
+        );
       });
   }
 

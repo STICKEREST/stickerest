@@ -19,8 +19,8 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
   return (
       <SafeAreaView>
           <View style={[styles.input_container, {flexDirection:"column"}]}>
-              <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"}/>
-              <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"}/>
+              <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"} hide={false}/>
+              <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"} hide={true}/>
           </View>
       </SafeAreaView>
   )

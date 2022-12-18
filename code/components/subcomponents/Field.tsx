@@ -43,6 +43,17 @@ const generateIcon = (iconName: string) => {
             />
         )
     }
+    else if (iconName==="person-outline")
+    {
+      return (
+        <Ionicons 
+            name="person-outline" 
+            size={30} 
+            color="black" 
+            style={styles.inputs_picture}
+        />
+    )
+    }
   }
   
   export default function Login_page({name, placeholder, setName, picture}:{name:string, placeholder:string, setName:any, picture:string}){

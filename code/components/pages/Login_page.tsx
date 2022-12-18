@@ -9,7 +9,6 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 import FieldComponent from "./../subcomponents/Field"
-import { ExitStatus } from 'typescript';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

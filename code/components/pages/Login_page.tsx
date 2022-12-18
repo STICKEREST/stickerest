@@ -64,9 +64,15 @@ const  handleLogin = ({emailField, passwordField}:{emailField:string, passwordFi
       } ).then((response) => response.json())
       .then((responseData) => {
           console.log(responseData);
-          if (responseData==="message\": \"username or password is not matched")
-          {
-
+          if (responseData.message==="username or password is not matched")
+          { 
+              Alert.alert(
+                "Info wrong",
+                "username or password is not matched",
+                [
+                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                ]
+              );
           }
       })
       .catch((error) => {

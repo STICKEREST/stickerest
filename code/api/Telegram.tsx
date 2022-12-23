@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Alert, Button, Linking, View, TextInput } from "react-native";
 
-// TODO: I tried to make this work using .env but kept getting 'undefined'
-import { TelegramApiKey } from "./keys";
+import { TELEGRAM_API_KEY } from "@env";
 
 // Interface for sticker pack object
 export interface StickerPack {
@@ -44,13 +43,12 @@ export const AddStickersButton = ({packName}: {packName: string}) => {
 
 // Helper function to fetch something from the Telegram api.
 export const fetchApi = (method: string) => {
-	return fetch('https://api.telegram.org/bot' + TelegramApiKey + '/' + method)
+	return fetch('https://api.telegram.org/bot' + TELEGRAM_API_KEY + '/' + method)
 		.then(response => response.json())
 		.then(json => {
 			if(json.ok)
 				return json.result;
-			// TODO: This just logs "[Error: [object Object]]"
-			throw new Error(json);
+			throw new Error(json.error_code + ' ' + json.description);
 		});
 }
 
@@ -77,6 +75,8 @@ export const addStickerToPack = (stickerPack: StickerPack, sticker: Sticker) => 
 }
 
 // Everything below this line is just a test
+
+// TODO: Find a way to get the author's user id
 
 const exampleStickerPack1: StickerPack = {
 	author: 427889331,

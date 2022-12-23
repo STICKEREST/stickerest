@@ -11,6 +11,9 @@ npm-debug.*
 *.orig.*
 web-build/
 
+# Dotenv
+.env
+
 # External editors
 .vscode/
 .idea/

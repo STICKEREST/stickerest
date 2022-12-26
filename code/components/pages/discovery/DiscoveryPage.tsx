@@ -9,28 +9,28 @@ import { ImagesAssets } from '../../../assets/ImagesAssets';
 
 import { Gyroscope } from 'expo-sensors';
 
-const ButtonInteraction = () => {
+// const ButtonInteraction = () => {
 
-    return (
+//     return (
 
-        <View style={[styleSingleSticker.btnContainer, {padding: 5, flexDirection: 'row', alignItems: 'center', width: 175}]}>
+//         <View style={[styleSingleSticker.btnContainer, {padding: 5, flexDirection: 'row', alignItems: 'center', width: 175}]}>
 
-            <TouchableHighlight>
-                <Image source={ImagesAssets.hearth} style={{height: 30, width: 30, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
+//             <TouchableHighlight>
+//                 <Image source={ImagesAssets.hearth} style={{height: 30, width: 30, marginLeft: 10, marginRight: 10}} />                
+//             </TouchableHighlight>
 
-            <TouchableHighlight>
-                <Image source={ImagesAssets.bookmark} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
+//             <TouchableHighlight>
+//                 <Image source={ImagesAssets.bookmark} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
+//             </TouchableHighlight>
 
-            <TouchableHighlight>
-                <Image source={ImagesAssets.export} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
-            </TouchableHighlight>
+//             <TouchableHighlight>
+//                 <Image source={ImagesAssets.export} style={{height: 40, width: 40, marginLeft: 10, marginRight: 10}} />                
+//             </TouchableHighlight>
 
-        </View>
+//         </View>
 
-    );
-}
+//     );
+// }
 
 const IconPack = ({id}:{id:number}) => {
     

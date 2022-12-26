@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
-import TabNavigator from './components/TabNavigator';
-import Login_page from './components/pages/Login_page';
-import Registration_page from './components/pages/Registration_page';
+import Homepage from './components/pages/Homepage';
+import { View } from 'react-native';
+// import H from './components/pages/discovery/DiscoveryPage';
+// import Homepage from './components/pages/Homepage';
 
 
 export default function App() {
 	return (
-		<NavigationContainer>
-			<TabNavigator />
-		</NavigationContainer>
+		<View>
+			{/* <TabNavigator /> */}
+			<Homepage />
+		</View>
 	);
 }

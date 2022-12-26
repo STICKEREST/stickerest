@@ -88,7 +88,7 @@ export default function SingleSticker() {
         <View style={{marginTop: 30}}>
             <BigStickerPack2 img={ImagesAssets.computer} name={"Trendy Computer"} author={"Francesco"} numSticker={23} downloads={1990}/>
             <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
-                <ImportButton />
+                {/* <ImportButton /> */}
             </View>
             
             <View style={{marginTop: 20, flexDirection: 'row'}}>

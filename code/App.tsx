@@ -9,9 +9,10 @@ import { View } from 'react-native';
 import {Homepage} from './components/pages/Homepage';
 import Registration_page from './components/pages/Registration_page';
 import {SingleSticker} from './components/pages/stickers/SingleSticker';
+import UserProfilePage from './components/pages/UserProfilePage';
 
 export default function App() {
-
+		/*
 	const [ready, setReady] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false); // TODO: Simulates the user being logged in or not, change this when actual login is implemented
 	useEffect(() => {
@@ -36,12 +37,10 @@ export default function App() {
 	) : (
 		<Loading_page />
 	);
-
-	//DEBUG PURPOSE
-	// return (
-	// 	<View>
-	// 		<SingleSticker ID={15} />
-	// 	</View>
-	// );
+*/
+	return (
+	<View>
+		<UserProfilePage/>
+	</View> )
 
 }

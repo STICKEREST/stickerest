@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlignVertical: 'center',
       },
+      SignSwap: {
+        textAlign:'center', 
+        fontSize: 15
+      }, 
       icons_style: {
         marginTop: 0,
         marginLeft: 10,

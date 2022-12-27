@@ -131,7 +131,7 @@ export default function Registration_page() {
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
-                    <Text style={{textAlign:'center', fontSize: 15}}>Already have an account? <Text></Text>
+                    <Text style={styles.SignSwap}>Already have an account? <Text></Text>
                     <Text style={styles.urlText}
                           onPress={() => Linking.openURL('http://google.com')}>
                       Sign In

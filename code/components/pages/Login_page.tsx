@@ -16,7 +16,6 @@ import Registration_page from './Registration_page';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-//this component renders the possibility to enter the mail and the password
 const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: any, setPassword : any}) => {
 
   return (
@@ -29,10 +28,7 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
   )
 }
 
-function isEmpty(stringValue:string): boolean
-{
-  return stringValue==null || stringValue.trim()===""
-}
+function isEmpty(stringValue:string): boolean {return stringValue==null || stringValue.trim()===""}
 
 const  handleLogin = ({emailField, passwordField}:{emailField:string, passwordField:string}) => {
 
@@ -115,7 +111,7 @@ export default function Login_page() {
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
-                    <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
+                    <Text style={styles.SignSwap}>Don't have an account? <Text></Text>
                     <Text style={styles.urlText}
                           onPress={() => {return <View><Registration_page/></View>}}>
                       Sign Up

@@ -7,6 +7,8 @@ import Login_page from './components/pages/Login_page';
 import Loading_page from './components/pages/Loading_page';
 import { View } from 'react-native';
 import {Homepage} from './components/pages/Homepage';
+import Registration_page from './components/pages/Registration_page';
+import {SingleSticker} from './components/pages/stickers/SingleSticker';
 
 export default function App() {
 
@@ -38,7 +40,7 @@ export default function App() {
 	//DEBUG PURPOSE
 	// return (
 	// 	<View>
-	// 		<Homepage />
+	// 		<SingleSticker ID={15} />
 	// 	</View>
 	// );
 

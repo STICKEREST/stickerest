@@ -1,5 +1,5 @@
-import React from 'react'
-import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight, TouchableOpacity  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -11,7 +11,26 @@ import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 
 import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
-const RightPartInfo = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Sticker } from '../../types';
+
+//TODO: aggiungi saved button e chiamate
+
+const ImportButton = () => {
+    const [fontsLoaded] = useFonts({
+        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
+        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
+      });
+    return (
+        <View>
+            <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>
+                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>Import Pack</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+const RightPart = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
     
     const [fontsLoaded] = useFonts({
         'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
@@ -19,17 +38,17 @@ const RightPartInfo = ({name, author, numSticker, downloads} : {name : string, a
       });
     return (
         <View style={{flexDirection: 'column', padding: 20 }}>
-            <Text style= {{fontFamily: "popbold", fontSize: 19}}>{name}</Text>
+            <Text style= {{fontFamily: "popbold", fontSize: 17}}>{name}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {author}</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 19, marginTop: 10}}>{numSticker}</Text>
+            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{numSticker}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 19, marginTop: 10}}>{downloads}</Text>
+            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{downloads}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
         </View>
     );
 }
 
-const LeftPartIcon = ({img}: {img: ImageSourcePropType}) => {
+const LeftPart = ({img}: {img: ImageSourcePropType}) => {
         
     return (
         <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
@@ -38,39 +57,67 @@ const LeftPartIcon = ({img}: {img: ImageSourcePropType}) => {
     );
 }
 
-const RightPartButton = () => {
+const LikeButton = ({ID} : {ID : number}) => {
+
+    const [favourite, setFavourite] = useState<boolean>(false);
+    //TODO aggiungi i n backend chiamata per sapere se attualmente è favorite
+
+    const addToFav = () => {
+
+        if(favourite === true)
+            fetch(`https://stickerest.herokuapp.com/auth/remove-favorites-${ID}`);
+        else
+            fetch(`https://stickerest.herokuapp.com/auth/add-favorites-${ID}`);
+
+        setFavourite(!favourite);
+    }
+
     return (
         <View>
-            <TouchableHighlight style={{height: 40, width: 40}}>
-                <Image source={ImagesAssets.hearth} style={{height: 25, width: 25, shadowColor: '#090909',shadowOffset: {width: 0, height: 1},shadowOpacity: 0.8,shadowRadius: 1}}/>
-            </TouchableHighlight>
+            <TouchableOpacity onPress={() => addToFav()}>
+                <Ionicons
+                name='md-heart'
+                size={40}
+                color={favourite ? "#F44336" : '#9E9E9E'}
+                />
+            </TouchableOpacity>
         </View>
     );
 }
 
-const BigStickerPack2 = ({img, name, author, numSticker, downloads} : {img: ImageSourcePropType, name : string, author : string, numSticker : number, downloads : number}) => {
+const BigStickerPack2 = ({ID, img, name, author, numSticker, downloads} : {ID : number, img: ImageSourcePropType, name : string, author : string, numSticker : number, downloads : number}) => {
     
 
     return (
         <View style={[styleSingleSticker.bigStickerPack2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
             <View style={{flex : 3}}>
-                <LeftPartIcon img={img} />
+                <LeftPart img={img} />
             </View>
-            <View style={{flex : 4, marginLeft : 13}}>
-                <RightPartInfo name={name} author={author} numSticker={numSticker} downloads={downloads}/>
+            <View style={{flex : 4, marginLeft : 20}}>
+                <RightPart name={name} author={author} numSticker={numSticker} downloads={downloads}/>
             </View>
-            <View style={{flex : 1}}>
-                <RightPartButton />
+            <View style={{flex : 1.5}}>
+                <LikeButton ID = {ID} />
             </View>
         </View>
     )
     
 }
 
-export default function SingleSticker() {
+export const SingleSticker = ({ID} : {ID : number}) => {
+
+    const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
+
+  useEffect(() => {
+
+    fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
+    .then((result) => result.json())
+    .then((result) => setStickerInfo(result[0]));
+
+  }, []);
   
   const [fontsLoaded] = useFonts({
-    'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
+    'popblack': require('../../../assets/fonts/poppins/Poppins-Bold.otf'),
   });
 
   if (!fontsLoaded) {
@@ -80,25 +127,33 @@ export default function SingleSticker() {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
+  
+
   return (
     <View style={styleSingleSticker.container}>
         <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}>
         </ImageBackground>
 
         <View style={{marginTop: 30}}>
-            <BigStickerPack2 img={ImagesAssets.computer} name={"Trendy Computer"} author={"Francesco"} numSticker={23} downloads={1990}/>
-            <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
-                {/* <ImportButton /> */}
-            </View>
-            
-            <View style={{marginTop: 20, flexDirection: 'row'}}>
-                <View style={{marginRight: 15}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer} />
-                </View>
-                <View style={{marginRight: 15}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-            </View>
+            {
+                stickerInfo !== undefined ? 
+                
+                <View>
+                    <BigStickerPack2 img={ImagesAssets.computer} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={23} downloads={stickerInfo.nr_downloads}/>
+                    <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
+                        <ImportButton />
+                    </View>
+                    
+                    <View style={{marginTop: 20, flexDirection: 'row'}}>
+                        <View style={{marginRight: 15}}>
+                            <SmallStickerPackBox img={ImagesAssets.computer} />
+                        </View>
+                        <View style={{marginRight: 15}}>
+                            <SmallStickerPackBox img={ImagesAssets.computer}/>
+                        </View>
+                    </View>
+                </View> : <Text> A problem occurred while loading the sticker</Text>
+            }
             {/* TODO rendi tutto uno state usando hooks*/}
         </View>
     </View>

@@ -15,9 +15,9 @@ const generateIcon = (iconName: string) => {
       return (
         <Ionicons 
             name="md-checkmark-circle" 
-            size={30} 
+            size={30}
             color="black" 
-            style={styles.inputs_picture}
+            style={styles.icons_style}
         />
       )
     }
@@ -28,7 +28,7 @@ const generateIcon = (iconName: string) => {
                 name="mail-outline" 
                 size={30} 
                 color="black" 
-                style={styles.inputs_picture}
+                style={styles.icons_style}
             />
           )
     }
@@ -39,7 +39,7 @@ const generateIcon = (iconName: string) => {
                 name="lock-closed-outline" 
                 size={30} 
                 color="black" 
-                style={styles.inputs_picture}
+                style={styles.icons_style}
             />
         )
     }
@@ -50,7 +50,7 @@ const generateIcon = (iconName: string) => {
             name="person-outline" 
             size={30} 
             color="black" 
-            style={styles.inputs_picture}
+            style={styles.icons_style}
         />
     )
     }
@@ -73,7 +73,7 @@ const generateIcon = (iconName: string) => {
         <View style={[styles.inputs, {backgroundColor: color}]}>
             {generateIcon(picture)}
             <TextInput
-                style={[styles.input, {width: windowWidth*0.7}]}
+                style={[styles.input, {width: windowWidth*0.65}]}
                 onChangeText={(value) => setName(value)}
                 placeholder={placeholder}
                 secureTextEntry={hide}

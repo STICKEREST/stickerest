@@ -19,6 +19,17 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlignVertical: 'center',
       },
+      icons_style: {
+        marginTop: 0,
+        marginLeft: 10,
+        alignContent: 'center',
+        textAlignVertical: 'center',
+        resizeMode: 'contain',
+        height: 50,
+        margin: 0,
+        padding: 10,
+        textAlignVertical: 'center'
+      },
       input_container: {
         alignContent: 'space-between',
         alignContent: 'center',

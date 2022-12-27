@@ -54,17 +54,27 @@ const generateIcon = (iconName: string) => {
         />
     )
     }
+    else if (iconName==="man-outline")
+    {
+      return (
+        <Ionicons 
+            name="man-outline" 
+            size={30} 
+            color="black" 
+            style={styles.icons_style}
+        />
+    )
+    }
   }
   
-  export default function Login_page({name, placeholder, setName, picture, hide}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean}){
+  export default function FieldComponent({name, placeholder, setName, picture, hide}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean}){
   
     let yellow:string = "#fcf7d9"
     let gray:string = "#f1f1f1"
-  
-    let emptyText:boolean = name===""
-    let color = gray;
-    
-    if (emptyText)
+
+    let color:string = gray;
+
+    if (name==="")
       color = gray
     else
       color = yellow
@@ -74,7 +84,8 @@ const generateIcon = (iconName: string) => {
             {generateIcon(picture)}
             <TextInput
                 style={[styles.input, {width: windowWidth*0.65}]}
-                onChangeText={(value) => setName(value)}
+                onChangeText={(text) => {setName(text)}}
+                value = {name}
                 placeholder={placeholder}
                 secureTextEntry={hide}
             />

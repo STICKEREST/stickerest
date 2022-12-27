@@ -12,9 +12,16 @@ import {SingleSticker} from './components/pages/stickers/SingleSticker';
 import UserProfilePage from './components/pages/UserProfilePage';
 
 export default function App() {
-		/*
+	
 	const [ready, setReady] = useState(false);
 	const [loggedIn, setLoggedIn] = useState(false); // TODO: Simulates the user being logged in or not, change this when actual login is implemented
+
+
+	return (
+		<View><UserProfilePage/></View>
+	)
+
+	/*
 	useEffect(() => {
 		async function load() {
 			try {
@@ -37,10 +44,5 @@ export default function App() {
 	) : (
 		<Loading_page />
 	);
-*/
-	return (
-	<View>
-		<UserProfilePage/>
-	</View> )
-
+		*/
 }

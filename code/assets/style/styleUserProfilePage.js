@@ -6,18 +6,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    //-- Text used in the Login_page --
-    textLogin: {
-    fontFamily: "popblack",
-    color: 'black',
-    fontSize: 35,
-    },
     //--- the text field for the email and the password ---
     input: { //the text inside the TextInput
         height: 50,
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
+      },
+      textUserProfile: {
+        fontFamily: "popblack",
+        color: 'black',
+        fontSize: 35,
       },
       input_container: {
         alignContent: 'space-between',

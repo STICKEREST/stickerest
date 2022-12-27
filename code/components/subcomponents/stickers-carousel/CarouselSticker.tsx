@@ -1,38 +1,19 @@
-import { SmallStickerPackBox } from "../SmallStickerPack";
+import { SmallStickerPack, SmallStickerPackBox } from "../SmallStickerPack";
 import { BigStickerPack } from '../BigStickerPack';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { styleCarousel } from "../../../assets/style/styleCarousel";
 
-import { View, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, StyleSheet, FlatList, Pressable } from "react-native";
 
-const data= [
-    {
-        id: 'comp1',
-        description: "Sticker Name 1",
-    }, {
-        id: 'comp2',
-        description: "Sticker Name 2",
-    }, {
-        id: 'comp3',
-        description: "Sticker Name 3",
-    }, {
-        id: 'comp4',
-        description: "Sticker Name 4",
-    }, {
-        id: 'comp5',
-        description: "Sticker Name 5",
+import { Sticker } from "../../types";
+
+export default function CarouselSticker({stickers, type} : {stickers : Sticker[], type : "big" | "small"}) {
+
+    const openStickerPack = (id : number) => {
+
+        //apri pagina sticker
+
     }
-];
-
-const mapOfComponents = {
-    comp1: <SmallStickerPackBox img={ImagesAssets.computer}/>,
-    comp2: <SmallStickerPackBox img={ImagesAssets.computer}/>,
-    comp3: <SmallStickerPackBox img={ImagesAssets.computer}/>,
-    comp4: <SmallStickerPackBox img={ImagesAssets.computer}/>,
-    comp5: <SmallStickerPackBox img={ImagesAssets.computer}/>
-  };
-
-export default function Carousel({onStickerPress} : {onStickerPress: () => void}) {
 
     return (
         <View style={styleCarousel.container}> 
@@ -40,14 +21,14 @@ export default function Carousel({onStickerPress} : {onStickerPress: () => void}
                 horizontal
                 ItemSeparatorComponent={() => <View style={{marginRight: 25}} />}
                 showsHorizontalScrollIndicator={false}
-                data = {data}
+                data = {stickers}
                 renderItem={({ item }) => (
-                    <SmallStickerPackBox img={ImagesAssets.computer} onPress={onStickerPress} />
-                )
-                }
-               
-                keyExtractor={item => item.id}
-              
+                    <Pressable onPress={() => openStickerPack(item.ID)}> 
+                        { type === "big" ? <BigStickerPack img={ImagesAssets.computer} title={item.name} /> 
+                        : (type === "small" ? <SmallStickerPack img={ImagesAssets.computer} title={item.name} download={item.nr_downloads} /> : <View></View>)}
+                    </Pressable>
+                    )}               
+                keyExtractor={item => item.ID.toString()}
             />
         </View>
     );

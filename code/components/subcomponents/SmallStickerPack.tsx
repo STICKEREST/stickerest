@@ -7,14 +7,12 @@ import { useFonts } from 'expo-font';
 import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
 
-const SmallStickerPackBox = ({img, onPress} : {img : ImageSourcePropType, onPress: () => void}) => {
+const SmallStickerPackBox = ({img} : {img : ImageSourcePropType}) => {
 
     return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={[styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
-                <Image source={img} style={{height: 70, width: 90}} />
-            </View>
-        </TouchableOpacity>
+          <View style={[styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
+              <Image source={img} style={{height: 70, width: 90}} />
+          </View>
       );
 
 }

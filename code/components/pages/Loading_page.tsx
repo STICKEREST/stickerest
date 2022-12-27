@@ -8,7 +8,7 @@ import { styles } from "./../../assets/style/styleLoadingPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
-export default function Homepage() {
+export default function LoadingPage() {
  
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;

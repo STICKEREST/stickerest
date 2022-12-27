@@ -2,9 +2,6 @@ import { View, ScrollView, Text } from 'react-native';
 
 import { styles } from './../../assets/style/styleHomepage';
 
-import SearchBar from '../SearchBar';
-
-import CarouselBigSticker from '../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
 
 export default function Homepage() {
@@ -16,12 +13,12 @@ export default function Homepage() {
 					<Text style={styles.header}>
 						Recently
 					</Text>
-					<CarouselSticker />
+					<CarouselSticker stickers={[]} type="small"/>
 				</ScrollView>
                 <Text style={styles.header}>
 						More that you liked
 					</Text>
-				<CarouselSticker/>
+				<CarouselSticker stickers={[]}  type="small"/>
 			</View>
 		</View>
 	);

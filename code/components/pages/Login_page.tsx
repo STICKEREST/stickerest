@@ -9,6 +9,9 @@ import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 import FieldComponent from "./../subcomponents/Field"
+import ButtonToSign from "./../subcomponents/ButtonToSign"
+
+import Registration_page from './Registration_page';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -83,22 +86,9 @@ const  handleLogin = ({emailField, passwordField}:{emailField:string, passwordFi
 
 export default function Login_page() {
 
-  const SignInButton = () => {
-    return (
-      <TouchableOpacity
-            onPress={startHandlingData}
-            style={[styles.logInButton, {width: windowWidth/2}]}>
-            <Text
-              style={styles.logInButtonFont}>
-              Sign In
-            </Text>
-      </TouchableOpacity>
-    )
-  }
-
   function startHandlingData()
   {
-    handleLogin({emailField: email, passwordField: password})
+      handleLogin({emailField: email, passwordField: password})
   }
 
   const [email, setEmail] = React.useState("");
@@ -121,13 +111,13 @@ export default function Login_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6}]}>Log in to your Account</Text>
                   <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SignInButton/>
+                    <ButtonToSign functionToExecute={() => startHandlingData()}/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={{textAlign:'center', fontSize: 15}}>Don't have an account? <Text></Text>
                     <Text style={styles.urlText}
-                          onPress={() => Linking.openURL('http://google.com')}>
+                          onPress={() => {return <View><Registration_page/></View>}}>
                       Sign Up
                     </Text>
                     </Text>

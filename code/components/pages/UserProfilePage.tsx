@@ -8,6 +8,8 @@ import { styles } from "./../../assets/style/styleUserProfilePage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
 
+import ButtonToSign from "./../subcomponents/ButtonToSign"
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -28,22 +30,7 @@ const TextFields = () => {
             </View>
         </SafeAreaView>
     )
-}
-
-//by pressing this component, the user wants to update his infos
-const SaveButton = () => {
-    return (
-      <TouchableOpacity
-                      onPress={null}
-                      style={[styles.logInButton, {width: windowWidth/2}]}>
-                      <Text
-                        style={styles.logInButtonFont}>
-                        Save
-                      </Text>
-      </TouchableOpacity>
-    )
-  }
-  
+} 
 
 export default function UserProfilePage() {
   
@@ -64,7 +51,7 @@ export default function UserProfilePage() {
               <View style={[styles.text_view_login, {marginTop: windowHeight*0.3}]}>
                   <TextFields/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
-                    <SaveButton/>
+                    <ButtonToSign functionToExecute={() => {}} nameOfButton="Save"/>
                   </View>
               </View>
           </ImageBackground>

@@ -127,7 +127,7 @@ export default function Registration_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-                    <ButtonToSign functionToExecute={() => startHandlingData()}/>
+                    <ButtonToSign functionToExecute={() => startHandlingData()} nameOfButton="sign up"/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>

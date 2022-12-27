@@ -80,7 +80,7 @@ const generateIcon = (iconName: string) => {
       color = yellow
   
     return (
-        <View style={[styles.inputs, {backgroundColor: color}]}>
+        <View style={[styles.inputs, {width: windowWidth*0.8, backgroundColor: color}]}>
             {generateIcon(picture)}
             <TextInput
                 style={[styles.input, {width: windowWidth*0.65}]}

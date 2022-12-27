@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         textAlignVertical: 'center',
         marginTop: 20,
+        flexDirection:"column"
       },
       inputs: { //the group of text and icon
         flexDirection: "row",

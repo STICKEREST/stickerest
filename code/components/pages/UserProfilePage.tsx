@@ -23,7 +23,7 @@ const TextFields = () => {
 
     return (
         <SafeAreaView>
-            <View style={[styles.input_container, {flexDirection:"column"}]}>
+            <View style={styles.input_container}>
                 <FieldComponent name={name} placeholder={null} setName={setName} picture={"man-outline"} hide={false}/>
                 <FieldComponent name={nickname} placeholder={null} setName={setNickname} picture={"person-outline"} hide={false}/>
                 <FieldComponent name={email} placeholder={null} setName={setEmail} picture={"mail-outline"} hide={false}/>

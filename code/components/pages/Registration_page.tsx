@@ -10,6 +10,8 @@ import{ ImagesAssets } from './../../assets/ImagesAssets';
 
 import FieldComponent from "./../subcomponents/Field"
 
+import ButtonToSign from "./../subcomponents/ButtonToSign"
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -103,20 +105,6 @@ export default function Registration_page() {
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  //this component renders the sign up button (not an actual button)
-  const SignUpButton = () => {
-    return (
-      <TouchableOpacity
-                      onPress={startHandlingData}
-                      style={[styles.logInButton, {width: windowWidth/2}]}>
-                      <Text
-                        style={styles.logInButtonFont}>
-                        Sign Up
-                      </Text>
-      </TouchableOpacity>
-    )
-  }
-
   function startHandlingData()
   {
     handleSignUp(email, nickname, password)
@@ -139,7 +127,7 @@ export default function Registration_page() {
                   <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
                   <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname}/>
                   <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-                    <SignUpButton/>
+                    <ButtonToSign functionToExecute={() => startHandlingData()}/>
                   </View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>

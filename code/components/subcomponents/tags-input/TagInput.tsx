@@ -6,12 +6,10 @@ import { styleTagInput } from '../../../assets/style/styleTagInput';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const TagInput = () => {
+const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
 
     const allowedTagsNmbr = 9;
-    const [isEditable, setEdit] = useState(true)
-
-    const [tags, setTags] = useState([]);
+    const [isEditable, setEdit] = useState(true);
     
     const [input, setInput] = useState('');
 

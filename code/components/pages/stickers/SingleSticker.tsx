@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
+import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight, TouchableOpacity  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { useFonts } from 'expo-font';
@@ -10,6 +10,21 @@ import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 
 import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
+
+
+const ImportButton = () => {
+    const [fontsLoaded] = useFonts({
+        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
+        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
+      });
+    return (
+        <View>
+            <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>
+                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>Import Pack</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
 
 const RightPartInfo = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
     

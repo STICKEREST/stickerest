@@ -1,11 +1,12 @@
-import React, { } from 'react'
-import { Dimensions, ImageBackground, TextInput, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
-import { Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react'
+import { Dimensions, ImageBackground, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { styleCreatePack } from "../../../assets/style/styleCreatePack";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import {TagInput} from '../../subcomponents/tags-input/TagInput'
 import { SmallStickerPackBox } from "../../subcomponents/SmallStickerPack";
+import { FlexibleAlbum} from "../../subcomponents/stickers-carousel/FlexibleAlbum";
+import ImageImport from '../../subcomponents/imagePicker/ImageImport';
 
   // BUG: Se viene inserito come ultimo tag un tag ripetuto va comunque a inficiare sull'availability dell'input
 
@@ -23,63 +24,12 @@ const UploadButton = () => {
   )
 }
 
-const StickersScrollable = () => {
-  return (
-  <ScrollView>
-    <View style={[styleCreatePack.scrollView, {marginLeft: windowWidth*0.07}]}>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer} />
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-    </View>
-    <View style={[styleCreatePack.scrollView, {marginLeft: windowWidth*0.07}]}>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer} />
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-    </View>
-    <View style={[styleCreatePack.scrollView, {marginLeft: windowWidth*0.07}]}>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer} />
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-    </View>
-    <View style={[styleCreatePack.scrollView, {marginLeft: windowWidth*0.07}]}>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer} />
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-                <View style={{marginRight: 4}}>
-                    <SmallStickerPackBox img={ImagesAssets.computer}/>
-                </View>
-    </View>
-  </ScrollView>
-  );
-}
-
 const StickersPreview = () => {
 return (
-<View  style={{height: 300}}>
-  <StickersScrollable/>
-  <UploadButton/>
-</View>
+  <View  style={{height: 300}}>
+    <FlexibleAlbum/>
+    <UploadButton/>
+  </View>
 );
 }
 

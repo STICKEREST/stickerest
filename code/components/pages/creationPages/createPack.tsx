@@ -156,6 +156,9 @@ const StickerNameInput = ({setName}:{setName : any}) => {
 }
 
 export default function CreatePack() {
+
+  const [name, setName] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
     
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
@@ -169,9 +172,6 @@ export default function CreatePack() {
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
-
-  const [name, setName] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
   
 //{[styles.inputs, {backgroundColor: color}]}
   return (

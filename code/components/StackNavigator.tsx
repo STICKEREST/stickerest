@@ -1,7 +1,6 @@
 
 import { TabNavigator } from './TabNavigator';
-
-import SingleSticker from './pages/stickers/SingleSticker';
+import { SingleSticker } from './pages/stickers/SingleSticker';
 
 import { createStackNavigator } from '@react-navigation/stack';
 

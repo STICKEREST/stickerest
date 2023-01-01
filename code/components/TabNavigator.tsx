@@ -40,12 +40,12 @@ const Navbar = ({state, descriptors, navigation}) => (
 				return index === middleButton ? (
 					<View style={navbarStyles.circleButton} key={index}>
 						<TouchableOpacity onPress={navigate}>
-							<Image source={route.params.icon} style={{alignSelf: "center"}} />
+							<Image source={route.params.icon} style={navbarStyles.alignCenter} />
 						</TouchableOpacity>
 					</View>
 				) : (
 					<TouchableOpacity style={navbarStyles.expand} onPress={navigate} key={index}>
-						<Image source={route.params.icon} style={{alignSelf: "center"}} />
+						<Image source={route.params.icon} style={navbarStyles.alignCenter} />
 					</TouchableOpacity>
 				);
 			})
@@ -81,5 +81,8 @@ const navbarStyles = StyleSheet.create({
 			height: 2
 		},
 		elevation: 5
+	},
+	alignCenter: {
+		alignSelf: "center"
 	}
 });

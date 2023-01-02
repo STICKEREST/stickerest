@@ -1,13 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, View, Image, Button } from 'react-native';
+import { TouchableOpacity, View, Image, Button, ImageSourcePropType } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { SmallStickerPackBox } from '../SmallStickerPack';
 
-const [imageSource, setImageSource] = React.useState([]);
 
 export default function ImageImport () {
-    
+ 
+  const [imageSource, setImageSource] = React.useState();
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -15,18 +15,17 @@ export default function ImageImport () {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       aspect: [4, 4],
       quality: 1,
-      allowsMultipleSelection: true,
     });
 
     console.log(result);
 
     if (!result.cancelled) {
-      setImageSource(result.assets.uri);
+      setImageSource(result.assets[0].uri);
     }
   };
 /*
     const options = {
-      selectionLimit: 0,C:\Unibz\3y\1s\Mobile\Stickerest\stickerest
+      selectionLimit: 0,
       mediaType: 'photo',
       includeBase64: false,
     }
@@ -40,10 +39,13 @@ return (
     <TouchableOpacity key={'Select Image'} onPress={pickImage}>
       <SmallStickerPackBox img={ImagesAssets.addIcon}/>
     </TouchableOpacity>
-    
-    {imageSource && <Image source={{ uri: imageSource[0] }} style={{ width: 200, height: 200 }} />}
+    {imageSource && <Image source={{ uri: imageSource }} style={{ width: 200, height: 200 }} />}
   </View>
 );
+//  {imageSource && <FlexibleAlbum images={[ImagesAssets.addIcon, ...imageSource]}/>}
+//  {imageSource && <Image source={{ uri: imageSource[0] }} style={{ width: 200, height: 200 }} />}
+
+
 /*
     return (
       <View>
@@ -62,5 +64,3 @@ return (
 // {imageSource && <SmallStickerPackBox img={{uri: imageSource}}/>}
 */
 }
-
-export {imageSource};

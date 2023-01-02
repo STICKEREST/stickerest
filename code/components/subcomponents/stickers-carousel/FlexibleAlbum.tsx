@@ -5,50 +5,29 @@ import React, {useState} from "react";
 
 const windowWidth = Dimensions.get('window').width;
 
-const [colIndex, setColIndex] = useState(0);
-const [col, setCol] = useState([]);
-const [row, setRow] = useState([]);
-
-const addRow = () => {
+const Column = ({img} : {img : ImageSourcePropType}) => {
     return (
-        <View style={[styleCreatePack.scrollView, {marginLeft: windowWidth*0.07}]}>{col}</View>
-    )
-}
-
-const addColumn = (img: ImageSourcePropType) => {
-    return (
-        <View style={{marginRight: 4}}>
-            <SmallStickerPackBox img={img}/>
-        </View>
-    )
-}
-
-function addImage(img: ImageSourcePropType) {
-    if(colIndex < 3) {
-        setCol(prevState => { 
-                return[...prevState, addColumn(img)]
-            }
-        );
-    } else {
-        setCol([]);
-        setRow(prevState => {
-                return [...prevState, addRow];
-            }
-        );
-    }
-    setColIndex(colIndex + 1);
+    <View style = {{width: 100}}>
+        <SmallStickerPackBox img={img}/>
+    </View>
+    );
 }
 
 const FlexibleAlbum = ({images} : {images : ImageSourcePropType[]}) => {
 
-    images.map((value) => {
-        addImage(value);
-    });
+    const Album = () => {
+        return (
+            <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
+                {images.map((i) => <Column img={i}/>)}
+            </View>
+        );
+    }
+
     return (
         <ScrollView>
-            {row}
+            <Album/>
         </ScrollView>
     );
   }
 
-  export{FlexibleAlbum}
+export{FlexibleAlbum}

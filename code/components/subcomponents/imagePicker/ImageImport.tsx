@@ -4,22 +4,24 @@ import * as ImagePicker from 'expo-image-picker';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { SmallStickerPackBox } from '../SmallStickerPack';
 
+const [imageSource, setImageSource] = React.useState([]);
+
 export default function ImageImport () {
-    const [imageSource, setImageSource] = React.useState(null);
+    
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
+      allowsMultipleSelection: true,
     });
 
     console.log(result);
 
     if (!result.cancelled) {
-      setImageSource(result.uri);
+      setImageSource(result.assets.uri);
     }
   };
 /*
@@ -39,7 +41,7 @@ return (
       <SmallStickerPackBox img={ImagesAssets.addIcon}/>
     </TouchableOpacity>
     
-    {imageSource && <Image source={{ uri: imageSource }} style={{ width: 200, height: 200 }} />}
+    {imageSource && <Image source={{ uri: imageSource[0] }} style={{ width: 200, height: 200 }} />}
   </View>
 );
 /*
@@ -60,3 +62,5 @@ return (
 // {imageSource && <SmallStickerPackBox img={{uri: imageSource}}/>}
 */
 }
+
+export {imageSource};

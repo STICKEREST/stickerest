@@ -13,24 +13,26 @@ import ImageImport from '../../subcomponents/imagePicker/ImageImport';
 let gray = '#f1f1f1'
 let purple = '#8D08F5'
 const windowWidth = Dimensions.get('window').width;
+const windowtHeight = Dimensions.get('window').height;
 
 const UploadButton = () => {
   return (
-      <View style = {{width: windowWidth, justifyContent: 'center', flexDirection: 'row', marginTop: 10}}>
+      <View style = {{}}>
           <TouchableOpacity  style={{backgroundColor: purple, paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: windowWidth*0.4}}>
               <Text style={{color: 'white', fontSize: 16, textAlign:"center"}}>Upload Pack</Text>
           </TouchableOpacity>
       </View>
   )
 }
-// <FlexibleAlbum images={imageSource}/>
+
 const StickersPreview = () => {
 return (
-  <View  style={{height: 300}}>
+  <View  style={{height: windowtHeight*0.325, alignContent: 'center'}}>
     <ImageImport/>
-    <ImageImport/>
-    
+    <View style={{alignItems: 'center'}}>
     <UploadButton/>
+    </View>
+    
   </View>
 );
 }
@@ -48,7 +50,7 @@ const StickerNameInput = () => {
 }
 
 export default function CreatePack() {
-    
+
   const [fontsLoaded] = useFonts({
     'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
     'poplight': require('../../../assets/fonts/poppins/Poppins-Light.otf'),
@@ -59,13 +61,11 @@ export default function CreatePack() {
     return null;
   }
 
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
 //{[styles.inputs, {backgroundColor: color}]}
   return (
-    <View style={[styleCreatePack.container]}>
+    <SafeAreaView style={[styleCreatePack.container]}>
         <View>
-            <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
+            <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowtHeight/8}}/>
         </View>
         <View>
             <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Add your sticker pack</Text>
@@ -75,6 +75,6 @@ export default function CreatePack() {
             <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Stickers</Text>
         </View>
         <StickersPreview/>
-    </View>
+    </SafeAreaView>
   );
 }

@@ -8,7 +8,7 @@ const windowWidth = Dimensions.get('window').width;
 
 const Column = ({img} : {img : ImageSourcePropType}) => {
     return (
-    <View style = {{width: 100}}>
+    <View style = {{width: 100, margin: windowWidth*0.03}}>
         <SmallStickerPackBox img={img}/>
     </View>
     );
@@ -18,13 +18,12 @@ const FlexibleAlbum = ({images, onPress, addImages} : {images : ImageSourcePropT
 
     const Album = () => {
         return (
-
             <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
                 {addImages ? 
                     <TouchableOpacity key={'Select Image'} onPress={onPress}>
                         <Column img={ImagesAssets.addIcon}/>
                     </TouchableOpacity>: null}
-                {images.map((img, index) => <Column img={img}/>)}
+                {images.map((img, index) => <Column img={img} key={index}/>)}
             </View>
         );
     }

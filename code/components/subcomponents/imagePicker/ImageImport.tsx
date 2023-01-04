@@ -29,56 +29,32 @@ export default function ImageImport () {
   */
 
   const pickImages = async () => {
-/*  ImagePicker.openPicker({
-    multiple: true,
-    waitAnimationEnd: false,
-    includeExif: true,
-    maxFiles: 15
-  }).then(images => {
-    images.map(image => {
-      setImageSource(oldImages => [...oldImages, image.path]);
-    })
-    console.log('Images: ', images);
-  })
-  .catch(e=> console.log('Error', e.message));
-*/
-  let result = await ImagePicker.launchImageLibraryAsync({
+  const result = await ImagePicker.launchImageLibraryAsync({
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     allowsMultipleSelection: true,
     selectionLimit: 15,
     aspect: [4, 4],
     quality:1,
   })
-  console.log(result);
-  if(!result.canceled) {
-    setImageSource(result.uri ? [result.uri] : result.selected)
+  if(!result.cancelled) {
+   // setImageSource(result.uri ? [result.uri] : result.selected)
+    if(result.selected != undefined) {
+      result.selected.map(image => {
+        setImageSource(oldImages => [...oldImages, image]);
+      })
+    } else {
+      setImageSource(oldImages => [...oldImages, result]);
+    }
+
   }
 }
 
     return (
       <View>
-        <TouchableOpacity key={'Select Image'} onPress={pickImages}>
-          <SmallStickerPackBox img={ImagesAssets.addIcon}/>
-        </TouchableOpacity>
-        {imageSource && <FlexibleAlbum images={imageSource} />}
+        {imageSource && <FlexibleAlbum images={imageSource} onPress={pickImages} addImages = {true}/>}
       </View>
     )
   
-    /*
-        expo-multiple
-
-        
-      <ImagePicker
-        multiple
-        onSave={(assets) => {
-          setImageSource(oldImages => [...oldImages, assets]);
-          console.log("\nType: " + typeof assets);
-        }}
-        onCancel={() => {
-          alert("Image selection cancelled or permissions needed");
-        }}
-      />
-    */
 
 /*
   ex

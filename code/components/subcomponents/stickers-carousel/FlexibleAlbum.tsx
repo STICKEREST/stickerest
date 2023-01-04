@@ -1,7 +1,8 @@
-import { Dimensions, ImageSourcePropType, ScrollView, View } from "react-native";
+import { Dimensions, ImageSourcePropType, ScrollView, TouchableOpacity, View } from "react-native";
 import { SmallStickerPackBox } from "../SmallStickerPack";
 import { styleCreatePack } from "../../../assets/style/styleCreatePack";
 import React, {useState} from "react";
+import { ImagesAssets } from "../../../assets/ImagesAssets";
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -13,12 +14,17 @@ const Column = ({img} : {img : ImageSourcePropType}) => {
     );
 }
 
-const FlexibleAlbum = ({images} : {images : ImageSourcePropType[]}) => {
+const FlexibleAlbum = ({images, onPress, addImages} : {images : ImageSourcePropType[], onPress: () => void, addImages: boolean}) => {
 
     const Album = () => {
         return (
+
             <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
-                {images.map((i) => <Column img={i}/>)}
+                {addImages ? 
+                    <TouchableOpacity key={'Select Image'} onPress={onPress}>
+                        <Column img={ImagesAssets.addIcon}/>
+                    </TouchableOpacity>: null}
+                {images.map((img, index) => <Column img={img}/>)}
             </View>
         );
     }

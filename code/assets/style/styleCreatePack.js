@@ -6,6 +6,7 @@ const styleCreatePack = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        alignContent: 'center',
       },
       inputs: { //the group of text and icon
         flexDirection: "row",

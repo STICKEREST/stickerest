@@ -18,13 +18,13 @@
     "@types/react": "~18.0.0",
     "@types/react-native": "~0.69.1",
     "expo": "~46.0.16",
-    "expo-file-system": "^14.1.0",
-    "expo-image-picker": "~13.3.1",
+    "expo-image-picker": "^14.0.2",
     "expo-sensors": "~11.4.0",
     "expo-status-bar": "~1.4.0",
     "glob": "^8.0.3",
     "react": "18.0.0",
     "react-native": "0.69.6",
+    "react-native-image-crop-picker": "^0.39.0",
     "react-native-ionicons": "^4.6.5",
     "react-native-screens": "~3.15.0",
     "react-native-web": "^0.18.10",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "react-native-svg": "^13.4.0",
+    "react-native-svg": "^13.6.0",
     "react-native-svg-transformer": "^1.0.0"
   },
   "private": true

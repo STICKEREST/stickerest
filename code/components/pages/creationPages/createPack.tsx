@@ -6,7 +6,7 @@ import { ImagesAssets } from '../../../assets/ImagesAssets';
 import {TagInput} from '../../subcomponents/tags-input/TagInput'
 import { SmallStickerPackBox } from "../../subcomponents/SmallStickerPack";
 import { FlexibleAlbum} from "../../subcomponents/stickers-carousel/FlexibleAlbum";
-import ImageImport, { imageSource } from '../../subcomponents/imagePicker/ImageImport';
+import ImageImport from '../../subcomponents/imagePicker/ImageImport';
 
   // BUG: Se viene inserito come ultimo tag un tag ripetuto va comunque a inficiare sull'availability dell'input
 
@@ -23,12 +23,13 @@ const UploadButton = () => {
       </View>
   )
 }
-
+// <FlexibleAlbum images={imageSource}/>
 const StickersPreview = () => {
 return (
   <View  style={{height: 300}}>
     <ImageImport/>
-    <FlexibleAlbum images={imageSource}/>
+    <ImageImport/>
+    
     <UploadButton/>
   </View>
 );

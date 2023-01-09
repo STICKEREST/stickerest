@@ -32,7 +32,6 @@ return (
     <View style={{alignItems: 'center'}}>
     <UploadButton/>
     </View>
-    
   </View>
 );
 }

@@ -6,24 +6,34 @@ import { ImagesAssets } from "../../../assets/ImagesAssets";
 
 const windowWidth = Dimensions.get('window').width;
 
-const Column = ({img} : {img : ImageSourcePropType}) => {
+const Sticker = ({img} : {img : ImageSourcePropType}) => {
     return (
-    <View style = {{width: 100, margin: windowWidth*0.03}}>
-        <SmallStickerPackBox img={img}/>
-    </View>
+        <View style = {{width: 100, margin: windowWidth*0.03}}>
+            <SmallStickerPackBox img={img}/>
+        </View>
     );
 }
+
+const TouchableSticker = ({img, onPress} : {img : ImageSourcePropType, onPress: () => void}) => {
+    return (
+        <TouchableOpacity key={'Select Image'} onPress={onPress}>
+            <Sticker img={img}/>
+        </TouchableOpacity>
+    );
+}
+
 
 const FlexibleAlbum = ({images, onPress, addImages} : {images : ImageSourcePropType[], onPress: () => void, addImages: boolean}) => {
 
     const Album = () => {
         return (
             <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
-                {addImages ? 
-                    <TouchableOpacity key={'Select Image'} onPress={onPress}>
-                        <Column img={ImagesAssets.addIcon}/>
-                    </TouchableOpacity>: null}
-                {images.map((img, index) => <Column img={img} key={index}/>)}
+                {addImages ?
+                    <TouchableSticker img={ImagesAssets.addIcon} onPress={onPress} />: null
+                }
+                {images.map((img, index) => 
+                    addImages ? <Sticker img={img} key={index}/>:<TouchableSticker img={img} key={index} onPress={onPress}/>
+                )}
             </View>
         );
     }

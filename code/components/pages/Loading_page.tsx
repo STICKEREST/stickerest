@@ -17,6 +17,7 @@ export default function LoadingPage() {
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
   });
 
+  // TODO: Loading page itself needs the fonts?
   if (!fontsLoaded) {
     return null;
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { AppNavigator, LoginNavigator } from './components/StackNavigator';
+import { StackNavigator } from './components/StackNavigator';
 
 import Login_page from './components/pages/Login_page';
 import Loading_page from './components/pages/Loading_page';
@@ -15,33 +15,38 @@ import DiscoveryPage from './components/pages/discovery/DiscoveryPage';
 
 export default function App() {
 	
-	const [ready, setReady] = useState(false);
-	const [loggedIn, setLoggedIn] = useState(false);
+// 	const [ready, setReady] = useState(false);
+// 	const [loggedIn, setLoggedIn] = useState(false);
+//
+//
+// 	useEffect(() => {
+// 		async function load() {
+// 			try {
+// 				await new Promise(resolve => setTimeout(resolve, 2000));
+// 			} catch(e) {
+// 				console.warn(e);
+// 			} finally {
+// 				setReady(true);
+// 			}
+// 		}
+// 		load();
+// 	});
 
-	
-	useEffect(() => {
-		async function load() {
-			try {
-				// TODO: This waits for 2 seconds, the loading should be done here
-				await new Promise(resolve => setTimeout(resolve, 2000));
-			} catch(e) {
-				console.warn(e);
-			} finally {
-				setReady(true);
-			}
-		}
-		load();
-	});
-
-	return ready ? loggedIn ? (
+	return (
 		<NavigationContainer>
 			<StackNavigator />
 		</NavigationContainer>
-	) : (
-		<NavigationContainer>
-			<LoginNavigator />
-		</NavigationContainer>
-	) : (
-		<Loading_page />
-	);
+	)
+
+// 	return ready ? loggedIn ? (
+// 		<NavigationContainer>
+// 			<StackNavigator />
+// 		</NavigationContainer>
+// 	) : (
+// 		<NavigationContainer>
+// 			<LoginNavigator />
+// 		</NavigationContainer>
+// 	) : (
+// 		<Loading_page />
+// 	);
 }

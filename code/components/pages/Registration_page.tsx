@@ -30,74 +30,46 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
   )
 }
 
-function isEmpty(stringValue:string): boolean
-{
-  return stringValue==null || stringValue.trim()===""
+function isEmpty(value: string): boolean {
+  return value == null || value.trim() === "";
 }
 
-const handleSignUp = (emailSign : string, nickSign :string, pwSign : string) => {
-
-
-  let formBody = [];
-
-  console.log("email: " + emailSign)
-
-  if (isEmpty(emailSign) || isEmpty(nickSign) || isEmpty(pwSign))
-  {
-    Alert.alert(
-      "Info missing",
-      "Some of the fields are empty, please fill them.",
-      [
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
-    );
-  } else {
-      formBody.push(encodeURIComponent("email") + "=" + encodeURIComponent(emailSign));
-      formBody.push(encodeURIComponent("nickname") + "=" + encodeURIComponent(nickSign));
-      formBody.push(encodeURIComponent("password") + "=" + encodeURIComponent(pwSign));
-    
-      console.log(formBody)
-      
-    
-      //@ts-ignore
-      formBody = formBody.join("&");    
-    
-      fetch("https://stickerest.herokuapp.com/users/register", {
-        method: 'POST',
-        //@ts-ignore
-        body: formBody,//post body 
-        headers: {//Header Defination 
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-      } )
-      .then((response) => {
-        if(response.status === 201)
-          console.log('Successful registration');
-        else {
-          console.log('Something went wrong during the registration');
-          Alert.alert(
-            "Error",
-            "Something went wrong during the registration. Please try again and control that you are not already registered.",
-            [
-              { text: "OK", onPress: () => console.log("OK Pressed") }
-            ]
-          );
-        }
-      })
-      .catch((error) => {
-        console.log('Something went wrong during the registration');
-        Alert.alert(
-          "Error",
-          "Something went wrong during the registration. Please try again and control that you are not already registered.",
-          [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ]
-        );
-      });
+const validateCredentials = (email: string, nickname: string, password: string): boolean => {
+  if(isEmpty(email) || isEmpty(nickname) || isEmpty(password)) {
+    Alert.alert("Missing information", "Some of the fields are empty");
+    return false;
   }
-
+  return true;
 }
 
+const signUp = (form: string, navigation): void => {
+  fetch("https://stickerest.herokuapp.com/users/register", {
+    method: 'POST',
+    body: form,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).then(response => response.json()).then(response => {
+    if(response.status === 201) {
+      console.log("Successful registration");
+      // TODO: Does the user need to login after registering?
+      navigation.navigate("TabNavigator");
+    } else {
+      console.log("Error during the registration");
+      console.log(response);
+      Alert.alert("Error", "Something went wrong during the registration");
+    }
+  }).catch(error => console.log("Error: " + error));
+}
+
+const attemptSignUp = (email: string, nickname: string, password: string, navigation): void => {
+  if(validateCredentials(email, nickname, password)) {
+    email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
+    nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
+    password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
+    signUp(email + "&" + nickname + "&" + password, navigation);
+  }
+}
 
 export default function Registration_page({navigation}) {
 
@@ -105,11 +77,6 @@ export default function Registration_page({navigation}) {
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  function startHandlingData()
-  {
-    handleSignUp(email, nickname, password)
-  }
-  
   const [fontsLoaded] = useFonts({
     'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
     'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
@@ -122,23 +89,28 @@ export default function Registration_page({navigation}) {
 
   return (
     <View style={styles.container}>
-          <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
-              <View style={styles.text_view_login}>
-                  <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>Create your account</Text>
-                  <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname}/>
-                  <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-                    <ButtonToSign functionToExecute={() => startHandlingData()} nameOfButton="sign up"/>
-                  </View>
-                  <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}><Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/></View>
-                  <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
-                    <Text style={styles.SignSwap}>Already have an account? <Text></Text>
-                    <Text style={styles.urlText} onPress={() => navigation.navigate("LoginPage")}>
-                      Sign In
-                    </Text>
-                    </Text>
-                  </View>
-              </View>
-          </ImageBackground>
+      <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
+        <View style={styles.text_view_login}>
+          <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>
+            Create your account
+          </Text>
+          <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
+          <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
+            <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password)} nameOfButton="sign up"/>
+          </View>
+          <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
+            <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}} />
+          </View>
+          <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
+            <Text style={styles.SignSwap}>
+              Already have an account? <Text></Text>
+              <Text style={styles.urlText} onPress={() => navigation.navigate("LoginPage")}>
+                Sign In
+              </Text>
+            </Text>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 }

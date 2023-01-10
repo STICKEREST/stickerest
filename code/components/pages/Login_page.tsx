@@ -80,7 +80,7 @@ const  handleLogin = ({emailField, passwordField}:{emailField:string, passwordFi
 
 }
 
-export default function Login_page() {
+export default function Login_page({navigation}) {
 
   function startHandlingData()
   {
@@ -113,7 +113,7 @@ export default function Login_page() {
                   <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
                     <Text style={styles.SignSwap}>Don't have an account? <Text></Text>
                     <Text style={styles.urlText}
-                          onPress={() => {return <View><Registration_page/></View>}}>
+                          onPress={() => navigation.navigate("SignInPage")}>
                       Sign Up
                     </Text>
                     </Text>

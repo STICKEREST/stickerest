@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight, TouchableOpacity  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { useFonts } from 'expo-font';
-
 import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 
@@ -17,10 +15,6 @@ import { Sticker } from '../../types';
 //TODO: aggiungi saved button e chiamate
 
 const ImportButton = () => {
-    const [fontsLoaded] = useFonts({
-        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
-        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
-      });
     return (
         <View>
             <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>
@@ -31,11 +25,6 @@ const ImportButton = () => {
 }
 
 const RightPart = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
-    
-    const [fontsLoaded] = useFonts({
-        'poplight': require('./../../../assets/fonts/poppins/Poppins-Light.otf'),
-        'popbold': require('./../../../assets/fonts/poppins/popblack.otf')
-      });
     return (
         <View style={{flexDirection: 'column', padding: 20 }}>
             <Text style= {{fontFamily: "popbold", fontSize: 17}}>{name}</Text>
@@ -115,14 +104,6 @@ export const SingleSticker = ({ID} : {ID : number}) => {
     .then((result) => setStickerInfo(result[0]));
 
   }, []);
-  
-  const [fontsLoaded] = useFonts({
-    'popblack': require('../../../assets/fonts/poppins/Poppins-Bold.otf'),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;

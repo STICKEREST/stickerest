@@ -7,18 +7,18 @@ import { useFonts } from 'expo-font';
 import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
 
-const SmallStickerPackBox = ({img} : {img : ImageSourcePropType}) => {
+const SmallStickerPackBox = ({img} : {img : string}) => {
 
     return (
           <View style={[styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
-              <Image source={img} style={{height: 70, width: 90}} />
+              <Image source={{uri: img}} style={{height: 70, width: 90}} />
           </View>
       );
 
 }
 
 
-const SmallStickerPack = ({img, title, download}:{img : ImageSourcePropType, title : string, download : number}) => {
+const SmallStickerPack = ({img, title, download}:{img : string, title : string, download : number}) => {
   
   const [fontsLoaded] = useFonts({
     'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),

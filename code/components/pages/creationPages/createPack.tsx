@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert } from 'react-native';
 import { Text, View } from 'react-native';
-import { useFonts } from 'expo-font';
 import { styleCreatePack } from "../../../assets/style/styleCreatePack";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import {TagInput} from '../../subcomponents/tags-input/TagInput'
@@ -159,17 +158,6 @@ export default function CreatePack() {
 
   const [name, setName] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
-    
-  const [fontsLoaded] = useFonts({
-    'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
-    'poplight': require('../../../assets/fonts/poppins/Poppins-Light.otf'),
-    'popregular': require('../../../assets/fonts/poppins/Poppins-Regular.otf')
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
   

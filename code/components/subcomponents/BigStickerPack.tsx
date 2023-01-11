@@ -8,7 +8,7 @@ import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
 
 
-export const BigStickerPack = ({img, title}:{img : ImageSourcePropType, title : string}) => {
+export const BigStickerPack = ({img, title}:{img : string, title : string}) => {
   
   const [fontsLoaded] = useFonts({
     'poppins': require('../../assets/fonts/poppins/Poppins-Bold.otf')
@@ -21,7 +21,7 @@ export const BigStickerPack = ({img, title}:{img : ImageSourcePropType, title : 
   return (
       <View style={[styleSingleSticker.mainStickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]} >
           <View style={{flex: 1}}>
-              <Image source={img} />
+              <Image source={{uri: img}} style={{height:100, width: 110}}/>
           </View>
 
           <View style={{flex: 1}}>

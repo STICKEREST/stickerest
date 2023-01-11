@@ -2,8 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
-import { useFonts } from 'expo-font';
-
 import { styles } from "./../../assets/style/styleUserProfilePage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
@@ -48,20 +46,8 @@ const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, 
 } 
 
 export default function UserProfilePage() {
-
   const [email, setEmail] = React.useState("name.surname@gmail.com");    
-    const [nickname, setNickname] = React.useState("nickname");
-  
-  const [fontsLoaded] = useFonts({
-    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
-    'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
-    'popregular': require('./../../assets/fonts/poppins/Poppins-Regular.otf')
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
+  const [nickname, setNickname] = React.useState("nickname");
   return (
     <View style={styles.container}>
           <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>

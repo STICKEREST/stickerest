@@ -24,8 +24,8 @@ export default function CarouselSticker({stickers, type} : {stickers : Sticker[]
                 data = {stickers}
                 renderItem={({ item }) => (
                     <Pressable onPress={() => openStickerPack(item.ID)}> 
-                        { type === "big" ? <BigStickerPack img={ImagesAssets.computer} title={item.name} /> 
-                        : (type === "small" ? <SmallStickerPack img={ImagesAssets.computer} title={item.name} download={item.nr_downloads} /> : <View></View>)}
+                        { type === "big" ? <BigStickerPack img={item.logo} title={item.name} /> 
+                        : (type === "small" ? <SmallStickerPack img={item.logo} title={item.name} download={item.nr_downloads} /> : <View></View>)}
                     </Pressable>
                     )}               
                 keyExtractor={item => item.ID.toString()}

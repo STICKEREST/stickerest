@@ -93,7 +93,9 @@ const BigStickerPack2 = ({ID, img, name, author, numSticker, downloads} : {ID : 
     
 }
 
-export const SingleSticker = ({ID} : {ID : number}) => {
+export const SingleSticker = ({route, navigation}) => {
+
+    const ID = route.params.id;
 
     const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
 

@@ -2,8 +2,6 @@ import React, {useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 
-import { useFonts } from 'expo-font';
-
 import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
 import{ ImagesAssets } from './../../assets/ImagesAssets';
@@ -69,17 +67,6 @@ const attemptLogin = (email: string, password: string, navigation): void => {
 export default function Login_page({navigation}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  const [fontsLoaded] = useFonts({
-    'popblack': require('./../../assets/fonts/poppins/popblack.otf'),
-    'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
-    'popregular': require('./../../assets/fonts/poppins/Poppins-Regular.otf')
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <View style={styles.container}>
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>

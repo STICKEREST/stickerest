@@ -3,50 +3,21 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StackNavigator } from './components/StackNavigator';
 
-import Login_page from './components/pages/Login_page';
 import Loading_page from './components/pages/Loading_page';
-import { View } from 'react-native';
-import {Homepage} from './components/pages/Homepage';
-import Registration_page from './components/pages/Registration_page';
-import {SingleSticker} from './components/pages/stickers/SingleSticker';
-import UserProfilePage from './components/pages/UserProfilePage';
-import CreatePack from './components/pages/creationPages/createPack';
-import DiscoveryPage from './components/pages/discovery/DiscoveryPage';
+
+import { useFonts } from 'expo-font';
 
 export default function App() {
-	
-// 	const [ready, setReady] = useState(false);
-// 	const [loggedIn, setLoggedIn] = useState(false);
-//
-//
-// 	useEffect(() => {
-// 		async function load() {
-// 			try {
-// 				await new Promise(resolve => setTimeout(resolve, 2000));
-// 			} catch(e) {
-// 				console.warn(e);
-// 			} finally {
-// 				setReady(true);
-// 			}
-// 		}
-// 		load();
-// 	});
-
-	return (
+	const [fontsLoaded] = useFonts({
+		'popblack': require('./assets/fonts/poppins/popblack.otf'),
+		'poplight': require('./assets/fonts/poppins/Poppins-Light.otf'),
+		'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
+	});
+	return fontsLoaded ? (
 		<NavigationContainer>
 			<StackNavigator />
 		</NavigationContainer>
-	)
-
-// 	return ready ? loggedIn ? (
-// 		<NavigationContainer>
-// 			<StackNavigator />
-// 		</NavigationContainer>
-// 	) : (
-// 		<NavigationContainer>
-// 			<LoginNavigator />
-// 		</NavigationContainer>
-// 	) : (
-// 		<Loading_page />
-// 	);
+	) : (
+		<Loading_page />
+	);
 }

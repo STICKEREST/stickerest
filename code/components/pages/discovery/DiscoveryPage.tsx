@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import { Dimensions, ImageBackground,  TouchableHighlight } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { useFonts } from 'expo-font';
-
 import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 
@@ -104,19 +102,6 @@ const MainStickerView = () => {
 
 
 export default function DiscoveryPage() {
-  
-  const [fontsLoaded] = useFonts({
-    'popblack': require('../../../assets/fonts/poppins/popblack.otf'),
-    // 'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf')
-  });
-
-//   const [fontsLoaded] = useFonts({
-//     'poppinsLight': require('../../../assets/fonts/poppins/Popping-Light.otf'),
-//   });
-
-  if (!fontsLoaded) {
-    return null;
-  }
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;

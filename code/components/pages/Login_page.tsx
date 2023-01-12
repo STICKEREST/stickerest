@@ -76,7 +76,7 @@ export default function Login_page({navigation}) {
           </Text>
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} />
           <View style={[styles.style_signInButton, {marginTop: windowHeight * 0.07}]}>
-            <ButtonToSign functionToExecute={() => attemptLogin(email, password, navigation)}/>
+            <ButtonToSign functionToExecute={() => attemptLogin(email, password, navigation)} nameOfButton="Sign in"/>
           </View>
           <View style={{width: windowWidth * 0.7, marginTop: windowHeight * 0.03}}>
             <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/>

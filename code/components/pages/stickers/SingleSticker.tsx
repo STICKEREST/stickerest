@@ -11,6 +11,8 @@ import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../types';
+import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import { color } from '@rneui/themed/dist/config';
 
 //TODO: aggiungi saved button e chiamate
 
@@ -46,28 +48,34 @@ const LeftPart = ({img}: {img: string}) => {
     );
 }
 
-const LikeButton = ({ID} : {ID : number}) => {
+const ButtonState = ({ID, state_name, logo_name, color_state } : {ID : number, state_name : string, logo_name : string, color_state : string}) => {
 
-    const [favourite, setFavourite] = useState<boolean>(false);
-    //TODO aggiungi i n backend chiamata per sapere se attualmente è favorite
+    const [state, setState] = React.useState<boolean>(false);
 
-    const addToFav = () => {
+    useEffect (() => {
 
-        if(favourite === true)
-            fetch(`https://stickerest.herokuapp.com/auth/remove-favorites-${ID}`);
+        fetch(`https://stickerest.herokuapp.com/auth/is-${state_name}-${ID}`)
+        .then((result) => result.json())
+        .then((result) => setState(result));
+    }, []);
+
+    const changeState = () => {
+
+        if(state === true)
+            fetch(`https://stickerest.herokuapp.com/auth/remove-${state_name}-${ID}`);
         else
-            fetch(`https://stickerest.herokuapp.com/auth/add-favorites-${ID}`);
+            fetch(`https://stickerest.herokuapp.com/auth/add-${state_name}-${ID}`);
 
-        setFavourite(!favourite);
+        setState(!state);
     }
 
     return (
         <View>
-            <TouchableOpacity onPress={() => addToFav()}>
+            <TouchableOpacity onPress={() => changeState()}>
                 <Ionicons
-                name='md-heart'
+                name={logo_name}
                 size={40}
-                color={favourite ? "#F44336" : '#9E9E9E'}
+                color={state ? color_state : '#9E9E9E'}
                 />
             </TouchableOpacity>
         </View>
@@ -86,8 +94,8 @@ const StickerPackContainer = ({ID, img, name, author, numSticker, downloads} : {
                 <RightPart name={name} author={author} numSticker={numSticker} downloads={downloads}/>
             </View>
             <View style={{flex : 1.5}}>
-                <LikeButton ID = {ID} />
-                <LikeButton ID = {ID} />
+                <ButtonState ID = {ID} state_name = "favorites" logo_name='md-heart' color_state='#F44336'/>
+                <ButtonState ID = {ID} state_name = "saved" logo_name='md-bookmark' color_state='#F5CB08'/>
             </View>
         </View>
     )
@@ -101,6 +109,7 @@ export const SingleSticker = ({route, navigation}) => {
     const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
     const [imageStickers, setImageStickers] = React.useState<StickerImage[]>();
 
+
   useEffect(() => {
 
     fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
@@ -111,6 +120,7 @@ export const SingleSticker = ({route, navigation}) => {
     .then((result) => result.json())
     .then((result) => setImageStickers(result.slice(1)));
 
+    
   }, []);
 
   const windowWidth = Dimensions.get('window').width;
@@ -128,23 +138,16 @@ export const SingleSticker = ({route, navigation}) => {
                 stickerInfo !== undefined ? 
                 
                 <View>
-                    <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={23} downloads={stickerInfo.nr_downloads}/>
+                    <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
                         <ImportButton />
                     </View>
                     
                     <View style={{marginTop: 20, flexDirection: 'row'}}>
-                        {/* <View style={{marginRight: 15}}>
-                            <SmallStickerPackBox img={ImagesAssets.computer} />
-                        </View>
-                        <View style={{marginRight: 15}}>
-                            <SmallStickerPackBox img={ImagesAssets.computer}/>
-                        </View> */}
                         {
                             imageStickers !== undefined ? 
 
-                            // <Text> {JSON.stringify(otherStickers)} </Text>
-                            <View></View>
+                            <FlexibleAlbum images={imageStickers.map((el : StickerImage) => el.image_file)} addPress = {() => {}} onPress = {() => {}} addImages = {false} />
 
                             : <Text> A problem occurred while loading the sticker</Text>
                         }

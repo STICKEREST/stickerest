@@ -22,7 +22,7 @@ const TouchableSticker = ({img, onPress} : {img : string, onPress: () => void}) 
     );
 }
 
-const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : string[], addPress: () => void, onPress: () => void, addImages: boolean}) => {
+export const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : string[], addPress: () => void, onPress: () => void, addImages: boolean}) => {
 
     const Album = () => {
         return (
@@ -42,5 +42,3 @@ const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : string
         </ScrollView>
     );
   }
-
-export{FlexibleAlbum}

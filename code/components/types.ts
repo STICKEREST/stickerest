@@ -5,7 +5,8 @@ export interface Sticker {
     nr_downloads : number,
     logo : string, 
     Designer : string,
-    dt_upload : string
+    dt_upload : string,
+    n_stickers : number
 }
 
 export interface StickerImage {

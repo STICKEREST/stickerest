@@ -22,22 +22,20 @@ const TouchableSticker = ({img, onPress} : {img : ImageSourcePropType, onPress: 
     );
 }
 
-
-const FlexibleAlbum = ({images, onPress, addImages} : {images : ImageSourcePropType[], onPress: () => void, addImages: boolean}) => {
+const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : ImageSourcePropType[], addPress: () => void, onPress: () => void, addImages: boolean}) => {
 
     const Album = () => {
         return (
             <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
                 {addImages ?
-                    <TouchableSticker img={ImagesAssets.addIcon} onPress={onPress} />: null
+                    <TouchableSticker img={ImagesAssets.addIcon} onPress={addPress} />: null
                 }
                 {images.map((img, index) => 
-                    addImages ? <Sticker img={img} key={index}/>:<TouchableSticker img={img} key={index} onPress={onPress}/>
+                    <TouchableSticker img={img} key={index} onPress={onPress}/>
                 )}
             </View>
         );
     }
-
     return (
         <ScrollView>
             <Album/>

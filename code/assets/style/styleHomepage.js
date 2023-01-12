@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
 	container: {
 		paddingTop: 60,
 		paddingLeft: 20,
-		paddingRight: 20
+		paddingRight: 20,
+		backgroundColor: 'white'
 	},
 	header: {
 		fontWeight: 'bold',

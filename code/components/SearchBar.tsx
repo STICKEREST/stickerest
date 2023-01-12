@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
 
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 	searchBar: {
 		padding: 10,
 		flexDirection: "row",
-		backgroundColor: "#d9dbda",
+		backgroundColor: "#f1f1f1",
 		borderRadius: 15,
 		alignItems: "center"
 	},

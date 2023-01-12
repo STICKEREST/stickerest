@@ -1,11 +1,8 @@
-import React, { useCallback, useState } from 'react'
-import { Dimensions, ImageBackground, TextInput, ScrollView, TouchableOpacity, SafeAreaView, Text, View } from 'react-native';
+import { Dimensions, ImageBackground, TextInput, TouchableOpacity, SafeAreaView, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { styleCreatePack } from "../../../assets/style/styleCreatePack";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import {TagInput} from '../../subcomponents/tags-input/TagInput'
-import { SmallStickerPackBox } from "../../subcomponents/SmallStickerPack";
-import { FlexibleAlbum} from "../../subcomponents/stickers-carousel/FlexibleAlbum";
 import ImageImport from '../../subcomponents/imagePicker/ImageImport';
 
   // BUG: Se viene inserito come ultimo tag un tag ripetuto va comunque a inficiare sull'availability dell'input

@@ -26,9 +26,11 @@ export default function ImageImport () {
     }
   }
 
+  const deleteImage = () => {}
+
   return (
     <View>
-      {imageSource && <FlexibleAlbum images={imageSource} onPress={pickImages} addImages = {true}/>}
+      {imageSource && <FlexibleAlbum images={imageSource} addPress={pickImages} onPress={deleteImage} addImages = {true}/>}
     </View>
   )
 }

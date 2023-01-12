@@ -1,8 +1,10 @@
-import { View, ScrollView, Text, Dimensions, ImageBackground } from 'react-native';
+import { View, ScrollView, Text, Dimensions, ImageBackground, SafeAreaView } from 'react-native';
 
 import { styles } from './../../../assets/style/styleHomepage';
 
 import SearchBar from '../../SearchBar';
+
+import { useFonts } from 'expo-font';
 
 import CarouselBigSticker from '../../subcomponents/stickers-carousel/CarouselBigSticker';
 import CarouselSticker from '../../subcomponents/stickers-carousel/CarouselSticker';
@@ -31,37 +33,27 @@ const imagesTemplate = [ 	// Will be replaced with backend call
 	ImagesAssets.computer,
 ];
 
-const RecentlyAdded = () => {
-    return (
-        <View>
-            <Text style={styles.header}>
-                Recently
-            </Text>
-            <CarouselSticker />
-        </View>
-    )
-}
+/*
+<Text style={{fontSize: 25, alignContent: 'stretch', fontFamily: "popblack"}}>Favorites</Text>
+*/
 
 export default function Favorites() {
 	return (
-		<View style= {{alignContent: 'center'}}>
+		<SafeAreaView style= {{backgroundColor: 'white', height: windowtHeight}}>
 			<View>
-                <View>
-                    <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowtHeight/8}}/>
-                </View>
-				<Text style={{fontSize: 25, alignContent: 'stretch', fontFamily: "popblack"}}>Favorites page</Text>
-				<View style={[{}]}>
-                    <RecentlyAdded/>
-					<Text style={styles.header}>
-						More that you liked
-					</Text>
-				</View>
-                <View style={[{}]}>
-                <View style={{height: windowtHeight*0.525, alignContent: 'center'}}>                    
-                    <FlexibleAlbum images={imagesTemplate} addImages={false} onPress={function (): void {} }/>
-                </View>
-                </View>
+				<ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowtHeight/8}}/>
 			</View>
-		</View>
+			<View>
+				<Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Recently added</Text>
+				<CarouselSticker />
+				<Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>
+					More that you liked
+				</Text>
+			</View>
+			<View style={{height: windowtHeight*0.525, alignContent: 'center'}}>                    
+				<FlexibleAlbum images={imagesTemplate} addImages={false} addPress={function (): void {}} onPress={function (): void {} }/>
+			</View>
+			
+		</SafeAreaView>
 	);
 }

@@ -9,6 +9,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import CreatePack from './pages/creationPages/createPack';
 
 import Navbar from './Navbar';
+import Favorites from './pages/favorites/Favorites';
 
 const Tabs = createBottomTabNavigator();
 
@@ -21,7 +22,7 @@ export default function TabNavigator() {
 			<Tabs.Screen name="Home" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
 			<Tabs.Screen name="Discovery" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconStar}} />
 			<Tabs.Screen name="Create" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
-			<Tabs.Screen name="Settings" component={View} initialParams={{icon: ImagesAssets.iconSettings}} />
+			<Tabs.Screen name="Settings" component={Favorites} initialParams={{icon: ImagesAssets.hearth}} />
 			<Tabs.Screen name="User" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />
 		</Tabs.Navigator>
 	);

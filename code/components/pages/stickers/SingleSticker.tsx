@@ -10,7 +10,7 @@ import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Sticker } from '../../types';
+import { Sticker, StickerImage } from '../../types';
 
 //TODO: aggiungi saved button e chiamate
 
@@ -37,11 +37,11 @@ const RightPart = ({name, author, numSticker, downloads} : {name : string, autho
     );
 }
 
-const LeftPart = ({img}: {img: ImageSourcePropType}) => {
+const LeftPart = ({img}: {img: string}) => {
         
     return (
         <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
-            <Image source={img} style={{height: 85, width: 100}}/>
+            <Image source={{uri : img}} style={{height: 85, width: 100}}/>
         </View>
     );
 }
@@ -74,7 +74,7 @@ const LikeButton = ({ID} : {ID : number}) => {
     );
 }
 
-const BigStickerPack2 = ({ID, img, name, author, numSticker, downloads} : {ID : number, img: ImageSourcePropType, name : string, author : string, numSticker : number, downloads : number}) => {
+const StickerPackContainer = ({ID, img, name, author, numSticker, downloads} : {ID : number, img: string, name : string, author : string, numSticker : number, downloads : number}) => {
     
 
     return (
@@ -87,6 +87,7 @@ const BigStickerPack2 = ({ID, img, name, author, numSticker, downloads} : {ID : 
             </View>
             <View style={{flex : 1.5}}>
                 <LikeButton ID = {ID} />
+                <LikeButton ID = {ID} />
             </View>
         </View>
     )
@@ -98,12 +99,17 @@ export const SingleSticker = ({route, navigation}) => {
     const ID = route.params.id;
 
     const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
+    const [imageStickers, setImageStickers] = React.useState<StickerImage[]>();
 
   useEffect(() => {
 
     fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
     .then((result) => result.json())
     .then((result) => setStickerInfo(result[0]));
+
+    fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
+    .then((result) => result.json())
+    .then((result) => setImageStickers(result.slice(1)));
 
   }, []);
 
@@ -122,18 +128,26 @@ export const SingleSticker = ({route, navigation}) => {
                 stickerInfo !== undefined ? 
                 
                 <View>
-                    <BigStickerPack2 img={ImagesAssets.computer} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={23} downloads={stickerInfo.nr_downloads}/>
+                    <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={23} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
                         <ImportButton />
                     </View>
                     
                     <View style={{marginTop: 20, flexDirection: 'row'}}>
-                        <View style={{marginRight: 15}}>
+                        {/* <View style={{marginRight: 15}}>
                             <SmallStickerPackBox img={ImagesAssets.computer} />
                         </View>
                         <View style={{marginRight: 15}}>
                             <SmallStickerPackBox img={ImagesAssets.computer}/>
-                        </View>
+                        </View> */}
+                        {
+                            imageStickers !== undefined ? 
+
+                            // <Text> {JSON.stringify(otherStickers)} </Text>
+                            <View></View>
+
+                            : <Text> A problem occurred while loading the sticker</Text>
+                        }
                     </View>
                 </View> : <Text> A problem occurred while loading the sticker</Text>
             }

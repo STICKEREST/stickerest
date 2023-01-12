@@ -7,3 +7,9 @@ export interface Sticker {
     Designer : string,
     dt_upload : string
 }
+
+export interface StickerImage {
+    ID : number,
+    ordinal_order: number,
+    image_file : string
+}

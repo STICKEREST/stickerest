@@ -9,7 +9,7 @@ const windowHeight = Dimensions.get('window').height;
 const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
 
     const allowedTagsNmbr = 9;
-    const [isEditable, setEdit] = useState(true);
+    const [isEditable, setEdit] = useState(true)
     
     const [input, setInput] = useState('');
 
@@ -78,7 +78,7 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
       </View>
       );
     }
-
+// tag.length>3? tag.length*13 : 4*13
     return (
 
         <View>
@@ -89,12 +89,13 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
                 onChange={(newText) => handleOnChangeText(newText)}
                 editable={isEditable}
             />
-          <View style={{flexWrap: 'wrap', borderWidth:1.5, borderColor:'black', borderRadius: 10, height: 130, width: windowWidth*0.8, padding: 4}}>
+            
+          <View style={{flexWrap: 'wrap', flexDirection: 'row', borderWidth:1.5, borderColor:'black', borderRadius: 10, minHeight: 130, maxHeight: 140, width: windowWidth*0.8, padding: 4}}>
           
             {tags.map((tag, index) => (
-                <View style={{backgroundColor: '#8D08F5', borderRadius: 20, width: windowWidth * 0.25, height: 30, margin: 2}}>
+                <View key={tag} style={{backgroundColor: '#8D08F5', borderRadius: 20, width: tag.length>3? tag.length*13 : 4*13, height: 30, margin: 2, padding: 3, alignContent: 'center'}}>
                   <View  style={{flexDirection: 'row', height: 20}}>
-                    <View style={{flex: 1}}>
+                    <View style={{flex: tag.length}}>
                       <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 14, textAlign:"center"}}>{tag}</Text>
                     </View>
                     <View style={{flex: 1}}>

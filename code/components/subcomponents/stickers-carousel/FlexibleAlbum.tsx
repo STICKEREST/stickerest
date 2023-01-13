@@ -16,22 +16,22 @@ const Sticker = ({img} : {img : string}) => {
 
 const TouchableSticker = ({img, onPress} : {img : string, onPress: () => void}) => {
     return (
-        <TouchableOpacity key={'Select Image'} onPress={onPress}>
+        <TouchableOpacity key={'Select Image'} onPress={() => onPress()}>
             <Sticker img={img}/>
         </TouchableOpacity>
     );
 }
 
-export const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : string[], addPress: () => void, onPress: () => void, addImages: boolean}) => {
+export const FlexibleAlbum = ({images, addPress, onPress, addImages} : {images : string[], addPress: () => void, onPress: (index: number) => void, addImages: boolean}) => {
 
     const Album = () => {
         return (
             <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
                 {addImages ?
-                    <TouchableSticker img={ImagesAssets.addIcon} onPress={addPress} />: null
+                    <TouchableSticker img={'..\..\..\assets\addCircle.png'} onPress={addPress} />: null
                 }
                 {images.map((img, index) => 
-                    <TouchableSticker img={img} key={index} onPress={onPress}/>
+                    <TouchableSticker img={img} key={index} onPress={() => onPress(index)}/>
                 )}
             </View>
         );

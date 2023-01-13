@@ -93,7 +93,6 @@ const MainStickerView = () => {
         <View style={[styleSingleSticker.mainStickerView, {alignItems: 'center', justifyContent: 'center', padding: 20}]} >
             <IconPack id={randomValue}/>
             {/* <View style={{flex: 1}}>
-
             </View> */}
         </View>
     )

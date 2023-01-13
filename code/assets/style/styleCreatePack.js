@@ -6,6 +6,7 @@ const styleCreatePack = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        alignContent: 'center',
       },
       inputs: { //the group of text and icon
         flexDirection: "row",
@@ -24,7 +25,11 @@ const styleCreatePack = StyleSheet.create({
         margin: 0,
         padding: 10,
         textAlignVertical: 'center',
-      }
+      }, scrollView: {
+        marginHorizontal: 20,
+        marginTop: 10, 
+        flexDirection: 'row', 
+      },
 });
 
 export { styleCreatePack }

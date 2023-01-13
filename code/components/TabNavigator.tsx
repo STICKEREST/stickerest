@@ -6,9 +6,9 @@ import { Homepage } from './pages/Homepage';
 import DiscoveryPage from './pages/discovery/DiscoveryPage';
 import UserProfilePage from './pages/UserProfilePage';
 import CreatePack from './pages/creationPages/createPack';
+import Favorites from './pages/favorites/FavoritesPage';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 
 const Tabs = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ const Tabs = createBottomTabNavigator();
 export const TabNavigator = () => (
 	<Tabs.Navigator screenOptions={{headerShown: false}} tabBar={Navbar} >
 		<Tabs.Screen name="Homepage" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
-		<Tabs.Screen name="Favourites" component={View} initialParams={{icon: ImagesAssets.iconStar}} />
+		<Tabs.Screen name="Favourites" component={Favorites} initialParams={{icon: ImagesAssets.iconStar}} />
 		<Tabs.Screen name="CreatePack" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
 		<Tabs.Screen name="DiscoveryPage" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconSettings}} />
 		<Tabs.Screen name="UserProfilePage" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />

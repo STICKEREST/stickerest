@@ -26,47 +26,58 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
   )
 }
 
-function isEmpty(value: string): boolean {
-  return value == null || value.trim() === "";
-}
+/**
+ * Function to check if a string is null or empty
+ */
+const isNullOrEmpty = (value: string): boolean => value == null || value.trim() === "";
 
-const validateCredentials = (email: string, password: string): boolean => {
-  if(isEmpty(email) || isEmpty(password)) {
-    Alert.alert("Missing information", "Email address and/or password are missing");
-    return false;
+/**
+ * Function that validates credentials.
+ * Throws an error if the credentials are not valid.
+ */
+const validateCredentials = async (email: string, password: string): void => {
+  if(isNullOrEmpty(email) || isNullOrEmpty(password)) {
+    throw new Error("Email address and/or password are missing");
   }
-  return true;
 }
 
-const login = (form: string, navigation): void => {
-  fetch("https://stickerest.herokuapp.com/users/login", {
+/**
+ * Login function.
+ */
+const login = async (email: string, password: string): void => {
+  email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
+  password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
+  await fetch("https://stickerest.herokuapp.com/users/login", {
     method: 'POST',
-    body: form,
+    body: email + "&" + password,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }).then(response => response.json()).then(response => {
     if(response === "Successfully logged in!") {
       console.log(response);
-      navigation.navigate("TabNavigator");
     } else if(response.message === "username or password is not matched") {
-      // TODO: Better error message?
-      Alert.alert("Info wrong", "username or password is not matched");
+      throw new Error("Username or password is not matched");
     }
-  }).catch(error => console.log("Error: " + error));
+  });
 }
 
-const attemptLogin = (email: string, password: string, navigation): void => {
-  if(validateCredentials(email, password)) {
-    email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
-    password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
-    login(email + "&" + password, navigation);
-  }
-}
-
-export default function Login_page({navigation}) {
+export default function Login_page({navigation, setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const attemptLogin = React.useCallback(() => {
+    async function attempt() {
+      try {
+        await validateCredentials(email, password);
+        await login(email, password);
+        console.log("User is now logged in");
+        setLoggedIn(true);
+      } catch(error: Error) {
+        Alert.alert("Error", error.message);
+      }
+    }
+    attempt();
+  });
   return (
     <View style={styles.container}>
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
@@ -76,7 +87,7 @@ export default function Login_page({navigation}) {
           </Text>
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} />
           <View style={[styles.style_signInButton, {marginTop: windowHeight * 0.07}]}>
-            <ButtonToSign functionToExecute={() => attemptLogin(email, password, navigation)} nameOfButton="Sign in"/>
+            <ButtonToSign functionToExecute={attemptLogin} nameOfButton="Sign in"/>
           </View>
           <View style={{width: windowWidth * 0.7, marginTop: windowHeight * 0.03}}>
             <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/>
@@ -84,7 +95,7 @@ export default function Login_page({navigation}) {
           <View style={{width: windowWidth * 0.7, marginTop: windowHeight * 0.09}}>
             <Text style={styles.SignSwap}>
               Don't have an account? <Text></Text>
-              <Text style={styles.urlText} onPress={() => navigation.navigate("SignInPage")}>
+              <Text style={styles.urlText} onPress={() => navigation.navigate("SignUpPage")}>
                 Sign Up
               </Text>
             </Text>

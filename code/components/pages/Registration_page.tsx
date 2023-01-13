@@ -28,51 +28,52 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
   )
 }
 
-function isEmpty(value: string): boolean {
-  return value == null || value.trim() === "";
-}
+// TODO: Fix code duplication between Registration and Login page
 
-const validateCredentials = (email: string, nickname: string, password: string): boolean => {
-  if(isEmpty(email) || isEmpty(nickname) || isEmpty(password)) {
-    Alert.alert("Missing information", "Some of the fields are empty");
-    return false;
+const isNullOrEmpty = (value: string): boolean => value == null || value.trim() === "";
+
+const validateCredentials = (email: string, nickname: string, password: string): void => {
+  if(isNullOrEmpty(email) || isNullOrEmpty(nickname) || isNullOrEmpty(password)) {
+    throw new Error("Some information are missing");
   }
-  return true;
 }
 
-const signUp = (form: string, navigation): void => {
+const signUp = async (email: string, nickname: string, password: string): void => {
+  email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
+  nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
+  password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
   fetch("https://stickerest.herokuapp.com/users/register", {
     method: 'POST',
-    body: form,
+    body: email + "&" + nickname + "&" + password,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }).then(response => response.json()).then(response => {
     if(response.status === 201) {
       console.log("Successful registration");
-      // TODO: Does the user need to login after registering?
-      navigation.navigate("TabNavigator");
     } else {
-      console.log("Error during the registration");
-      console.log(response);
-      Alert.alert("Error", "Something went wrong during the registration");
+      throw new Error("Something went wrong during the registration. Error code: " + error.status);
     }
-  }).catch(error => console.log("Error: " + error));
+  });
 }
 
-const attemptSignUp = (email: string, nickname: string, password: string, navigation): void => {
-  if(validateCredentials(email, nickname, password)) {
-    email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
-    nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
-    password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
-    signUp(email + "&" + nickname + "&" + password, navigation);
-  }
-}
-
-export default function Registration_page({navigation}) {
+export default function Registration_page({navigation, setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const attemptSignUp = React.useCallback(() => {
+    async function attempt() {
+      try {
+        validateCredentials(email, nickname, password);
+        await signUp(email, nickname, password);
+        console.log("User is now registered");
+        setLoggedIn(true);
+      } catch(error: Error) {
+        Alert.alert("Error", error.message);
+      }
+    }
+    attempt();
+  });
   return (
     <View style={styles.container}>
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
@@ -82,7 +83,7 @@ export default function Registration_page({navigation}) {
           </Text>
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
           <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-            <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password)} nameOfButton="sign up"/>
+            <ButtonToSign functionToExecute={attemptSignUp} nameOfButton="sign up"/>
           </View>
           <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
             <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}} />

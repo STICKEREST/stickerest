@@ -21,24 +21,19 @@ export interface Sticker {
 	emoji: string
 }
 
-// Button that can add an existing sticker pack to your Telegram given the name of the pack.
-// After a sticker pack author has created the Telegram sticker pack,
-// every user will be able to add it to their Telegram with this button.
-// 'packName' is the name of the sticker pack.
-// Packs created with the stickerest bot need to append "_by_StickerestBot" at the end of their name.
-export const AddStickersButton = ({packName}: {packName: string}) => {
+/**
+ * Function to call to import a sticker pack to Telegram.
+ * The pack must be uploaded on telegram for this to work.
+ * 'packName' is the name with which the pack was uploaded on Telegram.
+ */
+export const importPack = async (packName: string) => {
 	const url = 'https://telegram.me/addstickers/' + packName;
-	const onPress = useCallback(async() => {
-		const supported = await Linking.canOpenURL(url);
-		if(supported) {
-			await Linking.openURL(url);
-		} else {
-			Alert.alert('URL cannot be opened');
-		}
-	}, [url]);
-	return (
-		<Button title={'Add pack ' + packName} onPress={onPress} />
-	);
+	const supported = await Linking.canOpenURL(url);
+	if(supported) {
+		await Linking.openURL(url);
+	} else {
+		throw new Error('URL ' + url + ' cannot be opened');
+	}
 }
 
 // Helper function to fetch something from the Telegram api.
@@ -103,6 +98,15 @@ const exampleSticker2: Sticker = {
 const exampleSticker3: Sticker = {
 	url: "https://raw.githubusercontent.com/STICKEREST/stickerest/telegram-api/code/test/example_sticker_3.png",
 	emoji: "😄😂"
+}
+
+const AddStickersButton = ({packName}: {packName: string}) => {
+	const onPress = useCallback(async() => {
+		importPack(packName);
+	});
+	return (
+		<Button title={'Add pack ' + packName} onPress={onPress} />
+	);
 }
 
 export const Test = () => (

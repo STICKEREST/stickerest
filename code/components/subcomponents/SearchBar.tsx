@@ -1,6 +1,7 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { Feather, Entypo } from "@expo/vector-icons";
+import React from "react";
 
 // SearchBar used in Homepage.
 export const SearchBar = () => {

@@ -6,14 +6,14 @@ import { styleTagInput } from '../../../assets/style/styleTagInput';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
+const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
 
     const allowedTagsNmbr = 9;
     const [isEditable, setEdit] = useState(true)
     
     const [input, setInput] = useState('');
 
-    function handleTagsNmb (n) {
+    function handleTagsNmb (n:any) {
       if(n === allowedTagsNmbr-1) {
         setEdit(false);
       } else {
@@ -21,7 +21,7 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
       }
     }
 
-    const handleOnChangeText = (e) => {
+    const handleOnChangeText = (e:any) => {
     
       const text = e.nativeEvent.text;
       console.log("input: "+text);
@@ -31,14 +31,14 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
         e.preventDefault();
         const trimmedInput = input.replace(/[|&;$%@"'<>()+,]/g, "");
         if(trimmedInput != '' && !tags.includes(trimmedInput)) {
-          setTags(prevState => [...prevState, trimmedInput]);
+          setTags((prevState : any) => [...prevState, trimmedInput]);
         }
         setInput('');
         handleTagsNmb(tags.length);
       }
     };
 
-    const handleOnKeyDown = (e) => {
+    const handleOnKeyDown = (e : any) => {
        
         console.log("new: " + e.nativeEvent.key)
       
@@ -54,8 +54,8 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
         }
     };
 
-    const deleteTag = (index) => {
-        setTags(prevState => prevState.filter((tag, i) => i !== index))
+    const deleteTag = (index : any) => {
+        setTags((prevState : any) => prevState.filter((tag : any, i : any) => i !== index))
         handleTagsNmb(tags.length);
     };
     
@@ -68,6 +68,7 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
         <View>
             {tags.length === 0 ? null :
             <TouchableOpacity onPress ={() => {
+              //@ts-ignore
                 setTags(prevState => []);
                 setEdit(true);
             }}>
@@ -92,7 +93,7 @@ const TagInput = ({tags, setTags}:{tags, setTags: any}) => {
             
           <View style={{flexWrap: 'wrap', flexDirection: 'row', borderWidth:1.5, borderColor:'black', borderRadius: 10, minHeight: 130, maxHeight: 140, width: windowWidth*0.8, padding: 4}}>
           
-            {tags.map((tag, index) => (
+            {tags.map((tag : any, index : any) => (
                 <View key={tag} style={{backgroundColor: '#8D08F5', borderRadius: 20, width: tag.length>3? tag.length*13 : 4*13, height: 30, margin: 2, padding: 3, alignContent: 'center'}}>
                   <View  style={{flexDirection: 'row', height: 20}}>
                     <View style={{flex: tag.length}}>

@@ -8,12 +8,14 @@ import { View, StyleSheet, FlatList, Pressable } from "react-native";
 import { Sticker } from "../../types";
 
 import { useNavigation } from '@react-navigation/native';
+import React from "react";
 
 export default function CarouselSticker({stickers, type} : {stickers : Sticker[], type : "big" | "small"}) {
 
     const navigation = useNavigation();
 
     const openStickerPack = (id : number) => {
+        //@ts-ignore
         navigation.navigate("SingleSticker", {id: id});
     }
 

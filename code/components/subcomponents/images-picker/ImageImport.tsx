@@ -9,7 +9,7 @@ export default function ImageImport () {
   const [imageSource, setImageSource] = React.useState<string[]>([]);
 
   const pickImages = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
+    const result : any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsMultipleSelection: true,
       selectionLimit: 15,
@@ -19,7 +19,7 @@ export default function ImageImport () {
     // setImageSource(result.uri ? [result.uri] : result.selected)
       if(result.selected != undefined) {
         console.log('RESULT: ',result);
-        result.selected.map(image => {
+        result.selected.map((image : any) => {
           console.log('IMAGE: ',image);
           setImageSource(oldImages => [...oldImages, image.uri]);
         })

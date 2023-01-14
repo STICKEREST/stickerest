@@ -38,7 +38,7 @@ const validateCredentials = (email: string, password: string): boolean => {
   return true;
 }
 
-const login = (form: string, navigation): void => {
+const login = (form: string, navigation: any): void => {
   fetch("https://stickerest.herokuapp.com/users/login", {
     method: 'POST',
     body: form,
@@ -56,7 +56,7 @@ const login = (form: string, navigation): void => {
   }).catch(error => console.log("Error: " + error));
 }
 
-const attemptLogin = (email: string, password: string, navigation): void => {
+const attemptLogin = (email: string, password: string, navigation: any): void => {
   if(validateCredentials(email, password)) {
     email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
     password = encodeURIComponent("password") + "=" + encodeURIComponent(password);
@@ -64,7 +64,7 @@ const attemptLogin = (email: string, password: string, navigation): void => {
   }
 }
 
-export default function Login_page({navigation}) {
+export default function Login_page({navigation}:{navigation:any}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   return (

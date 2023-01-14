@@ -8,6 +8,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import CreatePack from './pages/creationPages/createPack';
 import Favorites from './pages/favorites/FavoritesPage';
 
+import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tabs = createBottomTabNavigator();
@@ -25,10 +26,10 @@ export const TabNavigator = () => (
 );
 
 // Navbar defines the appearance of the bottom navigation bar
-const Navbar = ({state, descriptors, navigation}) => (
+const Navbar = ({state, descriptors, navigation}:{state : any, descriptors : any, navigation:any}) => (
 	<View style={navbarStyles.background}>
 		{
-			state.routes.map((route, index) => {
+			state.routes.map((route:any, index:any) => {
 				const buttons = state.routes.length;
 				const middleButton = (buttons % 2 === 0 ? buttons : buttons - 1) / 2;
 				const navigate = () => {

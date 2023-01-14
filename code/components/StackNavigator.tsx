@@ -6,6 +6,8 @@ import { SingleSticker } from './pages/stickers/SingleSticker';
 import Login_page from './pages/Login_page';
 import Registration_page from './pages/Registration_page';
 
+import React from 'react';
+
 
 const Stack = createStackNavigator();
 

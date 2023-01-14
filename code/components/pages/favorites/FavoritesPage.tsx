@@ -1,11 +1,12 @@
 import { View, ScrollView, Text, Dimensions, ImageBackground, SafeAreaView } from 'react-native';
 
-import { useFonts } from 'expo-font';
+// import { useFonts } from 'expo-font';
 
 // Favorites
 import CarouselSticker from '../../subcomponents/stickers-carousel/CarouselSticker';
 import {FlexibleAlbum} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
+import React from 'react';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

@@ -2,7 +2,7 @@ import React from 'react'
 import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight  } from 'react-native';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 
-import { useFonts } from 'expo-font';
+// import { useFonts } from 'expo-font';
 
 import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
@@ -20,14 +20,14 @@ const SmallStickerPackBox = ({img} : {img : string}) => {
 
 const SmallStickerPack = ({img, title, download}:{img : string, title : string, download : number}) => {
   
-  const [fontsLoaded] = useFonts({
-    'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
-    'popblack': require('./../../assets/fonts/poppins/Poppins-Bold.otf')
-  });
+  // const [fontsLoaded] = useFonts({
+  //   'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
+  //   'popblack': require('./../../assets/fonts/poppins/Poppins-Bold.otf')
+  // });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   return (
     <View >

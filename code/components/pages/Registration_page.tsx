@@ -40,7 +40,7 @@ const validateCredentials = (email: string, nickname: string, password: string):
   return true;
 }
 
-const signUp = (form: string, navigation): void => {
+const signUp = (form: string, navigation:any): void => {
   fetch("https://stickerest.herokuapp.com/users/register", {
     method: 'POST',
     body: form,
@@ -60,7 +60,7 @@ const signUp = (form: string, navigation): void => {
   }).catch(error => console.log("Error: " + error));
 }
 
-const attemptSignUp = (email: string, nickname: string, password: string, navigation): void => {
+const attemptSignUp = (email: string, nickname: string, password: string, navigation:any): void => {
   if(validateCredentials(email, nickname, password)) {
     email = encodeURIComponent("email") + "=" + encodeURIComponent(email);
     nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
@@ -69,7 +69,7 @@ const attemptSignUp = (email: string, nickname: string, password: string, naviga
   }
 }
 
-export default function Registration_page({navigation}) {
+export default function Registration_page({navigation}:{navigation:any}) {
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -82,7 +82,7 @@ export default function Registration_page({navigation}) {
           </Text>
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
           <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
-            <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password)} nameOfButton="sign up"/>
+            <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password,navigation)} nameOfButton="sign up"/>
           </View>
           <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.03}}>
             <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}} />

@@ -7,6 +7,7 @@ import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker'
 import { useEffect, useState } from 'react';
 import { Sticker } from '../types';
 import { StringLiteral } from 'typescript';
+import React from 'react';
 
 
 const HomePageSection = ({title, linkData, type} : {title : string, linkData : string, type : "big" | "small"}) => {

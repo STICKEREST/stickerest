@@ -100,7 +100,18 @@ const styles = StyleSheet.create({
         right: 0, 
         bottom: 0, 
         alignItems: 'center',
-      }, 
+      },
+      helpButton: {
+        marginTop: 0,
+        marginLeft: -50,
+        alignContent: 'center',
+        textAlignVertical: 'center',
+        resizeMode: 'contain',
+        height: 50,
+        margin: 0,
+        padding: 10,
+        textAlignVertical: 'center'
+      },
 });
 
 export { styles }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dimensions, TextInput, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {View} from 'react-native';
+import { View, Alert } from 'react-native';
 
 import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
@@ -36,19 +36,14 @@ const styleDimennsion = StyleSheet.create({
     width: windowWidth/2
   }
 });
-  
+
+const yellow: string = "#fcf7d9";
+const gray: string = "#f1f1f1";
+
 export const FieldComponent = ({name, placeholder, setName, picture, hide, disabled = false}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean, disabled?:boolean}) => {
   
-    let yellow:string = "#fcf7d9";
-    let gray:string = "#f1f1f1";
+  let color: string = name === "" ? gray : yellow;
 
-    let color:string = gray;
-
-    if (name==="")
-      color = gray
-    else
-      color = yellow
-  
     return (
         <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
             <Ionicons 
@@ -71,6 +66,19 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
          </View>
     )
   }
+
+export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabled = false, message}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean, disabled?:boolean, message: string}) => {
+  const color: string = name === "" ? gray : yellow;
+  return (
+    <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
+      <Ionicons /*@ts-ignore*/name={picture} size={30} color="black" style={styles.icons_style} />
+      <TextInput style={[styles.input, styleDimennsion.windowWidth065]} onChangeText={(text) => {setName(text)}} value = {name} placeholder={placeholder} secureTextEntry={hide} editable={!disabled} maxLength={16} />
+      <TouchableOpacity onPress={() => Alert.alert('Help', message)}>
+        <Ionicons name={"help-circle-outline"} size={30} color="black" style={styles.helpButton} />
+      </TouchableOpacity>
+    </View>
+  );
+}
 
   export const Separator = () => {
     return(

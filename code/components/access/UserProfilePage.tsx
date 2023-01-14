@@ -6,10 +6,12 @@ import { styles } from "../../assets/style/styleUserProfilePage";
 
 import{ ImagesAssets } from '../../assets/ImagesAssets';
 
-import { ButtonToSign, FieldComponent } from './Access';
+import { ButtonToSign, FieldComponent, FieldWithHelp } from './Access';
 import { getData, prepareCredentials, update } from '../../core/access/profile';
 import { validateCredentials } from '../../core/access/accessUtilities';
-import { User } from '../../core/types'; 
+import { User } from '../../core/types';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -70,12 +72,12 @@ const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, 
     return (
         <SafeAreaView>
             <View style={styles.input_container}>
-                <FieldComponent name={nickname} placeholder={null}   setName={setNickname} picture={"person-outline"} hide={false}/>
+                <FieldComponent name={nickname} placeholder={null} setName={setNickname} picture={"person-outline"} hide={false}/>
                 <FieldComponent name={email} placeholder={null} setName={setEmail} picture={"mail-outline"} hide={false} disabled={true}/>
             </View>
         </SafeAreaView>
     )
-} 
+}
 
 const ButtonUpdate = ({nickname} : {nickname : string}) => {
   return (
@@ -86,17 +88,25 @@ const ButtonUpdate = ({nickname} : {nickname : string}) => {
 }
 
 export default function UserProfilePage() {
-  const [email, setEmail] = React.useState("name.surname@gmail.com");    
-  const [nickname, setNickname] = React.useState("nickname");
-  return (
-    <View style={styles.container}>
-          <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
-            <View style={styles.viewYourProfile}><Text style={[styles.textUserProfile, stylesDimension.paddingHeight]}>Your Profile</Text></View>
-              <View style={[styles.text_view_login, stylesDimension.marginHeight003]}>
-                  <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} />
-                  <ButtonUpdate nickname={nickname}/>
-              </View>
-          </ImageBackground>
-    </View>
-  );
+    const [email, setEmail] = React.useState("name.surname@gmail.com");
+    const [nickname, setNickname] = React.useState("nickname");
+    const [telegramId, setTelegramId] = React.useState("");
+    return (
+        <View style={styles.container}>
+            <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
+                <View style={styles.viewYourProfile}>
+                    <Text style={[styles.textUserProfile, stylesDimension.paddingHeight]}>Your Profile</Text>
+                </View>
+                <View style={[styles.text_view_login, stylesDimension.marginHeight003]}>
+                    <Text>Personal information</Text>
+                    <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} />
+                    <Text>Stickers upload</Text>
+                    <View style={styles.input_container} >
+                        <FieldWithHelp name={telegramId} setName={setTelegramId} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
+                    </View>
+                    <ButtonUpdate nickname={nickname}/>
+                </View>
+            </ImageBackground>
+        </View>
+    );
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
+import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
@@ -18,11 +18,21 @@ import { AlternativeAccessAction, Separator } from './Access';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const stylesDimension = StyleSheet.create({
+  dimensionHeight70: {
+    marginTop: windowHeight * 0.07
+  },
+  fullSize: {
+    width: windowWidth, 
+    height: windowHeight
+  }
+});
+
 const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: any, setPassword : any}) => {
 
   return (
       <SafeAreaView>
-          <View style={[styles.input_container, {flexDirection:"column"}]}>
+          <View style={styles.input_container}>
               <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"} hide={false}/>
               <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"} hide={true}/>
           </View>
@@ -60,7 +70,7 @@ const Title = () => {
 
 const ButtonLogin = ({email, password, navigation} : {email : string, password : string, navigation : any}) => {
   return (
-    <View style={[styles.style_signInButton, {marginTop: windowHeight * 0.07}]}>
+    <View style={[styles.style_signInButton, stylesDimension.dimensionHeight70]}>
       <ButtonToSign functionToExecute={() => attemptLogin(email, password, navigation)} nameOfButton="Sign in"/>
     </View>
   )

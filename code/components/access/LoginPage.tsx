@@ -82,7 +82,7 @@ export default function LoginPage({navigation}:{navigation:any}) {
   
   return (
     <View style={styles.container}>
-      <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
+      <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
         <View style={styles.text_view_login}>
           <Title />
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} />

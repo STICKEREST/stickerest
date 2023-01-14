@@ -10,7 +10,7 @@ import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Sticker, StickerImage } from '../../types';
+import { Sticker, StickerImage } from '../../../core/types';
 import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 

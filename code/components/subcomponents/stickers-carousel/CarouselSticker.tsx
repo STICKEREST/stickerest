@@ -5,7 +5,7 @@ import { styleCarousel } from "../../../assets/style/styleCarousel";
 
 import { View, StyleSheet, FlatList, Pressable } from "react-native";
 
-import { Sticker } from "../../types";
+import { Sticker } from "../../../core/types";
 
 import { useNavigation } from '@react-navigation/native';
 import React from "react";

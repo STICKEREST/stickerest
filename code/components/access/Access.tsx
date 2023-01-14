@@ -10,7 +10,7 @@ import { ImagesAssets } from '../../assets/ImagesAssets';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
   
-export const FieldComponent = ({name, placeholder, setName, picture, hide}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean}) => {
+export const FieldComponent = ({name, placeholder, setName, picture, hide, disabled = false}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean, disabled?:boolean}) => {
   
     let yellow:string = "#fcf7d9";
     let gray:string = "#f1f1f1";
@@ -39,6 +39,7 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide}:{name
                 value = {name}
                 placeholder={placeholder}
                 secureTextEntry={hide}
+                editable={!disabled}
             />
          </View>
     )

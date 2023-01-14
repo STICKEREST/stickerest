@@ -5,7 +5,7 @@ import { styles } from './../../assets/style/styleHomepage';
 import { SearchBar } from '../subcomponents/SearchBar';
 import CarouselSticker from '../subcomponents/stickers-carousel/CarouselSticker';
 import { useEffect, useState } from 'react';
-import { Sticker } from '../types';
+import { Sticker } from '../../core/types';
 import { StringLiteral } from 'typescript';
 import React from 'react';
 

@@ -82,14 +82,6 @@ export default function RegistrationPage({navigation}:{navigation:any}) {
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
           <ButtonRegistration email={email} nickname={nickname} password={password} navigation={navigation} />
           <Separator />
-          {/* <View style={{width: windowWidth*0.7, marginTop: windowHeight*0.09}}>
-            <Text style={styles.SignSwap}>
-              Already have an account? <Text></Text>
-              <Text style={styles.urlText} onPress={() => navigation.navigate("LoginPage")}>
-                Sign In
-              </Text>
-            </Text>
-          </View> */}
           <AlternativeAccessAction text = "Already have an account?" action = "Sign In" onActionPress={() => navigation.navigate("LoginPage")}/>
         </View>
       </ImageBackground>

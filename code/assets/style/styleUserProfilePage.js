@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    viewYourProfile: {
+       alignItems:'center',
+    },
     //--- the text field for the email and the password ---
     input: { //the text inside the TextInput
         height: 50,

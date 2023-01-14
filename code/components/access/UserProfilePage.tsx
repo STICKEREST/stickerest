@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { Alert, Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
+import { Alert, Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
 import { styles } from "../../assets/style/styleUserProfilePage";
@@ -9,10 +9,29 @@ import{ ImagesAssets } from '../../assets/ImagesAssets';
 import { ButtonToSign, FieldComponent } from './Access';
 import { getData, prepareCredentials, update } from '../../core/access/profile';
 import { validateCredentials } from '../../core/access/accessUtilities';
-import { User } from '../../core/types';
+import { User } from '../../core/types'; 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const stylesDimension = StyleSheet.create({
+  fullSize: {
+    width: windowWidth, 
+    height: windowHeight
+  },
+  marginHeight: {
+    marginTop: windowHeight*0.04,
+  },
+  marginHeight007: {
+    marginTop: windowHeight*0.07,
+  },
+  marginHeight003: {
+    marginTop: windowHeight*0.3,
+  },
+  paddingHeight: {
+    paddingTop: windowHeight/6
+  }
+});
 
 const updateUI = (form : string) => {
 
@@ -60,7 +79,7 @@ const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, 
 
 const ButtonUpdate = ({nickname} : {nickname : string}) => {
   return (
-    <View style={[styles.style_signInButton, {marginTop: windowHeight*0.07}]}>
+    <View style={[styles.style_signInButton, stylesDimension.marginHeight007]}>
       <ButtonToSign functionToExecute={() => attemptUpdate(nickname)} nameOfButton="Save"/>
     </View>
   )
@@ -71,9 +90,9 @@ export default function UserProfilePage() {
   const [nickname, setNickname] = React.useState("nickname");
   return (
     <View style={styles.container}>
-          <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
-            <View style={{alignItems:'center'}}><Text style={[styles.textUserProfile, {paddingTop: windowHeight/6}]}>Your Profile</Text></View>
-              <View style={[styles.text_view_login, {marginTop: windowHeight*0.3}]}>
+          <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
+            <View style={styles.viewYourProfile}><Text style={[styles.textUserProfile, stylesDimension.paddingHeight]}>Your Profile</Text></View>
+              <View style={[styles.text_view_login, stylesDimension.marginHeight003]}>
                   <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} />
                   <ButtonUpdate nickname={nickname}/>
               </View>

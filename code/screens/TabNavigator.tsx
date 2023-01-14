@@ -2,11 +2,11 @@ import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 
 import { ImagesAssets } from '../assets/ImagesAssets';
 
-import { Homepage } from './pages/Homepage';
-import DiscoveryPage from './pages/discovery/DiscoveryPage';
-import UserProfilePage from './pages/UserProfilePage';
-import CreatePack from './pages/creationPages/createPack';
-import Favorites from './pages/favorites/FavoritesPage';
+import { Homepage } from '../components/pages/Homepage';
+import DiscoveryPage from '../components/pages/discovery/DiscoveryPage';
+import UserProfilePage from '../components/access/UserProfilePage';
+import CreatePack from '../components/pages/creationPages/createPack';
+import Favorites from '../components/pages/favorites/FavoritesPage';
 
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';

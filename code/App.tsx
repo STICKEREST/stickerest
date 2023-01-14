@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { StackNavigator } from './components/StackNavigator';
+import { StackNavigator } from './screens/StackNavigator';
 
 import Loading_page from './components/pages/Loading_page';
 
-// import * as Font from 'expo-font';
+import * as Font from 'expo-font';
 
 export default function App() {
 	const [ready, setReady] = useState(false);
@@ -13,11 +13,11 @@ export default function App() {
 		async function load() {
 			try {
 				// Async loading of fonts
-				// await Font.loadAsync({
-				// 	'popblack': require('./assets/fonts/poppins/popblack.otf'),
-				// 	'poplight': require('./assets/fonts/poppins/Poppins-Light.otf'),
-				// 	'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
-				// });
+				await Font.loadAsync({
+					'popblack': require('./assets/fonts/poppins/popblack.otf'),
+					'poplight': require('./assets/fonts/poppins/Poppins-Light.otf'),
+					'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
+				});
 				// Keep loading page visible for at least 1 second
 				await new Promise(resolve => setTimeout(resolve, 1000));
 			} catch(e) {

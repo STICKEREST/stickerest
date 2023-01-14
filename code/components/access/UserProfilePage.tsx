@@ -2,16 +2,14 @@ import React, {useEffect, useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
-import { styles } from "./../../assets/style/styleUserProfilePage";
+import { styles } from "../../assets/style/styleUserProfilePage";
 
-import{ ImagesAssets } from './../../assets/ImagesAssets';
+import{ ImagesAssets } from '../../assets/ImagesAssets';
 
-import ButtonToSign from "./../subcomponents/ButtonToSign"
+import { ButtonToSign, FieldComponent } from './Access';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-
-import FieldComponent from "./../subcomponents/Field";
 
 const handleUpdateUser = (nickname : string) => {
 

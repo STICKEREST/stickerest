@@ -14,3 +14,8 @@ export interface StickerImage {
     ordinal_order: number,
     image_file : string
 }
+
+export interface User {
+    email : string,
+    nickname : string
+}

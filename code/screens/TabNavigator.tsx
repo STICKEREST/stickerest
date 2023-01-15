@@ -5,7 +5,7 @@ import { ImagesAssets } from '../assets/ImagesAssets';
 import { Homepage } from '../components/pages/Homepage';
 import DiscoveryPage from '../components/pages/discovery/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../components/pages/creationPages/createPack';
+import CreatePack from '../components/pages/creationPages/CreatePack';
 import Favorites from '../components/pages/favorites/FavoritesPage';
 
 import React from 'react'

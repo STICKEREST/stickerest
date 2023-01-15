@@ -133,7 +133,7 @@ export default function CreatePack() {
   const [tags, setTags] = useState<string[]>([]);
 //{[styles.inputs, {backgroundColor: color}]}
   return (
-    <SafeAreaView style={[styleCreatePack.container]}>
+    <View style={[styleCreatePack.container]}>
         <View>
             <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowtHeight/8}}/>
         </View>
@@ -152,6 +152,6 @@ export default function CreatePack() {
   </View>
 
 
-    </SafeAreaView>
+    </View>
   );
 }

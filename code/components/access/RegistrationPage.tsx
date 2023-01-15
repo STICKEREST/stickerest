@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput} from 'react-native';
+import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
@@ -15,8 +15,20 @@ import { prepareCredentials, registration } from '../../core/access/registration
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
+const stylesDimension = StyleSheet.create({
+  fullSize: {
+    width: windowWidth, 
+    height: windowHeight
+  },
+  titleCss: {
+    paddingTop: windowHeight/6, 
+    width: windowWidth*0.7
+  },
+  marginHeight: {
+    marginTop: windowHeight*0.04,
+  }
+});
 
-//this component renders the possibility to enter the mail and the password
 const TextFields = ({email, password, setEmail, setPassword, nickname, setNickname} : {email:string, password:string, setEmail:any, setPassword:any, nickname: string, setNickname: any}) => {
 
   return (
@@ -55,7 +67,7 @@ const attemptSignUp = (email: string, nickname: string, password: string, naviga
 
 const Title = () => {
   return (
-    <Text style={[styles.textLogin, {paddingTop: windowHeight/6, width: windowWidth*0.7}]}>
+    <Text style={[styles.textLogin, stylesDimension.titleCss]}>
       Create your account
     </Text>
   )
@@ -63,7 +75,7 @@ const Title = () => {
 
 const ButtonRegistration = ({email, nickname, password, navigation} : {email : string, nickname : string, password : string, navigation : any}) => {
   return (
-    <View style={[styles.style_signInButton, {marginTop: windowHeight*0.04}]}>
+    <View style={[styles.style_signInButton, stylesDimension.marginHeight]}>
       <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password,navigation)} nameOfButton="Sign up"/>
     </View>
   )
@@ -76,7 +88,7 @@ export default function RegistrationPage({navigation}:{navigation:any}) {
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={{width: windowWidth, height: windowHeight}}>
+      <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
         <View style={styles.text_view_login}>
           <Title />
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />

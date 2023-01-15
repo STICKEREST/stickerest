@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, TextInput, Image, Text, TouchableOpacity} from 'react-native';
+import { Dimensions, TextInput, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {View} from 'react-native';
 
 import { styles } from "./../../assets/style/styleLoginRegistrationPage";
@@ -9,6 +9,33 @@ import { ImagesAssets } from '../../assets/ImagesAssets';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+const styleDimennsion = StyleSheet.create({
+  windowHeight08: {
+    width: windowWidth*0.8, 
+  },
+  windowWidth065: {
+    width: windowWidth*0.65
+  },
+  windowWidth07: {
+    width: windowWidth*0.7
+  },
+  separatorSize: {
+    width: windowWidth * 0.7, 
+    marginTop: windowHeight * 0.03
+  },
+  imageSeparatorSize: {
+    resizeMode:'contain', 
+    width: windowWidth*0.7
+  },
+  actionSize: {
+    width: windowWidth * 0.7,
+    marginTop: windowHeight * 0.09
+  },
+  halfWidth: {
+    width: windowWidth/2
+  }
+});
   
 export const FieldComponent = ({name, placeholder, setName, picture, hide, disabled = false}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean, disabled?:boolean}) => {
   
@@ -23,7 +50,7 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
       color = yellow
   
     return (
-        <View style={[styles.inputs, {width: windowWidth*0.8, backgroundColor: color}]}>
+        <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
             <Ionicons 
             //Unfortuntately here a ts-ignore was needed since creators of Ionicons didn't create a type for that but instead
             //they did that name accepts any of the possible strings names of the icons
@@ -34,7 +61,7 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
                 style={styles.icons_style}
             />
             <TextInput
-                style={[styles.input, {width: windowWidth*0.65}]}
+                style={[styles.input, styleDimennsion.windowWidth065]}
                 onChangeText={(text) => {setName(text)}}
                 value = {name}
                 placeholder={placeholder}
@@ -47,15 +74,15 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
 
   export const Separator = () => {
     return(
-        <View style={{width: windowWidth * 0.7, marginTop: windowHeight * 0.03}}>
-            <Image source={ImagesAssets.lines} style={{resizeMode:'contain', width: windowWidth*0.7}}/>
+        <View style={styleDimennsion.separatorSize}>
+            <Image source={ImagesAssets.lines} style={styleDimennsion.imageSeparatorSize}/>
         </View>
     );
   }
 
   export const AlternativeAccessAction = ({text, action, onActionPress } : {text : string, action : string, onActionPress :any}) => {
     return (
-        <View style={{width: windowWidth * 0.7, marginTop: windowHeight * 0.09}}>
+        <View style={styleDimennsion.actionSize}>
             <Text style={styles.SignSwap}>
               {text} &nbsp;&nbsp;
               <Text style={styles.urlText} onPress={onActionPress}>
@@ -72,7 +99,7 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
     return (
         <TouchableOpacity
             onPress={() => functionToExecute()}
-            style={[styles.logInButton, {width: windowWidth/2}]}>
+            style={[styles.logInButton, styleDimennsion.halfWidth]}>
             <Text style={styles.logInButtonFont}>
                 {nameOfButton}
             </Text>

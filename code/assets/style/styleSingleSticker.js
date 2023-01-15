@@ -47,6 +47,16 @@ const styleSingleSticker = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 3,
       },
+      smallerStickerView: {
+        width: 95,
+        height: 95, 
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        shadowColor: '#090909',
+        shadowOffset: {width: 0, height: 5},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+      },
       btnContainer: {
         height: 50,
         backgroundColor: '#F5CB08',

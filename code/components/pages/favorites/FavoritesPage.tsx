@@ -4,45 +4,44 @@ import { View, ScrollView, Text, Dimensions, ImageBackground, SafeAreaView } fro
 
 // Favorites
 import CarouselSticker from '../../subcomponents/stickers-carousel/CarouselSticker';
-import {FlexibleAlbum} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import {FlexibleAlbum, FlexibleAlbumTouchable} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Sticker, StickerImage } from '../../../core/types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const imagesTemplate = [ 	// To be replaced with backend call
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	ImagesAssets.computer.uri,
-	
-];
-
-/*
-<Text style={{fontSize: 25, alignContent: 'stretch', fontFamily: "popblack"}}>Favorites</Text>
-*/
-
 export default function Favorites() {
+
+	const [queriedStickers, setQueriedStickers] = useState<Sticker[]>([]);
+
+	useEffect(() => {
+		
+		fetch("https://stickerest.herokuapp.com/auth/my-saved")
+		.then((response) => response.json())
+		.then((result) => setQueriedStickers(result));
+
+	  }, []);
+
 	return (
-		<SafeAreaView style= {{backgroundColor: 'white', height: windowHeight}}>
+		<View style= {{backgroundColor: 'white', height: windowHeight}}>
 			<View>
 				<ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
 			</View>
-			<View>
-				<Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack", marginLeft: windowHeight/20}}>Recently added</Text>
-				<CarouselSticker stickers={[]} type = 'small'/>
-				<Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack", marginLeft: windowHeight/20}}>
-					More that you liked
+			<View style={{paddingTop : 50}}>
+				<Text style= {{fontSize: 29, alignContent: 'stretch', fontFamily: "popblack", marginLeft: windowHeight/20, marginBottom : 30}}>
+					Favorites
 				</Text>
 			</View>
-			<View style={{height: windowHeight*0.525, alignContent: 'center'}}>                    
-				<FlexibleAlbum images={imagesTemplate} addImages={false} addPress={function (): void {}} onPress={function (): void {} }/>
+			<View style={{height: windowHeight*0.525, alignContent: 'center', marginLeft: windowHeight/22}}>                    
+				<FlexibleAlbumTouchable 
+					stickers={
+						queriedStickers.map((image : Sticker, order : number) : StickerImage => 
+             			({ID : image.ID, ordinal_order: order, image_file : image.logo}))} 
+					/>
 			</View>
 			
-		</SafeAreaView>
+		</View>
 	);
 }

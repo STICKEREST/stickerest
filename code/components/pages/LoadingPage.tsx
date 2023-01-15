@@ -2,9 +2,9 @@ import React from 'react'
 import { Dimensions, ImageBackground } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styles } from "./../../assets/style/styleLoadingPage";
+import { styles } from "../../assets/style/styleLoadingPage";
 
-import{ ImagesAssets } from './../../assets/ImagesAssets';
+import{ ImagesAssets } from '../../assets/ImagesAssets';
 
 export default function LoadingPage() {
  

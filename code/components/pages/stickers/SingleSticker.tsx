@@ -11,7 +11,7 @@ import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../../core/types';
-import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import { FlexibleAlbum, FlexibleAlbumTouchable } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 //TODO: aggiungi saved button e chiamate
@@ -102,7 +102,7 @@ const StickerPackContainer = ({ID, img, name, author, numSticker, downloads} : {
     
 }
 
-export const SingleSticker = ({route, navigation}) => {
+export const SingleSticker = ({route , navigation} : {route : any , navigation : any}) => {
 
     const ID = route.params.id;
 
@@ -147,7 +147,7 @@ export const SingleSticker = ({route, navigation}) => {
                         {
                             imageStickers !== undefined ? 
 
-                            <FlexibleAlbum images={imageStickers.map((el : StickerImage) => el.image_file)} addPress = {() => {}} onPress = {() => {}} addImages = {false} />
+                            <FlexibleAlbum stickers={imageStickers}/>
 
                             : <Text> A problem occurred while loading the sticker</Text>
                         }

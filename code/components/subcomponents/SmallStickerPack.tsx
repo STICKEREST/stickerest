@@ -7,10 +7,10 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { styleSingleSticker } from "../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../assets/ImagesAssets';
 
-const SmallStickerPackBox = ({img} : {img : string}) => {
+const SmallStickerPackBox = ({img, smaller = false} : {img : string, smaller ? : boolean}) => {
 
     return (
-          <View style={[styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
+          <View style={[smaller ? styleSingleSticker.smallerStickerView  : styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
               <Image source={{uri: img}} style={{height: 70, width: 90}} />
           </View>
       );
@@ -20,14 +20,6 @@ const SmallStickerPackBox = ({img} : {img : string}) => {
 
 const SmallStickerPack = ({img, title, download}:{img : string, title : string, download : number}) => {
   
-  // const [fontsLoaded] = useFonts({
-  //   'poplight': require('./../../assets/fonts/poppins/Poppins-Light.otf'),
-  //   'popblack': require('./../../assets/fonts/poppins/Poppins-Bold.otf')
-  // });
-
-  // if (!fontsLoaded) {
-  //   return null;
-  // }
 
   return (
     <View >

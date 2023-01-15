@@ -63,7 +63,7 @@ return (
 );
 }
 
-export const FlexibleAlbumTouchable = ({stickers} : {stickers : StickerImage[]}) => {
+export const FlexibleAlbumRedirect = ({stickers} : {stickers : StickerImage[]}) => {
 
     const navigation = useNavigation();
 

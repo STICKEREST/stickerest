@@ -4,7 +4,7 @@ import { View, ScrollView, Text, Dimensions, ImageBackground, SafeAreaView } fro
 
 // Favorites
 import CarouselSticker from '../../subcomponents/stickers-carousel/CarouselSticker';
-import {FlexibleAlbum, FlexibleAlbumTouchable} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import {FlexibleAlbum, FlexibleAlbumRedirect} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import React, { useEffect, useState } from 'react';
 import { Sticker, StickerImage } from '../../../core/types';
@@ -35,7 +35,7 @@ export default function Favorites() {
 				</Text>
 			</View>
 			<View style={{height: windowHeight*0.525, alignContent: 'center', marginLeft: windowHeight/22}}>                    
-				<FlexibleAlbumTouchable 
+				<FlexibleAlbumRedirect 
 					stickers={
 						queriedStickers.map((image : Sticker, order : number) : StickerImage => 
              			({ID : image.ID, ordinal_order: order, image_file : image.logo}))} 

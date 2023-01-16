@@ -9,8 +9,9 @@ import{ ImagesAssets } from '../../assets/ImagesAssets';
 import { FieldComponent, ButtonToSign, Separator, AlternativeAccessAction } from './Access';
 
 import { validateCredentials } from '../../core/access/accessUtilities';
-
 import { prepareCredentials, registration } from '../../core/access/registration';
+
+import { useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -42,29 +43,6 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
   )
 }
 
-
-const registrationUI = (form : string, navigation : any) : void => {
-
-  registration(form)
-  .then((result : boolean) => {
-    if(result === true) {
-      navigation.navigate("LoginPage");
-    } else {
-      Alert.alert("Error", "Something went wrong during the registration");
-    }
-  })
-
-}
-
-const attemptSignUp = (email: string, nickname: string, password: string, navigation:any): void => {
-  if(validateCredentials(email, nickname, password)) {
-    const form : string = prepareCredentials(email, nickname, password);
-    registrationUI(form, navigation);
-  }else {
-    Alert.alert("Missing information", "Some of the fields are empty");
-  }
-}
-
 const Title = () => {
   return (
     <Text style={[styles.textLogin, stylesDimension.titleCss]}>
@@ -73,26 +51,40 @@ const Title = () => {
   )
 }
 
-const ButtonRegistration = ({email, nickname, password, navigation} : {email : string, nickname : string, password : string, navigation : any}) => {
+const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) => {
   return (
     <View style={[styles.style_signInButton, stylesDimension.marginHeight]}>
-      <ButtonToSign functionToExecute={() => attemptSignUp(email, nickname, password,navigation)} nameOfButton="Sign up"/>
+      <ButtonToSign functionToExecute={registerFunction} nameOfButton="Sign up"/>
     </View>
   )
 }
 
-export default function RegistrationPage({navigation}:{navigation:any}) {
+export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const attemptSignUp = React.useCallback(() => {
+    async function attempt() {
+      try {
+        await validateCredentials(email, nickname, password);
+        const form = prepareCredentials(email, nickname, password);
+        await registration(form);
+        setLoggedIn(true);
+        console.log("User is now registered and logged in");
+      } catch(error: Error) {
+        Alert.alert("Error", error.message);
+      }
+    }
+    attempt();
+  });
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
         <View style={styles.text_view_login}>
           <Title />
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
-          <ButtonRegistration email={email} nickname={nickname} password={password} navigation={navigation} />
+          <ButtonRegistration registerFunction={attemptSignUp} />
           <Separator />
           <AlternativeAccessAction text = "Already have an account?" action = "Sign In" onActionPress={() => navigation.navigate("LoginPage")}/>
         </View>

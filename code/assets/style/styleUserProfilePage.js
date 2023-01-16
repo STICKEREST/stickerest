@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         alignContent: 'space-between',
         alignContent: 'center',
         textAlignVertical: 'center',
-        marginTop: 20,
+        marginTop: 10,
+        marginBottom: 20,
         flexDirection:"column"
       },
       inputs: { //the group of text and icon
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
         right: 0, 
         bottom: 0, 
         alignItems: 'center',
-      }, 
+      },
 });
 
 export { styles }

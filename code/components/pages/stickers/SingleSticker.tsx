@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight, TouchableOpacity  } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
@@ -14,13 +14,15 @@ import { Sticker, StickerImage } from '../../../core/types';
 import { FlexibleAlbum, FlexibleAlbumTouchable } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
+import * as Telegram from '../../../api/Telegram';
+
 //TODO: aggiungi saved button e chiamate
 
-const ImportButton = () => {
+const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => {
     return (
         <View>
-            <TouchableOpacity  style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 160}}>
-                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>Import Pack</Text>
+            <TouchableOpacity style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 180, marginTop: 8}} onPress={onPress}>
+                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>{text}</Text>
             </TouchableOpacity>
         </View>
     )
@@ -126,7 +128,10 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
-  
+  const importToTelegram = useCallback(async() => {
+    // TODO: Add sticker name here
+    Telegram.importPack('example_one_by_StickerestBot');
+  });
 
   return (
     <View style={styleSingleSticker.container}>
@@ -139,10 +144,10 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                 
                 <View>
                     <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
-                    <View style={{marginTop: 20, flexDirection: 'row', justifyContent: 'center'}}>
-                        <ImportButton />
+                    <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
+                        <ImportButton text={"Import to Whatsapp"} />
+                        <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
                     </View>
-                    
                     <View style={{marginTop: 20, flexDirection: 'row'}}>
                         {
                             imageStickers !== undefined ? 

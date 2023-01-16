@@ -71,12 +71,12 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
         await registration(form);
         setLoggedIn(true);
         console.log("User is now registered and logged in");
-      } catch(error: Error) {
+      } catch(error) {
         Alert.alert("Error", error.message);
       }
     }
     attempt();
-  });
+  }, []);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

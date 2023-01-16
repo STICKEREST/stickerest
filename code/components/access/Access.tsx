@@ -71,7 +71,13 @@ export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabl
   const color: string = name === "" ? gray : yellow;
   return (
     <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
-      <Ionicons /*@ts-ignore*/name={picture} size={30} color="black" style={styles.icons_style} />
+      <Ionicons
+        //@ts-ignore
+        name={picture}
+        size={30}
+        color="black"
+        style={styles.icons_style}
+      />
       <TextInput style={[styles.input, styleDimennsion.windowWidth065]} onChangeText={(text) => {setName(text)}} value = {name} placeholder={placeholder} secureTextEntry={hide} editable={!disabled} maxLength={16} />
       <TouchableOpacity onPress={() => Alert.alert('Help', message)}>
         <Ionicons name={"help-circle-outline"} size={30} color="black" style={styles.helpButton} />

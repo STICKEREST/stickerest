@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import * as React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -18,7 +18,7 @@ const Stack = createStackNavigator();
  * When the user is not logged in, show the stack navigator containing the Login page and the Registration page.
  */
 export const StackNavigator = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = React.useState(false);
 	const Login = () => (<LoginPage setLoggedIn={setLoggedIn} />);
 	const SignUp = () => (<RegistrationPage setLoggedIn={setLoggedIn} />);
 	return loggedIn ? (

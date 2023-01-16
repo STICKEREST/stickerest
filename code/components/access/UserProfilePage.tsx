@@ -48,6 +48,8 @@ const updateUI = (form : string) => {
 
 }
 
+// TODO: Update the id as well
+
 const attemptUpdate = (nickname: string): void => {
   if(validateCredentials(nickname)) {
     const form : string = prepareCredentials(nickname);
@@ -102,7 +104,7 @@ export default function UserProfilePage() {
                     <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} />
                     <Text>Stickers upload</Text>
                     <View style={styles.input_container} >
-                        <FieldWithHelp name={telegramId} setName={setTelegramId} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
+                        <FieldWithHelp name={telegramId} setName={setTelegramId} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
                     </View>
                     <ButtonUpdate nickname={nickname}/>
                 </View>

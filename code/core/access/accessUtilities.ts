@@ -12,7 +12,7 @@ export const isEmpty = (value: string): boolean => {
  * If any of the given credential is a null or an empty string this function will throw an error.
  * Used in login.
  */
-export const validateCredentials = async (...credentials : string[]): void => {
+export const validateCredentials = async (...credentials : string[]): Promise<void> => {
   if(credentials.some((credential: string) => isEmpty(credential))) {
     throw new Error("Some credentials are missing");
   }

@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
-import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
+import React from 'react'
+import { Dimensions, ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
+import { Text, View, Alert } from 'react-native';
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
 
@@ -67,12 +67,12 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
         await login(form);
         setLoggedIn(true);
         console.log("User is now logged in");
-      } catch(error: Error) {
+      } catch(error) {
         Alert.alert("Error", error.message);
       }
     }
     attempt();
-  });
+  }, []);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

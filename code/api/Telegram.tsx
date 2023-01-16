@@ -26,7 +26,7 @@ export interface Sticker {
  * The pack must be uploaded on telegram for this to work.
  * 'packName' is the name with which the pack was uploaded on Telegram.
  */
-export const importPack = async (packName: string): void => {
+export const importPack = async (packName: string): Promise<void> => {
 	const url = 'https://telegram.me/addstickers/' + packName;
 	const supported = await Linking.canOpenURL(url);
 	if(supported) {
@@ -105,7 +105,7 @@ const exampleSticker3: Sticker = {
 const AddStickersButton = ({packName}: {packName: string}) => {
 	const onPress = useCallback(async() => {
 		importPack(packName);
-	});
+	}, []);
 	return (
 		<Button title={'Add pack ' + packName} onPress={onPress} />
 	);

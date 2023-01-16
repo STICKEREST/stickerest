@@ -17,7 +17,7 @@ export const prepareCredentials = (email : string, nickname : string, password :
  * Used when attempting sign up, the user should be set as logged in if this function does not throw an error.
  * The parameter 'form' is the value returned from the 'prepareCredentials' function.
  */
-export const registration = async (form: string): void => {
+export const registration = async (form: string): Promise<void> => {
     await fetch("https://stickerest.herokuapp.com/users/register", {
         method: 'POST',
         body: form,

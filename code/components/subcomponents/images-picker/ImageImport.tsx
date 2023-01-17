@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { View, Text } from 'react-native';
 import { FlexibleAlbum, FlexibleAlbumAddable } from '../stickers-carousel/FlexibleAlbum';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { StickerImage } from '../../../core/types';
 
-export default function ImageImport () {
+export const ImageImport  = ({imageSource, setImageSource} : {imageSource : string[], setImageSource : Dispatch<SetStateAction<string[]>>}) => {
  
-  const [imageSource, setImageSource] = React.useState<string[]>([]);
+  // const [imageSource, setImageSource] = React.useState<string[]>([]);
 
   const pickImages = async () => {
     const result : any = await ImagePicker.launchImageLibraryAsync({
@@ -18,11 +18,16 @@ export default function ImageImport () {
     })
     if(!result.cancelled) {
     // setImageSource(result.uri ? [result.uri] : result.selected)
-      if(result.selected != undefined) {
+      if(result.selected !== undefined) {
         console.log('RESULT: ',result);
         result.selected.map((image : any) => {
           console.log('IMAGE: ',image);
           setImageSource(oldImages => [...oldImages, image.uri]);
+          // const uri = image.uri;
+          // const name = uri.split('/').pop();
+          // const match = /\.(\w+)$/.exec(name);
+          // const type = match ? `image/${match[1]}` : `image`;
+          // setImageSource(oldImages => [...oldImages, {uri: uri, name: name, type : type}]);
         })
       } else {
         setImageSource(oldImages => [...oldImages, result.uri]);

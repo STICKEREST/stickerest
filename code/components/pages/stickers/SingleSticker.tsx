@@ -11,7 +11,7 @@ import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../../core/types';
-import { FlexibleAlbum, FlexibleAlbumTouchable } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 import * as Telegram from '../../../api/Telegram';
@@ -145,7 +145,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                 <View>
                     <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
-                        <ImportButton text={"Import to Whatsapp"} />
+                        <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/>
                         <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
                     </View>
                     <View style={{marginTop: 20, flexDirection: 'row'}}>

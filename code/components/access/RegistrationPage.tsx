@@ -66,17 +66,18 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
   const attemptSignUp = React.useCallback(() => {
     async function attempt() {
       try {
-        await validateCredentials(email, nickname, password);
+        validateCredentials(email, nickname, password);
         const form = prepareCredentials(email, nickname, password);
         await registration(form);
         setLoggedIn(true);
         console.log("User is now registered and logged in");
-      } catch(error) {
+      } catch(error: Error) {
         Alert.alert("Error", error.message);
       }
     }
+    
     attempt();
-  }, []);
+  });
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

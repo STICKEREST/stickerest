@@ -62,7 +62,7 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
   const attemptLogin = React.useCallback(() => {
     async function attempt() {
       try {
-        await validateCredentials(email, password);
+        validateCredentials(email, password);
         const form = prepareCredentials(email, password);
         await login(form);
         setLoggedIn(true);

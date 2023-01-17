@@ -72,7 +72,7 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
       }
     }
     attempt();
-  }, []);
+  }, [email, password]);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

@@ -75,9 +75,9 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
         Alert.alert("Error", error.message);
       }
     }
-    
+
     attempt();
-  });
+  }, [email, nickname, password]);
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

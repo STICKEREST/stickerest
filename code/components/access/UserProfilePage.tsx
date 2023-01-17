@@ -49,7 +49,7 @@ const updateUI = (form : string) => {
 }
 
 // TODO: Update the id as well
-
+//TODO : update this attempt as the others
 const attemptUpdate = (nickname: string): void => {
   if(validateCredentials(nickname)) {
     const form : string = prepareCredentials(nickname);

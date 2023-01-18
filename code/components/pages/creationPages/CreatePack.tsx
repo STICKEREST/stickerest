@@ -9,7 +9,7 @@ import { ImageImport } from '../../subcomponents/images-picker/ImageImport';
 let gray = '#f1f1f1'
 let purple = '#8D08F5'
 const windowWidth = Dimensions.get('window').width;
-const windowtHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').height;
 
 const handleUploadPack = (name : string, tags : string[], images : string[]) => {
   let formdata = new FormData();
@@ -36,7 +36,7 @@ const handleUploadPack = (name : string, tags : string[], images : string[]) => 
         const type = match ? `image/${match[1]}` : `image`;
         // {uri: uri, name: name, type : type}
         //@ts-ignore
-        formdata.append("image", {uri: uri, name: name, type: type});
+        formdata.append("image"+i, {uri: uri, name: name, type: type});
       }
         
       console.log(formdata);
@@ -48,7 +48,7 @@ const handleUploadPack = (name : string, tags : string[], images : string[]) => 
           'Content-Type': 'multipart/form-data',
         },
       } ).then((response) => {
-        if(response.status === 201) {
+        if(response.status === 200 || response.status === 201) {
 
           console.log('Pack Uploaded Successfully');
           Alert.alert(
@@ -59,8 +59,10 @@ const handleUploadPack = (name : string, tags : string[], images : string[]) => 
             ]
           );
 
+
+
         } else {
-          console.log('Something went wrong during the publication of the pack ' + "\n" + response);
+          console.log('Something went wrong during the publication of the pack ' + "\n\n\n" + JSON.stringify(response));
             Alert.alert(
               "Error",
               "Something went wrong during the publication of the pack",
@@ -73,87 +75,21 @@ const handleUploadPack = (name : string, tags : string[], images : string[]) => 
       });
 
 
-      // console.log(formBody)
-    
-      //@ts-ignore
-      // formBody = formBody.join("&");   
-        
-      // fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
-      //   method: 'POST',
-      //   //@ts-ignore
-      //   body: formBody,//post body 
-      //   headers: {//Header Defination 
-      //     'Content-Type': 'application/x-www-form-urlencoded'
-      //   },
-      // } )
-      // .then((response) => {
-      //   if(response.status === 201) {
-      //     console.log('Successful creation');
-
-      //     response.text().then(
-      //       ID => {
-
-      //         formBody = [];
-      //         formBody.push(encodeURIComponent("ID") + "=" + encodeURIComponent(ID));
-
-      //         for(let i = 0; i < tags.length; i++)
-      //           formBody.push(encodeURIComponent("tag") + "=" + encodeURIComponent(tags[i]));
-
-      //         //@ts-ignore
-      //         formBody = formBody.join("&");  
-
-      //         fetch("https://stickerest.herokuapp.com/auth/add-stickers", {
-      //           method: 'POST',
-      //           //@ts-ignore
-      //           body: formBody,//post body 
-      //           headers: {//Header Defination 
-      //             'Content-Type': 'application/x-www-form-urlencoded'
-      //           },
-      //         } ).then((response) => {
-      //           if(response.status === 201) {
-      //           } else {
-      //             console.log('Something went wrong during the publication of the pack');
-      //               Alert.alert(
-      //                 "Error",
-      //                 "Something went wrong during the publication of the pack",
-      //                 [
-      //                   { text: "OK", onPress: () => console.log("OK Pressed") }
-      //                 ]
-      //               );
-      //             }
-
-      //         })
-      //       }
-      //     );
-
-      //   } else {
-      //     console.log('Something went wrong during the publication of the pack');
-      //     Alert.alert(
-      //       "Error",
-      //       "Something went wrong during the publication of the pack",
-      //       [
-      //         { text: "OK", onPress: () => console.log("OK Pressed") }
-      //       ]
-      //     );
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.log('Something went wrong during the registration');
-      //   Alert.alert(
-      //     "Error",
-      //       "Something went wrong during the publication of the pack",
-      //     [
-      //       { text: "OK", onPress: () => console.log("OK Pressed") }
-      //     ]
-      //   );
-      // });
   }
 }
 
-const UploadButton = ({name, tags, images}:{name : string, tags : string[], images : string[]}) => {
+const UploadButton = ({name, tags, images, setName, setTags, setImageSource}:{name : string, tags : string[], images : string[], setName : any, setTags : any, setImageSource : any}) => {
   return (
       <View style = {{}}>
-          <TouchableOpacity  style={{backgroundColor: purple, paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: windowWidth*0.4}}  onPress={() => handleUploadPack(name, tags, images)}>
+          <TouchableOpacity  
+            style={{backgroundColor: purple, paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: windowWidth*0.4}}  
+            onPress={() => {
+              handleUploadPack(name, tags, images);
+              setName("");
+              setTags([]);
+              setImageSource([]);
+            }}
+          >
               <Text style={{color: 'white', fontSize: 16, textAlign:"center"}}>Upload Pack</Text>
           </TouchableOpacity>
       </View>
@@ -183,9 +119,9 @@ export default function CreatePack() {
 
 //{[styles.inputs, {backgroundColor: color}]}
   return (
-    <View style={[styleCreatePack.container]}>
+    <View style={[styleCreatePack.container, {paddingBottom: 100}]}>
         <View>
-            <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowtHeight/8}}/>
+            <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
         </View>
         <View>
             <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Add your sticker pack</Text>
@@ -194,14 +130,12 @@ export default function CreatePack() {
             <TagInput setTags={setTags} tags={tags}/>
             <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Stickers</Text>
         </View>
-        <View  style={{height: windowtHeight*0.325, alignContent: 'center'}}>
+        <View  style={{height: windowHeight*0.325, alignContent: 'center', marginLeft: windowHeight/22}}>
           <ImageImport imageSource = {imageSource} setImageSource = {setImageSource}/>
-          <View style={{alignItems: 'center'}}>
-          <UploadButton name={name} tags={tags} images = {imageSource} />
+        </View>
+        <View style={{alignItems: 'center'}}>
+            <UploadButton name={name} setName = {setName} tags={tags} setTags = {setTags} images = {imageSource} setImageSource = {setImageSource} />
         </View>
   </View>
-
-
-    </View>
   );
 }

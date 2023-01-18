@@ -17,7 +17,7 @@ export const prepareCredentials = (email: string, password: string) : string => 
  * The parameter 'form' is the value returned from the 'prepareCredentials' function.
  */
 export const login = async (form: string): Promise<void> => {
-    console.log(" FORM \n\n\n" + form);
+    
     await fetch("https://stickerest.herokuapp.com/users/login", {
         method: 'POST',
         body: form,
@@ -25,6 +25,7 @@ export const login = async (form: string): Promise<void> => {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then(response => response.json()).then(response => {
+        console.log(JSON.stringify(response));
         if (response === "Successfully logged in!") {
             console.log(response);
         } else {

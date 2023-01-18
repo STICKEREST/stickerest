@@ -22,7 +22,7 @@ export default function Favorites() {
 		.then((response) => response.json())
 		.then((result) => setQueriedStickers(result));
 
-	  }, []);
+	  } );
 
 	return (
 		<View style= {{backgroundColor: 'white', height: windowHeight}}>

@@ -23,11 +23,6 @@ export const ImageImport  = ({imageSource, setImageSource} : {imageSource : stri
         result.selected.map((image : any) => {
           console.log('IMAGE: ',image);
           setImageSource(oldImages => [...oldImages, image.uri]);
-          // const uri = image.uri;
-          // const name = uri.split('/').pop();
-          // const match = /\.(\w+)$/.exec(name);
-          // const type = match ? `image/${match[1]}` : `image`;
-          // setImageSource(oldImages => [...oldImages, {uri: uri, name: name, type : type}]);
         })
       } else {
         setImageSource(oldImages => [...oldImages, result.uri]);
@@ -43,7 +38,7 @@ export const ImageImport  = ({imageSource, setImageSource} : {imageSource : stri
 
   //  {imageSource && <FlexibleAlbum images={imageSource} addPress={pickImages} onPress={deleteImage} addImages = {true}/>}
   return (
-    <View>
+    <View style = {{ alignContent: 'center'}}>
       {imageSource && 
         <FlexibleAlbumAddable 
           stickers={

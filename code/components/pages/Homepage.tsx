@@ -14,6 +14,8 @@ const HomePageSection = ({title, linkData, type} : {title : string, linkData : s
 
 	const [queriedStickers, setQueriedStickers] = useState<Sticker[]>([]);
 
+	//it's always updated because there could be also new additions of sticker packs and we 
+	//may want to see them. For example: create a pack and directly search for it on the store!
 	useEffect(() => {
 		
 		fetch(linkData)
@@ -38,23 +40,57 @@ const HomePageSection = ({title, linkData, type} : {title : string, linkData : s
 
 }
 
+const DefaultHomePage = () => {
+
+	return (
+		<>
+			<HomePageSection title="Recommended" 
+				linkData = "https://stickerest.herokuapp.com/stickers/most-favorited"
+				type="big"/>
+			<HomePageSection title="Trending" 
+				linkData = "https://stickerest.herokuapp.com/stickers/most-downloaded"
+				type="small"/>
+			<HomePageSection title="Inspirational" 
+				linkData = "https://stickerest.herokuapp.com/stickers/most-saved"
+				type="small"/>
+		</>
+	);
+
+}
+
+const SearchHomePage = ({query} : {query : string}) => {
+
+	return (
+		<>
+			<HomePageSection title="By Name" 
+				linkData = {`https://stickerest.herokuapp.com/stickers/name-${query}`}
+				type="big"/>
+			<HomePageSection title="By Tags" 
+				linkData = {`https://stickerest.herokuapp.com/stickers/tags-${query}`}
+				type="small"/>
+		</>
+	);
+
+}
+
+
+//separa la logica poi grzzz
+
 export const Homepage = () => {
+
+	const [searchText, setSearchText] = useState<string>("");
 
 	return (
 		<View style={styles.container}>
-			<SearchBar/>
+			<SearchBar searchText={searchText} setSearchText={setSearchText} />
 			<View style={styles.innerContainer}>
 				<ScrollView fadingEdgeLength={40} keyboardDismissMode={"on-drag"} showsVerticalScrollIndicator={false} overScrollMode={"never"} >
-					
-					<HomePageSection title="Recommended" 
-						linkData = "https://stickerest.herokuapp.com/stickers/most-favorited"
-						type="big"/>
-					<HomePageSection title="Trending" 
-						linkData = "https://stickerest.herokuapp.com/stickers/most-downloaded"
-						type="small"/>
-					<HomePageSection title="Inspirational" 
-						linkData = "https://stickerest.herokuapp.com/stickers/most-saved"
-						type="small"/>
+					{
+						searchText === "" ?
+						<DefaultHomePage />
+						:
+						<SearchHomePage query = {searchText} />
+					}
 				</ScrollView>
 			</View>
 		</View>

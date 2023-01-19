@@ -4,17 +4,16 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import React from "react";
 
 // SearchBar used in Homepage.
-export const SearchBar = () => {
+export const SearchBar = ({searchText, setSearchText} : {searchText : string, setSearchText : any}) => {
 	const [focused, setFocused] = useState(false);
-	const [text, setText] = useState("");
 	return (
 		<View style={[styles.searchBar, focused ? styles.focused : styles.unfocused]}>
 			<Feather name="search" size={20} color="black" style={styles.smallMargin} />
-			<TextInput placeholder="Search" value={text} onFocus={() => setFocused(true)} onChangeText={setText} style={styles.almostFullWidth} />
+			<TextInput placeholder="Search" value={searchText} onFocus={() => setFocused(true)} onChangeText={setSearchText} style={styles.almostFullWidth} />
 			{
 				/*Show cross icon if the search bar is focused*/
 				focused && (
-					<Entypo name="cross" size={20} color="black" style={styles.smallPadding} onPress={() => setText("")} />
+					<Entypo name="cross" size={20} color="black" style={styles.smallPadding} onPress={() => setSearchText("")} />
 				)
 			}
 		</View>

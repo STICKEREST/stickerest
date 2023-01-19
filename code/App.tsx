@@ -16,6 +16,7 @@ export default function App() {
 				await Font.loadAsync({
 					'popblack': require('./assets/fonts/poppins/popblack.otf'),
 					'poplight': require('./assets/fonts/poppins/Poppins-Light.otf'),
+          'popbold': require('./assets/fonts/poppins/Poppins-Bold.otf'),
 					'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
 				});
 				// Keep loading page visible for at least 1 second

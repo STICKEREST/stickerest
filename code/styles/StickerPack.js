@@ -2,8 +2,13 @@ import { StyleSheet } from 'react-native';
 
 
 const stickerPackStyle = StyleSheet.create({
+  whiteBackground: {
+    backgroundColor: '#fff'
+  },
+  purpleBackground: {
+    backgroundColor: '#8D08F5'
+  },
   stickerView: {
-    backgroundColor: '#fff',
     borderRadius: 20,
     shadowColor: '#090909',
     shadowOffset: {
@@ -11,6 +16,10 @@ const stickerPackStyle = StyleSheet.create({
       height: 5
     },
     elevation: 5
+  },
+  largeSize: {
+    width: 300,
+    height: 200
   },
   smallSize: {
     width: 95,
@@ -20,9 +29,18 @@ const stickerPackStyle = StyleSheet.create({
     width: 115,
     height: 115
   },
+  largeImage: {
+    height: 100,
+    width: 110
+  },
   imageSize: {
     width: 90,
     height: 70
+  },
+  largeTitle: {
+    fontFamily: "popbold",
+    fontSize: 24,
+    color: "white"
   },
   packTitle: {
     fontFamily: "popblack",

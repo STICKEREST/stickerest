@@ -138,11 +138,10 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
 
-  const importToTelegram = useCallback(async() => {
-
+  const importToTelegram = useCallback(() => {
     // TODO: Add sticker name here
     Telegram.importPack('example_one_by_StickerestBot');
-  });
+  }, []);
 
   
 
@@ -159,7 +158,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                     <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
                         <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/>
-                        <ImportButton text={"Import to Telegram"} onPress={() => {importToTelegram(); addDownload(ID);}} />
+                        <ImportButton text={"Import to Telegram"} onPress={importToTelegram}/>
                     </View>
                     <View style={{marginTop: 20, flexDirection: 'row'}}>
                         {

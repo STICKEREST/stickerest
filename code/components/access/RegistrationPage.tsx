@@ -71,7 +71,7 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
         await registration(form);
         setLoggedIn(true);
         console.log("User is now registered and logged in");
-      } catch(error: Error) {
+      } catch(error: any) {
         Alert.alert("Error", error.message);
       }
     }

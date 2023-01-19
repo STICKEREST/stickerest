@@ -16,6 +16,16 @@ import { color } from '@rneui/themed/dist/config';
 
 import * as Telegram from '../../../api/Telegram';
 
+//TODO: metti questo in core
+
+const addDownload = ({ID} : {ID : number}) => {
+    
+    fetch(`https://stickerest.herokuapp.com/stickers/download-${ID}`)
+    .then((result) => result.json())
+    .then((result) => console.log(result));
+
+  }
+
 //TODO: aggiungi saved button e chiamate
 
 const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => {
@@ -129,9 +139,12 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
   const windowHeight = Dimensions.get('window').height;
 
   const importToTelegram = useCallback(async() => {
+
     // TODO: Add sticker name here
     Telegram.importPack('example_one_by_StickerestBot');
   });
+
+  
 
   return (
     <View style={styleSingleSticker.container}>
@@ -146,7 +159,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                     <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
                         <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/>
-                        <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
+                        <ImportButton text={"Import to Telegram"} onPress={() => {importToTelegram(); addDownload(ID);}} />
                     </View>
                     <View style={{marginTop: 20, flexDirection: 'row'}}>
                         {

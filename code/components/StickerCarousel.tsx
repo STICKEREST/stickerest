@@ -15,17 +15,13 @@ import { Sticker } from '../core/types';
  * Component representing a generic sticker carousel.
  * Only used in this file.
  */
-const StickerCarousel = ({stickers, item}: {stickers: Sticker[], item: (sticker: Sticker) => React.ReactNode}) => {
-  console.log(stickers);
+const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFunction: (sticker: Sticker) => React.ReactNode}) => {
   const itemSeparator = () => <View style={stickerCarouselStyle.separator} />
   const navigation = useNavigation();
   const openStickerPage = (id: number) => {
     //@ts-ignore
     navigation.navigate("SingleSticker", {id: id});
   };
-  const renderItem = (sticker: any) => (
-    <Pressable onPress={() => openStickerPage(sticker.ID)} >{item(sticker)}</Pressable>
-  );
   return (
     <View style={styles.center} >
       <FlatList
@@ -33,7 +29,9 @@ const StickerCarousel = ({stickers, item}: {stickers: Sticker[], item: (sticker:
         ItemSeparatorComponent={itemSeparator}
         showsHorizontalScrollIndicator={false}
         data={stickers}
-        renderItem={renderItem}
+        renderItem={({item}) => (
+          <Pressable onPress={() => openStickerPage(item.ID)} >{itemFunction(item)}</Pressable>
+        )}
         keyExtractor={(item: Sticker) => item.ID.toString()}
       />
     </View>
@@ -48,7 +46,7 @@ export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (
     <SmallStickerPack image={sticker.logo} title={sticker.name} downloadCount={sticker.nr_downloads} />
   );
-  return <StickerCarousel stickers={stickers} item={item} />;
+  return <StickerCarousel stickers={stickers} itemFunction={item} />;
 }
 
 /**
@@ -59,5 +57,5 @@ export const BigStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (
     <BigStickerPack image={sticker.logo} title={sticker.name} />
   );
-  return <StickerCarousel stickers={stickers} item={item} />;
+  return <StickerCarousel stickers={stickers} itemFunction={item} />;
 }

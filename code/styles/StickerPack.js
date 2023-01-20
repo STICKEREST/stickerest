@@ -35,7 +35,7 @@ const stickerPackStyle = StyleSheet.create({
   },
   imageSize: {
     width: 90,
-    height: 70
+    height: 90
   },
   largeTitle: {
     fontFamily: "popbold",

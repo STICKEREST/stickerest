@@ -1,178 +1,149 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { Dimensions, ImageBackground,  ImageSourcePropType,  TouchableHighlight, TouchableOpacity  } from 'react-native';
+import React from 'react'
+import { Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
 import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
-
-import { BigStickerPack } from '../../subcomponents/BigStickerPack';
-
-import { SmallStickerPackBox } from '../../subcomponents/SmallStickerPack';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../../core/types';
 import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
+import { useRoute } from '@react-navigation/native';
+
 import * as Telegram from '../../../api/Telegram';
 
-//TODO: metti questo in core
 
-const addDownload = ({ID} : {ID : number}) => {
-    
-    fetch(`https://stickerest.herokuapp.com/stickers/download-${ID}`)
+//TODO: metti questo in core
+const addDownload = (id : number) => {
+  fetch(`https://stickerest.herokuapp.com/stickers/download-${id}`)
     .then((result) => result.json())
     .then((result) => console.log(result));
-
-  }
-
-//TODO: aggiungi saved button e chiamate
-
-const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => {
-    return (
-        <View>
-            <TouchableOpacity style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 180, marginTop: 8}} onPress={onPress}>
-                <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>{text}</Text>
-            </TouchableOpacity>
-        </View>
-    )
 }
 
-const RightPart = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
-    return (
-        <View style={{flexDirection: 'column', padding: 20 }}>
-            <Text style= {{fontFamily: "popbold", fontSize: 17}}>{name}</Text>
-            <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {author}</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{numSticker}</Text>
-            <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{downloads}</Text>
-            <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
-        </View>
-    );
+/**
+ * Button displayed below the sticker pack used to import stickers into other apps.
+ * 'text' is the text to display on the button.
+ * 'onPress' is the function to execute when pressing the button.
+ */
+const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
+  <View>
+    <TouchableOpacity style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 180, marginTop: 8}} onPress={onPress}>
+      <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>{text}</Text>
+    </TouchableOpacity>
+  </View>
+);
+
+/**
+ * Component used either for the favorites or the save button.
+ * 'id' is the sticker id.
+ * 'state' is either 'favorites' or 'saved'.
+ * 'icon' is the name of the Ionicons to use.
+ * 'color' is the color of the button when it is pressed.
+ */
+const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"saved", icon: string, color: string}) => {
+  const [currentState, setState] = React.useState<boolean>(false);
+  // Get current state from database
+  React.useEffect (() => {
+    fetch(`https://stickerest.herokuapp.com/auth/is-${state}-${id}`)
+      .then((result) => result.json())
+      .then((result) => setState(result));
+  }, [currentState]);
+  // Function called when changing the state
+  const changeState = React.useCallback(() => {
+    fetch(`https://stickerest.herokuapp.com/auth/${currentState ? 'remove' : 'add'}-${state}-${id}`)
+      .then(() => setState(!currentState));
+  }, [currentState]);
+  // State button component
+  return (
+    <View>
+      <TouchableOpacity onPress={changeState}>
+        <Ionicons name={icon} size={40} color={currentState ? color : '#9E9E9E'} />
+      </TouchableOpacity>
+    </View>
+  );
 }
 
-const LeftPart = ({img}: {img: string}) => {
-        
-    return (
-        <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
-            <Image source={{uri : img}} style={{height: 85, width: 100}}/>
-        </View>
-    );
-}
+// TODO: Remove inline css from here
 
-const ButtonState = ({ID, state_name, logo_name, color_state } : {ID : number, state_name : string, logo_name : string, color_state : string}) => {
+/**
+ * Component used for the top part of the sticker page displaying the sticker info.
+ * 'stickerInfo' is the sticker to display.
+ */
+const StickerPackContainer = ({stickerInfo}: {stickerInfo: Sticker}) => (
+  <View style={[styleSingleSticker.bigStickerPack2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
+    <View style={{flex : 3}}>
+      <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
+        <Image source={{uri: stickerInfo.logo}} style={{height: 85, width: 100}}/>
+      </View>
+    </View>
+    <View style={{flex : 4, marginLeft : 20}}>
+      <View style={{flexDirection: 'column', padding: 20 }}>
+        <Text style= {{fontFamily: "popbold", fontSize: 17}}>{stickerInfo.name}</Text>
+        <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {stickerInfo.Designer}</Text>
+        <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{stickerInfo.n_stickers}</Text>
+        <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
+        <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{stickerInfo.nr_downloads}</Text>
+        <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
+      </View>
+    </View>
+    <View style={{flex : 1.5}}>
+      <ButtonState id={stickerInfo.ID} state="favorites" icon='md-heart' color='#F44336'/>
+      <ButtonState id={stickerInfo.ID} state="saved" icon='md-bookmark' color='#F5CB08'/>
+    </View>
+  </View>
+);
 
-    const [state, setState] = React.useState<boolean>(false);
-
-    useEffect (() => {
-
-        fetch(`https://stickerest.herokuapp.com/auth/is-${state_name}-${ID}`)
-        .then((result) => result.json())
-        .then((result) => setState(result));
-    }, []);
-
-    const changeState = () => {
-
-        if(state === true)
-            fetch(`https://stickerest.herokuapp.com/auth/remove-${state_name}-${ID}`);
-        else
-            fetch(`https://stickerest.herokuapp.com/auth/add-${state_name}-${ID}`);
-
-        setState(!state);
-    }
-
-    return (
-        <View>
-            <TouchableOpacity onPress={() => changeState()}>
-                <Ionicons
-                name={logo_name}
-                size={40}
-                color={state ? color_state : '#9E9E9E'}
-                />
-            </TouchableOpacity>
-        </View>
-    );
-}
-
-const StickerPackContainer = ({ID, img, name, author, numSticker, downloads} : {ID : number, img: string, name : string, author : string, numSticker : number, downloads : number}) => {
-    
-
-    return (
-        <View style={[styleSingleSticker.bigStickerPack2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
-            <View style={{flex : 3}}>
-                <LeftPart img={img} />
-            </View>
-            <View style={{flex : 4, marginLeft : 20}}>
-                <RightPart name={name} author={author} numSticker={numSticker} downloads={downloads}/>
-            </View>
-            <View style={{flex : 1.5}}>
-                <ButtonState ID = {ID} state_name = "favorites" logo_name='md-heart' color_state='#F44336'/>
-                <ButtonState ID = {ID} state_name = "saved" logo_name='md-bookmark' color_state='#F5CB08'/>
-            </View>
-        </View>
-    )
-    
-}
-
-export const SingleSticker = ({route , navigation} : {route : any , navigation : any}) => {
-
-    const ID = route.params.id;
-
-    const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
-    const [imageStickers, setImageStickers] = React.useState<StickerImage[]>();
-
-
-  useEffect(() => {
-
-    fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
-    .then((result) => result.json())
-    .then((result) => setStickerInfo(result[0]));
-
-    fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
-    .then((result) => result.json())
-    .then((result) => setImageStickers(result.slice(1)));
-
-    
-  }, []);
-
-  const windowWidth = Dimensions.get('window').width;
-  const windowHeight = Dimensions.get('window').height;
-
-  const importToTelegram = useCallback(() => {
+/**
+ * Single sticker page component.
+ */
+export const SingleSticker = () => {
+  //@ts-ignore
+  const id = useRoute().params.id;
+  // Get currently selected sticker from database
+  const [sticker, setSticker] = React.useState<Sticker>();
+  const [stickerImage, setStickerImage] = React.useState<StickerImage[]>();
+  React.useEffect(() => {
+    fetch(`https://stickerest.herokuapp.com/stickers/${id}`)
+      .then((result) => result.json())
+      .then((result) => setSticker(result[0]));
+    fetch(`https://stickerest.herokuapp.com/stickers/images-${id}`)
+      .then((result) => result.json())
+      .then((result) => setStickerImage(result.slice(1)));
+  }, [sticker, stickerImage]);
+  // Callback function to import stickers into telegram
+  const importToTelegram = React.useCallback(() => {
     // TODO: Add sticker name here
     Telegram.importPack('example_one_by_StickerestBot');
   }, []);
-
-  
-
+  // Used for background image
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  // Single sticker page component
   return (
     <View style={styleSingleSticker.container}>
-        <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}>
-        </ImageBackground>
-
-        <View style={{marginTop: 30}}>
+      <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}></ImageBackground>
+      <View style={{marginTop: 30}}>
+      {
+        sticker !== undefined ? (
+          <View>
+            <StickerPackContainer stickerInfo={sticker} />
+            <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}} >
+              <ImportButton text={"Import to Whatsapp"} onPress={() => {}} />
+              <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
+            </View>
+            <View style={{marginTop: 20, flexDirection: 'row'}} >
             {
-                stickerInfo !== undefined ? 
-                
-                <View>
-                    <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
-                    <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
-                        <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/>
-                        <ImportButton text={"Import to Telegram"} onPress={importToTelegram}/>
-                    </View>
-                    <View style={{marginTop: 20, flexDirection: 'row'}}>
-                        {
-                            imageStickers !== undefined ? 
-
-                            <FlexibleAlbum stickers={imageStickers}/>
-
-                            : <Text> A problem occurred while loading the sticker</Text>
-                        }
-                    </View>
-                </View> : <Text> A problem occurred while loading the sticker</Text>
+              stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
             }
-            {/* TODO rendi tutto uno state usando hooks*/}
-        </View>
+            </View>
+          </View>
+        ) : (
+          <Text> A problem occurred while loading the sticker</Text>
+        )
+      }
+      </View>
     </View>
   );
 }

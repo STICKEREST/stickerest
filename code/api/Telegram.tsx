@@ -27,13 +27,13 @@ export interface Sticker {
  * 'packName' is the name with which the pack was uploaded on Telegram.
  */
 export const importPack = async (packName: string): Promise<void> => {
-	const url = 'https://telegram.me/addstickers/' + packName;
-	const supported = await Linking.canOpenURL(url);
-	if(supported) {
-		await Linking.openURL(url);
-	} else {
-		throw new Error('URL ' + url + ' cannot be opened');
-	}
+  const url = 'https://telegram.me/addstickers/' + packName;
+  const supported = await Linking.canOpenURL(url);
+  if(supported) {
+    await Linking.openURL(url);
+  } else {
+    throw new Error('URL ' + url + ' cannot be opened');
+  }
 }
 
 // TODO: These need some refractoring

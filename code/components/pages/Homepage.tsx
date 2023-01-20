@@ -13,7 +13,6 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
   const [queriedStickers, setQueriedStickers] = React.useState<Sticker[]>([]);
   //it's always updated because there could be also new additions of sticker packs and we
   //may want to see them. For example: create a pack and directly search for it on the store!
-  // TODO: This needs to be async
   React.useEffect(() => {
     fetch(linkData)
       .then((response) => response.json())

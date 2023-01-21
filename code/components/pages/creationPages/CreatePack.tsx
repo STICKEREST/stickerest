@@ -7,6 +7,7 @@ import {TagInput} from '../../subcomponents/tags-input/TagInput'
 import { ImageImport } from '../../subcomponents/images-picker/ImageImport';
 import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
 
+// import * as Telegram from '../../../api/Telegram';
 
 let gray = '#f1f1f1'
 let purple = '#8D08F5'
@@ -14,6 +15,15 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const handleUploadPack = (name : string, tags : string[], images : string[], setNoUploading : any) => {
+  // TODO: Upload pack on Telegram
+  // Telegram.createStickerPack({
+  //   author: 0 /*User id*/,
+  //   name: name /*Must be unique*/,
+  //   title: "" /*Generic title*/
+  // }, {
+  //   url: "" /*Sticker image url*/,
+  //   emoji: "😀"
+  // });
   let formdata = new FormData();
 
   if (name === "")

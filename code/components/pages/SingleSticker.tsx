@@ -2,18 +2,18 @@ import React from 'react'
 import { Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { singleStickerStyle } from "../../../styles/SingleSticker";
-import { styles } from "../../../styles/Styles";
-import { ImagesAssets } from '../../../assets/ImagesAssets';
+import { singleStickerStyle } from "../../styles/SingleSticker";
+import { styles } from "../../styles/Styles";
+import { ImagesAssets } from '../../assets/ImagesAssets';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Sticker, StickerImage } from '../../../core/types';
-import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import { Sticker, StickerImage } from '../../core/types';
+import { FlexibleAlbum } from '../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 import { useRoute } from '@react-navigation/native';
 
-import * as Telegram from '../../../api/Telegram';
+import * as Telegram from '../../api/Telegram';
 
 
 //TODO: metti questo in core

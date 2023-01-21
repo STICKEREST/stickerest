@@ -19,13 +19,11 @@ const SmallStickerPackBox = ({img, smaller = false} : {img : string, smaller ? :
 
 
 const SmallStickerPack = ({img, title, download}:{img : string, title : string, download : number}) => {
-  
-
   return (
-    <View >
-        <SmallStickerPackBox img={img} />
-        <Text style={{fontFamily: "popblack", fontSize: 15, marginTop: 8}}>{title}</Text>
-        <Text style={{fontFamily: "poplight", fontSize: 12, marginTop: 4}} >{download} download</Text>
+    <View>
+      <SmallStickerPackBox img={img} />
+      <Text style={{fontFamily: "popblack", fontSize: 15, marginTop: 8}}>{title}</Text>
+      <Text style={{fontFamily: "poplight", fontSize: 12, marginTop: 4}} >{download} download</Text>
     </View>
   );
 }

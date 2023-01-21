@@ -16,11 +16,19 @@ export default function Favorites() {
 
 	const [queriedStickers, setQueriedStickers] = useState<Sticker[]>([]);
 
+	//it's updated every 5 seconds, to avoid memory leaks
 	useEffect(() => {
-		
-		fetch("https://stickerest.herokuapp.com/auth/my-saved")
-		.then((response) => response.json())
-		.then((result) => setQueriedStickers(result));
+
+		const intervalId = setInterval(() => {
+			
+			fetch("https://stickerest.herokuapp.com/auth/my-saved")
+			.then((response) => response.json())
+			.then((result) => setQueriedStickers(result));
+
+			
+		  }, 5000);
+	  
+		  return () => clearInterval(intervalId);
 
 	  } );
 

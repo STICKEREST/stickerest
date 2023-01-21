@@ -69,6 +69,7 @@ const ButtonState = ({ID, state_name, logo_name, color_state } : {ID : number, s
         fetch(`https://stickerest.herokuapp.com/auth/is-${state_name}-${ID}`)
         .then((result) => result.json())
         .then((result) => setState(result));
+        
     }, []);
 
     const changeState = () => {

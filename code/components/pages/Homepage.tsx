@@ -14,13 +14,18 @@ const HomePageSection = ({title, linkData, type} : {title : string, linkData : s
 
 	const [queriedStickers, setQueriedStickers] = useState<Sticker[]>([]);
 
-	//it's always updated because there could be also new additions of sticker packs and we 
-	//may want to see them. For example: create a pack and directly search for it on the store!
+	
 	useEffect(() => {
 		
-		fetch(linkData)
-		.then((response) => response.json())
-		.then((result) => setQueriedStickers(result));
+		// const intervalId = setInterval(() => {
+			
+			fetch(linkData)
+			.then((response) => response.json())
+			.then((result) => setQueriedStickers(result));
+			
+		//   }, 30000);
+	  
+		//   return () => clearInterval(intervalId);
 
 	  }, []);
 

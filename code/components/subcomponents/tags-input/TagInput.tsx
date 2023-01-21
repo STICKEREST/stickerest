@@ -24,7 +24,6 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
     const handleOnChangeText = (e:any) => {
     
       const text = e.nativeEvent.text;
-      console.log("input: "+text);
       //const {value} = e.target;
       setInput(text);
       if(text.includes(',') || text.includes('Enter') || text.includes(' ')) {
@@ -40,7 +39,6 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
 
     const handleOnKeyDown = (e : any) => {
        
-        console.log("new: " + e.nativeEvent.key)
       
         const {key} = e.nativeEvent;
 

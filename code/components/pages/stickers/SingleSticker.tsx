@@ -14,6 +14,8 @@ import { Sticker, StickerImage } from '../../../core/types';
 import { FlexibleAlbum } from '../../subcomponents/stickers-carousel/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
+import { Fold } from 'react-native-animated-spinkit';
+
 import * as Telegram from '../../../api/Telegram';
 
 //TODO: metti questo in core
@@ -120,19 +122,32 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
 
     const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
     const [imageStickers, setImageStickers] = React.useState<StickerImage[]>();
+    const [noDownloading, setNoDownloading] = React.useState<boolean>(true);
 
     //TODO: spostali in core e wrappali in una funzione
 
     const getStickersData = () => {
+
+        setNoDownloading(false);
+
         fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
         .then((result) => result.json())
-        .then((result) => setStickerInfo(result[0]))
+        .then((result) => {
+            setStickerInfo(result[0]);
+
+            fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
+            .then((result) => result.json())
+            .then((result) => {
+                setImageStickers(result.slice(1));
+                setNoDownloading(true);
+            })
+            .catch(error => console.log(error));
+        })
         .catch(error => console.log(error));
     
-        fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
-        .then((result) => result.json())
-        .then((result) => setImageStickers(result.slice(1)))
-        .catch(error => console.log(error));
+        
+
+        
     }
 
   useEffect(getStickersData, []);
@@ -168,29 +183,42 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
         <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}>
         </ImageBackground>
 
-        <View style={{marginTop: 30}}>
-            {
-                stickerInfo !== undefined ? 
-                
-                <View>
-                    <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
-                    <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
-                        {/* <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/> */}
-                        <ImportButton text={"Import to Telegram"} onPress={() => importToTelegram()}/>
-                    </View>
-                    <View style={{marginTop: 20, flexDirection: 'row'}}>
-                        {
-                            imageStickers !== undefined ? 
+        {
+            noDownloading ?
+            <>
 
-                            <FlexibleAlbum stickers={imageStickers}/>
+                <View style={{marginTop: 30}}>
+                    {
+                        stickerInfo !== undefined ? 
+                        
+                        <View>
+                            <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
+                            <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
+                                {/* <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/> */}
+                                <ImportButton text={"Import to Telegram"} onPress={() => importToTelegram()}/>
+                            </View>
+                            <View style={{marginTop: 20, flexDirection: 'row'}}>
+                                {
+                                    imageStickers !== undefined ? 
 
-                            : <Text> A problem occurred while loading the sticker</Text>
-                        }
-                    </View>
-                </View> : <Text> A problem occurred while loading the sticker</Text>
-            }
-            {/* TODO rendi tutto uno state usando hooks*/}
-        </View>
+                                    <FlexibleAlbum stickers={imageStickers}/>
+
+                                    : <Text> A problem occurred while loading the sticker</Text>
+                                }
+                            </View>
+                        </View> : <Text> A problem occurred while loading the sticker</Text>
+                    }
+                    {/* TODO rendi tutto uno state usando hooks*/}
+                </View>
+
+            </> :
+            <View style = {{height: windowHeight/2, width: windowWidth, alignItems: 'center', justifyContent: 'center'}}>
+                <Fold color="#8D08F5" size={48} />
+                <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popregular", marginTop: 40, color: "#8D08F5"}}>Downloading...</Text> 
+            </View>
+        }
+
+        
     </View>
   );
 }

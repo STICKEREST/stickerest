@@ -3,7 +3,7 @@ export const ImagesAssets = {
     bannerList2: require('./Sitckerest_1.png'),
     group: require('./Group.png'),
     mail: require('./Mail.png'),
-    logo: require('./football.png'),
+    logo: require('./LogoStickerest.png'),
     lines: require('./lines.png'),
     rectangleTop: require('./rectangleTop.png'),
     computer: require('./computer.png'),

@@ -20,7 +20,7 @@ export default function App() {
 					'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
 				});
 				// Keep loading page visible for at least 1 second
-				await new Promise(resolve => setTimeout(resolve, 1000));
+				await new Promise(resolve => setTimeout(resolve, 2500));
 			} catch(e) {
 				console.warn(e);
 			} finally {

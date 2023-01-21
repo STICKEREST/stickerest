@@ -16,7 +16,7 @@ export default function LoadingPage() {
         <ImageBackground source={ImagesAssets.bannerList1} style={{height: windowHeight, width: windowWidth}}>
             <View style={styles.text_view}>
                 <Image style={styles.logo} source={ImagesAssets.logo}/>
-                {/*<Text style={styles.text}>SticKerest</Text>*/}
+                <Text style={styles.text}>SticKerest</Text>
             </View>
         </ImageBackground>
     </View>

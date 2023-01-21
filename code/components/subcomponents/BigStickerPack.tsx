@@ -25,7 +25,7 @@ export const BigStickerPack = ({img, title}:{img : string, title : string}) => {
           </View>
 
           <View style={{flex: 1}}>
-              <Text style={{fontFamily: "poppins", fontSize: 24, color: 'white'}}>{title}</Text>
+              <Text style={{fontFamily: "popblack", fontSize: 24, color: 'white'}}>{title}</Text>
           </View>
       </View>
   );

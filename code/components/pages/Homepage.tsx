@@ -15,9 +15,17 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
   //may want to see them. For example: create a pack and directly search for it on the store!
   React.useEffect(() => {
     fetch(linkData)
-      .then((response) => response.json())
-      .then((result) => setQueriedStickers(result));
-  }, [queriedStickers]);
+      .then(response => response.json())
+      .then(result => setQueriedStickers(result))
+      .catch(error => console.log(error));
+    const interval = setInterval(() => {
+      fetch(linkData)
+        .then(response => response.json())
+        .then(result => setQueriedStickers(result))
+        .catch(error => console.log(error));
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <View>
     <Text style={styles.header}>{title}</Text>

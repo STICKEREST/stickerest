@@ -7,8 +7,9 @@ const styles = StyleSheet.create({
 		paddingRight: 20
 	},
 	header: {
+		fontFamily: "popblack",
 		fontWeight: 'bold',
-		fontSize: 20,
+		fontSize: 21,
 		paddingTop: 10,
 		paddingBottom: 20
 	},

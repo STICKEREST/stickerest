@@ -72,7 +72,8 @@ const handleUploadPack = (name : string, tags : string[], images : string[]) => 
             );
           }
 
-      });
+      }) //TODO: unify catch with else error message
+      .catch(error => console.log(error));
 
 
   }

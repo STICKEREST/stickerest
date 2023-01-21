@@ -48,12 +48,15 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
   React.useEffect (() => {
     fetch(`https://stickerest.herokuapp.com/auth/is-${state}-${id}`)
       .then((result) => result.json())
-      .then((result) => setState(result));
-  }, [currentState]);
+      .then((result) => setState(result))
+      .catch(error => console.log(error));
+  }, []);
   // Function called when changing the state
   const changeState = React.useCallback(() => {
     fetch(`https://stickerest.herokuapp.com/auth/${currentState ? 'remove' : 'add'}-${state}-${id}`)
-      .then(() => setState(!currentState));
+      .then(result => console.log(result))
+      .then(() => setState(!currentState))
+      .catch(error => console.log(error));
   }, [currentState]);
   // State button component
   return (

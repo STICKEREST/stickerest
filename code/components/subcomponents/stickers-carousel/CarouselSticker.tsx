@@ -1,6 +1,5 @@
 import { SmallStickerPack, SmallStickerPackBox } from "../SmallStickerPack";
 import { BigStickerPack } from '../BigStickerPack';
-import { ImagesAssets } from '../../../assets/ImagesAssets';
 import { styleCarousel } from "../../../assets/style/styleCarousel";
 
 import { View, StyleSheet, FlatList, Pressable } from "react-native";

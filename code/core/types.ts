@@ -28,4 +28,6 @@ export interface User {
 
 //{ cancelled: false, type: 'image', uri, width, height, exif, base64 }
 
-// export interface 
+export interface ImageType { 
+    
+}

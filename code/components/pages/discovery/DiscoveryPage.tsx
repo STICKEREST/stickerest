@@ -55,7 +55,8 @@ const MainStickerView = () => {
           {
             fetch("https://stickerest.herokuapp.com/stickers/random")
             .then(result => result.json())
-            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(stickerResults[0]));
+            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(stickerResults[0]))
+            .catch(error => console.log(error));
           }
     }, [y>sensitivity]);
 

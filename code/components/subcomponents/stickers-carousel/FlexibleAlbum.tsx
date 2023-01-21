@@ -56,7 +56,7 @@ export const FlexibleAlbumAddable = ({stickers, addPress, removePress} : {sticke
 return (
     <ScrollView>
         <View style={{alignItems: 'flex-start', flexWrap: 'wrap', flexDirection: "row"}}>
-            <TouchableSticker img={'..\..\..\assets\addCircle.png'} onPress={addPress} />
+            <TouchableSticker img={'https://res.cloudinary.com/hv5jgvu0r/image/upload/v1674325588/addCircle_ejdz25.png'} onPress={addPress} />
             <Album stickers={stickers} onPressAggregation={removePress}/>
         </View>
     </ScrollView>

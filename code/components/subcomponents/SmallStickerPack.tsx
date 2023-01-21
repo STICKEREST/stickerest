@@ -11,7 +11,7 @@ const SmallStickerPackBox = ({img, smaller = false} : {img : string, smaller ? :
 
     return (
           <View style={[smaller ? styleSingleSticker.smallerStickerView  : styleSingleSticker.stickerView, {alignItems: 'center', justifyContent: 'center'}]}>
-              <Image source={{uri: img}} style={{height: 70, width: 90}} />
+              <Image source={{uri: img}} style={{height: 75, width: 75}} />
           </View>
       );
 

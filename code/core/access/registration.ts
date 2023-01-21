@@ -31,5 +31,6 @@ export const registration = async (form: string): Promise<void> => {
             // TODO: Throw a more meaningful error
             throw new Error();
         }
-    });
+    })
+    .catch(error => console.log(error));
 }

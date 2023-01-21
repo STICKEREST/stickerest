@@ -28,7 +28,8 @@ export const update = async (form: string): Promise<boolean> => {
         }).catch(error => {
             console.log("Error: " + error);
             return false;
-        });
+        })
+        .catch(error => {console.log(error); return false;});
 }
 
 export const getData = async (): Promise<User> => {
@@ -43,4 +44,5 @@ export const getData = async (): Promise<User> => {
         }
 
     })
+    .catch(error => {console.log(error); return { email : "", nickname : ""}})
 }

@@ -16,16 +16,22 @@ const HomePageSection = ({title, linkData, type} : {title : string, linkData : s
 
 	
 	useEffect(() => {
+
+		fetch(linkData)
+			.then((response) => response.json())
+			.then((result) => setQueriedStickers(result))
+			.catch(error => console.log(error));
 		
-		// const intervalId = setInterval(() => {
+		const intervalId = setInterval(() => {
 			
 			fetch(linkData)
 			.then((response) => response.json())
-			.then((result) => setQueriedStickers(result));
+			.then((result) => setQueriedStickers(result))
+			.catch(error => console.log(error));
 			
-		//   }, 30000);
+		  }, 5000);
 	  
-		//   return () => clearInterval(intervalId);
+		  return () => clearInterval(intervalId);
 
 	  }, []);
 

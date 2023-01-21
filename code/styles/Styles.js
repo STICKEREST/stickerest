@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   flexRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row'
+  },
+  padding: {
     padding: 20
   }
 });

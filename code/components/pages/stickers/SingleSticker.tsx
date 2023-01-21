@@ -2,7 +2,8 @@ import React from 'react'
 import { Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styleSingleSticker } from "../../../assets/style/styleSingleSticker";
+import { singleStickerStyle } from "../../../styles/SingleSticker";
+import { styles } from "../../../styles/Styles";
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -29,8 +30,8 @@ const addDownload = (id : number) => {
  */
 const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
   <View>
-    <TouchableOpacity style={{backgroundColor: '#8D08F5', paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: 180, marginTop: 8}} onPress={onPress}>
-      <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 16, textAlign:"center"}}>{text}</Text>
+    <TouchableOpacity style={singleStickerStyle.button} onPress={onPress}>
+      <Text style={singleStickerStyle.buttonText}>{text}</Text>
     </TouchableOpacity>
   </View>
 );
@@ -75,9 +76,9 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
  * 'stickerInfo' is the sticker to display.
  */
 const StickerPackContainer = ({stickerInfo}: {stickerInfo: Sticker}) => (
-  <View style={[styleSingleSticker.bigStickerPack2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}]}>
+  <View style={[singleStickerStyle.packContainer, styles.center, styles.flexRow]}>
     <View style={{flex : 3}}>
-      <View style={[styleSingleSticker.mainStickerView2, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: 20 }]}>
+      <View style={[singleStickerStyle.containerImage, styles.center, styles.flexRow, styles.padding]}>
         <Image source={{uri: stickerInfo.logo}} style={{height: 85, width: 100}}/>
       </View>
     </View>
@@ -125,7 +126,7 @@ export const SingleSticker = () => {
   const windowHeight = Dimensions.get('window').height;
   // Single sticker page component
   return (
-    <View style={styleSingleSticker.container}>
+    <View style={styles.center}>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}></ImageBackground>
       <View style={{marginTop: 30}}>
       {

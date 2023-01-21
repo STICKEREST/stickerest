@@ -21,7 +21,7 @@ export const SmallStickerPack = ({image, title, downloadCount}: {image: string, 
  * Component used in the big sticker carousel to represent a sticker pack.
  */
 export const BigStickerPack = ({image, title}: {image: string, title: string}) => (
-  <View style={[stickerPackStyle.largeSize, stickerPackStyle.stickerView, stickerPackStyle.purpleBackground, styles.flexRow]} >
+  <View style={[stickerPackStyle.largeSize, stickerPackStyle.stickerView, stickerPackStyle.purpleBackground, styles.center, styles.flexRow, styles.padding]} >
     <View style={styles.flexFill} >
       <Image source={{uri: image}} style={stickerPackStyle.largeImage} />
     </View>

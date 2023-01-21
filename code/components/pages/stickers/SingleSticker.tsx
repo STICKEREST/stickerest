@@ -212,6 +212,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                 </View>
 
             </> :
+            //TODO: mettilo come componente con props
             <View style = {{height: windowHeight/2, width: windowWidth, alignItems: 'center', justifyContent: 'center'}}>
                 <Fold color="#8D08F5" size={48} />
                 <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popregular", marginTop: 40, color: "#8D08F5"}}>Downloading...</Text> 

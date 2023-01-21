@@ -77,22 +77,18 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
  */
 const StickerPackContainer = ({stickerInfo}: {stickerInfo: Sticker}) => (
   <View style={[singleStickerStyle.packContainer, styles.center, styles.flexRow]}>
-    <View style={{flex : 3}}>
-      <View style={[singleStickerStyle.containerImage, styles.center, styles.flexRow, styles.padding]}>
-        <Image source={{uri: stickerInfo.logo}} style={{height: 85, width: 100}}/>
-      </View>
+    <View style={[singleStickerStyle.containerImage, styles.center, styles.padding]}>
+      <Image source={{uri: stickerInfo.logo}} style={singleStickerStyle.imageSize}/>
     </View>
-    <View style={{flex : 4, marginLeft : 20}}>
-      <View style={{flexDirection: 'column', padding: 20 }}>
-        <Text style= {{fontFamily: "popbold", fontSize: 17}}>{stickerInfo.name}</Text>
-        <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {stickerInfo.Designer}</Text>
-        <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{stickerInfo.n_stickers}</Text>
-        <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
-        <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{stickerInfo.nr_downloads}</Text>
-        <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
-      </View>
+    <View style={[styles.flexColumn, styles.flexFill, styles.paddingSmall]}>
+      <Text style= {singleStickerStyle.textBold}>{stickerInfo.name}</Text>
+      <Text style= {singleStickerStyle.textThin}>by {stickerInfo.Designer}</Text>
+      <Text style= {[singleStickerStyle.textBold, styles.marginTopSmall]}>{stickerInfo.n_stickers}</Text>
+      <Text style= {singleStickerStyle.textThin}>Stickers</Text>
+      <Text style= {[singleStickerStyle.textBold, styles.marginTopSmall]}>{stickerInfo.nr_downloads}</Text>
+      <Text style= {singleStickerStyle.textThin}>Downloads</Text>
     </View>
-    <View style={{flex : 1.5}}>
+    <View style={[styles.flexColumn, styles.paddingSmall]}>
       <ButtonState id={stickerInfo.ID} state="favorites" icon='md-heart' color='#F44336'/>
       <ButtonState id={stickerInfo.ID} state="saved" icon='md-bookmark' color='#F5CB08'/>
     </View>
@@ -115,7 +111,7 @@ export const SingleSticker = () => {
     fetch(`https://stickerest.herokuapp.com/stickers/images-${id}`)
       .then((result) => result.json())
       .then((result) => setStickerImage(result.slice(1)));
-  }, [sticker, stickerImage]);
+  }, []);
   // Callback function to import stickers into telegram
   const importToTelegram = React.useCallback(() => {
     // TODO: Add sticker name here
@@ -126,18 +122,18 @@ export const SingleSticker = () => {
   const windowHeight = Dimensions.get('window').height;
   // Single sticker page component
   return (
-    <View style={styles.center}>
+    <View>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}></ImageBackground>
-      <View style={{marginTop: 30}}>
+      <View style={styles.marginTop}>
       {
         sticker !== undefined ? (
-          <View>
+          <View style={styles.center}>
             <StickerPackContainer stickerInfo={sticker} />
-            <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}} >
+            <View style={[styles.flexColumn, styles.marginTop]} >
               <ImportButton text={"Import to Whatsapp"} onPress={() => {}} />
               <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
             </View>
-            <View style={{marginTop: 20, flexDirection: 'row'}} >
+            <View style={[styles.flexRow, styles.marginTop]} >
             {
               stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
             }

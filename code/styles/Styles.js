@@ -12,8 +12,20 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row'
   },
+  flexColumn: {
+    flexDirection: 'column'
+  },
   padding: {
     padding: 20
+  },
+  paddingSmall: {
+    padding: 5
+  },
+  marginTop: {
+    marginTop: 20
+  },
+  marginTopSmall: {
+    marginTop: 5
   }
 });
 

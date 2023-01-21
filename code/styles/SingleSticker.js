@@ -39,6 +39,18 @@ const singleStickerStyle = StyleSheet.create({
       height: 0
     },
     elevation: 5
+  },
+  imageSize: {
+    height: 85,
+    width: 100
+  },
+  textBold: {
+    fontFamily: "popbold",
+    fontSize: 17
+  },
+  textThin: {
+    fontFamily: "poplight",
+    fontSize: 13
   }
 });
 

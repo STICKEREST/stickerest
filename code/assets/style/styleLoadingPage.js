@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
         alignItems: 'center'
       }, // -- The logo --
       logo : {
-        width: 150,
-        height: 150, 
+        width: 220,
+        height: 220, 
         marginTop: -100,
         marginBottom: 10
       },
       text: {
-        fontFamily: "popblack",
+        fontFamily: "Helvetica-Bold",
         color: 'white',
-        fontSize: 40,
+        fontSize: 47,
       }
 });
 

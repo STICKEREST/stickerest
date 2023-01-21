@@ -32,5 +32,5 @@ export const login = async (form: string): Promise<void> => {
             throw new Error(response.message);
         }
     })
-    .catch(error => {console.log(error); throw new Error(response.message);});
+    .catch(error => {console.log(error); throw new Error(error.message);});
 }

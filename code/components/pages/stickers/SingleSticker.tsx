@@ -35,11 +35,11 @@ const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => {
 const RightPart = ({name, author, numSticker, downloads} : {name : string, author : string, numSticker : number, downloads : number}) => {
     return (
         <View style={{flexDirection: 'column', padding: 20 }}>
-            <Text style= {{fontFamily: "popbold", fontSize: 17}}>{name}</Text>
+            <Text style= {{fontFamily: "popblack", fontSize: 17}}>{name}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>by {author}</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{numSticker}</Text>
+            <Text style= {{fontFamily: "popblack", fontSize: 17, marginTop: 10}}>{numSticker}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>Stickers</Text>
-            <Text style= {{fontFamily: "popbold", fontSize: 17, marginTop: 10}}>{downloads}</Text>
+            <Text style= {{fontFamily: "popblack", fontSize: 17, marginTop: 10}}>{downloads}</Text>
             <Text style= {{fontFamily: "poplight", fontSize: 13}}>Downloads</Text>
         </View>
     );
@@ -121,6 +121,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
     const [stickerInfo, setStickerInfo] = React.useState<Sticker>();
     const [imageStickers, setImageStickers] = React.useState<StickerImage[]>();
 
+    //TODO: spostali in core e wrappali in una funzione
 
   useEffect(() => {
 
@@ -173,7 +174,7 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
                 <View>
                     <StickerPackContainer img={stickerInfo.logo} ID={stickerInfo.ID} name={stickerInfo.name} author={stickerInfo.Designer} numSticker={stickerInfo.n_stickers} downloads={stickerInfo.nr_downloads}/>
                     <View style={{marginTop: 20, flexDirection: 'column', alignItems: 'center'}}>
-                        <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/>
+                        {/* <ImportButton text={"Import to Whatsapp"} onPress={() => {}}/> */}
                         <ImportButton text={"Import to Telegram"} onPress={() => importToTelegram()}/>
                     </View>
                     <View style={{marginTop: 20, flexDirection: 'row'}}>

@@ -123,20 +123,19 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
 
     //TODO: spostali in core e wrappali in una funzione
 
-  useEffect(() => {
-
-    fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
-    .then((result) => result.json())
-    .then((result) => setStickerInfo(result[0]))
-    .catch(error => console.log(error));
-
-    fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
-    .then((result) => result.json())
-    .then((result) => setImageStickers(result.slice(1)))
-    .catch(error => console.log(error));
-
+    const getStickersData = () => {
+        fetch(`https://stickerest.herokuapp.com/stickers/${ID}`)
+        .then((result) => result.json())
+        .then((result) => setStickerInfo(result[0]))
+        .catch(error => console.log(error));
     
-  }, []);
+        fetch(`https://stickerest.herokuapp.com/stickers/images-${ID}`)
+        .then((result) => result.json())
+        .then((result) => setImageStickers(result.slice(1)))
+        .catch(error => console.log(error));
+    }
+
+  useEffect(getStickersData, []);
 
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -158,6 +157,8 @@ export const SingleSticker = ({route , navigation} : {route : any , navigation :
     Telegram.importPack('example_one_by_StickerestBot')
     .then(response => console.log(response))
     .catch(error => console.log(error));
+
+    getStickersData();
   };
 
   

@@ -38,6 +38,13 @@ const styles = StyleSheet.create({
     fontFamily: "popblack",
     marginLeft: 20,
     marginBottom : 30
+  },
+  textHeader3: {
+    fontSize: 15,
+    alignContent: 'stretch',
+    fontFamily: "poplight",
+    marginLeft: 25,
+    marginBottom : 15
   }
 });
 

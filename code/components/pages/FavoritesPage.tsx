@@ -33,7 +33,7 @@ export default function Favorites() {
   return (
     <View>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
-      <Text style= {[styles.textHeader2, styles.marginTop]}>
+      <Text style={[styles.textHeader2, styles.marginTop]} >
         Favorites
       </Text>
       <View style={{height: windowHeight*0.525, alignContent: 'center', marginLeft: windowHeight/22}}>

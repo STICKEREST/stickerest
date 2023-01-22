@@ -3,8 +3,8 @@ import { View, ScrollView, Text, Dimensions, ImageBackground, SafeAreaView } fro
 // import { useFonts } from 'expo-font';
 
 // Favorites
-import CarouselSticker from '../../subcomponents/stickers-carousel/CarouselSticker';
-import {FlexibleAlbum, FlexibleAlbumRedirect} from '../../subcomponents/stickers-carousel/FlexibleAlbum';
+import CarouselSticker from '../../subcomponents/CarouselSticker';
+import {FlexibleAlbum, FlexibleAlbumRedirect} from '../../FlexibleAlbum';
 import { ImagesAssets } from '../../../assets/ImagesAssets';
 import React, { useEffect, useState } from 'react';
 import { Sticker, StickerImage } from '../../../core/types';

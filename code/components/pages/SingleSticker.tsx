@@ -8,7 +8,7 @@ import { ImagesAssets } from '../../assets/ImagesAssets';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../core/types';
-import { FlexibleAlbum } from '../subcomponents/stickers-carousel/FlexibleAlbum';
+import { FlexibleAlbum } from '../FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 import { useRoute } from '@react-navigation/native';

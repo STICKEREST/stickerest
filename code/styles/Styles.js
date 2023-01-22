@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row'
   },
+  flexRowWrap: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
   flexColumn: {
     flexDirection: 'column'
   },

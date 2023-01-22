@@ -92,9 +92,9 @@ const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : 
 }
 
 export default function UserProfilePage() {
-    const [email, setEmail] = React.useState("name.surname@gmail.com");
-    const [nickname, setNickname] = React.useState("nickname");
-    const [telegramId, setTelegramId] = React.useState("");
+    const [email, setEmail] = React.useState<string>("name.surname@gmail.com");
+    const [nickname, setNickname] = React.useState<string>("nickname");
+    const [telegramId, setTelegramId] = React.useState<string>("");
     return (
         <View style={styles.container}>
             <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
@@ -103,12 +103,12 @@ export default function UserProfilePage() {
                 </View>
                 <View style={[styles.text_view_login, stylesDimension.marginHeight003]}>
                     <Text>Personal information</Text>
-                    <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} />
+                    <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} setTelegramId={setTelegramId} />
                     <Text>Stickers upload</Text>
                     <View style={styles.input_container} >
                         <FieldWithHelp name={telegramId} setName={setTelegramId} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
                     </View>
-                    <ButtonUpdate nickname={nickname}/>
+                    <ButtonUpdate nickname={nickname} telegramId={telegramId}/>
                 </View>
             </ImageBackground>
         </View>

@@ -31,6 +31,13 @@ const styles = StyleSheet.create({
   },
   marginTopSmall: {
     marginTop: 5
+  },
+  textHeader2: {
+    fontSize: 29,
+    alignContent: 'stretch',
+    fontFamily: "popblack",
+    marginLeft: 20,
+    marginBottom : 30
   }
 });
 

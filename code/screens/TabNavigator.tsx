@@ -6,7 +6,7 @@ import { Homepage } from '../components/pages/Homepage';
 import DiscoveryPage from '../components/pages/discovery/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
 import CreatePack from '../components/pages/creationPages/CreatePack';
-import Favorites from '../components/pages/favorites/FavoritesPage';
+import Favorites from '../components/pages/FavoritesPage';
 
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';

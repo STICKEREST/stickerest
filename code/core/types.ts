@@ -23,7 +23,8 @@ export interface SimpleStickerPack {
 
 export interface User {
     email : string,
-    nickname : string
+    nickname : string,
+    telegram? : string
 }
 
 //{ cancelled: false, type: 'image', uri, width, height, exif, base64 }

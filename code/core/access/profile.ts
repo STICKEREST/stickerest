@@ -1,9 +1,10 @@
 import { User } from "../types";
 
-export const prepareCredentials = ( nickname : string) : string => {
+export const prepareCredentials = ( nickname : string, telegramId : string) : string => {
     nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
+    telegramId = encodeURIComponent("telegram") + "=" + encodeURIComponent(telegramId);
 
-    return (nickname);
+    return (nickname + "&" + telegramId);
 }
 
 

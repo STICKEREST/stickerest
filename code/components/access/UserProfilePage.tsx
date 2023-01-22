@@ -50,16 +50,16 @@ const updateUI = (form : string) => {
 
 // TODO: Update the id as well
 //TODO : update this attempt as the others
-const attemptUpdate = (nickname: string): void => {
-  if(validateCredentials(nickname)) {
-    const form : string = prepareCredentials(nickname);
+const attemptUpdate = (nickname: string, telegramId : string): void => {
+  if(validateCredentials(nickname, telegramId)) {
+    const form : string = prepareCredentials(nickname, telegramId);
     updateUI(form);
   }else {
     Alert.alert("Missing information", "Some of the fields are empty");
   }
 }
 
-const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, setEmail : any, nickname : string, setNickname : any}) => {
+const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {email : string, setEmail : any, nickname : string, setNickname : any, setTelegramId : any}) => {
 
     useEffect(() => {
 
@@ -67,6 +67,8 @@ const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, 
       .then((result : User) => {
         setEmail(result.email);
         setNickname(result.nickname);
+        if(result.telegram !== undefined && result.telegram !== null && result.telegram !== "")
+          setTelegramId(result.telegram);
       })
 
     }, [])
@@ -81,10 +83,10 @@ const TextFields = ({email, setEmail, nickname, setNickname} : {email : string, 
     )
 }
 
-const ButtonUpdate = ({nickname} : {nickname : string}) => {
+const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : string}) => {
   return (
     <View style={[styles.style_signInButton, stylesDimension.marginHeight007]}>
-      <ButtonToSign functionToExecute={() => attemptUpdate(nickname)} nameOfButton="Save"/>
+      <ButtonToSign functionToExecute={() => attemptUpdate(nickname, telegramId)} nameOfButton="Save"/>
     </View>
   )
 }

@@ -16,10 +16,10 @@ export default function App() {
 				await Font.loadAsync({
 					'popblack': require('./assets/fonts/poppins/popblack.otf'),
 					'poplight': require('./assets/fonts/poppins/Poppins-Light.otf'),
-          'popbold': require('./assets/fonts/poppins/Poppins-Bold.otf'),
+          			'popbold': require('./assets/fonts/poppins/Poppins-Bold.otf'),
 					'popregular': require('./assets/fonts/poppins/Poppins-Regular.otf')
 				});
-				// Keep loading page visible for at least 1 second
+				// Keep loading page visible for at least 2,5 second
 				await new Promise(resolve => setTimeout(resolve, 2500));
 			} catch(e) {
 				console.warn(e);

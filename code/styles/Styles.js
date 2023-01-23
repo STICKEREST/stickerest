@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
   flexRow: {
     flexDirection: 'row'
   },
+  flexRowWrap: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
   flexColumn: {
     flexDirection: 'column'
   },
@@ -26,6 +31,20 @@ const styles = StyleSheet.create({
   },
   marginTopSmall: {
     marginTop: 5
+  },
+  textHeader2: {
+    fontSize: 29,
+    alignContent: 'stretch',
+    fontFamily: "popblack",
+    marginLeft: 20,
+    marginBottom : 30
+  },
+  textHeader3: {
+    fontSize: 15,
+    alignContent: 'stretch',
+    fontFamily: "poplight",
+    marginLeft: 25,
+    marginBottom : 15
   }
 });
 

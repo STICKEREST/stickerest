@@ -3,7 +3,7 @@ import { View, ScrollView, Text } from 'react-native';
 
 import { styles } from './../../assets/style/styleHomepage';
 
-import { SearchBar } from '../subcomponents/SearchBar';
+import { SearchBar } from '../SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../StickerCarousel';
 
 import { Sticker } from '../../core/types';
@@ -61,7 +61,7 @@ const SearchHomePage = ({query} : {query: string}) => (
  * Homepage component function.
  * Used in tab navigator.
  */
-export const Homepage = () => {
+export default function Homepage() {
   const [searchText, setSearchText] = React.useState<string>("");
   return (
     <View style={styles.container}>

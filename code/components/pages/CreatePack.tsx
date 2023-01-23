@@ -1,13 +1,13 @@
 import React from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
 
-import { styles } from "../../../styles/Styles";
-import { createPackStyle } from "../../../styles/CreatePack";
+import { styles } from "../../styles/Styles";
+import { createPackStyle } from "../../styles/CreatePack";
 
-import { ImagesAssets } from '../../../assets/ImagesAssets';
+import { ImagesAssets } from '../../assets/ImagesAssets';
 
-import {TagInput} from '../../subcomponents/tags-input/TagInput'
-import { ImageImport } from '../../subcomponents/images-picker/ImageImport';
+import { TagInput } from '../TagInput';
+import { ImageImport } from '../subcomponents/images-picker/ImageImport';
 
 import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
 

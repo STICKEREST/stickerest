@@ -5,7 +5,7 @@ import { ImagesAssets } from '../../assets/ImagesAssets';
 
 import { styles } from '../../styles/Styles';
 
-import { BigStickerPack } from '../subcomponents/BigStickerPack';
+import { BigStickerPack } from '../StickerPack';
 
 import { SimpleStickerPack } from '../../core/types';
 
@@ -84,7 +84,7 @@ const MainStickerView = () => {
         if(randomPack.ID !== -1)
           openStickerPack(randomPack.ID)
       }} >
-        <BigStickerPack img={randomPack.logo} title={randomPack.name} />
+        <BigStickerPack image={randomPack.logo} title={randomPack.name} />
       </Pressable>
     </View>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
 import { TextInput, TouchableOpacity, Text, View  } from 'react-native';
-import { styles } from '../../../styles/Styles';
-import { tagInputStyle } from '../../../styles/TagInput';
+
+import { tagInputStyle } from '../styles/TagInput';
+import { styles } from '../styles/Styles';
 
 
 const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {

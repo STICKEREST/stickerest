@@ -6,7 +6,7 @@ import { ImagesAssets } from '../assets/ImagesAssets';
 import Homepage from '../components/pages/Homepage';
 import DiscoveryPage from '../components/pages/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../components/pages/creationPages/CreatePack';
+import CreatePack from '../components/pages/CreatePack';
 import Favorites from '../components/pages/FavoritesPage';
 
 import { navbarStyle } from '../styles/Navbar';

@@ -48,7 +48,7 @@ const MainStickerView = () => {
      });
     const [subscription, setSubscription] = useState(null);
 
-    let sensitivity = 12
+    let sensitivity = 8
 
     useEffect(() => {
           if (y>sensitivity)

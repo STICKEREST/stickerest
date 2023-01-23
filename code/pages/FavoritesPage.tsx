@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, Dimensions, ImageBackground } from 'react-native';
 
-import { FlexibleAlbumRedirect } from '../FlexibleAlbum';
-import { ImagesAssets } from '../../assets/ImagesAssets';
+import { FlexibleAlbumRedirect } from '../components/FlexibleAlbum';
+import { ImagesAssets } from '../assets/ImagesAssets';
 
-import { styles } from '../../styles/Styles';
+import { styles } from '../styles/Styles';
 
-import { Sticker, StickerImage } from '../../core/types';
+import { Sticker, StickerImage } from '../core/types';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

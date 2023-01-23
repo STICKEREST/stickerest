@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StackNavigator } from './screens/StackNavigator';
 
-import Loading_page from './components/pages/LoadingPage';
+import Loading_page from './pages/LoadingPage';
 
 import * as Font from 'expo-font';
 

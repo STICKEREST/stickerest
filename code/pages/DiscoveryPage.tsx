@@ -1,13 +1,13 @@
 import React from 'react'
 import { Dimensions, ImageBackground, Pressable, Text, View } from 'react-native';
 
-import { ImagesAssets } from '../../assets/ImagesAssets';
+import { ImagesAssets } from '../assets/ImagesAssets';
 
-import { styles } from '../../styles/Styles';
+import { styles } from '../styles/Styles';
 
-import { BigStickerPack } from '../StickerPack';
+import { BigStickerPack } from '../components/StickerPack';
 
-import { SimpleStickerPack } from '../../core/types';
+import { SimpleStickerPack } from '../core/types';
 
 import { Gyroscope } from 'expo-sensors';
 

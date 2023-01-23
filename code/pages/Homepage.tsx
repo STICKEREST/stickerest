@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, ScrollView, Text } from 'react-native';
 
-import { styles } from './../../assets/style/styleHomepage';
+import { styles } from './../assets/style/styleHomepage';
 
-import { SearchBar } from '../SearchBar';
-import { SmallStickerCarousel, BigStickerCarousel } from '../StickerCarousel';
+import { SearchBar } from '../components/SearchBar';
+import { SmallStickerCarousel, BigStickerCarousel } from '../components/StickerCarousel';
 
-import { Sticker } from '../../core/types';
+import { Sticker } from '../core/types';
 
 
 const HomePageSection = ({title, linkData, carousel} : {title: string, linkData: string, carousel: (stickers: Sticker[]) => React.ReactNode}) => {

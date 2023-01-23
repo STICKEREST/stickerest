@@ -3,11 +3,11 @@ import { View, TouchableOpacity, Image } from 'react-native';
 
 import { ImagesAssets } from '../assets/ImagesAssets';
 
-import Homepage from '../components/pages/Homepage';
-import DiscoveryPage from '../components/pages/DiscoveryPage';
+import Homepage from '../pages/Homepage';
+import DiscoveryPage from '../pages/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../components/pages/CreatePack';
-import Favorites from '../components/pages/FavoritesPage';
+import CreatePack from '../pages/CreatePack';
+import Favorites from '../pages/FavoritesPage';
 
 import { navbarStyle } from '../styles/Navbar';
 

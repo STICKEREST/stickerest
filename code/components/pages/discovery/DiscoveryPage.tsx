@@ -10,6 +10,7 @@ import { BigStickerPack } from '../../subcomponents/BigStickerPack';
 import { SimpleStickerPack } from '../../../core/types';
 import { useNavigation } from '@react-navigation/native';
 
+//this should not be used anymore, right?
 const IconPack = ({id}:{id:number}) => {
     
     return (
@@ -19,6 +20,7 @@ const IconPack = ({id}:{id:number}) => {
     );
 }
 
+//this should not be used anymore, right?
 const Sticker = ({icon}:{icon:Image}) => {
 
     return (
@@ -41,6 +43,7 @@ const MainStickerView = () => {
 
     const [randomPack, setRandomPack] = useState<SimpleStickerPack>(defaultPack);
 
+    //gyroscop data, we are only interested in the y variable
     const [{ x, y, z }, setData] = useState({
         x: 0,
         y: 0,
@@ -48,6 +51,8 @@ const MainStickerView = () => {
      });
     const [subscription, setSubscription] = useState(null);
 
+    //this variable represents how much one has to tilt the smartphone. 
+    //The smaller the value, the more sensible it is.
     let sensitivity = 8
 
     useEffect(() => {
@@ -55,7 +60,9 @@ const MainStickerView = () => {
           {
             fetch("https://stickerest.herokuapp.com/stickers/random")
             .then(result => result.json())
-            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(Object.create({ ID: -1,
+            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(
+                //to be changed. The sticker must always have an image.
+                Object.create({ ID: -1,
                 name: sensitivity,
                 logo: "https://picsum.photos/id/" + Math.floor(Math.random() * 100) + 1 + "/200/300"})))
             .catch(error => console.log(error));

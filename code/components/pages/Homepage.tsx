@@ -61,7 +61,7 @@ const SearchHomePage = ({query} : {query: string}) => (
  * Homepage component function.
  * Used in tab navigator.
  */
-export const Homepage = () => {
+export default function Homepage() {
   const [searchText, setSearchText] = React.useState<string>("");
   return (
     <View style={styles.container}>

@@ -7,7 +7,7 @@ import { createPackStyle } from "../styles/CreatePack";
 import { ImagesAssets } from '../assets/ImagesAssets';
 
 import { TagInput } from '../components/TagInput';
-import { ImageImport } from '../components/subcomponents/images-picker/ImageImport';
+import { ImageImport } from '../components/ImageImport';
 
 import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
 

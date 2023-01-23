@@ -1,11 +1,11 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { View, Text } from 'react-native';
-import { FlexibleAlbum, FlexibleAlbumAddable } from '../../FlexibleAlbum';
+import { FlexibleAlbum, FlexibleAlbumAddable } from './FlexibleAlbum';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { StickerImage } from '../../../core/types';
+import { StickerImage } from '../core/types';
 
-import { styles } from "../../../styles/Styles";
+import { styles } from "../styles/Styles";
 
 export const ImageImport  = ({imageSource, setImageSource} : {imageSource : string[], setImageSource : Dispatch<SetStateAction<string[]>>}) => {
  

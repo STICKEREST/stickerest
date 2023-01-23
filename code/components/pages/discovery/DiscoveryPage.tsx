@@ -55,7 +55,9 @@ const MainStickerView = () => {
           {
             fetch("https://stickerest.herokuapp.com/stickers/random")
             .then(result => result.json())
-            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(stickerResults[0]))
+            .then((stickerResults : SimpleStickerPack[]) => setRandomPack(Object.create({ ID: -1,
+                name: sensitivity,
+                logo: "https://picsum.photos/id/" + Math.floor(Math.random() * 100) + 1 + "/200/300"})))
             .catch(error => console.log(error));
           }
     }, [y>sensitivity]);

@@ -40,11 +40,32 @@ const styles = StyleSheet.create({
     marginBottom : 30
   },
   textHeader3: {
+    fontSize: 19,
+    alignContent: 'stretch',
+    fontFamily: "popblack",
+    marginLeft: 15,
+    marginBottom: 5
+  },
+  textHeader4: {
     fontSize: 15,
     alignContent: 'stretch',
     fontFamily: "poplight",
     marginLeft: 25,
     marginBottom : 15
+  },
+  button: {
+    backgroundColor: '#8D08F5',
+    paddingTop: 8,
+    paddingBottom: 8,
+    borderRadius: 20,
+    width: 180,
+    marginTop: 8
+  },
+  buttonText: {
+    color: 'white',
+    fontFamily: 'poplight',
+    fontSize: 16,
+    textAlign: 'center'
   }
 });
 

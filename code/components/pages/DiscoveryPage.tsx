@@ -102,7 +102,7 @@ export default function DiscoveryPage() {
       <Text style={[styles.textHeader2, styles.marginTop]} >
         Discovery
       </Text>
-      <Text style={styles.textHeader3} >
+      <Text style={styles.textHeader4} >
         Turn around the device for a random sticker pack
       </Text>
       <MainStickerView/>

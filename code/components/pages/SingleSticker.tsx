@@ -30,8 +30,8 @@ const addDownload = (id : number) => {
  */
 const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
   <View>
-    <TouchableOpacity style={singleStickerStyle.button} onPress={onPress}>
-      <Text style={singleStickerStyle.buttonText}>{text}</Text>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   </View>
 );

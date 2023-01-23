@@ -2,20 +2,6 @@ import { StyleSheet } from 'react-native';
 
 
 const singleStickerStyle = StyleSheet.create({
-  button: {
-    backgroundColor: '#8D08F5',
-    paddingTop: 8,
-    paddingBottom: 8,
-    borderRadius: 20,
-    width: 180,
-    marginTop: 8
-  },
-  buttonText: {
-    color: 'white',
-    fontFamily: 'poplight',
-    fontSize: 16,
-    textAlign: 'center'
-  },
   packContainer: {
     width: 300,
     height: 200,

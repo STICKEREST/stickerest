@@ -5,6 +5,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { StickerImage } from '../../../core/types';
 
+import { styles } from "../../../styles/Styles";
+
 export const ImageImport  = ({imageSource, setImageSource} : {imageSource : string[], setImageSource : Dispatch<SetStateAction<string[]>>}) => {
  
   // const [imageSource, setImageSource] = React.useState<string[]>([]);
@@ -38,7 +40,7 @@ export const ImageImport  = ({imageSource, setImageSource} : {imageSource : stri
 
   //  {imageSource && <FlexibleAlbum images={imageSource} addPress={pickImages} onPress={deleteImage} addImages = {true}/>}
   return (
-    <View style = {{ alignContent: 'center'}}>
+    <View style = {styles.center}>
       {imageSource && 
         <FlexibleAlbumAddable 
           stickers={

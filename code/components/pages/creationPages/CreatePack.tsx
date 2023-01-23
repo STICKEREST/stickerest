@@ -1,20 +1,24 @@
-import React, { useState } from 'react'
-import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
-import { Text, View } from 'react-native';
-import { styleCreatePack } from "../../../assets/style/styleCreatePack";
+import React from 'react'
+import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
+
+import { styles } from "../../../styles/Styles";
+import { createPackStyle } from "../../../styles/CreatePack";
+
 import { ImagesAssets } from '../../../assets/ImagesAssets';
+
 import {TagInput} from '../../subcomponents/tags-input/TagInput'
 import { ImageImport } from '../../subcomponents/images-picker/ImageImport';
+
 import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
 
 // import * as Telegram from '../../../api/Telegram';
 
-let gray = '#f1f1f1'
-let purple = '#8D08F5'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const handleUploadPack = (name : string, tags : string[], images : string[], setNoUploading : any) => {
+// TODO: Indentation here needs to be fixed
+
+const handleUploadPack = (name: string, tags: string[], images: string[], setNoUploading: any) => {
   // TODO: Upload pack on Telegram
   // Telegram.createStickerPack({
   //   author: 0 /*User id*/,
@@ -26,42 +30,38 @@ const handleUploadPack = (name : string, tags : string[], images : string[], set
   // });
   let formdata = new FormData();
 
-  if (name === "")
-  {
+  if (name === "") {
     Alert.alert(
       "Info missing",
       "Some of the fields are empty, please fill them.",
-      [
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
+      [{ text: "OK", onPress: () => console.log("OK Pressed") }]
     );
   } else {
-      formdata.append("name", name);
+    formdata.append("name", name);
 
-      for(let i = 0; i < tags.length; i++)
-          formdata.append("tag",tags[i]);
+    for(let i = 0; i < tags.length; i++)
+      formdata.append("tag",tags[i]);
 
-      for(let i = 0; i < images.length; i++) {
-        const uri = images[i];
-        const name = uri.split('/').pop();
-        const match = /\.(\w+)$/.exec(name);
-        const type = match ? `image/${match[1]}` : `image`;
-        // {uri: uri, name: name, type : type}
-        //@ts-ignore
-        formdata.append("image"+i, {uri: uri, name: name, type: type});
-      }
-        
-      console.log(formdata);
+    for(let i = 0; i < images.length; i++) {
+      const uri = images[i];
+      const name = uri.split('/').pop();
+      const match = /\.(\w+)$/.exec(name);
+      const type = match ? `image/${match[1]}` : `image`;
+      // {uri: uri, name: name, type : type}
+      //@ts-ignore
+      formdata.append("image"+i, {uri: uri, name: name, type: type});
+    }
+    console.log(formdata);
 
-      setNoUploading(false);
+    setNoUploading(false);
 
-      fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
-        method: 'POST',
-        body: formdata,//post body 
-        headers: {//Header Defination 
-          'Content-Type': 'multipart/form-data',
-        },
-      } ).then((response) => {
+    fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
+      method: 'POST',
+      body: formdata,//post body
+      headers: {//Header Defination
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((response) => {
 
         setNoUploading(true);
 
@@ -94,79 +94,60 @@ const handleUploadPack = (name : string, tags : string[], images : string[], set
   }
 }
 
-const UploadButton = ({name, tags, images, setName, setTags, setImageSource, setNoUploading}:{name : string, tags : string[], images : string[], setName : any, setTags : any, setImageSource : any, setNoUploading : any}) => {
+/**
+ * Main body of the CreatePack page.
+ * Shown when a sticker pack is not being uploaded
+ */
+const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) => void}) => {
+  const [name, setName] = React.useState<string>("");
+  const [tags, setTags] = React.useState<string[]>([]);
+  const [imageSource, setImageSource] = React.useState<string[]>([]);
+  const uploadStickerPack = () => {
+    handleUploadPack(name, tags, imageSource, setNoUploading);
+    setName("");
+    setTags([]);
+    setImageSource([]);
+  };
   return (
-      <View style = {{}}>
-          <TouchableOpacity  
-            style={{backgroundColor: purple, paddingTop: 8, paddingBottom: 8, borderRadius: 20, width: windowWidth*0.4}}  
-            onPress={() => {
-              handleUploadPack(name, tags, images, setNoUploading);
-              setName("");
-              setTags([]);
-              setImageSource([]);
-            }}
-          >
-              <Text style={{color: 'white', fontSize: 16, textAlign:"center"}}>Upload Pack</Text>
-          </TouchableOpacity>
+    <View style={styles.marginTop} >
+      <Text style={styles.textHeader3}>Add your sticker pack</Text>
+      <TextInput style={createPackStyle.nameInput} onChangeText={setName} value={name} placeholder={"Add pack name"} />
+      <Text style={styles.textHeader3}>Tags</Text>
+      {/*TODO: Update css from tag input*/}
+      <TagInput setTags={setTags} tags={tags}/>
+      <Text style={styles.textHeader3}>Stickers</Text>
+      <ImageImport imageSource={imageSource} setImageSource={setImageSource} />
+      <View style={styles.center} >
+        <TouchableOpacity style={styles.button} onPress={uploadStickerPack} >
+          <Text style={styles.buttonText} >Upload Sticker Pack</Text>
+        </TouchableOpacity>
       </View>
-  )
-}
-
-
-const StickerNameInput = ({name, setName} : {name : string, setName : any}) => {
-  return (
-  <View style={[styleCreatePack.inputs, {backgroundColor: gray}]}>
-              <TextInput
-                style={[styleCreatePack.input, {width: windowWidth*0.7}]}
-                onChangeText={(text) => {setName(text)}}
-                value = {name}
-                placeholder={"Add a name pack"}
-              />
-       </View>
+    </View>
   );
 }
 
-export default function CreatePack() {
-
-  
-  const [name, setName] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [imageSource, setImageSource] = useState<string[]>([]);
-  const [noUploading, setNoUploading] = useState<boolean>(true);
-
-//{[styles.inputs, {backgroundColor: color}]}
-  return (
-    <View style={[styleCreatePack.container, {paddingBottom: (windowHeight/ 8)}]}>
-        <View>
-            <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
-        </View>
-        {
-          noUploading ?
-
-          <>
-            <View>
-                <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Add your sticker pack</Text>
-                <StickerNameInput name = {name} setName = {setName}/> 
-                <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Tags</Text> 
-                <TagInput setTags={setTags} tags={tags}/>
-                <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popblack"}}>Stickers</Text>
-            </View>
-            <View  style={{height: windowHeight*0.325, alignContent: 'center', marginLeft: windowHeight/22}}>
-              <ImageImport imageSource = {imageSource} setImageSource = {setImageSource}/>
-            </View>
-            <View style={{alignItems: 'center'}}>
-                <UploadButton name={name} setName = {setName} tags={tags} setTags = {setTags} images = {imageSource} setImageSource = {setImageSource} setNoUploading = {setNoUploading} />
-            </View>
-          </>
-
-          :
-
-          <View style = {{height: windowHeight/2, width: windowWidth, alignItems: 'center', justifyContent: 'center'}}>
-            <Fold color="#8D08F5" size={48} />
-            <Text style= {{fontSize: 19, alignContent: 'stretch', fontFamily: "popregular", marginTop: 40, color: "#8D08F5"}}>Uploading...</Text> 
-          </View>
-        }
-        
+/**
+ * Component shown when uploading a sticker
+ */
+const UploadingAnimation = () => (
+  <View style={[styles.center, {marginTop: windowHeight / 8}]} >
+    <Fold color="#8D08F5" size={48} />
+    <Text style= {createPackStyle.textUploading}>Uploading...</Text>
   </View>
+);
+
+/**
+ * CreatePack page compnonent
+ */
+export default function CreatePack() {
+  // TODO: Reverse the logic: it would make more sense if it was "setUploading(true)"
+  const [noUploading, setNoUploading] = React.useState<boolean>(true);
+  return (
+    <View>
+      <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
+      {
+        noUploading ? <MainCreatePackPage setNoUploading={setNoUploading} /> : <UploadingAnimation/>
+      }
+    </View>
   );
 }

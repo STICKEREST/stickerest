@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
-import { TextInput, TouchableOpacity, Text, View, Dimensions  } from 'react-native';
-import { styleTagInput } from '../../../assets/style/styleTagInput';
+import React from 'react';
+import { TextInput, TouchableOpacity, Text, View  } from 'react-native';
+import { styles } from '../../../styles/Styles';
+import { tagInputStyle } from '../../../styles/TagInput';
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
 
 const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
 
     const allowedTagsNmbr = 9;
-    const [isEditable, setEdit] = useState(true)
+    const [isEditable, setEdit] = React.useState(true)
     
-    const [input, setInput] = useState('');
+    const [input, setInput] = React.useState('');
 
     function handleTagsNmb (n:any) {
       if(n === allowedTagsNmbr-1) {
@@ -56,60 +54,46 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
         setTags((prevState : any) => prevState.filter((tag : any, i : any) => i !== index))
         handleTagsNmb(tags.length);
     };
-    
-    const BottomTagInput = () => {
-      return (
-      <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
+  return (
+    <View style={styles.margin}>
+      <TextInput value={input} placeholder={isEditable ? "Press space or add a comma after each tag" : " "} onKeyPress={handleOnKeyDown} onChange={handleOnChangeText} editable={isEditable} />
+      <View style={tagInputStyle.tagsList}>
+      {
+        tags.map((tag: any, index: any) => (
+            <View key={tag} style={{backgroundColor: '#8D08F5', borderRadius: 20, width: tag.length > 3 ? tag.length * 13 : 4 * 13, height: 30, margin: 2, padding: 3, alignContent: 'center'}}>
+              <View style={tagInputStyle.tagFlex}>
+                <View style={{flex: tag.length}}>
+                  <Text style={tagInputStyle.tagText}>{tag}</Text>
+                </View>
+                <View style={styles.flexFill}>
+                  <TouchableOpacity onPress ={() => deleteTag(index)}>
+                    <Text style={tagInputStyle.tagText}>x</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+        ))
+      }
+      </View>
+      <View style={tagInputStyle.tagsCount}>
         <View>
-            <Text>{allowedTagsNmbr-tags.length} tags available</Text>
+          <Text>{allowedTagsNmbr-tags.length} tags available</Text>
         </View>
         <View>
-            {tags.length === 0 ? null :
+        {
+          tags.length === 0 ? null :
             <TouchableOpacity onPress ={() => {
               //@ts-ignore
                 setTags(prevState => []);
                 setEdit(true);
             }}>
-              <View><Text style={{color: '#8D08F5'}}>Remove all</Text></View>
+            <Text style={tagInputStyle.removeAll}>Remove all</Text>
             </TouchableOpacity>
-            } 
+        }
         </View>
       </View>
-      );
-    }
-// tag.length>3? tag.length*13 : 4*13
-    return (
-
-        <View>
-          <TextInput
-                value={input}
-                placeholder={isEditable ? "Press space or add a comma after each tag" : " "}
-                onKeyPress={(e) => handleOnKeyDown(e)}
-                onChange={(newText) => handleOnChangeText(newText)}
-                editable={isEditable}
-            />
-            
-          <View style={{flexWrap: 'wrap', flexDirection: 'row', borderWidth:1.5, borderColor:'black', borderRadius: 10, minHeight: 130, maxHeight: 140, width: windowWidth*0.8, padding: 4}}>
-          
-            {tags.map((tag : any, index : any) => (
-                <View key={tag} style={{backgroundColor: '#8D08F5', borderRadius: 20, width: tag.length>3? tag.length*13 : 4*13, height: 30, margin: 2, padding: 3, alignContent: 'center'}}>
-                  <View  style={{flexDirection: 'row', height: 20}}>
-                    <View style={{flex: tag.length}}>
-                      <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 14, textAlign:"center"}}>{tag}</Text>
-                    </View>
-                    <View style={{flex: 1}}>
-                      <TouchableOpacity onPress ={() => deleteTag(index)}>
-                        <Text style={{color: 'white', fontFamily: 'poplight', fontSize: 14, textAlign:"center"}}>x</Text>  
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-            ))}
-          </View>
-            
-            <BottomTagInput/>
-        </View>
-    )
+    </View>
+  );
 }
 
-export{TagInput}
+export { TagInput }

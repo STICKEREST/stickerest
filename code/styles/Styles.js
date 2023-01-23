@@ -20,6 +20,9 @@ const styles = StyleSheet.create({
   flexColumn: {
     flexDirection: 'column'
   },
+  margin: {
+    margin: 20
+  },
   padding: {
     padding: 20
   },

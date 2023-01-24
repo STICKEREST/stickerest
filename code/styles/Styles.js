@@ -6,6 +6,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  centerContent: {
+    alignContent: 'center'
+  },
   flexFill: {
     flex: 1
   },

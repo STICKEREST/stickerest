@@ -116,7 +116,9 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
       {/*TODO: Update css from tag input*/}
       <TagInput setTags={setTags} tags={tags}/>
       <Text style={styles.textHeader3}>Stickers</Text>
-      <ImageImport imageSource={imageSource} setImageSource={setImageSource} />
+      <View style={[styles.centerContent, {height: windowHeight*0.325, alignContent: 'center'}]}>
+        <ImageImport imageSource={imageSource} setImageSource={setImageSource} />
+      </View>
       <View style={styles.center} >
         <TouchableOpacity style={styles.button} onPress={uploadStickerPack} >
           <Text style={styles.buttonText} >Upload Sticker Pack</Text>

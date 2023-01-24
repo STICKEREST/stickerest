@@ -7,6 +7,17 @@ const tagInputStyle = StyleSheet.create({
     fontFamily: 'poplight',
     fontSize: 14,
     textAlign: "center"
+  }, 
+  purple: {
+    color: '#8D08F5'
+  },
+  tagContainer: {
+    backgroundColor: '#8D08F5',
+    borderRadius: 20,
+    alignContent: 'center',
+    height: 30,
+    margin: 2, 
+    padding: 3, 
   },
   tagsList: {
     flexWrap: 'wrap',
@@ -25,9 +36,6 @@ const tagInputStyle = StyleSheet.create({
   tagsCount: {
     flexDirection: 'row',
     justifyContent: 'space-between'
-  },
-  removeAll: {
-    color: '#8D08F5'
   }
 });
 

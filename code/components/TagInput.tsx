@@ -23,7 +23,6 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
     const handleOnChangeText = (e:any) => {
     
       const text = e.nativeEvent.text;
-      //const {value} = e.target;
       setInput(text);
       if(text.includes(',') || text.includes('Enter') || text.includes(' ')) {
         e.preventDefault();
@@ -37,8 +36,6 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
     };
 
     const handleOnKeyDown = (e : any) => {
-       
-      
         const {key} = e.nativeEvent;
 
         if (key === "Backspace" && !input.length && tags.length) {
@@ -61,7 +58,7 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
       <View style={tagInputStyle.tagsList}>
       {
         tags.map((tag: any, index: any) => (
-            <View key={tag} style={{backgroundColor: '#8D08F5', borderRadius: 20, width: tag.length > 3 ? tag.length * 13 : 4 * 13, height: 30, margin: 2, padding: 3, alignContent: 'center'}}>
+            <View key={tag} style={[tagInputStyle.tagContainer, {width: tag.length > 3 ? tag.length * 13 : 4 * 13}]}>
               <View style={tagInputStyle.tagFlex}>
                 <View style={{flex: tag.length}}>
                   <Text style={tagInputStyle.tagText}>{tag}</Text>
@@ -88,7 +85,7 @@ const TagInput = ({tags, setTags}:{tags:any, setTags: any}) => {
                 setTags(prevState => []);
                 setEdit(true);
             }}>
-            <Text style={tagInputStyle.removeAll}>Remove all</Text>
+            <Text style={tagInputStyle.purple}>Remove all</Text>
             </TouchableOpacity>
         }
         </View>

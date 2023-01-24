@@ -67,8 +67,7 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
       .then((result : User) => {
         setEmail(result.email);
         setNickname(result.nickname);
-        if(result.telegram !== undefined && result.telegram !== null && result.telegram !== "")
-          setTelegramId(result.telegram);
+        setTelegramId(result.telegram);
       })
 
     }, [])

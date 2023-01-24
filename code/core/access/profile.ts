@@ -41,9 +41,10 @@ export const getData = async (): Promise<User> => {
 
         return {
             email : result[0].email,
-            nickname : result[0].nickname
+            nickname : result[0].nickname,
+            telegram : result[0].telegram
         }
 
     })
-    .catch(error => {console.log(error); return { email : "", nickname : ""}})
+    .catch(error => {console.log(error); return { email : "", nickname : "", telegram : ""}})
 }

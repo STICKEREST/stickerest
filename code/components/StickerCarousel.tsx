@@ -44,7 +44,9 @@ const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFun
  */
 export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (
-    <SmallStickerPack image={sticker.logo} title={sticker.name} downloadCount={sticker.nr_downloads} />
+    <View style={styles.paddingSmall} >
+      <SmallStickerPack image={sticker.logo} title={sticker.name} downloadCount={sticker.nr_downloads} />
+    </View>
   );
   return <StickerCarousel stickers={stickers} itemFunction={item} />;
 }
@@ -55,7 +57,9 @@ export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
  */
 export const BigStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (
-    <BigStickerPack image={sticker.logo} title={sticker.name} />
+    <View style={styles.paddingSmall} >
+      <BigStickerPack image={sticker.logo} title={sticker.name} />
+    </View>
   );
   return <StickerCarousel stickers={stickers} itemFunction={item} />;
 }

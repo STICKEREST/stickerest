@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
  * Component used for stickers that can be touched
  */
 const TouchableSticker = ({img, onPress}: {img: string, onPress: () => void}) => (
-  <TouchableOpacity key={'Select Image'} onPress={onPress} >
+  <TouchableOpacity style={styles.paddingSmall} key={'Select Image'} onPress={onPress} >
     <SmallPackBox image={img} />
   </TouchableOpacity>
 );
@@ -51,8 +51,8 @@ export const FlexibleAlbum = ({stickers}: {stickers: StickerImage[]}) => (
 export const FlexibleAlbumAddable = ({stickers, addPress, removePress}: {stickers: StickerImage[], addPress: any, removePress: any}) => (
   <ScrollView>
     <View style={styles.flexRowWrap} >
-      <TouchableSticker img={'https://res.cloudinary.com/hv5jgvu0r/image/upload/v1674325588/addCircle_ejdz25.png'} onPress={addPress} />
       <Album stickers={stickers} onPressAggregation={removePress} />
+      <TouchableSticker img={'https://res.cloudinary.com/hv5jgvu0r/image/upload/v1674325588/addCircle_ejdz25.png'} onPress={addPress} />
     </View>
   </ScrollView>
 );

@@ -113,7 +113,6 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
       <Text style={styles.textHeader3}>Add your sticker pack</Text>
       <TextInput style={createPackStyle.nameInput} onChangeText={setName} value={name} placeholder={"Add pack name"} />
       <Text style={styles.textHeader3}>Tags</Text>
-      {/*TODO: Update css from tag input*/}
       <TagInput setTags={setTags} tags={tags}/>
       <Text style={styles.textHeader3}>Stickers</Text>
       <View style={[styles.centerContent, {height: windowHeight*0.225, paddingLeft: windowWidth/25}]}>

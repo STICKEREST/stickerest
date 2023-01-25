@@ -36,7 +36,7 @@ export default function Favorites() {
       <Text style={[styles.textHeader2, styles.marginTop]} >
         Favorites
       </Text>
-      <View style={{height: windowHeight*0.525, alignContent: 'center', marginLeft: windowHeight/22}}>
+      <View style={[{height: windowHeight*0.525, paddingLeft: windowWidth/25, }, styles.flexRow, styles.center]}>
         <FlexibleAlbumRedirect stickers={
             queriedStickers.map((image: Sticker, order: number): StickerImage =>
                   ({ID: image.ID, ordinal_order: order, image_file: image.logo})

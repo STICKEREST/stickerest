@@ -40,7 +40,7 @@ export const ImageImport  = ({imageSource, setImageSource} : {imageSource : stri
 
   //  {imageSource && <FlexibleAlbum images={imageSource} addPress={pickImages} onPress={deleteImage} addImages = {true}/>}
   return (
-    <View style = {styles.center}>
+    <View>
       {imageSource && 
         <FlexibleAlbumAddable 
           stickers={

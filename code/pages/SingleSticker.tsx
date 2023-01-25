@@ -133,7 +133,7 @@ export const SingleSticker = () => {
               <ImportButton text={"Import to Whatsapp"} onPress={() => {}} />
               <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
             </View>
-            <View style={[styles.flexRow, styles.marginTop]} >
+            <View style={[styles.flexRow, styles.marginTop, {height: windowHeight/2}]} >
             {
               stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
             }

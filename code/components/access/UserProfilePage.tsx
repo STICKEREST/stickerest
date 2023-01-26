@@ -50,8 +50,8 @@ const updateUI = (form : string) => {
 
 // TODO: Update the id as well
 //TODO : update this attempt as the others
-const attemptUpdate = (nickname: string, telegramId : string): void => {
-  if(validateCredentials(nickname, telegramId)) {
+const attemptUpdate = (nickname: string, telegramId : number): void => {
+  if(validateCredentials(nickname) && typeof telegramId === "number") {
     const form : string = prepareCredentials(nickname, telegramId);
     updateUI(form);
   }else {
@@ -68,6 +68,8 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
         setEmail(result.email);
         setNickname(result.nickname);
         setTelegramId(result.telegram);
+
+        console.log(result);
       })
 
     }, [])
@@ -82,7 +84,7 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
     )
 }
 
-const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : string}) => {
+const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : number}) => {
   return (
     <View style={[styles.style_signInButton, stylesDimension.marginHeight007]}>
       <ButtonToSign functionToExecute={() => attemptUpdate(nickname, telegramId)} nameOfButton="Save"/>
@@ -93,7 +95,7 @@ const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : 
 export default function UserProfilePage() {
     const [email, setEmail] = React.useState<string>("name.surname@gmail.com");
     const [nickname, setNickname] = React.useState<string>("nickname");
-    const [telegramId, setTelegramId] = React.useState<string>("");
+    const [telegramId, setTelegramId] = React.useState<number>(0);
     return (
         <View style={styles.container}>
             <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
@@ -105,7 +107,12 @@ export default function UserProfilePage() {
                     <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} setTelegramId={setTelegramId} />
                     <Text>Stickers upload</Text>
                     <View style={styles.input_container} >
-                        <FieldWithHelp name={telegramId} setName={setTelegramId} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
+                        <FieldWithHelp name={telegramId.toString()} setName={(text : string) => {
+                          if(Number.isNaN(+text)) 
+                            setTelegramId(0); 
+                          else
+                            setTelegramId(+text); 
+                          }} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
                     </View>
                     <ButtonUpdate nickname={nickname} telegramId={telegramId}/>
                 </View>

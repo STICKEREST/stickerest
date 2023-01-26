@@ -10,6 +10,11 @@ import { TagInput } from '../components/TagInput';
 import { ImageImport } from '../components/ImageImport';
 
 import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
+import { getData } from '../core/access/profile';
+import { StickerImage, User } from '../core/types';
+
+import * as Telegram from '../api/Telegram';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 // import * as Telegram from '../../../api/Telegram';
 
@@ -76,6 +81,18 @@ const handleUploadPack = (name: string, tags: string[], images: string[], setNoU
             ]
           );
 
+          
+            // console.log(response + "\n\n");
+            // console.log(JSON.stringify(response) + "\n\n");
+            
+            // console.log(response.json + "\n\n");
+            // console.log(response.text + "\n\n");
+            
+          response.json().then(
+            (answer) => createTelegramPack(name, answer.ID)
+          );
+              
+
         } else {
           console.log('Something went wrong during the publication of the pack ' + "\n\n\n" + JSON.stringify(response));
             Alert.alert(
@@ -92,6 +109,93 @@ const handleUploadPack = (name: string, tags: string[], images: string[], setNoU
 
 
   }
+}
+
+const createTelegramPack = (name : string, idPack : number) => {
+  try {
+  
+    getData()
+      .then((result : User) => {
+        
+        if(result.telegram === 0)
+          throw new Error("Telegram Id is missing");
+
+        console.log("\n\n" + idPack + "\n\n");
+
+        const imagesQuery = `https://stickerest.herokuapp.com/stickers/images-${idPack}`;
+
+        fetch(imagesQuery)
+        .then(response => {console.log(response); console.log(JSON.stringify(response)); return response.json(); })
+        .then((response ) => {
+
+          //TODO: crea interface ( fai typesInternal e typesAPI o dividi by nome di uso)
+
+          
+          console.log("\n\n" + JSON.stringify(response) + "\n\n");
+
+          // console.log("\n\n" + JSON.stringify(response) + "\n\n");
+          // const telegramStickers : Telegram.Sticker[] = response.map((stickerAPI : StickerImage) : Telegram.Sticker => 
+          //   { return {url: stickerAPI.image_file, emoji: "😀"}; }
+          // );
+          // console.log("\n\n" + JSON.stringify((telegramStickers)) + "\n\n");
+          // console.log("\n\n" + (telegramStickers) + "\n\n");
+
+          // const telegramName : string = "stickerest-" + idPack + "-" + name.replace(/\s/g, '');
+
+          // const stickerPackHeader : Telegram.StickerPack = {
+          //   author: result.telegram /*User id*/,
+          //   name: telegramName /*Must be unique*/,
+          //   title: name /*Generic title*/
+          // };
+
+          // console.log("\n\n" + JSON.stringify(stickerPackHeader) + "\n\n");
+
+          // Telegram.createStickerPack(stickerPackHeader, stickerTelegram[0])
+          // .then(async () => {
+
+          //   console.log(telegramName);
+
+          //   let stickerAddingPromises = [];
+
+          //   for(let i : number = 1; i < stickerTelegram.length; i++) {
+          //     stickerAddingPromises.push(() : Promise<void> => Telegram.addStickerToPack(stickerPackHeader, stickerTelegram[i]));
+          //   }
+
+          //   Promise.all(stickerAddingPromises)
+          //   .then(() => {
+
+          //     const form : string = (encodeURIComponent("telegram_name") + "=" + encodeURIComponent(telegramName));
+  
+          //     fetch(`https://stickerest.herokuapp.com/auth/add-telegram-${idPack}`, {
+          //       method: 'POST',
+          //       body: form,
+          //       headers: {
+          //           'Content-Type': 'application/x-www-form-urlencoded'
+          //       }
+          //       }).then(response => response.json()).then(response => {
+          //         console.log("Changed telegram ID");
+          //       });
+
+          //   })
+          //   .catch(error => console.log(error));
+
+          // });
+
+          
+
+          //TODO: fare che aggiungo al DB il nick di telegram se no null
+          // poi deve andare su single sticker e se non e' null apre questo stickerpack con il bottone
+          // se no bottone non premibile
+
+        })
+
+    })
+    .catch(error => console.log(error));
+
+  } catch (error) {
+    console.log(error);
+  }
+
 }
 
 /**

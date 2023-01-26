@@ -80,17 +80,11 @@ const handleUploadPack = (name: string, tags: string[], images: string[], setNoU
               { text: "OK", onPress: () => console.log("OK Pressed") }
             ]
           );
-
           
-            // console.log(response + "\n\n");
-            // console.log(JSON.stringify(response) + "\n\n");
-            
-            // console.log(response.json + "\n\n");
-            // console.log(response.text + "\n\n");
-            
           response.json().then(
             (answer) => createTelegramPack(name, answer.ID)
           );
+          
               
 
         } else {
@@ -125,61 +119,50 @@ const createTelegramPack = (name : string, idPack : number) => {
         const imagesQuery = `https://stickerest.herokuapp.com/stickers/images-${idPack}`;
 
         fetch(imagesQuery)
-        .then(response => {console.log(response); console.log(JSON.stringify(response)); return response.json(); })
+        .then(response => { return response.json(); })
         .then((response ) => {
 
-          //TODO: crea interface ( fai typesInternal e typesAPI o dividi by nome di uso)
+          const telegramStickers : Telegram.Sticker[] = response.map((stickerAPI : StickerImage) : Telegram.Sticker => 
+            { return {url: stickerAPI.image_file, emoji: "😀"}; }
+          );
 
-          
-          console.log("\n\n" + JSON.stringify(response) + "\n\n");
+          const telegramName : string = "stickerest_" + idPack + "_" + name.replace(/\s/g, '');
 
-          // console.log("\n\n" + JSON.stringify(response) + "\n\n");
-          // const telegramStickers : Telegram.Sticker[] = response.map((stickerAPI : StickerImage) : Telegram.Sticker => 
-          //   { return {url: stickerAPI.image_file, emoji: "😀"}; }
-          // );
-          // console.log("\n\n" + JSON.stringify((telegramStickers)) + "\n\n");
-          // console.log("\n\n" + (telegramStickers) + "\n\n");
+          const stickerPackHeader : Telegram.StickerPack = {
+            author: result.telegram /*User id*/,
+            name: telegramName /*Must be unique*/,
+            title: name /*Generic title*/
+          };
 
-          // const telegramName : string = "stickerest-" + idPack + "-" + name.replace(/\s/g, '');
+          console.log("\n\n" + JSON.stringify(stickerPackHeader) + "\n\n");
 
-          // const stickerPackHeader : Telegram.StickerPack = {
-          //   author: result.telegram /*User id*/,
-          //   name: telegramName /*Must be unique*/,
-          //   title: name /*Generic title*/
-          // };
+          const [stickerFront, ...restTelegramStickers] = telegramStickers;
 
-          // console.log("\n\n" + JSON.stringify(stickerPackHeader) + "\n\n");
+          Telegram.createStickerPack(stickerPackHeader, stickerFront)
+          .then(() => {
 
-          // Telegram.createStickerPack(stickerPackHeader, stickerTelegram[0])
-          // .then(async () => {
+            Promise.all(restTelegramStickers.map((telStick : Telegram.Sticker) => Telegram.addStickerToPack(stickerPackHeader, telStick)))
+            .then(() => {
 
-          //   console.log(telegramName);
+              const form : string = (encodeURIComponent("telegramName") + "=" + encodeURIComponent(telegramName));
 
-          //   let stickerAddingPromises = [];
-
-          //   for(let i : number = 1; i < stickerTelegram.length; i++) {
-          //     stickerAddingPromises.push(() : Promise<void> => Telegram.addStickerToPack(stickerPackHeader, stickerTelegram[i]));
-          //   }
-
-          //   Promise.all(stickerAddingPromises)
-          //   .then(() => {
-
-          //     const form : string = (encodeURIComponent("telegram_name") + "=" + encodeURIComponent(telegramName));
+              console.log(form);
   
-          //     fetch(`https://stickerest.herokuapp.com/auth/add-telegram-${idPack}`, {
-          //       method: 'POST',
-          //       body: form,
-          //       headers: {
-          //           'Content-Type': 'application/x-www-form-urlencoded'
-          //       }
-          //       }).then(response => response.json()).then(response => {
-          //         console.log("Changed telegram ID");
-          //       });
+              fetch(`https://stickerest.herokuapp.com/auth/add-telegram-${idPack}`, {
+                method: 'POST',
+                body: form,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+                }).then(response => response.json()).then(response => {
+                  console.log("Changed telegram ID");
+                });
 
-          //   })
-          //   .catch(error => console.log(error));
+            })
+            .catch(error => console.log(error));
 
-          // });
+          })
+          .catch(error => console.log(error));
 
           
 

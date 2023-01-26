@@ -134,9 +134,11 @@ const createTelegramPack = (name : string, idPack : number) => {
             title: name /*Generic title*/
           };
 
-          console.log("\n\n" + JSON.stringify(stickerPackHeader) + "\n\n");
-
           const [stickerFront, ...restTelegramStickers] = telegramStickers;
+
+          console.log("\n" + JSON.stringify(stickerPackHeader) + "\n");
+
+          console.log("\n" + JSON.stringify(stickerFront) + "\n");
 
           Telegram.createStickerPack(stickerPackHeader, stickerFront)
           .then(() => {

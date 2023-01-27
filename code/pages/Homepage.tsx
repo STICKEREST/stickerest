@@ -10,6 +10,7 @@ import { Sticker } from '../core/types';
 
 
 const HomePageSection = ({title, linkData, carousel} : {title: string, linkData: string, carousel: (stickers: Sticker[]) => React.ReactNode}) => {
+ 
   const [queriedStickers, setQueriedStickers] = React.useState<Sticker[]>([]);
   //it's always updated (every 8 seconds) because there could be also new additions of sticker packs and we
   //may want to see them. For example: create a pack and directly search for it on the store!
@@ -25,7 +26,7 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
         .catch(error => console.log(error));
     }, 8000);
     return () => clearInterval(interval);
-  }, []);
+  }, [linkData]);
   return (
     <View>
     <Text style={styles.header}>{title}</Text>

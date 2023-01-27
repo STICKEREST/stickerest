@@ -115,7 +115,7 @@ export const SingleSticker = () => {
   // Callback function to import stickers into telegram
   const importToTelegram = React.useCallback(() => {
     // TODO: Add sticker name here
-    Telegram.importPack('example_one_by_StickerestBot');
+    Telegram.importPack(sticker.telegram_name);
   }, []);
   // Used for background image
   const windowWidth = Dimensions.get('window').width;
@@ -130,8 +130,11 @@ export const SingleSticker = () => {
           <View style={styles.center}>
             <StickerPackContainer stickerInfo={sticker} />
             <View style={[styles.flexColumn, styles.marginTop]} >
-              <ImportButton text={"Import to Whatsapp"} onPress={() => {}} />
-              <ImportButton text={"Import to Telegram"} onPress={importToTelegram} />
+              {
+                sticker.telegram_name !== undefined && sticker.telegram_name !== "" && sticker.telegram_name !== null
+                ? <ImportButton text={"Import to Telegram"} onPress={importToTelegram} /> : <></>
+              }
+              
             </View>
             <View style={[styles.flexRow, styles.marginTop, {height: windowHeight/2}]} >
             {

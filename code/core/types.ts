@@ -6,7 +6,8 @@ export interface Sticker {
     logo : string, 
     Designer : string,
     dt_upload : string,
-    n_stickers : number
+    n_stickers : number,
+    telegram_name : string
 }
 
 export interface StickerImage {

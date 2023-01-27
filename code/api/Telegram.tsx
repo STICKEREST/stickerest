@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Alert, Button, Linking, View, TextInput } from "react-native";
 
-import { TELEGRAM_API_KEY } from "@env";
+// import { TELEGRAM_API_KEY } from "@env";
 
 // Interface for sticker pack object
 export interface StickerPack {
@@ -40,6 +40,7 @@ export const importPack = async (packName: string): Promise<void> => {
 
 // Helper function to fetch something from the Telegram api.
 export const fetchApi = async (method: string): Promise<any> => {
+	const TELEGRAM_API_KEY : string = "5761953881:AAHskbztZWPSX4KBX0KnnBCYze_qepI2ekI";
   return fetch('https://api.telegram.org/bot' + TELEGRAM_API_KEY + '/' + method)
     .then(response => response.json())
     .then(json => {

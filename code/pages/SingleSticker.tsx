@@ -113,10 +113,9 @@ export const SingleSticker = () => {
       .then((result) => setStickerImage(result.slice(1)));
   }, []);
   // Callback function to import stickers into telegram
-  const importToTelegram = React.useCallback(() => {
-    // TODO: Add sticker name here
+  const importToTelegram = () => {
     Telegram.importPack(sticker.telegram_name);
-  }, []);
+  }
   // Used for background image
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
@@ -136,7 +135,7 @@ export const SingleSticker = () => {
               }
               
             </View>
-            <View style={[styles.flexRow, styles.marginTop, {height: windowHeight/2}]} >
+            <View style={[styles.flexRow, styles.marginTop,  {height: windowHeight/2, paddingLeft: windowWidth/50}]} >
             {
               stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
             }

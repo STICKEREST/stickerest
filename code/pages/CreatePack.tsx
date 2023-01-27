@@ -204,7 +204,7 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
       <Text style={styles.textHeader3}>Tags</Text>
       <TagInput setTags={setTags} tags={tags}/>
       <Text style={styles.textHeader3}>Stickers</Text>
-      <View style={[styles.centerContent, {height: windowHeight*0.225, paddingLeft: windowWidth/25}]}>
+      <View style={[styles.centerContent, {height: windowHeight*0.225, paddingLeft: windowWidth/50}]}>
         <ImageImport imageSource={imageSource} setImageSource={setImageSource} />
       </View>
       <View style={styles.center} >

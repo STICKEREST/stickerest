@@ -1,10 +1,10 @@
 import { User } from "../types";
 
-export const prepareCredentials = ( nickname : string, telegramId : string) : string => {
+export const prepareCredentials = ( nickname : string, telegramId : number) : string => {
     nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
-    telegramId = encodeURIComponent("telegram") + "=" + encodeURIComponent(telegramId);
+    const tel : string = encodeURIComponent("telegram") + "=" + encodeURIComponent(telegramId);
 
-    return (nickname + "&" + telegramId);
+    return (nickname + "&" + tel);
 }
 
 
@@ -42,9 +42,9 @@ export const getData = async (): Promise<User> => {
         return {
             email : result[0].email,
             nickname : result[0].nickname,
-            telegram : result[0].telegram
+            telegram : (Number.isNaN(+result[0].telegram) ? 0 : +result[0].telegram)
         }
 
     })
-    .catch(error => {console.log(error); return { email : "", nickname : "", telegram : ""}})
+    .catch(error => {console.log(error); return { email : "", nickname : "", telegram : 0}})
 }

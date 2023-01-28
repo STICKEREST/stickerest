@@ -47,8 +47,6 @@ const updateUI = (form : string) => {
 
 }
 
-// TODO: Update the id as well
-//TODO : update this attempt as the others
 const attemptUpdate = (nickname: string, telegramId : number): void => {
   if(validateCredentials(nickname) && typeof telegramId === "number") {
     const form : string = prepareCredentials(nickname, telegramId);
@@ -58,7 +56,7 @@ const attemptUpdate = (nickname: string, telegramId : number): void => {
   }
 }
 
-const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {email : string, setEmail : any, nickname : string, setNickname : any, setTelegramId : any}) => {
+const TextFields = ({email, setEmail, nickname, setNickname, telegramId, setTelegramId} : {email : string, setEmail : any, nickname : string, setNickname : any, telegramId : number, setTelegramId : any}) => {
 
     React.useEffect(() => {
 
@@ -71,16 +69,32 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
         console.log(result);
       })
 
-    }, [])
+    }, []);
+
+    const processTelegramId = (text : string) => {
+      if(Number.isNaN(+text)) 
+        setTelegramId(0); 
+      else
+        setTelegramId(+text);
+    }
+
+    const messageFieldHelp = "This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.";
 
     return (
-        <SafeAreaView>
+        <>
+          <Text>Personal information</Text>
             <View style={[styles.center, userProfilePageStyle.inputContainer]}>
                 <FieldComponent name={nickname} placeholder={null} setName={setNickname} picture={"person-outline"} hide={false}/>
                 <FieldComponent name={email} placeholder={null} setName={setEmail} picture={"mail-outline"} hide={false} disabled={true}/>
             </View>
-        </SafeAreaView>
-    )
+          <Text>Stickers upload</Text>
+            <View style={[styles.center, userProfilePageStyle.inputContainer]} >
+                <FieldWithHelp name={telegramId.toString()} setName={processTelegramId} hide={false} placeholder={'Telegram id'} 
+                picture={'paper-plane'} message={messageFieldHelp} />
+            </View>
+        </>
+    );
+
 }
 
 const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : number}) => {
@@ -96,15 +110,6 @@ export default function UserProfilePage() {
     const [nickname, setNickname] = React.useState<string>("nickname");
     const [telegramId, setTelegramId] = React.useState<number>(0);
 
-    const processTelegramId = (text : string) => {
-      if(Number.isNaN(+text)) 
-        setTelegramId(0); 
-      else
-        setTelegramId(+text);
-    }
-    
-    const messageFieldHelp = "";
-
     return (
         <View style={styles.center}>
             <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
@@ -112,13 +117,7 @@ export default function UserProfilePage() {
                     <Text style={[styles.textHeader1, stylesDimension.paddingHeight]}>Your Profile</Text>
                 </View>
                 <View style={[styles.absolutePosition, stylesDimension.marginHeight003]}>
-                    <Text>Personal information</Text>
-                    <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} setTelegramId={setTelegramId} />
-                    <Text>Stickers upload</Text>
-                    <View style={[styles.center, userProfilePageStyle.inputContainer]} >
-                        <FieldWithHelp name={telegramId.toString()} setName={processTelegramId} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} 
-                        message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
-                    </View>
+                    <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} telegramId={telegramId} setTelegramId={setTelegramId} />
                     <ButtonUpdate nickname={nickname} telegramId={telegramId}/>
                 </View>
             </ImageBackground>

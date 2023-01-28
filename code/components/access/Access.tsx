@@ -87,13 +87,13 @@ export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabl
   );
 }
 
-  export const Separator = () => {
-    return(
-        <View style={styleDimennsion.separatorSize}>
-            <Image source={ImagesAssets.lines} style={styleDimennsion.imageSeparatorSize}/>
-        </View>
-    );
-  }
+export const Separator = () => {
+  return(
+      <View style={styleDimennsion.separatorSize}>
+          <Image source={ImagesAssets.lines} style={styleDimennsion.imageSeparatorSize}/>
+      </View>
+  );
+}
 
   export const AlternativeAccessAction = ({text, action, onActionPress } : {text : string, action : string, onActionPress :any}) => {
     return (

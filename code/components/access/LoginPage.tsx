@@ -70,14 +70,14 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
         setLoggedIn(true);
         console.log("User is now logged in");
       } catch(error) {
-        Alert.alert("Error", error.message);
+        Alert.alert("Error", error.message);  
       }
     }
     attempt();
   }, [email, password]);
 
   const navigation = useNavigation();
-  
+
   return (
     <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>

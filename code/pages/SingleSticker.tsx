@@ -163,7 +163,7 @@ export const SingleSticker = () => {
           </> :
           <View style={[styles.center, {marginTop: windowHeight / 8}]} >
             <Fold color="#8D08F5" size={48} />
-            <Text style= {createPackStyle.textUploading}>Uploading...</Text>
+            <Text style= {createPackStyle.textUploading}>Downloading...</Text>
           </View>
 
         }

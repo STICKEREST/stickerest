@@ -60,6 +60,7 @@ const ButtonLogin = ({loginFunction} : {loginFunction: () => void}) => {
 export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
   const attemptLogin = React.useCallback(() => {
     async function attempt() {
       try {
@@ -74,7 +75,9 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
     }
     attempt();
   }, [email, password]);
+
   const navigation = useNavigation();
+  
   return (
     <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>

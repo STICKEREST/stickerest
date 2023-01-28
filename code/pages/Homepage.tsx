@@ -5,7 +5,7 @@ import { homepageStyle } from './../styles/Homepage';
 import { styles } from '../styles/Styles';
 
 import { SearchBar } from '../components/SearchBar';
-import { SmallStickerCarousel, BigStickerCarousel } from '../components/StickerCarousel';
+import { SmallStickerCarousel, BigStickerCarousel } from '../components/general/StickerCarousel';
 
 import { Sticker } from '../core/types';
 

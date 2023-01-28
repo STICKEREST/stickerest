@@ -15,6 +15,7 @@ import { StickerImage, User } from '../core/types';
 
 import * as Telegram from '../api/Telegram';
 import { textChangeRangeIsUnchanged } from 'typescript';
+import { UploadingAnimation } from '../components/general/GeneralComponents';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -207,16 +208,6 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
 }
 
 /**
- * Component shown when uploading a sticker
- */
-const UploadingAnimation = () => (
-  <View style={[styles.center, {marginTop: windowHeight / 8}]} >
-    <Fold color="#8D08F5" size={48} />
-    <Text style= {createPackStyle.textUploading}>Uploading...</Text>
-  </View>
-);
-
-/**
  * CreatePack page compnonent
  */
 export default function CreatePack() {
@@ -226,7 +217,7 @@ export default function CreatePack() {
     <View>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
       {
-        noUploading ? <MainCreatePackPage setNoUploading={setNoUploading} /> : <UploadingAnimation/>
+        noUploading ? <MainCreatePackPage setNoUploading={setNoUploading} /> : <UploadingAnimation message = "Uploading..."/>
       }
     </View>
   );

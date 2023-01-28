@@ -12,8 +12,6 @@ import { getData, prepareCredentials, update } from '../../core/access/profile';
 import { validateCredentials } from '../../core/access/accessUtilities';
 import { User } from '../../core/types';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
-
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -97,6 +95,16 @@ export default function UserProfilePage() {
     const [email, setEmail] = React.useState<string>("name.surname@gmail.com");
     const [nickname, setNickname] = React.useState<string>("nickname");
     const [telegramId, setTelegramId] = React.useState<number>(0);
+
+    const processTelegramId = (text : string) => {
+      if(Number.isNaN(+text)) 
+        setTelegramId(0); 
+      else
+        setTelegramId(+text);
+    }
+    
+    const messageFieldHelp = "";
+
     return (
         <View style={styles.center}>
             <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
@@ -108,12 +116,8 @@ export default function UserProfilePage() {
                     <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} setTelegramId={setTelegramId} />
                     <Text>Stickers upload</Text>
                     <View style={[styles.center, userProfilePageStyle.inputContainer]} >
-                        <FieldWithHelp name={telegramId.toString()} setName={(text : string) => {
-                          if(Number.isNaN(+text)) 
-                            setTelegramId(0); 
-                          else
-                            setTelegramId(+text); 
-                          }} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
+                        <FieldWithHelp name={telegramId.toString()} setName={processTelegramId} hide={false} placeholder={'Telegram id'} picture={'paper-plane'} 
+                        message={'This is your unique Telegram Id. It is used to publish sticker packs on Telegram when you upload them on Stickerest. Send a message to @userinfobot to know your id.'} />
                     </View>
                     <ButtonUpdate nickname={nickname} telegramId={telegramId}/>
                 </View>

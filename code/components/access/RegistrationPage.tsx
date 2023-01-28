@@ -65,6 +65,7 @@ export default function RegistrationPage() {
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  
   const attemptSignUp = React.useCallback(() => {
     async function attempt() {
       try {

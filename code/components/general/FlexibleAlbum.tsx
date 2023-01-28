@@ -1,11 +1,11 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 
-import { SmallPackBox } from "./StickerPack";
+import { SmallPackBox } from "../StickerPack";
 
-import { styles } from "../styles/Styles";
+import { styles } from "../../styles/Styles";
 
-import { StickerImage } from "../core/types";
+import { StickerImage } from "../../core/types";
 
 import { useNavigation } from "@react-navigation/native";
 

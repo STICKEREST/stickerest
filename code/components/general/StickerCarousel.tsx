@@ -3,12 +3,12 @@ import { View, FlatList, Pressable } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { SmallStickerPack, BigStickerPack } from '../components/StickerPack';
+import { SmallStickerPack, BigStickerPack } from '../../components/StickerPack';
 
-import { stickerCarouselStyle } from '../styles/StickerCarousel';
-import { styles } from '../styles/Styles';
+import { stickerCarouselStyle } from '../../styles/StickerCarousel';
+import { styles } from '../../styles/Styles';
 
-import { Sticker } from '../core/types';
+import { Sticker } from '../../core/types';
 
 
 /**

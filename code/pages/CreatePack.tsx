@@ -49,7 +49,7 @@ const handleUploadPack = (name: string, tags: string[], images: string[], setNoU
     console.log(formdata);
 
     setNoUploading(false);
-
+    console.log("Uploading sticker pack...");
     fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
       method: 'POST',
       body: formdata,//post body

@@ -16,6 +16,7 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
   //it's always updated (every 8 seconds) because there could be also new additions of sticker packs and we
   //may want to see them. For example: create a pack and directly search for it on the store!
   React.useEffect(() => {
+    console.log("Getting search results...");
     fetch(linkData)
       .then(response => response.json())
       .then(result => setQueriedStickers(result))

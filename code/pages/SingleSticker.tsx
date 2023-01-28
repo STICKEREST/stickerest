@@ -51,6 +51,7 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
   const [currentState, setState] = React.useState<boolean>(false);
   // Get current state from database
   React.useEffect (() => {
+    console.log("Gettings current sticker state...");
     fetch(`https://stickerest.herokuapp.com/auth/is-${state}-${id}`)
       .then((result) => result.json())
       .then((result) => setState(result))
@@ -58,6 +59,7 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
   }, []);
   // Function called when changing the state
   const changeState = React.useCallback(() => {
+    console.log("Updating sticker state...");
     fetch(`https://stickerest.herokuapp.com/auth/${currentState ? 'remove' : 'add'}-${state}-${id}`)
       .then(result => console.log(result))
       .then(() => setState(!currentState))
@@ -112,7 +114,7 @@ export const SingleSticker = () => {
 
   const loadStickerPage = () => {
     setNoDownloading(false);
-    
+    console.log("Loading sticker page...");
     fetch(`https://stickerest.herokuapp.com/stickers/${id}`)
       .then((result) => result.json())
       .then((result) => setSticker(result[0]));

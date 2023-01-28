@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { View, Text } from 'react-native';
-import { FlexibleAlbum, FlexibleAlbumAddable } from './FlexibleAlbum';
+import { FlexibleAlbum, FlexibleAlbumAddable } from './general/FlexibleAlbum';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { StickerImage } from '../core/types';

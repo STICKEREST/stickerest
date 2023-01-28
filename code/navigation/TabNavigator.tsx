@@ -6,7 +6,7 @@ import { ImagesAssets } from '../assets/img/ImagesAssets';
 import Homepage from '../pages/Homepage';
 import DiscoveryPage from '../pages/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../pages/CreatePack';
+import CreatePack from '../components/stickers/CreatePack';
 import Favorites from '../pages/FavoritesPage';
 
 import { navbarStyle } from '../styles/Navbar';
@@ -24,7 +24,7 @@ export const TabNavigator = () => (
     <Tabs.Screen name="Homepage" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
     <Tabs.Screen name="Favourites" component={Favorites} initialParams={{icon: ImagesAssets.iconStar}} />
     <Tabs.Screen name="CreatePack" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
-    <Tabs.Screen name="DiscoveryPage" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconSettings}} />
+    <Tabs.Screen name="DiscoveryPage" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconDiscovery}} />
     <Tabs.Screen name="UserProfilePage" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />
   </Tabs.Navigator>
 );

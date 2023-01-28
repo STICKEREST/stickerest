@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Dimensions, ImageBackground } from 'react-native';
 
-import { FlexibleAlbumRedirect } from '../components/FlexibleAlbum';
+import { FlexibleAlbumRedirect } from '../components/general/FlexibleAlbum';
 import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import { styles } from '../styles/Styles';

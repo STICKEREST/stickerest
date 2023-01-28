@@ -11,13 +11,14 @@ import { createPackStyle } from "../styles/CreatePack";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../core/types';
-import { FlexibleAlbum } from '../components/FlexibleAlbum';
+import { FlexibleAlbum } from '../components/general/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 import { useRoute } from '@react-navigation/native';
 import { Fold } from 'react-native-animated-spinkit';
 
 import * as Telegram from '../api/Telegram';
+import { UploadingAnimation } from '../components/general/GeneralComponents';
 
 
 //TODO: metti questo in core
@@ -69,7 +70,9 @@ const ButtonState = ({id, state, icon, color}: {id: number, state: "favorites"|"
   return (
     <View>
       <TouchableOpacity onPress={changeState}>
-        <Ionicons name={icon} size={40} color={currentState ? color : '#9E9E9E'} />
+        <Ionicons 
+        //@ts-ignore
+        name={icon} size={40} color={currentState ? color : '#9E9E9E'} />
       </TouchableOpacity>
     </View>
   );
@@ -163,10 +166,7 @@ export const SingleSticker = () => {
             )
           }
           </> :
-          <View style={[styles.center, {marginTop: windowHeight / 8}]} >
-            <Fold color="#8D08F5" size={48} />
-            <Text style= {createPackStyle.textUploading}>Downloading...</Text>
-          </View>
+          <UploadingAnimation message = "Downloading..." />
 
         }
       

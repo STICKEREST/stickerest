@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
-import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
+import { Dimensions, ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
+import { Text, View, Alert } from 'react-native';
 
 import { styles } from "../../styles/Styles";
 import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
@@ -12,6 +12,10 @@ import { validateCredentials } from '../../core/access/accessUtilities';
 import { prepareCredentials, registration } from '../../core/access/registration';
 
 import { useNavigation } from '@react-navigation/native';
+
+/**
+ * This class takes care of the UI implementation of the Signup
+ */
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

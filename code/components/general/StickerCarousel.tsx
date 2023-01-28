@@ -3,17 +3,16 @@ import { View, FlatList, Pressable } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { SmallStickerPack, BigStickerPack } from '../components/StickerPack';
+import { SmallStickerPack, BigStickerPack } from '../../components/StickerPack';
 
-import { stickerCarouselStyle } from '../styles/StickerCarousel';
-import { styles } from '../styles/Styles';
+import { stickerCarouselStyle } from '../../styles/StickerCarousel';
+import { styles } from '../../styles/Styles';
 
-import { Sticker } from '../core/types';
+import { Sticker } from '../../core/types';
 
 
 /**
- * Component representing a generic sticker carousel.
- * Only used in this file.
+ * Component representing a generic sticker carousel, horizontal sliding
  */
 const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFunction: (sticker: Sticker) => React.ReactNode}) => {
   const itemSeparator = () => <View style={stickerCarouselStyle.separator} />
@@ -39,8 +38,7 @@ const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFun
 }
 
 /**
- * Component representing a carousel of small sticker packs.
- * Used in home page sections.
+ * Component that using the StickerCarousel allows small sticker packs to be displayed
  */
 export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (
@@ -52,8 +50,7 @@ export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
 }
 
 /**
- * Component representing a carousel of big sticker packs.
- * Used at the top of the home page.
+ * Component that using the StickerCarousel allows big sticker packs to be displayed
  */
 export const BigStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
   const item = (sticker: Sticker) => (

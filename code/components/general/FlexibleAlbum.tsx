@@ -1,17 +1,17 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 
-import { SmallPackBox } from "./StickerPack";
+import { SmallPackBox } from "../StickerPack";
 
-import { styles } from "../styles/Styles";
+import { styles } from "../../styles/Styles";
 
-import { StickerImage } from "../core/types";
+import { StickerImage } from "../../core/types";
 
 import { useNavigation } from "@react-navigation/native";
 
 
 /**
- * Component used for stickers that can be touched
+ * Component represting touchable stickers that leads to some action
  */
 const TouchableSticker = ({img, onPress}: {img: string, onPress: () => void}) => (
   <TouchableOpacity style={styles.paddingSmall} key={'Select Image'} onPress={onPress} >
@@ -38,7 +38,7 @@ const Album = ({stickers, onPressAggregation = null }: {stickers: StickerImage[]
 );
 
 /**
- * Component used in the single sticker page to display the sticker album
+ * Component that implements the Album in a scrollable way, such that it is possible in a window to see an album of sticker
  */
 export const FlexibleAlbum = ({stickers}: {stickers: StickerImage[]}) => (
   <ScrollView>
@@ -48,6 +48,10 @@ export const FlexibleAlbum = ({stickers}: {stickers: StickerImage[]}) => (
   </ScrollView>
 );
 
+/**
+ * Component that not only acts as a FlexibleAlbum but also has a button for adding other stickers and each stickers are romevable
+ * by getting touched
+ */
 export const FlexibleAlbumAddable = ({stickers, addPress, removePress}: {stickers: StickerImage[], addPress: any, removePress: any}) => (
   <ScrollView>
     <View style={styles.flexRowWrap} >
@@ -57,6 +61,10 @@ export const FlexibleAlbumAddable = ({stickers, addPress, removePress}: {sticker
   </ScrollView>
 );
 
+/**
+ * Component that not only acts as a FlexibleAlbum but also allows a sticker to get touched and to redirect to the page
+ * of itself, in which there are all its details
+ */
 export const FlexibleAlbumRedirect = ({stickers}: {stickers: StickerImage[]}) => {
   const navigation = useNavigation();
   const openStickerPack = (id : number) => {

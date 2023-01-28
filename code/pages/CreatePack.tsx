@@ -9,14 +9,12 @@ import { ImagesAssets } from '../assets/ImagesAssets';
 import { TagInput } from '../components/TagInput';
 import { ImageImport } from '../components/ImageImport';
 
-import { Fold, Grid, Plane } from 'react-native-animated-spinkit';
+import { Fold } from 'react-native-animated-spinkit';
 import { getData } from '../core/access/profile';
 import { StickerImage, User } from '../core/types';
 
 import * as Telegram from '../api/Telegram';
 import { textChangeRangeIsUnchanged } from 'typescript';
-
-// import * as Telegram from '../../../api/Telegram';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -24,15 +22,7 @@ const windowHeight = Dimensions.get('window').height;
 // TODO: Indentation here needs to be fixed
 
 const handleUploadPack = (name: string, tags: string[], images: string[], setNoUploading: any) => {
-  // TODO: Upload pack on Telegram
-  // Telegram.createStickerPack({
-  //   author: 0 /*User id*/,
-  //   name: name /*Must be unique*/,
-  //   title: "" /*Generic title*/
-  // }, {
-  //   url: "" /*Sticker image url*/,
-  //   emoji: "😀"
-  // });
+
   let formdata = new FormData();
 
   if (name === "") {

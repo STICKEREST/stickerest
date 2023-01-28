@@ -6,19 +6,23 @@ import { singleStickerStyle } from "../styles/SingleSticker";
 import { styles } from "../styles/Styles";
 import { ImagesAssets } from '../assets/ImagesAssets';
 
+//TODO: rimuovilo
+import { createPackStyle } from "../styles/CreatePack";
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../core/types';
 import { FlexibleAlbum } from '../components/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';
 
 import { useRoute } from '@react-navigation/native';
+import { Fold } from 'react-native-animated-spinkit';
 
 import * as Telegram from '../api/Telegram';
 
 
 //TODO: metti questo in core
-const addDownload = (id : number) => {
-  fetch(`https://stickerest.herokuapp.com/stickers/download-${id}`)
+const addDownload = async (id : number) : Promise<void> => {
+  await fetch(`https://stickerest.herokuapp.com/stickers/download-${id}`)
     .then((result) => result.json())
     .then((result) => console.log(result));
 }
@@ -104,17 +108,25 @@ export const SingleSticker = () => {
   // Get currently selected sticker from database
   const [sticker, setSticker] = React.useState<Sticker>();
   const [stickerImage, setStickerImage] = React.useState<StickerImage[]>();
-  React.useEffect(() => {
+  const [noDownloading, setNoDownloading] = React.useState<boolean>(true);
+
+  const loadStickerPage = () => {
+    setNoDownloading(false);
+    
     fetch(`https://stickerest.herokuapp.com/stickers/${id}`)
       .then((result) => result.json())
       .then((result) => setSticker(result[0]));
     fetch(`https://stickerest.herokuapp.com/stickers/images-${id}`)
       .then((result) => result.json())
-      .then((result) => setStickerImage(result.slice(1)));
-  }, []);
+      .then((result) => {setStickerImage(result.slice(1)); setNoDownloading(true);});
+  }
+
+  React.useEffect(loadStickerPage, []);
   // Callback function to import stickers into telegram
   const importToTelegram = () => {
     Telegram.importPack(sticker.telegram_name);
+    addDownload(id)
+    .then(() => loadStickerPage());
   }
   // Used for background image
   const windowWidth = Dimensions.get('window').width;
@@ -124,27 +136,38 @@ export const SingleSticker = () => {
     <View>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}></ImageBackground>
       <View style={styles.marginTop}>
-      {
-        sticker !== undefined ? (
-          <View style={styles.center}>
-            <StickerPackContainer stickerInfo={sticker} />
-            <View style={[styles.flexColumn, styles.marginTop]} >
-              {
-                sticker.telegram_name !== undefined && sticker.telegram_name !== "" && sticker.telegram_name !== null
-                ? <ImportButton text={"Import to Telegram"} onPress={importToTelegram} /> : <></>
-              }
-              
-            </View>
-            <View style={[styles.flexRow, styles.marginTop,  {height: windowHeight/2, paddingLeft: windowWidth/50}]} >
-            {
-              stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
-            }
-            </View>
+        {
+          noDownloading ? 
+          <>
+          {
+            sticker !== undefined ? (
+              <View style={styles.center}>
+                <StickerPackContainer stickerInfo={sticker} />
+                <View style={[styles.flexColumn, styles.marginTop]} >
+                  {
+                    sticker.telegram_name !== undefined && sticker.telegram_name !== "" && sticker.telegram_name !== null
+                    ? <ImportButton text={"Import to Telegram"} onPress={importToTelegram} /> : <></>
+                  }
+                  
+                </View>
+                <View style={[styles.flexRow, styles.marginTop,  {height: windowHeight/2, paddingLeft: windowWidth/50}]} >
+                {
+                  stickerImage !== undefined ? <FlexibleAlbum stickers={stickerImage}/> : <Text> A problem occurred while loading the sticker</Text>
+                }
+                </View>
+              </View>
+            ) : (
+              <Text> A problem occurred while loading the sticker</Text>
+            )
+          }
+          </> :
+          <View style={[styles.center, {marginTop: windowHeight / 8}]} >
+            <Fold color="#8D08F5" size={48} />
+            <Text style= {createPackStyle.textUploading}>Uploading...</Text>
           </View>
-        ) : (
-          <Text> A problem occurred while loading the sticker</Text>
-        )
-      }
+
+        }
+      
       </View>
     </View>
   );

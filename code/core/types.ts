@@ -6,7 +6,8 @@ export interface Sticker {
     logo : string, 
     Designer : string,
     dt_upload : string,
-    n_stickers : number
+    n_stickers : number,
+    telegram_name : string
 }
 
 export interface StickerImage {
@@ -23,9 +24,12 @@ export interface SimpleStickerPack {
 
 export interface User {
     email : string,
-    nickname : string
+    nickname : string,
+    telegram : number
 }
 
 //{ cancelled: false, type: 'image', uri, width, height, exif, base64 }
 
-// export interface 
+export interface ImageType { 
+    
+}

@@ -5,7 +5,7 @@ import { View, Alert } from 'react-native';
 import { styles } from "./../../assets/style/styleLoginRegistrationPage";
 
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { ImagesAssets } from '../../assets/ImagesAssets';
+import { ImagesAssets } from '../../assets/img/ImagesAssets';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

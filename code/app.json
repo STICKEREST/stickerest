@@ -4,10 +4,10 @@
     "slug": "code",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/img/LogoStickerest.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/img/LogoStickerest.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/img/LogoStickerest.png",
         "backgroundColor": "#FFFFFF"
       }
     },
@@ -37,7 +37,7 @@
       ]
     },    
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/img/LogoStickerest.png"
     }
   }
 }

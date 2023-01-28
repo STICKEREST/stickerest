@@ -1,9 +1,10 @@
 import { User } from "../types";
 
-export const prepareCredentials = ( nickname : string) : string => {
+export const prepareCredentials = ( nickname : string, telegramId : number) : string => {
     nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
+    const tel : string = encodeURIComponent("telegram") + "=" + encodeURIComponent(telegramId);
 
-    return (nickname);
+    return (nickname + "&" + tel);
 }
 
 
@@ -28,7 +29,8 @@ export const update = async (form: string): Promise<boolean> => {
         }).catch(error => {
             console.log("Error: " + error);
             return false;
-        });
+        })
+        .catch(error => {console.log(error); return false;});
 }
 
 export const getData = async (): Promise<User> => {
@@ -39,8 +41,10 @@ export const getData = async (): Promise<User> => {
 
         return {
             email : result[0].email,
-            nickname : result[0].nickname
+            nickname : result[0].nickname,
+            telegram : (Number.isNaN(+result[0].telegram) ? 0 : +result[0].telegram)
         }
 
     })
+    .catch(error => {console.log(error); return { email : "", nickname : "", telegram : 0}})
 }

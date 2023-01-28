@@ -4,8 +4,7 @@ import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'r
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
-
+import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 import { FieldComponent, ButtonToSign, Separator, AlternativeAccessAction } from './Access';
 
 import { validateCredentials } from '../../core/access/accessUtilities';
@@ -59,7 +58,9 @@ const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) 
   )
 }
 
-export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
+export default function RegistrationPage() {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -69,16 +70,15 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
         validateCredentials(email, nickname, password);
         const form = prepareCredentials(email, nickname, password);
         await registration(form);
-        setLoggedIn(true);
-        console.log("User is now registered and logged in");
-      } catch(error: Error) {
+        navigation.navigate("LoginPage");
+      } catch(error: any) {
         Alert.alert("Error", error.message);
       }
     }
 
     attempt();
   }, [email, nickname, password]);
-  const navigation = useNavigation();
+  
   return (
     <View style={styles.container}>
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>

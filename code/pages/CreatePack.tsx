@@ -16,6 +16,8 @@ import { StickerImage, User } from '../core/types';
 import * as Telegram from '../api/Telegram';
 import { textChangeRangeIsUnchanged } from 'typescript';
 import { UploadingAnimation } from '../components/general/GeneralComponents';
+import { FieldComponent } from '../components/access/Access';
+import { userProfilePageStyle } from '../styles/UserProfilePage';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -190,11 +192,12 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
   };
   return (
     <View style={styles.marginTop} >
-      <Text style={styles.textHeader3}>Add your sticker pack</Text>
-      {/* //TODO: change it using INput field from access */}
-      <TextInput style={createPackStyle.nameInput} onChangeText={setName} value={name} placeholder={"Add pack name"} />
+      <Text style={styles.textHeader3}>Add your sticker pack</Text> 
+      <View style={[styles.centerContent, {paddingLeft: windowWidth/50}]}>
+        <FieldComponent name={name} placeholder={"Add pack name"} setName={setName} hide={false}/>
+      </View>
       <Text style={styles.textHeader3}>Tags</Text>
-      <TagInput setTags={setTags} tags={tags}/>
+        <TagInput setTags={setTags} tags={tags}/>
       <Text style={styles.textHeader3}>Stickers</Text>
       <View style={[styles.centerContent, {height: windowHeight*0.225, paddingLeft: windowWidth/50}]}>
         <ImageImport imageSource={imageSource} setImageSource={setImageSource} />

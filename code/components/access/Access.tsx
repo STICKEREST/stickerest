@@ -43,7 +43,7 @@ const styleDimennsion = StyleSheet.create({
 });
 
 const yellow: string = "#fcf7d9";
-const gray: string = "#f1f1f1";
+const gray: string = "#e1e1e1";
 
 /**
  * Button with help icon with a help message

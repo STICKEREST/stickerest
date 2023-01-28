@@ -1,0 +1,243 @@
+import { getData } from "../access/profile";
+import { StickerImage, User } from "../types";
+import * as Telegram from '../../api/Telegram';
+
+
+export const prepareCredentials = (name: string, tags: string[], images: string[]) : FormData => {
+
+    let formdata : FormData = new FormData();
+
+    formdata.append("name", name);
+
+    for(let i = 0; i < tags.length; i++)
+      formdata.append("tag",tags[i]);
+
+    for(let i = 0; i < images.length; i++) {
+      const uri = images[i];
+      const name = uri.split('/').pop();
+      const match = /\.(\w+)$/.exec(name);
+      const type = match ? `image/${match[1]}` : `image`;
+      //@ts-ignore
+      formdata.append("image"+i, {uri: uri, name: name, type: type});
+    }
+
+    return formdata;
+}
+
+
+export const uploadPack = async (form: FormData, name : string): Promise<void> => {
+    
+    await fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
+        method: 'POST',
+        body: form,
+        headers: {//Header Defination
+            'Content-Type': 'multipart/form-data',
+        }
+    }).then(async response => {
+        
+        if (response.status === 200 || response.status === 201) {
+
+            try {
+                await response.json().then(
+                    async (answer) => await createTelegramPack(name, answer.ID)
+                );
+            } catch (error) {
+                throw new Error(error.message);
+            }
+
+        } else {
+            throw new Error("Something failed during the stickers upload");
+        }
+    })
+    .catch(error => {console.log(error); throw new Error(error.message);});
+}
+
+const prepareTelegramStickers = (stickers : StickerImage[]) : Telegram.Sticker[] =>{
+    return stickers.map((sticker : StickerImage) : Telegram.Sticker => 
+                { return {url: sticker.image_file, emoji: "😀"}; });
+}
+
+const prepareTelegramPackHeader = (idPack : number, name : string, userId : number) : Telegram.StickerPack => {
+
+    const telegramName : string = "stickerest_" + idPack + "_" + name.replace(/\s/g, '');
+      
+    const stickerPackHeader : Telegram.StickerPack = {
+        author: userId /*User id*/,
+        name: telegramName /*Must be unique*/,
+        title: name /*Generic title*/
+    };
+
+    return stickerPackHeader;
+}
+
+const uploadRestTelegramPack = async (idPack : number, telegramPackHeader : Telegram.StickerPack, restTelegramStickers : Telegram.Sticker[]) : Promise<void> => {
+
+    const promisesTelUpload = restTelegramStickers.map((telStick : Telegram.Sticker) => Telegram.addStickerToPack(telegramPackHeader, telStick));
+
+    await Promise.all(promisesTelUpload)
+    .then(async () : Promise<void> => {
+
+        const form : string = (encodeURIComponent("telegramName") + "=" + encodeURIComponent(telegramPackHeader.name));
+
+        await fetch(`https://stickerest.herokuapp.com/auth/add-telegram-${idPack}`, {
+            method: 'POST',
+            body: form,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            }).then(response => {
+                if (response.status !== 200 && response.status !== 201)
+                    throw new Error("Something went wrong while uploading stickers to Telegram");
+            });
+
+    })
+    .catch(error => {throw new Error(error.message)});
+}
+
+const createTelegramPack = async (name : string, idPack : number) : Promise<void> => {
+
+    await getData()
+        .then(async (result : User) : Promise<void> => {
+        
+        if(result.telegram === 0)
+            throw new Error("Telegram Id is missing");
+
+        const imagesQuery = `https://stickerest.herokuapp.com/stickers/images-${idPack}`;
+
+        await fetch(imagesQuery)
+            .then(response => response.json())
+            .then(async (response : StickerImage[]) : Promise<void> => {
+
+                const [stickerFront, ...restTelegramStickers] = prepareTelegramStickers(response);
+        
+                const telegramPackHeader : Telegram.StickerPack = prepareTelegramPackHeader(idPack, name, result.telegram);
+
+                await Telegram.createStickerPack(telegramPackHeader, stickerFront)
+                .then(async () : Promise<void> => {
+                    await uploadRestTelegramPack(idPack, telegramPackHeader, restTelegramStickers);
+                }).catch(error => {throw new Error(error.message)});
+
+            });
+    
+    }).catch(error => {throw new Error(error.message)});
+
+}
+
+// const createTelegramPack = (name : string, idPack : number) => {
+//     try {
+    
+//       getData()
+//         .then((result : User) => {
+          
+//           if(result.telegram === 0)
+//             throw new Error("Telegram Id is missing");
+  
+//           console.log("\n\n" + idPack + "\n\n");
+  
+//           const imagesQuery = `https://stickerest.herokuapp.com/stickers/images-${idPack}`;
+  
+//           fetch(imagesQuery)
+//           .then(response => { return response.json(); })
+//           .then((response ) => {
+  
+//             const telegramStickers : Telegram.Sticker[] = response.map((stickerAPI : StickerImage) : Telegram.Sticker => 
+//               { return {url: stickerAPI.image_file, emoji: "😀"}; }
+//             );
+  
+//             const telegramName : string = "stickerest_" + idPack + "_" + name.replace(/\s/g, '');
+  
+//             const stickerPackHeader : Telegram.StickerPack = {
+//               author: result.telegram /*User id*/,
+//               name: telegramName /*Must be unique*/,
+//               title: name /*Generic title*/
+//             };
+  
+//             const [stickerFront, ...restTelegramStickers] = telegramStickers;
+  
+//             console.log("\n" + JSON.stringify(stickerPackHeader) + "\n");
+  
+//             console.log("\n" + JSON.stringify(stickerFront) + "\n");
+  
+//             Telegram.createStickerPack(stickerPackHeader, stickerFront)
+//             .then(() => {
+  
+//               Promise.all(restTelegramStickers.map((telStick : Telegram.Sticker) => Telegram.addStickerToPack(stickerPackHeader, telStick)))
+//               .then(() => {
+  
+//                 const form : string = (encodeURIComponent("telegramName") + "=" + encodeURIComponent(telegramName));
+  
+//                 console.log(form);
+    
+//                 fetch(`https://stickerest.herokuapp.com/auth/add-telegram-${idPack}`, {
+//                   method: 'POST',
+//                   body: form,
+//                   headers: {
+//                       'Content-Type': 'application/x-www-form-urlencoded'
+//                   }
+//                   }).then(response => response.json()).then(response => {
+//                     console.log("Changed telegram ID");
+//                   });
+  
+//               })
+//               .catch(error => console.log(error));
+  
+//             })
+//             .catch(error => console.log(error));
+  
+            
+  
+//             //TODO: fare che aggiungo al DB il nick di telegram se no null
+//             // poi deve andare su single sticker e se non e' null apre questo stickerpack con il bottone
+//             // se no bottone non premibile
+  
+//           })
+  
+//       })
+//       .catch(error => console.log(error));
+  
+//     } catch (error) {
+//       console.log(error);
+//     }
+  
+//   }
+
+// fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
+//       method: 'POST',
+//       body: formdata,//post body
+//       headers: {//Header Defination
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     }).then((response) => {
+
+//         setNoUploading(true);
+
+//         if(response.status === 200 || response.status === 201) {
+
+//           console.log('Pack Uploaded Successfully');
+//           Alert.alert(
+//             "Uploaded!",
+//             "The Pack has been uploaded succesfully",
+//             [
+//               { text: "OK", onPress: () => console.log("OK Pressed") }
+//             ]
+//           );
+          
+//           response.json().then(
+//             (answer) => createTelegramPack(name, answer.ID)
+//           );
+          
+              
+
+//         } else {
+//           console.log('Something went wrong during the publication of the pack ' + "\n\n\n" + JSON.stringify(response));
+//             Alert.alert(
+//               "Error",
+//               "Something went wrong during the publication of the pack",
+//               [
+//                 { text: "OK", onPress: () => console.log("OK Pressed") }
+//               ]
+//             );
+//           }
+
+//       }) //TODO: unify catch with else error message
+//       .catch(error => {console.log(error); setNoUploading(true);});

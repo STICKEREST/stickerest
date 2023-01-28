@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { Alert, Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
 
-import { styles } from "../../assets/style/styleUserProfilePage";
+import { styles } from "../../styles/Styles";
+import { userProfilePageStyle } from '../../styles/UserProfilePage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
@@ -61,7 +62,7 @@ const attemptUpdate = (nickname: string, telegramId : number): void => {
 
 const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {email : string, setEmail : any, nickname : string, setNickname : any, setTelegramId : any}) => {
 
-    useEffect(() => {
+    React.useEffect(() => {
 
       getData()
       .then((result : User) => {
@@ -76,7 +77,7 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
 
     return (
         <SafeAreaView>
-            <View style={styles.input_container}>
+            <View style={[styles.center, userProfilePageStyle.inputContainer]}>
                 <FieldComponent name={nickname} placeholder={null} setName={setNickname} picture={"person-outline"} hide={false}/>
                 <FieldComponent name={email} placeholder={null} setName={setEmail} picture={"mail-outline"} hide={false} disabled={true}/>
             </View>
@@ -86,7 +87,7 @@ const TextFields = ({email, setEmail, nickname, setNickname, setTelegramId} : {e
 
 const ButtonUpdate = ({nickname, telegramId} : {nickname : string, telegramId : number}) => {
   return (
-    <View style={[styles.style_signInButton, stylesDimension.marginHeight007]}>
+    <View style={[userProfilePageStyle.signInButton, stylesDimension.marginHeight007]}>
       <ButtonToSign functionToExecute={() => attemptUpdate(nickname, telegramId)} nameOfButton="Save"/>
     </View>
   )
@@ -97,16 +98,16 @@ export default function UserProfilePage() {
     const [nickname, setNickname] = React.useState<string>("nickname");
     const [telegramId, setTelegramId] = React.useState<number>(0);
     return (
-        <View style={styles.container}>
+        <View style={styles.center}>
             <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
-                <View style={styles.viewYourProfile}>
-                    <Text style={[styles.textUserProfile, stylesDimension.paddingHeight]}>Your Profile</Text>
+                <View style={styles.center}>
+                    <Text style={[styles.textHeader1, stylesDimension.paddingHeight]}>Your Profile</Text>
                 </View>
-                <View style={[styles.text_view_login, stylesDimension.marginHeight003]}>
+                <View style={[styles.absolutePosition, stylesDimension.marginHeight003]}>
                     <Text>Personal information</Text>
                     <TextFields email={email} setEmail={setEmail} nickname={nickname} setNickname={setNickname} setTelegramId={setTelegramId} />
                     <Text>Stickers upload</Text>
-                    <View style={styles.input_container} >
+                    <View style={[styles.center, userProfilePageStyle.inputContainer]} >
                         <FieldWithHelp name={telegramId.toString()} setName={(text : string) => {
                           if(Number.isNaN(+text)) 
                             setTelegramId(0); 

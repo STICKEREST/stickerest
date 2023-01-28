@@ -2,7 +2,8 @@ import React from 'react'
 import { Dimensions, ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import { Text, View, Alert } from 'react-native';
 
-import { styles } from "../../assets/style/styleLoginRegistrationPage";
+import { styles } from "../../styles/Styles";
+import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
@@ -32,7 +33,7 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
 
   return (
       <SafeAreaView>
-          <View style={styles.input_container}>
+          <View style={[styles.center, styles.flexColumn, loginRegistrationPageStyle.inputContainer]}>
               <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"} hide={false}/>
               <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"} hide={true}/>
           </View>
@@ -42,7 +43,7 @@ const TextFields = ({email, password, setEmail, setPassword} : {email : string, 
 
 const Title = () => {
   return (
-    <Text style={[styles.textLogin, {paddingTop: windowHeight / 6}]}>
+    <Text style={[styles.textHeader1, {paddingTop: windowHeight / 6}]}>
       Log in to your Account
     </Text>
   )
@@ -50,7 +51,7 @@ const Title = () => {
 
 const ButtonLogin = ({loginFunction} : {loginFunction: () => void}) => {
   return (
-    <View style={[styles.style_signInButton, stylesDimension.dimensionHeight70]}>
+    <View style={[loginRegistrationPageStyle.signInButton, stylesDimension.dimensionHeight70]}>
       <ButtonToSign functionToExecute={loginFunction} nameOfButton="Sign in"/>
     </View>
   )
@@ -75,9 +76,9 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
   }, [email, password]);
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
-        <View style={styles.text_view_login}>
+        <View style={styles.absolutePosition}>
           <Title />
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} />
           <ButtonLogin loginFunction={attemptLogin} />

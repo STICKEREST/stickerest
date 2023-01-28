@@ -2,7 +2,8 @@ import React, {useState} from 'react'
 import { Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
 import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'react-native';
 
-import { styles } from "../../assets/style/styleLoginRegistrationPage";
+import { styles } from "../../styles/Styles";
+import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 import { FieldComponent, ButtonToSign, Separator, AlternativeAccessAction } from './Access';
@@ -33,7 +34,7 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
 
   return (
       <SafeAreaView>
-          <View style={[styles.input_container, {flexDirection:"column"}]}>
+          <View style={[styles.center, styles.flexColumn, loginRegistrationPageStyle.inputContainer]} >
               <FieldComponent name={email} placeholder={"email"} setName={setEmail} picture={"mail-outline"} hide={false} />
               <FieldComponent name={nickname} placeholder={"nickname"} setName={setNickname} picture={"person-outline"} hide={false} />
               <FieldComponent name={password} placeholder={"password"} setName={setPassword} picture={"lock-closed-outline"} hide={true} />
@@ -44,7 +45,7 @@ const TextFields = ({email, password, setEmail, setPassword, nickname, setNickna
 
 const Title = () => {
   return (
-    <Text style={[styles.textLogin, stylesDimension.titleCss]}>
+    <Text style={[styles.textHeader1, stylesDimension.titleCss]}>
       Create your account
     </Text>
   )
@@ -52,7 +53,7 @@ const Title = () => {
 
 const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) => {
   return (
-    <View style={[styles.style_signInButton, stylesDimension.marginHeight]}>
+    <View style={[loginRegistrationPageStyle.signInButton, stylesDimension.marginHeight]}>
       <ButtonToSign functionToExecute={registerFunction} nameOfButton="Sign up"/>
     </View>
   )
@@ -80,9 +81,9 @@ export default function RegistrationPage() {
   }, [email, nickname, password]);
   
   return (
-    <View style={styles.container}>
+    <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>
-        <View style={styles.text_view_login}>
+        <View style={styles.absolutePosition}>
           <Title />
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
           <ButtonRegistration registerFunction={attemptSignUp} />

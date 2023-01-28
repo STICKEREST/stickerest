@@ -2,7 +2,8 @@ import React from 'react'
 import { Dimensions, TextInput, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import { View, Alert } from 'react-native';
 
-import { styles } from "./../../assets/style/styleLoginRegistrationPage";
+import { styles } from "../../styles/Styles";
+import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
@@ -45,7 +46,7 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
   let color: string = name === "" ? gray : yellow;
 
     return (
-        <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
+        <View style={[styles.flexRow, loginRegistrationPageStyle.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
             <Ionicons 
             //Unfortuntately here a ts-ignore was needed since creators of Ionicons didn't create a type for that but instead
             //they did that name accepts any of the possible strings names of the icons
@@ -53,10 +54,10 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
                 name={picture} 
                 size={30} 
                 color="black" 
-                style={styles.icons_style}
+                style={loginRegistrationPageStyle.icon}
             />
             <TextInput
-                style={[styles.input, styleDimennsion.windowWidth065]}
+                style={[loginRegistrationPageStyle.textInput, styleDimennsion.windowWidth065]}
                 onChangeText={(text) => {setName(text)}}
                 value = {name}
                 placeholder={placeholder}
@@ -70,17 +71,17 @@ export const FieldComponent = ({name, placeholder, setName, picture, hide, disab
 export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabled = false, message}:{name:string, placeholder:string, setName:any, picture:string, hide:boolean, disabled?:boolean, message: string}) => {
   const color: string = name === "" ? gray : yellow;
   return (
-    <View style={[styles.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
+    <View style={[styles.flexRow, loginRegistrationPageStyle.inputs, styleDimennsion.windowHeight08, {backgroundColor: color}]}>
       <Ionicons
         //@ts-ignore
         name={picture}
         size={30}
         color="black"
-        style={styles.icons_style}
+        style={loginRegistrationPageStyle.icon}
       />
-      <TextInput style={[styles.input, styleDimennsion.windowWidth065]} onChangeText={(text) => {setName(text)}} value = {name} placeholder={placeholder} secureTextEntry={hide} editable={!disabled} maxLength={16} />
+      <TextInput style={[loginRegistrationPageStyle.textInput, styleDimennsion.windowWidth065]} onChangeText={(text) => {setName(text)}} value = {name} placeholder={placeholder} secureTextEntry={hide} editable={!disabled} maxLength={16} />
       <TouchableOpacity onPress={() => Alert.alert('Help', message)}>
-        <Ionicons name={"help-circle-outline"} size={30} color="black" style={styles.helpButton} />
+        <Ionicons name={"help-circle-outline"} size={30} color="black" style={[loginRegistrationPageStyle.icon, loginRegistrationPageStyle.marginLeft]} />
       </TouchableOpacity>
     </View>
   );
@@ -97,9 +98,9 @@ export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabl
   export const AlternativeAccessAction = ({text, action, onActionPress } : {text : string, action : string, onActionPress :any}) => {
     return (
         <View style={styleDimennsion.actionSize}>
-            <Text style={styles.SignSwap}>
+            <Text style={loginRegistrationPageStyle.swap}>
               {text} &nbsp;&nbsp;
-              <Text style={styles.urlText} onPress={onActionPress}>
+              <Text style={loginRegistrationPageStyle.urlText} onPress={onActionPress}>
                 {action}
               </Text>
             </Text>
@@ -113,8 +114,8 @@ export const FieldWithHelp = ({name, placeholder, setName, picture, hide, disabl
     return (
         <TouchableOpacity
             onPress={() => functionToExecute()}
-            style={[styles.logInButton, styleDimennsion.halfWidth]}>
-            <Text style={styles.logInButtonFont}>
+            style={[loginRegistrationPageStyle.logInButton, styleDimennsion.halfWidth]}>
+            <Text style={loginRegistrationPageStyle.logInButtonText}>
                 {nameOfButton}
             </Text>
         </TouchableOpacity>

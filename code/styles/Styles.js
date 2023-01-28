@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 
 
 const styles = StyleSheet.create({
+  whiteBackground: {
+    backgroundColor: 'white'
+  },
   center: {
     alignItems: 'center',
     justifyContent: 'center'
@@ -38,6 +41,11 @@ const styles = StyleSheet.create({
   marginTopSmall: {
     marginTop: 5
   },
+  textHeader1: {
+    fontFamily: "popblack",
+    color: 'black',
+    fontSize: 35,
+  },
   textHeader2: {
     fontSize: 29,
     alignContent: 'stretch',
@@ -72,6 +80,14 @@ const styles = StyleSheet.create({
     fontFamily: 'poplight',
     fontSize: 16,
     textAlign: 'center'
+  },
+  absolutePosition: {
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   }
 });
 

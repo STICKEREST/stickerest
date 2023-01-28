@@ -1,7 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import { View, ScrollView, Text } from 'react-native';
 
-import { styles } from './../assets/style/styleHomepage';
+import { homepageStyle } from './../styles/Homepage';
+import { styles } from '../styles/Styles';
 
 import { SearchBar } from '../components/SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../components/StickerCarousel';
@@ -28,11 +29,11 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
     return () => clearInterval(interval);
   }, [linkData]);
   return (
-    <View>
-    <Text style={styles.header}>{title}</Text>
-    {
-      carousel(queriedStickers)
-    }
+    <View style={styles.marginTopSmall} >
+      <Text style={styles.textHeader3}>{title}</Text>
+      {
+        carousel(queriedStickers)
+      }
     </View>
   );
 }
@@ -65,9 +66,9 @@ const SearchHomePage = ({query} : {query: string}) => (
 export default function Homepage() {
   const [searchText, setSearchText] = React.useState<string>("");
   return (
-    <View style={styles.container}>
+    <View style={homepageStyle.container}>
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
-      <View style={styles.innerContainer}>
+      <View style={homepageStyle.innerContainer}>
         <ScrollView fadingEdgeLength={40} keyboardDismissMode={"on-drag"} showsVerticalScrollIndicator={false} overScrollMode={"never"} >
         {
           searchText === "" ? <DefaultHomePage /> : <SearchHomePage query = {searchText} />

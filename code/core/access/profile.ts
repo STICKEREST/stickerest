@@ -9,7 +9,7 @@ export const prepareCredentials = ( nickname : string, telegramId : number) : st
 
 
 export const update = async (form: string): Promise<boolean> => {
-    
+    console.log("Updating user data...");
     return fetch("https://stickerest.herokuapp.com/auth/update-me", {
         method: 'POST',
         body: form,
@@ -18,8 +18,6 @@ export const update = async (form: string): Promise<boolean> => {
         }
         })
         .then(response => {
-            console.log(response);
-            console.log(response.status);
             if(response.status === 200) {
                 console.log("Successful update");
                 return true;
@@ -34,7 +32,7 @@ export const update = async (form: string): Promise<boolean> => {
 }
 
 export const getData = async (): Promise<User> => {
-    
+    console.log("Getting user data...");
     return fetch("https://stickerest.herokuapp.com/auth/me")
     .then(response => response.json())
     .then(result => {

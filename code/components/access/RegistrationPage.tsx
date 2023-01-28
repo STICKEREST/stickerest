@@ -58,7 +58,7 @@ const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) 
   )
 }
 
-export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
+export default function RegistrationPage() {
   const navigation = useNavigation();
 
   const [email, setEmail] = useState<string>("");

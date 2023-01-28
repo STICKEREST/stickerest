@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 export const StackNavigator = () => {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const Login = () => (<LoginPage setLoggedIn={setLoggedIn} />);
-  const SignUp = () => (<RegistrationPage setLoggedIn={setLoggedIn} />);
+  const SignUp = () => (<RegistrationPage />);
   return loggedIn ? (
     <Stack.Navigator screenOptions={{headerTransparent: true, headerTitle: '', headerTintColor: 'white'}} >
       <Stack.Screen name="TabNavigator" component={TabNavigator} />

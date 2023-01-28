@@ -16,6 +16,10 @@ import { AlternativeAccessAction, Separator } from './Access';
 
 import { useNavigation } from '@react-navigation/native';
 
+/**
+ * This class takes care of the UI implementation of the Login
+ */
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 

@@ -1,16 +1,20 @@
 import React from 'react'
-import { Alert, Dimensions, ImageBackground, Linking, SafeAreaView, TextInput, StyleSheet} from 'react-native';
-import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-native';
+import { Alert, Dimensions, ImageBackground, StyleSheet} from 'react-native';
+import { Text, View, } from 'react-native';
 
 import { styles } from "../../styles/Styles";
 import { userProfilePageStyle } from '../../styles/UserProfilePage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
-import { ButtonToSign, FieldComponent, FieldWithHelp } from './Access';
+import { ButtonToSign, FieldComponent } from './Access';
 import { getData, prepareCredentials, update } from '../../core/access/profile';
 import { validateCredentials } from '../../core/access/accessUtilities';
 import { User } from '../../core/types';
+
+/**
+ * This class takes care of the UI implementation of the UserProfilePage
+ */
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -89,8 +93,8 @@ const TextFields = ({email, setEmail, nickname, setNickname, telegramId, setTele
             </View>
           <Text>Stickers upload</Text>
             <View style={[styles.center, userProfilePageStyle.inputContainer]} >
-                <FieldWithHelp name={telegramId.toString()} setName={processTelegramId} hide={false} placeholder={'Telegram id'} 
-                picture={'paper-plane'} message={messageFieldHelp} />
+                <FieldComponent name={telegramId.toString()} setName={processTelegramId} hide={false} placeholder={'Telegram id'} 
+                picture={'paper-plane'} messageHelp={messageFieldHelp} />
             </View>
         </>
     );

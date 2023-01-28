@@ -191,6 +191,7 @@ const MainCreatePackPage = ({setNoUploading}: {setNoUploading: (value: boolean) 
   return (
     <View style={styles.marginTop} >
       <Text style={styles.textHeader3}>Add your sticker pack</Text>
+      {/* //TODO: change it using INput field from access */}
       <TextInput style={createPackStyle.nameInput} onChangeText={setName} value={name} placeholder={"Add pack name"} />
       <Text style={styles.textHeader3}>Tags</Text>
       <TagInput setTags={setTags} tags={tags}/>

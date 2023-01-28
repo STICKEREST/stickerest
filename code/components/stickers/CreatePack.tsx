@@ -120,7 +120,7 @@ export default function CreatePack() {
     <View>
       <ImageBackground source={ImagesAssets.rectangleTop} resizeMode="stretch" style={{width: windowWidth, height: windowHeight/8}}/>
       {
-        uploading ? <UploadingAnimation message = "Uploading..."/> : <MainCreatePackPage setNoUploading={setUploading} />
+        uploading ? <UploadingAnimation message = "Uploading..."/> : <MainCreatePackPage setUploading={setUploading} />
       }
     </View>
   );

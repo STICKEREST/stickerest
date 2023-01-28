@@ -61,25 +61,23 @@ const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) 
 
 export default function RegistrationPage() {
   const navigation = useNavigation();
-
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const attemptSignUp = React.useCallback(() => {
-    async function attempt() {
-      try {
-        validateCredentials(email, nickname, password);
-        const form = prepareCredentials(email, nickname, password);
-        await registration(form);
-        navigation.navigate("LoginPage");
-      } catch(error: any) {
-        Alert.alert("Error", error.message);
-      }
+  const attemptSignUp = async() => {
+    try {
+      console.log("Attempting sign up...");
+      validateCredentials(email, nickname, password);
+      const form = prepareCredentials(email, nickname, password);
+      await registration(form);
+      console.log("User is now signed up");
+      //@ts-ignore
+      navigation.navigate("LoginPage");
+    } catch(error) {
+      Alert.alert("Error", error.message);
+      console.log("Sign up error: " + error.message);
     }
-
-    attempt();
-  }, [email, nickname, password]);
-  
+  };
   return (
     <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>

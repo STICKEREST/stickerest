@@ -58,23 +58,22 @@ const ButtonLogin = ({loginFunction} : {loginFunction: () => void}) => {
 }
 
 export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
+  const navigation = useNavigation();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const attemptLogin = React.useCallback(() => {
-    async function attempt() {
-      try {
-        validateCredentials(email, password);
-        const form = prepareCredentials(email, password);
-        await login(form);
-        setLoggedIn(true);
-        console.log("User is now logged in");
-      } catch(error) {
-        Alert.alert("Error", error.message);
-      }
+  const attemptLogin = async() => {
+    try {
+      console.log("Attempting login...");
+      validateCredentials(email, password);
+      const form = prepareCredentials(email, password);
+      await login(form);
+      setLoggedIn(true);
+      console.log("User is now logged in");
+    } catch(error) {
+      Alert.alert("Error", error.message);
+      console.log("Login error: " + error.message);
     }
-    attempt();
-  }, [email, password]);
-  const navigation = useNavigation();
+  };
   return (
     <View style={[styles.center, styles.whiteBackground]} >
       <ImageBackground source={ImagesAssets.bannerList2} resizeMode="stretch" style={stylesDimension.fullSize}>

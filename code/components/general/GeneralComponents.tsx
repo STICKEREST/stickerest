@@ -10,7 +10,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 /**
-* Component shown when uploading a sticker
+* Component showing a gif of uploading and displaying any message wanted
 */
 export const UploadingAnimation = ({message} : {message : string}) => (
  <View style={[styles.center, {marginTop: windowHeight / 8}]} >

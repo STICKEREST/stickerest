@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 
-import { ImagesAssets } from '../assets/ImagesAssets';
+import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import Homepage from '../pages/Homepage';
 import DiscoveryPage from '../pages/DiscoveryPage';

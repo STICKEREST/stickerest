@@ -4,7 +4,7 @@ import { Text, View, Image, Button, TouchableOpacity, Pressable } from 'react-na
 
 import { styles } from "../../assets/style/styleUserProfilePage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
+import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
 import { ButtonToSign, FieldComponent, FieldWithHelp } from './Access';
 import { getData, prepareCredentials, update } from '../../core/access/profile';

@@ -4,7 +4,7 @@ import { Text, View, Alert } from 'react-native';
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
+import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
 import { FieldComponent, ButtonToSign } from './Access';
 

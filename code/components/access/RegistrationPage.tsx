@@ -4,8 +4,7 @@ import { Text, View, Image, Button, TouchableOpacity, Pressable, Alert } from 'r
 
 import { styles } from "../../assets/style/styleLoginRegistrationPage";
 
-import{ ImagesAssets } from '../../assets/ImagesAssets';
-
+import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 import { FieldComponent, ButtonToSign, Separator, AlternativeAccessAction } from './Access';
 
 import { validateCredentials } from '../../core/access/accessUtilities';

@@ -4,12 +4,12 @@ import { Text, View, Image } from 'react-native';
 
 import { singleStickerStyle } from "../styles/SingleSticker";
 import { styles } from "../styles/Styles";
-import { ImagesAssets } from '../assets/ImagesAssets';
+import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 //TODO: rimuovilo
 import { createPackStyle } from "../styles/CreatePack";
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../core/types';
 import { FlexibleAlbum } from '../components/FlexibleAlbum';
 import { color } from '@rneui/themed/dist/config';

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions, ImageBackground, Pressable, Text, View } from 'react-native';
 
-import { ImagesAssets } from '../assets/ImagesAssets';
+import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import { styles } from '../styles/Styles';
 

@@ -4,7 +4,7 @@ import { Text, View, Image } from 'react-native';
 
 import { styles } from "../assets/style/styleLoadingPage";
 
-import{ ImagesAssets } from '../assets/ImagesAssets';
+import{ ImagesAssets } from '../assets/img/ImagesAssets';
 
 export default function LoadingPage() {
  

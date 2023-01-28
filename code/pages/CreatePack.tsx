@@ -4,7 +4,7 @@ import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlig
 import { styles } from "../styles/Styles";
 import { createPackStyle } from "../styles/CreatePack";
 
-import { ImagesAssets } from '../assets/ImagesAssets';
+import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import { TagInput } from '../components/TagInput';
 import { ImageImport } from '../components/ImageImport';

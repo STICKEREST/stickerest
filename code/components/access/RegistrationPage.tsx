@@ -60,7 +60,7 @@ const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) 
 
 export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
   const navigation = useNavigation();
-  
+
   const [email, setEmail] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -70,8 +70,6 @@ export default function RegistrationPage({setLoggedIn}: {setLoggedIn: (value: bo
         validateCredentials(email, nickname, password);
         const form = prepareCredentials(email, nickname, password);
         await registration(form);
-        // setLoggedIn(true);
-        // console.log("User is now registered and logged in");
         navigation.navigate("LoginPage");
       } catch(error: any) {
         Alert.alert("Error", error.message);

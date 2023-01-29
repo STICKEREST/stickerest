@@ -1,31 +1,18 @@
 import React from 'react'
-import { Dimensions, ImageBackground, Pressable, Text, View } from 'react-native';
+import { Alert, Dimensions, ImageBackground, Pressable, Text, View } from 'react-native';
 
-import { ImagesAssets } from '../assets/img/ImagesAssets';
+import { ImagesAssets } from '../../assets/img/ImagesAssets';
 
-import { styles } from '../styles/Styles';
+import { styles } from '../../styles/Styles';
 
-import { BigStickerPack } from '../components/stickers/StickerPack';
+import { BigStickerPack } from './StickerPack';
 
-import { SimpleStickerPack } from '../core/types';
+import { SimpleStickerPack } from '../../core/types';
 
 import { Gyroscope } from 'expo-sensors';
 
 import { useNavigation } from '@react-navigation/native';
-
-/* Unused
-const IconPack = ({id}: {id: number}) => (
-  <View>
-    <Image style={{height: 200, width: 300, borderRadius: 20}} source={{uri: "https://picsum.photos/id/" + id + "/200/300"}}/>
-  </View>
-);
-
-const Sticker = ({icon}: {icon: Image}) => (
-  <View style={[styleSingleSticker.stickerView, {flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginRight: 15}]}>
-    <Image source={ImagesAssets.computer} style={{height: 70, width: 90, marginLeft: 10}} />
-  </View>
-);
-*/
+import { getRandomSticker } from '../../core/stickers/stickerUtilities';
 
 /**
  * Component representing the sticker in the middle of the discovery page.
@@ -44,14 +31,13 @@ const MainStickerView = () => {
 
   //this variable represents how much one has to tilt the smartphone.
   //The smaller the value, the more sensible it is.
-  let sensitivity = 8
+  let sensitivity = 8;
 
   React.useEffect(() => {
         if(y > sensitivity) {
-          fetch("https://stickerest.herokuapp.com/stickers/random")
-            .then(result => result.json())
-            .then((stickerResults: SimpleStickerPack[]) => setRandomPack(stickerResults[0]))
-            .catch(error => console.log(error));
+          getRandomSticker()
+            .then((result) => setRandomPack(result))
+            .catch((error) => Alert.alert("Error", error.message));
         }
   }, [y > sensitivity]);
 
@@ -83,7 +69,8 @@ const MainStickerView = () => {
       <Pressable onPress={() => {
         if(randomPack.ID !== -1)
           openStickerPack(randomPack.ID)
-      }} >
+        }} 
+      >
         <BigStickerPack image={randomPack.logo} title={randomPack.name} />
       </Pressable>
     </View>
@@ -91,7 +78,7 @@ const MainStickerView = () => {
 }
 
 /**
- * Discovery page component
+ * Discovery page component that allows by turning around the device to get a random sticker pack
  */
 export default function DiscoveryPage() {
   const windowWidth = Dimensions.get('window').width;

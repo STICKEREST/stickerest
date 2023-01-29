@@ -2,20 +2,12 @@ import React from 'react'
 import { Alert, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { singleStickerStyle } from "../../styles/SingleSticker";
 import { styles } from "../../styles/Styles";
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
-
-//TODO: rimuovilo
-import { createPackStyle } from "../../styles/CreatePack";
-
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { Sticker, StickerImage } from '../../core/types';
 import { FlexibleAlbum } from '../general/FlexibleAlbum';
-import { color } from '@rneui/themed/dist/config';
 
 import { useRoute } from '@react-navigation/native';
-import { Fold } from 'react-native-animated-spinkit';
 
 import * as Telegram from '../../api/Telegram';
 import { UploadingAnimation } from '../general/GeneralComponents';

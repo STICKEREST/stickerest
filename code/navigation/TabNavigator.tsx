@@ -4,7 +4,7 @@ import { View, TouchableOpacity, Image } from 'react-native';
 import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import Homepage from '../pages/Homepage';
-import DiscoveryPage from '../pages/DiscoveryPage';
+import DiscoveryPage from '../components/stickers/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
 import CreatePack from '../components/stickers/CreatePackPage';
 import Favorites from '../pages/FavoritesPage';

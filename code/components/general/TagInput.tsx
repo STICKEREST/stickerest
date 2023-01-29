@@ -4,6 +4,9 @@ import { TextInput, TouchableOpacity, Text, View, NativeSyntheticEvent, TextInpu
 import { tagInputStyle } from '../../styles/TagInput';
 import { styles } from '../../styles/Styles';
 
+/**
+ * This class provides the UI input tag container with all its functions
+ */
 
 const allowedTagsNmbr = 9;
 

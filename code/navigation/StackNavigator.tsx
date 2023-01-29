@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { TabNavigator } from './TabNavigator';
-import { SingleSticker } from '../pages/SingleSticker';
+import { SingleSticker } from '../components/stickers/SingleStickerPage';
 
 import LoginPage from '../components/access/LoginPage';
 import RegistrationPage from '../components/access/RegistrationPage';

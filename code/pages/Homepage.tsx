@@ -4,7 +4,7 @@ import { View, ScrollView, Text } from 'react-native';
 import { homepageStyle } from './../styles/Homepage';
 import { styles } from '../styles/Styles';
 
-import { SearchBar } from '../components/SearchBar';
+import { SearchBar } from '../components/homepage/SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../components/general/StickerCarousel';
 
 import { Sticker } from '../core/types';

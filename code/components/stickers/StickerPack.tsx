@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { View, Image, Text } from 'react-native';
 
-import { stickerPackStyle } from '../styles/StickerPack';
-import { styles } from '../styles/Styles';
+import { stickerPackStyle } from '../../styles/StickerPack';
+import { styles } from '../../styles/Styles';
 
+/**
+ * This class offers differrent possibilities for representing a single sticker pack in the UI
+ */
 
+/**
+ * Component that shows the sticker pack just as a small sticker pack with no info other than a representing image
+ */
 export const SmallPackBox = ({image}: {image: string}) => (
   <View style={[styles.center, stickerPackStyle.stickerView, stickerPackStyle.whiteBackground, stickerPackStyle.regularSize]} >
     <Image source={{uri: image}} style={stickerPackStyle.imageSize} />
@@ -12,7 +18,7 @@ export const SmallPackBox = ({image}: {image: string}) => (
 );
 
 /**
- * Component used in the small sticker carousel to represent a sticker pack.
+ * Component that shows the sticker pack as a small sticker pack, using SmallPackBox, says also the title and the number of downloads
  */
 export const SmallStickerPack = ({image, title, downloadCount}: {image: string, title: string, downloadCount: number}) => (
   <View>
@@ -22,6 +28,9 @@ export const SmallStickerPack = ({image, title, downloadCount}: {image: string, 
   </View>
 );
 
+/**
+ * Component that shows the sticker pack as a big pack but with just a representing image
+ */
 export const BigPackBox = ({image}: {image: string}) => (
   <View style={styles.flexFill} >
     <Image source={{uri: image}} style={stickerPackStyle.largeImage} />
@@ -29,7 +38,8 @@ export const BigPackBox = ({image}: {image: string}) => (
 );
 
 /**
- * Component used in the big sticker carousel to represent a sticker pack.
+ * Component that shows the sticker pack as a big pack, divided in two columns, one for the representing image 
+ * and the other for the title
  */
 export const BigStickerPack = ({image, title}: {image: string, title: string}) => (
   <View style={[stickerPackStyle.largeSize, stickerPackStyle.stickerView, stickerPackStyle.purpleBackground, styles.center, styles.flexRow, styles.padding]} >

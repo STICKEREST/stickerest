@@ -3,13 +3,16 @@ import { View, FlatList, Pressable } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
-import { SmallStickerPack, BigStickerPack } from '../../components/StickerPack';
+import { SmallStickerPack, BigStickerPack } from '../stickers/StickerPack';
 
 import { stickerCarouselStyle } from '../../styles/StickerCarousel';
 import { styles } from '../../styles/Styles';
 
 import { Sticker } from '../../core/types';
 
+/**
+ * This class provides components for a displayable way to see a set of sticker. This is Carousel-Based
+ */
 
 /**
  * Component representing a generic sticker carousel, horizontal sliding

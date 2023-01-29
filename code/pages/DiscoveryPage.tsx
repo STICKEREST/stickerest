@@ -5,7 +5,7 @@ import { ImagesAssets } from '../assets/img/ImagesAssets';
 
 import { styles } from '../styles/Styles';
 
-import { BigStickerPack } from '../components/StickerPack';
+import { BigStickerPack } from '../components/stickers/StickerPack';
 
 import { SimpleStickerPack } from '../core/types';
 

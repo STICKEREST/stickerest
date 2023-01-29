@@ -10,6 +10,10 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 /**
+ * This class provides general purpose components used in the project
+ */
+
+/**
 * Component showing a gif of uploading and displaying any message wanted
 */
 export const UploadingAnimation = ({message} : {message : string}) => (

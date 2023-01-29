@@ -2,24 +2,19 @@ import React, { Dispatch, SetStateAction } from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
 
 import { styles } from "../../styles/Styles";
-import { createPackStyle } from "../../styles/CreatePack";
 
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
 
-import { TagInput } from '../TagInput';
-import { ImageImport } from '../ImageImport';
-
-import { Fold } from 'react-native-animated-spinkit';
-import { getData } from '../../core/access/profile';
-import { StickerImage, User } from '../../core/types';
-
-import * as Telegram from '../../api/Telegram';
-import { textChangeRangeIsUnchanged } from 'typescript';
+import { TagInput } from '../general/TagInput';
+import { ImageImport } from '../general/ImageImport';
 import { UploadingAnimation } from '../general/GeneralComponents';
 import { FieldComponent } from '../access/Access';
-import { userProfilePageStyle } from '../../styles/UserProfilePage';
 import { validateCredentials } from '../../core/access/accessUtilities';
 import { prepareCredentials, uploadPack } from '../../core/stickers/createPack';
+
+/**
+ * This class provides the Page for uploading stickers
+ */
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

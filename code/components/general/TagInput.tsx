@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { TextInput, TouchableOpacity, Text, View, NativeSyntheticEvent, TextInputChangeEventData, TextInputKeyPressEventData  } from 'react-native';
 
-import { tagInputStyle } from '../styles/TagInput';
-import { styles } from '../styles/Styles';
+import { tagInputStyle } from '../../styles/TagInput';
+import { styles } from '../../styles/Styles';
 
 
 const allowedTagsNmbr = 9;

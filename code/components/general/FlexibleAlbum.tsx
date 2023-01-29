@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 
-import { SmallPackBox } from "../StickerPack";
+import { SmallPackBox } from "../stickers/StickerPack";
 
 import { styles } from "../../styles/Styles";
 
@@ -9,6 +9,9 @@ import { StickerImage } from "../../core/types";
 
 import { useNavigation } from "@react-navigation/native";
 
+/**
+ * This class provides components for a displayable way to see a set of sticker. This is Album-based
+ */
 
 /**
  * Component represting touchable stickers that leads to some action

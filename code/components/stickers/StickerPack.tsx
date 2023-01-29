@@ -54,6 +54,11 @@ export const BigStickerPack = ({image, title}: {image: string, title: string}) =
   </View>
 );
 
+/**
+ * Component that shows the sticker pack as a big pack, divided in three columns, one for the image,
+ * one for the complete information of that pack (not just the name) and the last one for buttons which
+ * can represent a state of the sticker, like if it is liked by the user, saved or other things if needed
+ */
 export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: Sticker}) => {
 
   const ButtonState = ({id, stateType, icon, color}: {id: number, stateType: "favorites"|"saved", icon: string, color: string}) => {

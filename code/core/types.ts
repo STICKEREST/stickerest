@@ -27,9 +27,3 @@ export interface User {
     nickname : string,
     telegram : number
 }
-
-//{ cancelled: false, type: 'image', uri, width, height, exif, base64 }
-
-export interface ImageType { 
-    
-}

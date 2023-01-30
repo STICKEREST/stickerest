@@ -1,3 +1,4 @@
+import { postAccessFunction } from "./accessUtilities";
 
 /**
  * Function that converts the given credentials into a form usable by the 'login' function.
@@ -16,15 +17,5 @@ export const prepareCredentials = (email: string, password: string) : string => 
  * The parameter 'form' is the value returned from the 'prepareCredentials' function.
  */
 export const login = async (form: string): Promise<void> => {
-  console.log("Logging in...");
-  await fetch("https://stickerest.herokuapp.com/users/login", {
-    method: 'POST',
-    body: form,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).then(response => response.json()).then(response => {
-    if(response !== "Successfully logged in!")
-      throw new Error(response.message);
-  });
+  await postAccessFunction("https://stickerest.herokuapp.com/users/login", "Loggin in...", form);
 }

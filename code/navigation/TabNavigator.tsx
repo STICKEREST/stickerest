@@ -3,11 +3,11 @@ import { View, TouchableOpacity, Image } from 'react-native';
 
 import { ImagesAssets } from '../assets/img/ImagesAssets';
 
-import Homepage from '../components/homepage/Homepage';
-import DiscoveryPage from '../components/stickers/DiscoveryPage';
-import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../components/stickers/CreatePackPage';
-import Favorites from '../components/stickers/FavoritesPage';
+import Homepage from '../UI/components/homepage/Homepage';
+import DiscoveryPage from '../UI/components/stickers/DiscoveryPage';
+import UserProfilePage from '../UI/components/access/UserProfilePage';
+import CreatePack from '../UI/components/stickers/CreatePackPage';
+import Favorites from '../UI/components/stickers/FavoritesPage';
 
 import { navbarStyle } from '../UI/styles/Navbar';
 

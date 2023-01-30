@@ -1,16 +1,16 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
 
-import { styles } from "../../UI/styles/Styles";
+import { styles } from "../../styles/Styles";
 
-import { ImagesAssets } from '../../assets/img/ImagesAssets';
+import { ImagesAssets } from '../../../assets/img/ImagesAssets';
 
 import { TagInput } from '../general/TagInput';
 import { ImageImport } from '../general/ImageImport';
 import { UploadingAnimation } from '../general/GeneralComponents';
 import { FieldComponent } from '../access/Access';
-import { validateCredentials } from '../../core/access/accessUtilities';
-import { prepareCredentials, uploadPack } from '../../core/stickers/createPack';
+import { validateCredentials } from '../../../core/access/accessUtilities';
+import { prepareCredentials, uploadPack } from '../../../core/stickers/createPack';
 
 /**
  * This class provides the Page for uploading stickers

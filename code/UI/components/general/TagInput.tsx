@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { TextInput, TouchableOpacity, Text, View, NativeSyntheticEvent, TextInputChangeEventData, TextInputKeyPressEventData  } from 'react-native';
 
-import { tagInputStyle } from '../../UI/styles/TagInput';
-import { styles } from '../../UI/styles/Styles';
+import { tagInputStyle } from '../../styles/TagInput';
+import { styles } from '../../styles/Styles';
 
 /**
  * This class provides the UI input tag container with all its functions

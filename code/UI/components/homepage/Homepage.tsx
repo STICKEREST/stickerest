@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, ScrollView, Text, Alert } from 'react-native';
 
-import { homepageStyle } from '../../UI/styles/Homepage';
-import { styles } from '../../UI/styles/Styles';
+import { homepageStyle } from '../../styles/Homepage';
+import { styles } from '../../styles/Styles';
 
 import { SearchBar } from './SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../general/StickerCarousel';
 
-import { StickerPack } from '../../core/types';
-import { getByName, getByTags, getMostDownloaded, getMostFavorited, getMostSaved } from '../../core/stickers/stickerUtilities';
+import { StickerPack } from '../../../core/types';
+import { getByName, getByTags, getMostDownloaded, getMostFavorited, getMostSaved } from '../../../core/stickers/stickerUtilities';
 
 /**
  * Component that represents a section of the homepage which is mainly composed of a title and a carousel of 

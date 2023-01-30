@@ -2,14 +2,14 @@ import React, {useState} from 'react'
 import { Dimensions, ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import { Text, View, Alert } from 'react-native';
 
-import { styles } from "../../UI/styles/Styles";
-import { loginRegistrationPageStyle } from '../../UI/styles/LoginRegistrationPage';
+import { styles } from "../../styles/Styles";
+import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 
-import{ ImagesAssets } from '../../assets/img/ImagesAssets';
+import{ ImagesAssets } from '../../../assets/img/ImagesAssets';
 import { FieldComponent, ButtonToSign, Separator, AlternativeAccessAction } from './Access';
 
-import { validateCredentials } from '../../core/access/accessUtilities';
-import { prepareCredentials, registration } from '../../core/access/registration';
+import { validateCredentials } from '../../../core/access/accessUtilities';
+import { prepareCredentials, registration } from '../../../core/access/registration';
 
 import { useNavigation } from '@react-navigation/native';
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
-import { StickerPack } from '../../core/types';
-import { singleStickerStyle } from '../../UI/styles/SingleSticker';
+import { StickerPack } from '../../../core/types';
+import { singleStickerStyle } from '../../styles/SingleSticker';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { stickerPackStyle } from '../../UI/styles/StickerPack';
-import { styles } from '../../UI/styles/Styles';
+import { stickerPackStyle } from '../../styles/StickerPack';
+import { styles } from '../../styles/Styles';
 import { useEffect } from 'react';
-import { changeState, getState } from '../../core/stickers/stickerState';
+import { changeState, getState } from '../../../core/stickers/stickerState';
 
 /**
  * This class offers differrent possibilities for representing a single sticker pack in the UI

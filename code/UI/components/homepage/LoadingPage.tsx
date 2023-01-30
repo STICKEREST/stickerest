@@ -2,10 +2,10 @@ import React from 'react'
 import { Dimensions, ImageBackground } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styles } from '../../UI/styles/Styles';
-import { loadingPageStyle } from '../../UI/styles/LoadingPage';
+import { styles } from '../../styles/Styles';
+import { loadingPageStyle } from '../../styles/LoadingPage';
 
-import{ ImagesAssets } from '../../assets/img/ImagesAssets';
+import{ ImagesAssets } from '../../../assets/img/ImagesAssets';
 
 /**
  * LoadingPage component function.

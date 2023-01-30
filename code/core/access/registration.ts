@@ -1,3 +1,4 @@
+import { postAccessFunction } from "./accessUtilities";
 
 /**
  * Function that converts the given credentials into a form usable by the 'registration' function.
@@ -17,15 +18,5 @@ export const prepareCredentials = (email: string, nickname: string, password: st
  * The parameter 'form' is the value returned from the 'prepareCredentials' function.
  */
 export const registration = async (form: string): Promise<void> => {
-  console.log("Registering the user...");
-  await fetch("https://stickerest.herokuapp.com/users/register", {
-    method: 'POST',
-    body: form,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).then(response => {
-    if(response.status !== 201)
-      throw new Error("Error " + response.status);
-  });
+  await postAccessFunction("https://stickerest.herokuapp.com/users/register", "Registering the user...", form);
 }

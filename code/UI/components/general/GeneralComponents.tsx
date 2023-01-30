@@ -1,8 +1,8 @@
 import React from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
 
-import { styles } from "../../UI/styles/Styles";
-import { createPackStyle } from "../../UI/styles/CreatePack";
+import { styles } from "../../styles/Styles";
+import { createPackStyle } from "../../styles/CreatePack";
 
 import { Fold } from 'react-native-animated-spinkit';
 

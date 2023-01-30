@@ -2,15 +2,15 @@ import React from 'react'
 import { Alert, Dimensions, ImageBackground, StyleSheet} from 'react-native';
 import { Text, View, } from 'react-native';
 
-import { styles } from "../../UI/styles/Styles";
-import { userProfilePageStyle } from '../../UI/styles/UserProfilePage';
+import { styles } from "../../styles/Styles";
+import { userProfilePageStyle } from '../../styles/UserProfilePage';
 
-import{ ImagesAssets } from '../../assets/img/ImagesAssets';
+import{ ImagesAssets } from '../../../assets/img/ImagesAssets';
 
 import { ButtonToSign, FieldComponent } from './Access';
-import { getData, prepareCredentials, update } from '../../core/access/profile';
-import { validateCredentials } from '../../core/access/accessUtilities';
-import { User } from '../../core/types';
+import { getData, prepareCredentials, update } from '../../../core/access/profile';
+import { validateCredentials } from '../../../core/access/accessUtilities';
+import { User } from '../../../core/types';
 
 /**
  * This class takes care of the UI implementation of the UserProfilePage
@@ -41,13 +41,8 @@ const stylesDimension = StyleSheet.create({
 const updateUI = (form : string) => {
 
   update(form)
-  .then((result : boolean) => {
-    if(result === true) {
-      Alert.alert("Successful", "The nickname has been updated successfully");
-    } else {
-      Alert.alert("Error", "Something went wrong during the registration");
-    }
-  })
+  .then(() => Alert.alert("Successful", "The Profile Information have been updated successfully")
+  ).catch(error => Alert.alert("Error", error.message));
 
 }
 

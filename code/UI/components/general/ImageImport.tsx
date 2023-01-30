@@ -3,9 +3,9 @@ import { View, Text } from 'react-native';
 import { FlexibleAlbum, FlexibleAlbumAddable } from './FlexibleAlbum';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { StickerImage } from '../../core/types';
+import { StickerImage } from '../../../core/types';
 
-import { styles } from "../../UI/styles/Styles";
+import { styles } from "../../styles/Styles";
 
 /**
  * This class provides components for Sticker importing / handling exploiting the cross-platform API 

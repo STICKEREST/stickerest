@@ -1,18 +1,18 @@
 import React from 'react'
 import { Alert, Dimensions, ImageBackground, Pressable, Text, View } from 'react-native';
 
-import { ImagesAssets } from '../../assets/img/ImagesAssets';
+import { ImagesAssets } from '../../../assets/img/ImagesAssets';
 
-import { styles } from '../../UI/styles/Styles';
+import { styles } from '../../styles/Styles';
 
 import { BigStickerPack } from './StickerPack';
 
-import { SimpleStickerPack } from '../../core/types';
+import { SimpleStickerPack } from '../../../core/types';
 
 import { Gyroscope } from 'expo-sensors';
 
 import { useNavigation } from '@react-navigation/native';
-import { getRandomSticker } from '../../core/stickers/stickerUtilities';
+import { getRandomSticker } from '../../../core/stickers/stickerUtilities';
 
 /**
  * Component representing the sticker in the middle of the discovery page.

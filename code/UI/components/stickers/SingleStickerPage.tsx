@@ -2,17 +2,17 @@ import React from 'react'
 import { Alert, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styles } from "../../UI/styles/Styles";
-import { ImagesAssets } from '../../assets/img/ImagesAssets';
-import { StickerPack, StickerImage } from '../../core/types';
+import { styles } from "../../styles/Styles";
+import { ImagesAssets } from '../../../assets/img/ImagesAssets';
+import { StickerPack, StickerImage } from '../../../core/types';
 import { FlexibleAlbum } from '../general/FlexibleAlbum';
 
 import { useRoute } from '@react-navigation/native';
 
-import * as Telegram from '../../api/Telegram';
+import * as Telegram from '../../../api/Telegram';
 import { UploadingAnimation } from '../general/GeneralComponents';
 import { DetailedBigStickerPack } from './StickerPack';
-import { addDownload, getStickerFromId, getStickerImagesFromId } from '../../core/stickers/stickerUtilities';
+import { addDownload, getStickerFromId, getStickerImagesFromId } from '../../../core/stickers/stickerUtilities';
 
 
 // Used for background image

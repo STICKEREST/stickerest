@@ -3,7 +3,7 @@ import { View, TextInput } from "react-native";
 
 import { Feather, Entypo } from "@expo/vector-icons";
 
-import { searchBarStyle } from "../../UI/styles/SearchBar";
+import { searchBarStyle } from "../../styles/SearchBar";
 
 const SearchField = ({searchText, setSearchText, focused, setFocused}:{searchText : string, setSearchText : (value : string) => void, focused : boolean, setFocused : (value : boolean) => void}) => (
   <>

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
 import { StickerPack } from '../../core/types';
-import { singleStickerStyle } from '../../styles/SingleSticker';
+import { singleStickerStyle } from '../../UI/styles/SingleSticker';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { stickerPackStyle } from '../../styles/StickerPack';
-import { styles } from '../../styles/Styles';
+import { stickerPackStyle } from '../../UI/styles/StickerPack';
+import { styles } from '../../UI/styles/Styles';
 import { useEffect } from 'react';
 import { changeState, getState } from '../../core/stickers/stickerState';
 

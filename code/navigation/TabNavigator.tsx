@@ -9,7 +9,7 @@ import UserProfilePage from '../components/access/UserProfilePage';
 import CreatePack from '../components/stickers/CreatePackPage';
 import Favorites from '../components/stickers/FavoritesPage';
 
-import { navbarStyle } from '../styles/Navbar';
+import { navbarStyle } from '../UI/styles/Navbar';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 

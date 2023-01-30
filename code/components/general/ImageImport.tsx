@@ -5,7 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { StickerImage } from '../../core/types';
 
-import { styles } from "../../styles/Styles";
+import { styles } from "../../UI/styles/Styles";
 
 /**
  * This class provides components for Sticker importing / handling exploiting the cross-platform API 

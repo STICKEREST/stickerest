@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, ScrollView, Text, Alert } from 'react-native';
 
-import { homepageStyle } from '../../styles/Homepage';
-import { styles } from '../../styles/Styles';
+import { homepageStyle } from '../../UI/styles/Homepage';
+import { styles } from '../../UI/styles/Styles';
 
 import { SearchBar } from './SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../general/StickerCarousel';

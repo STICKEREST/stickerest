@@ -2,8 +2,8 @@ import React from 'react'
 import { Alert, Dimensions, ImageBackground, StyleSheet} from 'react-native';
 import { Text, View, } from 'react-native';
 
-import { styles } from "../../styles/Styles";
-import { userProfilePageStyle } from '../../styles/UserProfilePage';
+import { styles } from "../../UI/styles/Styles";
+import { userProfilePageStyle } from '../../UI/styles/UserProfilePage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 

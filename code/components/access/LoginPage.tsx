@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import { Text, View, Alert } from 'react-native';
 
-import { styles } from "../../styles/Styles";
-import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
+import { styles } from "../../UI/styles/Styles";
+import { loginRegistrationPageStyle } from '../../UI/styles/LoginRegistrationPage';
 
 import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 

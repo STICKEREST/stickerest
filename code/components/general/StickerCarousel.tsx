@@ -5,8 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import { SmallStickerPack, BigStickerPack } from '../stickers/StickerPack';
 
-import { stickerCarouselStyle } from '../../styles/StickerCarousel';
-import { styles } from '../../styles/Styles';
+import { stickerCarouselStyle } from '../../UI/styles/StickerCarousel';
+import { styles } from '../../UI/styles/Styles';
 
 import { StickerPack } from '../../core/types';
 

@@ -3,7 +3,7 @@ import { Alert, Dimensions, ImageBackground, Pressable, Text, View } from 'react
 
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
 
-import { styles } from '../../styles/Styles';
+import { styles } from '../../UI/styles/Styles';
 
 import { BigStickerPack } from './StickerPack';
 

@@ -2,14 +2,19 @@ import React from 'react'
 import { Dimensions, ImageBackground } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styles } from '../styles/Styles';
-import { loadingPageStyle } from '../styles/LoadingPage';
+import { styles } from '../../UI/styles/Styles';
+import { loadingPageStyle } from '../../UI/styles/LoadingPage';
 
-import{ ImagesAssets } from '../assets/img/ImagesAssets';
+import{ ImagesAssets } from '../../assets/img/ImagesAssets';
 
+/**
+ * LoadingPage component function.
+ * Used at the beginning to show something during loading of fonts and preparing of the app.
+ */
 export default function LoadingPage() {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+
   return (
     <View style={styles.center}>
       <ImageBackground source={ImagesAssets.bannerList1} style={{height: windowHeight, width: windowWidth}} >

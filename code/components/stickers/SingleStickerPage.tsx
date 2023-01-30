@@ -2,7 +2,7 @@ import React from 'react'
 import { Alert, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import { Text, View, Image } from 'react-native';
 
-import { styles } from "../../styles/Styles";
+import { styles } from "../../UI/styles/Styles";
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
 import { StickerPack, StickerImage } from '../../core/types';
 import { FlexibleAlbum } from '../general/FlexibleAlbum';

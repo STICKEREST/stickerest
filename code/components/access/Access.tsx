@@ -2,8 +2,8 @@ import React from 'react'
 import { Dimensions, TextInput, Image, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import { View, Alert } from 'react-native';
 
-import { styles } from "../../styles/Styles";
-import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
+import { styles } from "../../UI/styles/Styles";
+import { loginRegistrationPageStyle } from '../../UI/styles/LoginRegistrationPage';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImagesAssets } from '../../assets/img/ImagesAssets';

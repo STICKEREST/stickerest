@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { Dimensions, ImageBackground, Image, TextInput, Button, TouchableHighlight, TouchableOpacity, Alert, SafeAreaView, Text, View } from 'react-native';
 
-import { styles } from "../../styles/Styles";
+import { styles } from "../../UI/styles/Styles";
 
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
 

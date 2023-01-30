@@ -7,12 +7,12 @@ import { styles } from '../styles/Styles';
 import { SearchBar } from '../components/homepage/SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../components/general/StickerCarousel';
 
-import { Sticker } from '../core/types';
+import { StickerPack } from '../core/types';
 
 
-const HomePageSection = ({title, linkData, carousel} : {title: string, linkData: string, carousel: (stickers: Sticker[]) => React.ReactNode}) => {
+const HomePageSection = ({title, linkData, carousel} : {title: string, linkData: string, carousel: (stickers: StickerPack[]) => React.ReactNode}) => {
  
-  const [queriedStickers, setQueriedStickers] = React.useState<Sticker[]>([]);
+  const [queriedStickers, setQueriedStickers] = React.useState<StickerPack[]>([]);
   //it's always updated (every 8 seconds) because there could be also new additions of sticker packs and we
   //may want to see them. For example: create a pack and directly search for it on the store!
   React.useEffect(() => {
@@ -44,9 +44,9 @@ const HomePageSection = ({title, linkData, carousel} : {title: string, linkData:
  */
 const DefaultHomePage = () => (
   <>
-    <HomePageSection title="Recommended" linkData = "https://stickerest.herokuapp.com/stickers/most-favorited" carousel={(stickers: Sticker[]) => <BigStickerCarousel stickers={stickers} />} />
-    <HomePageSection title="Trending" linkData = "https://stickerest.herokuapp.com/stickers/most-downloaded" carousel={(stickers: Sticker[]) => <SmallStickerCarousel stickers={stickers} />} />
-    <HomePageSection title="Inspirational" linkData = "https://stickerest.herokuapp.com/stickers/most-saved" carousel={(stickers: Sticker[]) => <SmallStickerCarousel stickers={stickers} />} />
+    <HomePageSection title="Recommended" linkData = "https://stickerest.herokuapp.com/stickers/most-favorited" carousel={(stickers: StickerPack[]) => <BigStickerCarousel stickers={stickers} />} />
+    <HomePageSection title="Trending" linkData = "https://stickerest.herokuapp.com/stickers/most-downloaded" carousel={(stickers: StickerPack[]) => <SmallStickerCarousel stickers={stickers} />} />
+    <HomePageSection title="Inspirational" linkData = "https://stickerest.herokuapp.com/stickers/most-saved" carousel={(stickers: StickerPack[]) => <SmallStickerCarousel stickers={stickers} />} />
   </>
 );
 
@@ -55,8 +55,8 @@ const DefaultHomePage = () => (
  */
 const SearchHomePage = ({query} : {query: string}) => (
   <>
-    <HomePageSection title="By Name" linkData = {`https://stickerest.herokuapp.com/stickers/name-${query}`} carousel={(stickers: Sticker[]) => <BigStickerCarousel stickers={stickers} />} />
-    <HomePageSection title="By Tags" linkData = {`https://stickerest.herokuapp.com/stickers/tags-${query}`} carousel={(stickers: Sticker[]) => <SmallStickerCarousel stickers={stickers} />} />
+    <HomePageSection title="By Name" linkData = {`https://stickerest.herokuapp.com/stickers/name-${query}`} carousel={(stickers: StickerPack[]) => <BigStickerCarousel stickers={stickers} />} />
+    <HomePageSection title="By Tags" linkData = {`https://stickerest.herokuapp.com/stickers/tags-${query}`} carousel={(stickers: StickerPack[]) => <SmallStickerCarousel stickers={stickers} />} />
   </>
 );
 

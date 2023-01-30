@@ -4,7 +4,7 @@ import { Text, View, Image } from 'react-native';
 
 import { styles } from "../../styles/Styles";
 import { ImagesAssets } from '../../assets/img/ImagesAssets';
-import { Sticker, StickerImage } from '../../core/types';
+import { StickerPack, StickerImage } from '../../core/types';
 import { FlexibleAlbum } from '../general/FlexibleAlbum';
 
 import { useRoute } from '@react-navigation/native';
@@ -36,7 +36,7 @@ const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
  * Button using ImportButton for uploading the sticker pack in telegram (only if this results available from
  * what the DB says, so only if the creator has inseted his telegram ID before uploading the Pack) 
  */
-const ImportTelegramButton = ({StickerInfo, updatePage} : {StickerInfo : Sticker, updatePage : any}) => {
+const ImportTelegramButton = ({StickerInfo, updatePage} : {StickerInfo : StickerPack, updatePage : any}) => {
 
   const importToTelegram = () => {
     Telegram.importPack(StickerInfo.telegram_name);
@@ -71,7 +71,7 @@ export const SingleSticker = () => {
   const id = useRoute().params.id;
 
   // Get currently selected sticker from database
-  const [sticker, setSticker] = React.useState<Sticker>();
+  const [sticker, setSticker] = React.useState<StickerPack>();
   const [stickerImage, setStickerImage] = React.useState<StickerImage[]>();
   
   const [downloading, setDownloading] = React.useState<boolean>(false);

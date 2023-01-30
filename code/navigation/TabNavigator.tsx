@@ -7,7 +7,7 @@ import Homepage from '../pages/Homepage';
 import DiscoveryPage from '../components/stickers/DiscoveryPage';
 import UserProfilePage from '../components/access/UserProfilePage';
 import CreatePack from '../components/stickers/CreatePackPage';
-import Favorites from '../pages/FavoritesPage';
+import Favorites from '../components/stickers/FavoritesPage';
 
 import { navbarStyle } from '../styles/Navbar';
 

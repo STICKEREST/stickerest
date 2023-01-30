@@ -1,6 +1,6 @@
-import { SimpleStickerPack, Sticker, StickerImage } from "../types";
+import { SimpleStickerPack, StickerPack, StickerImage } from "../types";
 
-export const getStickerFromId = async (id : number) : Promise<Sticker>=> {
+export const getStickerFromId = async (id : number) : Promise<StickerPack>=> {
     return await fetch(`https://stickerest.herokuapp.com/stickers/${id}`)
         .then((result) => result.json())
         .then((result) => result[0]);
@@ -24,7 +24,14 @@ export const getRandomSticker = async () : Promise<SimpleStickerPack> => {
         .catch(error => {throw new Error(error.message)});
 }
 
-// fetch("https://stickerest.herokuapp.com/stickers/random")
-//             .then(result => result.json())
-//             .then((stickerResults: SimpleStickerPack[]) => setRandomPack(stickerResults[0]))
-//             .catch(error => console.log(error));
+export const getSavedStickers = async () : Promise<StickerPack[]> => {
+    return await fetch("https://stickerest.herokuapp.com/auth/my-saved")
+            .then((response) => response.json())
+            .catch(error => {throw new Error});
+}
+
+
+// fetch("https://stickerest.herokuapp.com/auth/my-saved")
+//       .then((response) => response.json())
+//       .then((result) => setQueriedStickers(result))
+//       .catch(error => console.log(error));

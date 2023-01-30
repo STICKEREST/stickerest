@@ -8,7 +8,7 @@ import { SmallStickerPack, BigStickerPack } from '../stickers/StickerPack';
 import { stickerCarouselStyle } from '../../styles/StickerCarousel';
 import { styles } from '../../styles/Styles';
 
-import { Sticker } from '../../core/types';
+import { StickerPack } from '../../core/types';
 
 /**
  * This class provides components for a displayable way to see a set of sticker. This is Carousel-Based
@@ -17,7 +17,7 @@ import { Sticker } from '../../core/types';
 /**
  * Component representing a generic sticker carousel, horizontal sliding
  */
-const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFunction: (sticker: Sticker) => React.ReactNode}) => {
+const StickerCarousel = ({stickers, itemFunction}: {stickers: StickerPack[], itemFunction: (sticker: StickerPack) => React.ReactNode}) => {
   const itemSeparator = () => <View style={stickerCarouselStyle.separator} />
   const navigation = useNavigation();
   const openStickerPage = (id: number) => {
@@ -34,7 +34,7 @@ const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFun
         renderItem={({item}) => (
           <Pressable onPress={() => openStickerPage(item.ID)} >{itemFunction(item)}</Pressable>
         )}
-        keyExtractor={(item: Sticker) => item.ID.toString()}
+        keyExtractor={(item: StickerPack) => item.ID.toString()}
       />
     </View>
   );
@@ -43,8 +43,8 @@ const StickerCarousel = ({stickers, itemFunction}: {stickers: Sticker[], itemFun
 /**
  * Component that using the StickerCarousel allows small sticker packs to be displayed
  */
-export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
-  const item = (sticker: Sticker) => (
+export const SmallStickerCarousel = ({stickers}: {stickers: StickerPack[]}) => {
+  const item = (sticker: StickerPack) => (
     <View style={styles.paddingSmall} >
       <SmallStickerPack image={sticker.logo} title={sticker.name} downloadCount={sticker.nr_downloads} />
     </View>
@@ -55,8 +55,8 @@ export const SmallStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
 /**
  * Component that using the StickerCarousel allows big sticker packs to be displayed
  */
-export const BigStickerCarousel = ({stickers}: {stickers: Sticker[]}) => {
-  const item = (sticker: Sticker) => (
+export const BigStickerCarousel = ({stickers}: {stickers: StickerPack[]}) => {
+  const item = (sticker: StickerPack) => (
     <View style={styles.paddingSmall} >
       <BigStickerPack image={sticker.logo} title={sticker.name} />
     </View>

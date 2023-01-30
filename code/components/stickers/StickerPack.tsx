@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Image, Text, TouchableOpacity, Alert } from 'react-native';
-import { Sticker } from '../../core/types';
+import { StickerPack } from '../../core/types';
 import { singleStickerStyle } from '../../styles/SingleSticker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { stickerPackStyle } from '../../styles/StickerPack';
@@ -59,7 +59,7 @@ export const BigStickerPack = ({image, title}: {image: string, title: string}) =
  * one for the complete information of that pack (not just the name) and the last one for buttons which
  * can represent a state of the sticker, like if it is liked by the user, saved or other things if needed
  */
-export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: Sticker}) => {
+export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: StickerPack}) => {
 
   const ButtonState = ({id, stateType, icon, color}: {id: number, stateType: "favorites"|"saved", icon: string, color: string}) => {
     const [currentState, setState] = React.useState<boolean>(false);
@@ -97,7 +97,7 @@ export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: Sticker}) =>
       </View>
   );
 
-  const InfoSection = ({stickerInfo} : {stickerInfo : Sticker}) => (
+  const InfoSection = ({stickerInfo} : {stickerInfo : StickerPack}) => (
       <View style={[styles.flexColumn, styles.flexFill, styles.paddingSmall]}>
         <Text style= {singleStickerStyle.textBold}>{stickerInfo.name}</Text>
         <Text style= {singleStickerStyle.textThin}>by {stickerInfo.Designer}</Text>

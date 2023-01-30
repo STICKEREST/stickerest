@@ -1,5 +1,5 @@
 
-export interface Sticker {
+export interface StickerPack {
     ID : number,
     name : string,
     nr_downloads : number,

@@ -24,14 +24,34 @@ export const getRandomSticker = async () : Promise<SimpleStickerPack> => {
         .catch(error => {throw new Error(error.message)});
 }
 
-export const getSavedStickers = async () : Promise<StickerPack[]> => {
-    return await fetch("https://stickerest.herokuapp.com/auth/my-saved")
+
+//function to be used by fetch queries of this same type
+const getGenericToStickerPacks = async (link : string) : Promise<StickerPack[]> => {
+    return await fetch(link)
             .then((response) => response.json())
-            .catch(error => {throw new Error});
+            .catch(error => {throw new Error(error.message)});
 }
 
+export const getSavedStickers = async () : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks("https://stickerest.herokuapp.com/auth/my-saved");
+}
 
-// fetch("https://stickerest.herokuapp.com/auth/my-saved")
-//       .then((response) => response.json())
-//       .then((result) => setQueriedStickers(result))
-//       .catch(error => console.log(error));
+export const getMostDownloaded = async () : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks("https://stickerest.herokuapp.com/stickers/most-downloaded");
+}
+
+export const getMostSaved = async () : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks("https://stickerest.herokuapp.com/stickers/most-saved");
+}
+
+export const getMostFavorited = async () : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks("https://stickerest.herokuapp.com/stickers/most-favorited");
+}
+
+export const getByName = async (name : string) : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks(`https://stickerest.herokuapp.com/stickers/name-${name}`);
+}
+
+export const getByTags = async (tags : string) : Promise<StickerPack[]> => {
+    return await getGenericToStickerPacks(`https://stickerest.herokuapp.com/stickers/tags-${tags}`);
+}

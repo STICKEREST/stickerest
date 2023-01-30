@@ -17,3 +17,19 @@ export const validateCredentials = async (...credentials : string[]): Promise<vo
     throw new Error("Some credentials are missing");
   }
 }
+
+export const postAccessFunction = async (query : string, message : string, form : string) : Promise<void> => {
+
+  console.log(message);
+  await fetch(query, {
+    method: 'POST',
+    body: form,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).then(async response => {
+    if(response.status.toString().charAt(0) !== '2')
+      throw new Error("Error " + response.status + ". " + (await response.json()).message);
+  }).catch(error => {throw new Error(error.message)});
+
+} 

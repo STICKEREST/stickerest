@@ -1,4 +1,5 @@
 import { User } from "../types";
+import { postAccessFunction } from "./accessUtilities";
 
 export const prepareCredentials = ( nickname : string, telegramId : number) : string => {
     nickname = encodeURIComponent("nickname") + "=" + encodeURIComponent(nickname);
@@ -8,33 +9,12 @@ export const prepareCredentials = ( nickname : string, telegramId : number) : st
 }
 
 
-export const update = async (form: string): Promise<boolean> => {
-    
-    return fetch("https://stickerest.herokuapp.com/auth/update-me", {
-        method: 'POST',
-        body: form,
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-        })
-        .then(response => {
-            console.log(response);
-            console.log(response.status);
-            if(response.status === 200) {
-                console.log("Successful update");
-                return true;
-            } else {
-                return false;
-            }
-        }).catch(error => {
-            console.log("Error: " + error);
-            return false;
-        })
-        .catch(error => {console.log(error); return false;});
+export const update = async (form: string): Promise<void> => {
+    await postAccessFunction("https://stickerest.herokuapp.com/auth/update-me", "Updating user data...", form);
 }
 
 export const getData = async (): Promise<User> => {
-    
+    console.log("Getting user data...");
     return fetch("https://stickerest.herokuapp.com/auth/me")
     .then(response => response.json())
     .then(result => {

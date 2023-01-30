@@ -7,7 +7,7 @@ export const ImagesAssets = {
     iconDocument: require('./icons/document.png'),
     iconHome: require('./icons/home.png'),
     iconStar: require('./icons/star.png'),
-    iconSettings: require('./icons/settings.png'),
+    iconDiscovery: require('./icons/discovery.png'),
     iconUser: require('./icons/user.png'),
     addIcon: require('./addCircle.png')
     ///you can add more many images like this here.

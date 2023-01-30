@@ -1,5 +1,5 @@
 
-export interface Sticker {
+export interface StickerPack {
     ID : number,
     name : string,
     nr_downloads : number,
@@ -26,10 +26,4 @@ export interface User {
     email : string,
     nickname : string,
     telegram : number
-}
-
-//{ cancelled: false, type: 'image', uri, width, height, exif, base64 }
-
-export interface ImageType { 
-    
 }

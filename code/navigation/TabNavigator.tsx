@@ -3,13 +3,13 @@ import { View, TouchableOpacity, Image } from 'react-native';
 
 import { ImagesAssets } from '../assets/img/ImagesAssets';
 
-import Homepage from '../pages/Homepage';
-import DiscoveryPage from '../pages/DiscoveryPage';
-import UserProfilePage from '../components/access/UserProfilePage';
-import CreatePack from '../pages/CreatePack';
-import Favorites from '../pages/FavoritesPage';
+import Homepage from '../UI/components/homepage/Homepage';
+import DiscoveryPage from '../UI/components/stickers/DiscoveryPage';
+import UserProfilePage from '../UI/components/access/UserProfilePage';
+import CreatePack from '../UI/components/stickers/CreatePackPage';
+import Favorites from '../UI/components/stickers/FavoritesPage';
 
-import { navbarStyle } from '../styles/Navbar';
+import { navbarStyle } from '../UI/styles/Navbar';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -24,7 +24,7 @@ export const TabNavigator = () => (
     <Tabs.Screen name="Homepage" component={Homepage} initialParams={{icon: ImagesAssets.iconHome}} />
     <Tabs.Screen name="Favourites" component={Favorites} initialParams={{icon: ImagesAssets.iconStar}} />
     <Tabs.Screen name="CreatePack" component={CreatePack} initialParams={{icon: ImagesAssets.iconDocument}} />
-    <Tabs.Screen name="DiscoveryPage" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconSettings}} />
+    <Tabs.Screen name="DiscoveryPage" component={DiscoveryPage} initialParams={{icon: ImagesAssets.iconDiscovery}} />
     <Tabs.Screen name="UserProfilePage" component={UserProfilePage} initialParams={{icon: ImagesAssets.iconUser}} />
   </Tabs.Navigator>
 );

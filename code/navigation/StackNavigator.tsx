@@ -3,10 +3,10 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { TabNavigator } from './TabNavigator';
-import { SingleSticker } from '../pages/SingleSticker';
+import { SingleSticker } from '../UI/components/stickers/SingleStickerPage';
 
-import LoginPage from '../components/access/LoginPage';
-import RegistrationPage from '../components/access/RegistrationPage';
+import LoginPage from '../UI/components/access/LoginPage';
+import RegistrationPage from '../UI/components/access/RegistrationPage';
 
 
 const Stack = createStackNavigator();

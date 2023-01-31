@@ -5,6 +5,8 @@ User has become Utilizer because User is a reserved word in pgsql
 Order has become OrderBought because Order is a reserved word in pgsql
 order has become ordinal_order because it is a reserved word in pgsql
 
+The following DB may differ a bit from the Requirements and Documentation of the DB due to changes during the creation
+of the project!
 THERE HAS BEEN A TRANSLATION FROM SQL FOR POSTGRESQL TO MYSQL + UNSUPPORTED ELEMENTS
 FROM THE HOSTING SERVICE FOR THE DB, LIKE NO FOREIGN KEY
 */

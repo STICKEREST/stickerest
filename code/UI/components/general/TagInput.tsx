@@ -30,7 +30,7 @@ const TagUI = ({index, tag, deleteTag} : {index : number, tag : string, deleteTa
   )
 
   return (
-    <View key={tag} style={[tagInputStyle.tagContainer, {width: tag.length > 3 ? tag.length * 13 : 4 * 13}]}>
+    <View style={[tagInputStyle.tagContainer, {width: tag.length > 3 ? tag.length * 13 : 4 * 13}]}>
       <View style={tagInputStyle.tagFlex}>
         <TagTitle />
         <DeleteButton />
@@ -57,7 +57,7 @@ const TagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: Dispatc
     <View style={tagInputStyle.tagsList}>
         {
           tags.map((tag: string, index: number) => (
-                <TagUI index={index} tag={tag} deleteTag={deleteTag} />
+                <TagUI index={index} tag={tag} key={tag} deleteTag={deleteTag} />
           ))
         }
     </View>

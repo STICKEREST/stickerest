@@ -12,6 +12,7 @@ import { validateCredentials } from '../../../core/access/accessUtilities';
 import { prepareCredentials, registration } from '../../../core/access/registration';
 
 import { useNavigation } from '@react-navigation/native';
+import { errorAlert } from '../general/GeneralComponents';
 
 /**
  * This class takes care of the UI implementation of the Signup
@@ -78,7 +79,7 @@ export default function RegistrationPage() {
       //@ts-ignore
       navigation.navigate("LoginPage");
     } catch(error) {
-      Alert.alert("Error", error.message);
+      errorAlert(error.message);
       console.log("Sign up error: " + error.message);
     }
   };

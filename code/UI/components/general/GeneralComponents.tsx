@@ -22,3 +22,16 @@ export const UploadingAnimation = ({message} : {message : string}) => (
    <Text style= {createPackStyle.textUploading}>{message}</Text>
  </View>
 );
+
+const generalAlert = (title : string, message : string) => 
+  Alert.alert(title, message)
+
+export const helpAlert = (message : string) => 
+  generalAlert("Help", message)
+
+export const errorAlert = (message : string) => 
+  generalAlert("Error", message)
+
+export const successAlert = (message : string) =>
+  generalAlert("Successful", message)
+

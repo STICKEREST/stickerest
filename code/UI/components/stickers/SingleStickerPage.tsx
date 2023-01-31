@@ -10,7 +10,7 @@ import { FlexibleAlbum } from '../general/FlexibleAlbum';
 import { useRoute } from '@react-navigation/native';
 
 import * as Telegram from '../../../api/Telegram';
-import { UploadingAnimation } from '../general/GeneralComponents';
+import { errorAlert, UploadingAnimation } from '../general/GeneralComponents';
 import { DetailedBigStickerPack } from './StickerPack';
 import { addDownload, getStickerFromId, getStickerImagesFromId } from '../../../core/stickers/stickerUtilities';
 
@@ -42,7 +42,7 @@ const ImportTelegramButton = ({StickerInfo, updatePage} : {StickerInfo : Sticker
     Telegram.importPack(StickerInfo.telegram_name);
     addDownload(StickerInfo.ID)
     .then(() => updatePage())
-    .catch(error => Alert.alert("Error", error.message));
+    .catch(error => errorAlert(error.message));
   }
 
   return (
@@ -89,7 +89,7 @@ export const SingleSticker = () => {
     console.log("Loading sticker page...");
     Promise.all([loadSticker(setSticker), loadImages(setStickerImage)])
     .then(() => setDownloading(false))
-    .catch(error => Alert.alert("Error", error.message));
+    .catch(error => errorAlert(error.message));
   }
 
   React.useEffect(loadStickerPage, []);

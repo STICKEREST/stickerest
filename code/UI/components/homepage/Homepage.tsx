@@ -9,6 +9,7 @@ import { SmallStickerCarousel, BigStickerCarousel } from '../general/StickerCaro
 
 import { StickerPack } from '../../../core/types';
 import { getByName, getByTags, getMostDownloaded, getMostFavorited, getMostSaved } from '../../../core/stickers/stickerUtilities';
+import { errorAlert } from '../general/GeneralComponents';
 
 /**
  * Component that represents a section of the homepage which is mainly composed of a title and a carousel of 
@@ -24,13 +25,13 @@ const HomePageSection = ({title, query, carousel} : {title: string, query: any, 
 
     query()
       .then((result : StickerPack[]) => setQueriedStickers(result))
-      .catch((error : Error) => Alert.alert("Error", error.message));
+      .catch((error : Error) => errorAlert(error.message));
 
     const interval = setInterval(() => {
 
       query()
         .then((result : StickerPack[]) => setQueriedStickers(result))
-        .catch((error : Error) => Alert.alert("Error", error.message));
+        .catch((error : Error) => errorAlert(error.message));
 
     }, 10000);
 

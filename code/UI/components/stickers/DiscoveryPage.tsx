@@ -13,6 +13,7 @@ import { Gyroscope } from 'expo-sensors';
 
 import { useNavigation } from '@react-navigation/native';
 import { getRandomSticker } from '../../../core/stickers/stickerUtilities';
+import { errorAlert } from '../general/GeneralComponents';
 
 /**
  * Component representing the sticker in the middle of the discovery page.
@@ -37,7 +38,7 @@ const MainStickerView = () => {
         if(y > sensitivity) {
           getRandomSticker()
             .then((result) => setRandomPack(result))
-            .catch((error) => Alert.alert("Error", error.message));
+            .catch((error) => errorAlert(error.message));
         }
   }, [y > sensitivity]);
 

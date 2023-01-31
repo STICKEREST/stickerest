@@ -7,6 +7,7 @@ import { stickerPackStyle } from '../../styles/StickerPack';
 import { styles } from '../../styles/Styles';
 import { useEffect } from 'react';
 import { changeState, getState } from '../../../core/stickers/stickerState';
+import { errorAlert } from '../general/GeneralComponents';
 
 /**
  * This class offers differrent possibilities for representing a single sticker pack in the UI
@@ -68,7 +69,7 @@ export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: StickerPack}
       console.log("Gettings current sticker state...");
       getState(stateType, id)
       .then((actualState : boolean) => setState(actualState))
-      .catch(error => Alert.alert("Error", error.message));
+      .catch(error => errorAlert(error.message));
     }, []);
 
     // Function called when changing the state
@@ -76,7 +77,7 @@ export const DetailedBigStickerPack = ({stickerInfo}: {stickerInfo: StickerPack}
       console.log("Updating sticker state...");
       changeState(currentState, stateType, id)
       .then((actualState : boolean) => setState(actualState))
-      .catch(error => Alert.alert("Error", error.message));
+      .catch(error => errorAlert(error.message));
     };
 
     // State button component

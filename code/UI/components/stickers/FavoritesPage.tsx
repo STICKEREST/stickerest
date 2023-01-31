@@ -8,6 +8,7 @@ import { styles } from '../../styles/Styles';
 
 import { StickerPack, StickerImage } from '../../../core/types';
 import { getSavedStickers } from '../../../core/stickers/stickerUtilities';
+import { errorAlert } from '../general/GeneralComponents';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -23,13 +24,13 @@ const getUpdated = (setQueriedStickers : any) => {
     
     getSavedStickers()
     .then(result => setQueriedStickers(result))
-    .catch(error => Alert.alert("Error", error.message));
+    .catch(error => errorAlert(error.message));
 
     const intervalId = setInterval(() => {
       
       getSavedStickers()
       .then(result => setQueriedStickers(result))
-      .catch(error => Alert.alert("Error", error.message));
+      .catch(error => errorAlert(error.message));
 
       //it's updated every 5 seconds, to avoid memory leaks
     }, 5000);

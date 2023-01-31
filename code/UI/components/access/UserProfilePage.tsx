@@ -11,6 +11,7 @@ import { ButtonToSign, FieldComponent } from './Access';
 import { getData, prepareCredentials, update } from '../../../core/access/profile';
 import { validateCredentials } from '../../../core/access/accessUtilities';
 import { User } from '../../../core/types';
+import { errorAlert, successAlert } from '../general/GeneralComponents';
 
 /**
  * This class takes care of the UI implementation of the UserProfilePage
@@ -41,8 +42,8 @@ const stylesDimension = StyleSheet.create({
 const updateUI = (form : string) => {
 
   update(form)
-  .then(() => Alert.alert("Successful", "The Profile Information have been updated successfully")
-  ).catch(error => Alert.alert("Error", error.message));
+  .then(() => successAlert("The Profile Information have been updated successfully")
+  ).catch(error => errorAlert(error.message));
 
 }
 
@@ -51,7 +52,7 @@ const attemptUpdate = (nickname: string, telegramId : number): void => {
     const form : string = prepareCredentials(nickname, telegramId);
     updateUI(form);
   }else {
-    Alert.alert("Missing information", "Some of the fields are empty");
+    errorAlert("Missing information! Some of the fields are empty");    
   }
 }
 

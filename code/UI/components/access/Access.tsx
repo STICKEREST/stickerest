@@ -7,6 +7,7 @@ import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImagesAssets } from '../../../assets/img/ImagesAssets';
+import { helpAlert } from '../general/GeneralComponents';
 
 /**
  * This class provides general purpose utility UI components that have to deal with forms/accessing/login/...
@@ -49,7 +50,7 @@ const gray: string = "#e1e1e1";
  * Button with help icon with a help message
  */
 const HelpOfField = ({messageHelp} : {messageHelp : string}) => (
-  <TouchableOpacity onPress={() => Alert.alert('Help', messageHelp)}>
+  <TouchableOpacity onPress={() => helpAlert(messageHelp)}>
     <Ionicons name={"help-circle-outline"} size={30} color="black" style={[loginRegistrationPageStyle.icon, loginRegistrationPageStyle.marginLeft]} />
   </TouchableOpacity>
 )

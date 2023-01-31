@@ -15,6 +15,7 @@ import { prepareCredentials, login } from '../../../core/access/login';
 import { AlternativeAccessAction, Separator } from './Access';
 
 import { useNavigation } from '@react-navigation/native';
+import { errorAlert } from '../general/GeneralComponents';
 
 /**
  * This class takes care of the UI implementation of the Login
@@ -74,7 +75,7 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
       setLoggedIn(true);
       console.log("User is now logged in");
     } catch(error) {
-      Alert.alert("Error", error.message);
+      errorAlert(error.message);
       console.log("Login error: " + error.message);
     }
   };

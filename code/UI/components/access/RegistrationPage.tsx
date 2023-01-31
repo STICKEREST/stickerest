@@ -91,7 +91,10 @@ export default function RegistrationPage() {
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} nickname={nickname} setNickname={setNickname} />
           <ButtonRegistration registerFunction={attemptSignUp} />
           <Separator />
-          <AlternativeAccessAction text = "Already have an account?" action = "Sign In" onActionPress={() => navigation.navigate("LoginPage")}/>
+          <AlternativeAccessAction text = "Already have an account?" action = "Sign In" onActionPress={
+            () => 
+            //@ts-ignore
+            navigation.navigate("LoginPage")}/>
         </View>
       </ImageBackground>
     </View>

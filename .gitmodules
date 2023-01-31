@@ -1,0 +1,3 @@
+[submodule "stickerest-backend"]
+	path = stickerest-backend
+	url = git@github.com:STICKEREST/stickerest-backend.git

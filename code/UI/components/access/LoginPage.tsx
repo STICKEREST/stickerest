@@ -87,7 +87,10 @@ export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) 
           <TextFields email={email} password={password} setEmail={setEmail} setPassword={setPassword} />
           <ButtonLogin loginFunction={attemptLogin} />
           <Separator />
-          <AlternativeAccessAction text = "Don't have an account?" action = "Sign Up" onActionPress={() => navigation.navigate("SignUpPage")}/>
+          <AlternativeAccessAction text = "Don't have an account?" action = "Sign Up" onActionPress={
+            () => 
+            //@ts-ignore
+            navigation.navigate("SignUpPage")}/>
         </View>
       </ImageBackground>
     </View>

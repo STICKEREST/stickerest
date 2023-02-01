@@ -1,5 +1,3 @@
-# STICKEREST
-
 <div align="center">
   <a href="https://github.com/STICKEREST/stickerest">
     <img src="https://i.imgur.com/Iq6flLX.png" alt="Logo" width="80" height="80" style="border-radius: 10px">
@@ -57,17 +55,26 @@ IMPORTANT! To be able to import the sticker packs you create on telegram, you ha
 Stickerest provides several features. In particular, user can:
 - Sign Up 
 - Log In
-- See on the homepage all the sticker packs made available by other users
+- See on the homepage all the sticker packs made available by every users (in which each section promotes the bests in such a category, considering things like downloads, likes, saved,...)
 - Search sticker packs by name and tags
 - Open whatever sticker pack you see and see all of the stickers that compose it
 - Import sticker packs on telegram, if their creator has allowed the possibility
-- Create sticker packs, by adding a title, tags and a maximum of 15 images
+- Drop a like on a sticker pack
+- Save stickers as favorite
+- See your saved favorite stickers
+- Create sticker packs, by adding a title, a maximum of 9 tags and a maximum of 15 images
 - You can discover new stickers on the Discovery section by turning quickly your device around
 - You can see your personal information in Profile section and update them / change them
 
+<br/>
+
 ![features screen 1](https://i.imgur.com/sPjpCQI.png)
 
+<br/>
+
 ![features screen 2](https://i.imgur.com/l4GM71c.png)
+
+<br/>
 
 
 ## Development

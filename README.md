@@ -49,7 +49,7 @@ After this a QR code will be displayed on your console and you can scan it with 
 
 IMPORTANT! The hosting service is free and it's not super performant and sometimes it presents error of "memory exceeded", which is not super always clear why it does. Sometimes it needs a manual restarting, please in this case contact [Francesco](https://github.com/francescomazzini), we'll find a new host sooner or later!
 
-IMPORTANT! To be able to import the sticker packs you create on telegram, you have first to add in your profile page your TELEGRAM ID, which is a unique number assigned to everybody. It's possible to see it by going on Telegram, search @userinfobot and asking it. We found out that some Ids might not work (which might depend on when you joined Telegram for the first time), if this is the case you can use this Id (which works for sure) at the moment: 427889331.
+IMPORTANT! To be able to import the sticker packs you create on telegram, you have first to add in your profile page your TELEGRAM ID, which is a unique number assigned to everybody. It's possible to see it by going on Telegram, search @userinfobot and asking it. We found out that some Ids might not work (which might depend on when you joined Telegram for the first time), if this is the case you can use this Id (which works for sure) at the moment: 427889331. (Keep in mind the field for inserting telegram ID accepts ONLY numbers)
 
 ## Features
 Stickerest provides several features. In particular, user can:
@@ -62,7 +62,7 @@ Stickerest provides several features. In particular, user can:
 - Drop a like on a sticker pack
 - Save stickers as favorite
 - See your saved favorite stickers
-- Create sticker packs, by adding a title, a maximum of 9 tags and a maximum of 15 images
+- Create sticker packs, by adding a title, a maximum of 9 tags and your favorite images
 - You can discover new stickers on the Discovery section by turning quickly your device around
 - You can see your personal information in Profile section and update them / change them
 

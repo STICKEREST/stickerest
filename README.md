@@ -53,14 +53,13 @@ Stickerest provides several features. In particular, user can:
 - You can discover new stickers on the Discovery section by turning quickly your device around
 - You can see your personal information in Profile section and update them / change them
 
-//immagine che faro
 
 ## Development
 
 The project has been developed by accomplishing three main tasks: creation of frontend, backend and database.
 ### Frontend
 
-The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. It is under the folder "code".
+The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. [It is under the folder "code"](./code/).
 
 The internal structure we followed is basically:  
 - assets, it contains all the external resources needed that have nothing to do with code, like images, fonts,...   
@@ -70,9 +69,7 @@ The internal structure we followed is basically:
 
 ### Backend
 
-The backend is built with Nodejs using typescript (in the most cases, when it was not too problematic, also due to some libraries not being well defined for typescript and due to our little experience with Backend technologies). It provides all the functions needed from the frontend to get and post information.
-
-It is under the folder "stickerest-backend".
+The backend is built with Nodejs using typescript (in the most cases, when it was not too problematic, also due to some libraries not being well defined for typescript and due to our little experience with Backend technologies). It provides all the functions needed from the frontend to get and post information. [It is under the folder "stickerest-backend"](./stickerest-backend/).
 
 The internal structure we followed is basically:  
 - controllers, it contains all the files that provide functions to be performed on the database  
@@ -83,7 +80,7 @@ Other than this there is a singleton file for getting the Database connection an
 
 ### Database
 
-It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. 
+It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. [It can be found under the folder "database"](./database/).
 
 Although the original idea of stickerest was composed of many tables for many future possible features, only a part of them has been kept for the current state of the application. The tables used are:  
 - Utilizer, for keeping all user information
@@ -96,7 +93,7 @@ Although the original idea of stickerest was composed of many tables for many fu
 
 ### API
 
-Even though the application may seem not too complicated, its core and the main difficult issues behind its development mainly lie in the connection through all the various and several APIs used. This was in fact usually source of errors and problems, it required reading a lot of documentation and understanding which of the possibility offered was the best (considering the "Typescript Barrier" as well).
+Even though the application may seem not too complicated, its core and the main difficult issues behind its development mainly lie in the connection through all the various and several APIs used. This was in fact usually source of errors and problems, it required reading a lot of documentation and understanding which of the possibilities offered were the best (considering the "Typescript Barrier" as well).
 
 Here's a brief description.
 
@@ -123,10 +120,10 @@ We defined a MoSCoW scheme (Must, Should, Could, Won't have), where we decided w
 
 After this phase, we started dividing all the jobs in smaller ones, so  that we could have had the possibility to work on different areas, things, depending on us, our progress and our availability. Initial ones have focused mainly on doing research and informing ourselves, then we started making our hands dirty and at the end we started refining everything, ensuring functional programming principles and a clean code structure.
 
-We used github development tables for managing these tasks and their progress status, be able to transform them directly into project issues and to address them creating a separated branch. Every task can be seen [here](https://github.com/orgs/STICKEREST/projects/1). Even though the way we chose the tasks was arbitrary and free, there has been a general tendency that can be summed up in:
-- Francesco, took care about everything that concerned Database, Backend (including hosting), frontend-backend and telegram linking, frontend representation of sticker packs and the page for seeing all the details about them. Plus, general code reorganization and cleaning. [Here all his assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3Afrancescomazzini)
+We used github development tables for managing these tasks and their progress status and for being able to transform them directly into project issues and to address them creating a separated branch. Every task can be seen [here](https://github.com/orgs/STICKEREST/projects/1). Even though the way we chose the tasks was arbitrary and free, there has been a general tendency that can be summed up in:
+- Francesco, took care about everything that concerned Database, Backend (including hosting), frontend-backend and telegram linking, frontend representation of sticker packs and the page for seeing all the details about them. Plus, general code reorganization and cleaning, with separation of Logic and UI. [Here all his assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3Afrancescomazzini)
 - Simone, took care of the Homepage structure, Favourites page, Carousels and Album representation of the sticker packs, the Creation Page for Sticker Packs (with Tag Input and Picking Image system). Plus refinition of this code and its style [Here all his assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3ASimoneFerraris)  
-- Nicholas, took care of the Navbar, Searchbar, Homepage, all Navigation (both stack and tab) part, Telegram methods for communicating with the API. Plus general code reorganization and cleaning. [Here all his assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3AHexagonNico)  
+- Nicholas, took care of the Navbar, Searchbar, Homepage, all Navigation (both stack and tab) part, Telegram methods for communicating with the API. Plus general code and style reorganization and cleaning. [Here all his assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3AHexagonNico)  
 - Alice, took care of Login, Registration and User Profile pages, the Discovery by shaking page (with Sensor usage) and the Loading Page. Plus refinition of this code and its style. [Here all her assigned tasks.](https://github.com/orgs/STICKEREST/projects/1/views/1?filterQuery=assignee%3AAliceFrezza01)  
 
 ## Future
@@ -140,8 +137,12 @@ Stickerest is a project will be continued with the aim to be published on the Ap
 - [ ] Get information about all that is needed to do to publish the app;
 
 ## Creators
+- [@francescomazzini](https://github.com/francescomazzini)
+- [@HexagonNico](https://github.com/HexagonNico)
+- [@SimoneFerraris](https://github.com/SimoneFerraris)
+- [@AliceFrezza01](https://github.com/AliceFrezza01)
 
 ## License
 
-
+[MIT](./LICENSE.md)
 

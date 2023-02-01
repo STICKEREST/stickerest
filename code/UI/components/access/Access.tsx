@@ -8,6 +8,7 @@ import { loginRegistrationPageStyle } from '../../styles/LoginRegistrationPage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ImagesAssets } from '../../../assets/img/ImagesAssets';
 import { helpAlert } from '../general/GeneralComponents';
+import { SetString, VoidFunction } from '../../../core/types';
 
 /**
  * This class provides general purpose utility UI components that have to deal with forms/accessing/login/...
@@ -58,7 +59,7 @@ const HelpOfField = ({messageHelp} : {messageHelp : string}) => (
 /**
  * Component that provide a Field input with some possibilities, like icons, being disabled, provide a help message ...
  */
-export const FieldComponent = ({name, placeholder, setName, hide, picture = "", messageHelp = "", disabled = false}:{name:string, placeholder:string, setName:any, hide:boolean, picture?:string, messageHelp?:string, disabled?:boolean}) => {
+export const FieldComponent = ({name, placeholder, setName, hide, picture = "", messageHelp = "", disabled = false}:{name:string, placeholder:string, setName:SetString, hide:boolean, picture?:string, messageHelp?:string, disabled?:boolean}) => {
   
   let color: string = name === "" ? gray : yellow;
 
@@ -102,7 +103,7 @@ export const Separator = () => {
  * Component that provides an alternative for accessing the website, given a test to show and an action to be performed
  * in that case
  */
-export const AlternativeAccessAction = ({text, action, onActionPress } : {text : string, action : string, onActionPress :any}) => {
+export const AlternativeAccessAction = ({text, action, onActionPress } : {text : string, action : string, onActionPress :VoidFunction}) => {
   return (
       <View style={styleDimennsion.actionSize}>
           <Text style={loginRegistrationPageStyle.swap}>
@@ -115,11 +116,10 @@ export const AlternativeAccessAction = ({text, action, onActionPress } : {text :
   );
 }
 
-type signFunction = () => void;
 /**
  * Component that provides the button for signing or registering or whatever else
  */
-export const ButtonToSign = ({functionToExecute, nameOfButton}:{functionToExecute:signFunction, nameOfButton:string}) => {
+export const ButtonToSign = ({functionToExecute, nameOfButton}:{functionToExecute:VoidFunction, nameOfButton:string}) => {
   return (
       <TouchableOpacity
           onPress={() => functionToExecute()}

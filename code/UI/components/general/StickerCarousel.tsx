@@ -8,7 +8,7 @@ import { SmallStickerPack, BigStickerPack } from '../stickers/StickerPack';
 import { stickerCarouselStyle } from '../../styles/StickerCarousel';
 import { styles } from '../../styles/Styles';
 
-import { StickerPack } from '../../../core/types';
+import { OnStickerPackFunction, StickerPack } from '../../../core/types';
 
 /**
  * This class provides components for a displayable way to see a set of sticker. This is Carousel-Based
@@ -17,7 +17,7 @@ import { StickerPack } from '../../../core/types';
 /**
  * Component representing a generic sticker carousel, horizontal sliding
  */
-const StickerCarousel = ({stickers, itemFunction}: {stickers: StickerPack[], itemFunction: (sticker: StickerPack) => React.ReactNode}) => {
+const StickerCarousel = ({stickers, itemFunction}: {stickers: StickerPack[], itemFunction: OnStickerPackFunction}) => {
   const itemSeparator = () => <View style={stickerCarouselStyle.separator} />
   const navigation = useNavigation();
   const openStickerPage = (id: number) => {

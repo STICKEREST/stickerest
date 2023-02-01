@@ -7,10 +7,11 @@ import { ImagesAssets } from '../../../assets/img/ImagesAssets';
 
 import { TagInput } from '../general/TagInput';
 import { ImageImport } from '../general/ImageImport';
-import { UploadingAnimation } from '../general/GeneralComponents';
+import { errorAlert, successAlert, UploadingAnimation } from '../general/GeneralComponents';
 import { FieldComponent } from '../access/Access';
 import { validateCredentials } from '../../../core/access/accessUtilities';
 import { prepareCredentials, uploadPack } from '../../../core/stickers/createPack';
+import { SetBoolean, SetString, SetStringArray, VoidFunction } from '../../../core/types';
 
 /**
  * This class provides the Page for uploading stickers
@@ -23,10 +24,10 @@ const windowHeight = Dimensions.get('window').height;
  * This function manages the uploading pack from a UI point of view linking everything necessary present in the core
  * and showing Alerts based on the result
  */
-const handleUploadPack = (name: string, tags: string[], images: string[], setUploading: any) => {
+const handleUploadPack = (name: string, tags: string[], images: string[], setUploading: SetBoolean) => {
 
   if (!validateCredentials(name, ...tags, ...images)) {
-    Alert.alert("Info missing", "Some of the fields are empty, please fill them.");
+    errorAlert("Missing information! Some of the fields are empty");    
   } else {
 
     const formdata : FormData = prepareCredentials(name, tags, images);
@@ -37,18 +38,18 @@ const handleUploadPack = (name: string, tags: string[], images: string[], setUpl
     uploadPack(formdata, name)
     .then( () => {
       setUploading(false);
-      Alert.alert("Uploaded!","The Pack has been uploaded succesfully")
+      successAlert("The Pack has been uploaded succesfully")
     })
     .catch(error => {
       setUploading(false); 
-      Alert.alert("Error!",error.message);
+      errorAlert(error.message);
     }) ;
     
   }
     
 }
 
-const TextFields = ({name, setName} : {name : string, setName: (value: string) => void}) => (
+const TextFields = ({name, setName} : {name : string, setName: SetString}) => (
   <>
     <Text style={styles.textHeader3}>Add your sticker pack</Text> 
     <View style={[styles.centerContent, {paddingLeft: windowWidth/25}]}>
@@ -57,14 +58,14 @@ const TextFields = ({name, setName} : {name : string, setName: (value: string) =
   </>
 )
 
-const Tags = ({tags, setTags} : {tags : string[], setTags : (value : string[]) => void}) => (
+const Tags = ({tags, setTags} : {tags : string[], setTags : SetStringArray}) => (
   <>
     <Text style={styles.textHeader3}>Tags</Text>
     <TagInput setTags={setTags} tags={tags}/>
   </>
 )
 
-const Stickers = ({imageSource, setImageSource} : {imageSource : string[], setImageSource : Dispatch<SetStateAction<string[]>>}) => (
+const Stickers = ({imageSource, setImageSource} : {imageSource : string[], setImageSource : SetStringArray}) => (
   <>
     <Text style={styles.textHeader3}>Stickers</Text>
     <View style={[styles.centerContent, {height: windowHeight*0.225, paddingLeft: windowWidth/50}]}>
@@ -73,7 +74,7 @@ const Stickers = ({imageSource, setImageSource} : {imageSource : string[], setIm
   </>
 )
 
-const UploadButton = ({uploadStickerPack} : {uploadStickerPack : any}) => (
+const UploadButton = ({uploadStickerPack} : {uploadStickerPack : VoidFunction}) => (
   <View style={styles.center} >
     <TouchableOpacity style={styles.button} onPress={uploadStickerPack} >
       <Text style={styles.buttonText} >Upload Sticker Pack</Text>
@@ -85,7 +86,7 @@ const UploadButton = ({uploadStickerPack} : {uploadStickerPack : any}) => (
  * Main body of the CreatePack page.
  * Shown when a sticker pack is not being uploaded
  */
-const MainCreatePackPage = ({setUploading}: {setUploading: (value: boolean) => void}) => {
+const MainCreatePackPage = ({setUploading}: {setUploading: SetBoolean}) => {
   const [name, setName] = React.useState<string>("");
   const [tags, setTags] = React.useState<string[]>([]);
   const [imageSource, setImageSource] = React.useState<string[]>([]);

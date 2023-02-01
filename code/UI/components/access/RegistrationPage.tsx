@@ -13,6 +13,7 @@ import { prepareCredentials, registration } from '../../../core/access/registrat
 
 import { useNavigation } from '@react-navigation/native';
 import { errorAlert } from '../general/GeneralComponents';
+import { SetString } from '../../../core/types';
 
 /**
  * This class takes care of the UI implementation of the Signup
@@ -35,7 +36,7 @@ const stylesDimension = StyleSheet.create({
   }
 });
 
-const TextFields = ({email, password, setEmail, setPassword, nickname, setNickname} : {email:string, password:string, setEmail:any, setPassword:any, nickname: string, setNickname: any}) => {
+const TextFields = ({email, password, setEmail, setPassword, nickname, setNickname} : {email:string, password:string, setEmail:SetString, setPassword:SetString, nickname: string, setNickname: SetString}) => {
 
   return (
       <SafeAreaView>
@@ -56,7 +57,7 @@ const Title = () => {
   )
 }
 
-const ButtonRegistration = ({registerFunction}: {registerFunction: () => void}) => {
+const ButtonRegistration = ({registerFunction}: {registerFunction: VoidFunction}) => {
   return (
     <View style={[loginRegistrationPageStyle.signInButton, stylesDimension.marginHeight]}>
       <ButtonToSign functionToExecute={registerFunction} nameOfButton="Sign up"/>

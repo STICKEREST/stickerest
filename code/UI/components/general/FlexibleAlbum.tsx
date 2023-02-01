@@ -5,7 +5,7 @@ import { SmallPackBox } from "../stickers/StickerPack";
 
 import { styles } from "../../styles/Styles";
 
-import { StickerImage } from "../../../core/types";
+import { OnStickerFunction, StickerImage, VoidFunction } from "../../../core/types";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 /**
  * Component represting touchable stickers that leads to some action
  */
-const TouchableSticker = ({img, onPress}: {img: string, onPress: () => void}) => (
+const TouchableSticker = ({img, onPress}: {img: string, onPress: VoidFunction}) => (
   <TouchableOpacity style={styles.paddingSmall} key={'Select Image'} onPress={onPress} >
     <SmallPackBox image={img} />
   </TouchableOpacity>
@@ -25,7 +25,7 @@ const TouchableSticker = ({img, onPress}: {img: string, onPress: () => void}) =>
 /**
  * Component used to display a list of stickers
  */
-const Album = ({stickers, onPressAggregation = null }: {stickers: StickerImage[], onPressAggregation? : (id: number) => void}) => (
+const Album = ({stickers, onPressAggregation = null }: {stickers: StickerImage[], onPressAggregation? : OnStickerFunction}) => (
   <>
   {
     stickers.map((sticker, index) => onPressAggregation !== null ? (
@@ -55,7 +55,7 @@ export const FlexibleAlbum = ({stickers}: {stickers: StickerImage[]}) => (
  * Component that not only acts as a FlexibleAlbum but also has a button for adding other stickers and each stickers are romevable
  * by getting touched
  */
-export const FlexibleAlbumAddable = ({stickers, addPress, removePress}: {stickers: StickerImage[], addPress: any, removePress: any}) => (
+export const FlexibleAlbumAddable = ({stickers, addPress, removePress}: {stickers: StickerImage[], addPress: VoidFunction, removePress: OnStickerFunction}) => (
   <ScrollView>
     <View style={styles.flexRowWrap} >
       <Album stickers={stickers} onPressAggregation={removePress} />

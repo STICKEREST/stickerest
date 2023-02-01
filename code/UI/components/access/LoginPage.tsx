@@ -16,6 +16,7 @@ import { AlternativeAccessAction, Separator } from './Access';
 
 import { useNavigation } from '@react-navigation/native';
 import { errorAlert } from '../general/GeneralComponents';
+import { SetBoolean, SetString } from '../../../core/types';
 
 /**
  * This class takes care of the UI implementation of the Login
@@ -34,7 +35,7 @@ const stylesDimension = StyleSheet.create({
   }
 });
 
-const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: any, setPassword : any}) => {
+const TextFields = ({email, password, setEmail, setPassword} : {email : string, password : string, setEmail: SetString, setPassword : SetString}) => {
 
   return (
       <SafeAreaView>
@@ -54,7 +55,7 @@ const Title = () => {
   )
 }
 
-const ButtonLogin = ({loginFunction} : {loginFunction: () => void}) => {
+const ButtonLogin = ({loginFunction} : {loginFunction: VoidFunction}) => {
   return (
     <View style={[loginRegistrationPageStyle.signInButton, stylesDimension.dimensionHeight70]}>
       <ButtonToSign functionToExecute={loginFunction} nameOfButton="Sign in"/>
@@ -62,7 +63,7 @@ const ButtonLogin = ({loginFunction} : {loginFunction: () => void}) => {
   )
 }
 
-export default function LoginPage({setLoggedIn}: {setLoggedIn: (value: boolean) => void}) {
+export default function LoginPage({setLoggedIn}: {setLoggedIn: SetBoolean}) {
   const navigation = useNavigation();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");

@@ -5,7 +5,7 @@
     <img src="https://i.imgur.com/Iq6flLX.png" alt="Logo" width="80" height="80" style="border-radius: 10px">
   </a>
 
-<h2 align="center">STICKEREST</h3>
+<h3 align="center"> <strong> STICKEREST </strong> </h3>
 
   <p align="center">
     Stick to it!

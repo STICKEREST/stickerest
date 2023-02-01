@@ -82,7 +82,7 @@ Stickerest provides several features. In particular, user can:
 The project has been developed by accomplishing three main tasks: creation of frontend, backend and database.
 ### Frontend
 
-The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. [It is under the folder "code"](./code/).
+The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. [It is under the folder "code"](https://github.com/STICKEREST/stickerest/tree/main/code).
 
 The internal structure we followed is basically:  
 - assets, it contains all the external resources needed that have nothing to do with code, like images, fonts,...   
@@ -103,7 +103,7 @@ Other than this there is a singleton file for getting the Database connection an
 
 ### Database
 
-It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. [It can be found under the folder "database"](./database/).
+It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. [It can be found under the folder "database"](https://github.com/STICKEREST/stickerest/tree/main/database).
 
 Although the original idea of stickerest was composed of many tables for many future possible features, only a part of them has been kept for the current state of the application. The tables used are:  
 - Utilizer, for keeping all user information

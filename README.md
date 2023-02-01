@@ -1,5 +1,17 @@
 # STICKEREST
 
+<div align="center">
+  <a href="https://github.com/STICKEREST/stickerest">
+    <img src="https://i.imgur.com/Iq6flLX.png" alt="Logo" width="80" height="80" style="border-radius: 10px">
+  </a>
+
+<h2 align="center">STICKEREST</h3>
+
+  <p align="center">
+    Stick to it!
+    </p>
+</div>
+
 ## Table of Contents
   * [What is Stickerest?](#what-is-stickerest)
   * [Run](#run)
@@ -53,6 +65,10 @@ Stickerest provides several features. In particular, user can:
 - You can discover new stickers on the Discovery section by turning quickly your device around
 - You can see your personal information in Profile section and update them / change them
 
+![features screen 1](https://i.imgur.com/sPjpCQI.png)
+
+![features screen 2](https://i.imgur.com/l4GM71c.png)
+
 
 ## Development
 
@@ -69,7 +85,7 @@ The internal structure we followed is basically:
 
 ### Backend
 
-The backend is built with Nodejs using typescript (in the most cases, when it was not too problematic, also due to some libraries not being well defined for typescript and due to our little experience with Backend technologies). It provides all the functions needed from the frontend to get and post information. [It is under the folder "stickerest-backend"](./stickerest-backend/).
+The backend is built with Nodejs using typescript (in the most cases, when it was not too problematic, also due to some libraries not being well defined for typescript and due to our little experience with Backend technologies). It provides all the functions needed from the frontend to get and post information. [It is under the folder "stickerest-backend"](https://github.com/STICKEREST/stickerest-backend/tree/main).
 
 The internal structure we followed is basically:  
 - controllers, it contains all the files that provide functions to be performed on the database  

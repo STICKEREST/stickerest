@@ -49,7 +49,7 @@ After this a QR code will be displayed on your console and you can scan it with 
 
 IMPORTANT! The hosting service is free and it's not super performant and sometimes it presents error of "memory exceeded", which is not super always clear why it does. Sometimes it needs a manual restarting, please in this case contact [Francesco](https://github.com/francescomazzini), we'll find a new host sooner or later!
 
-IMPORTANT! To be able to import the sticker packs you create on telegram, you have first to add in your profile page your TELEGRAM ID, which is a unique number assigned to everybody. It's possible to see it by going on Telegram, search @userinfobot and asking it. We found out that some Ids might not work (which might depend on when you joined Telegram for the first time), if this is the case you can use this Id (which works for sure) at the moment: 427889331.
+IMPORTANT! To be able to import the sticker packs you create on telegram, you have first to add in your profile page your TELEGRAM ID, which is a unique number assigned to everybody. It's possible to see it by going on Telegram, search @userinfobot and asking it. We found out that some Ids might not work (which might depend on when you joined Telegram for the first time), if this is the case you can use this Id (which works for sure) at the moment: 427889331. (Keep in mind the field for inserting telegram ID accepts ONLY numbers)
 
 ## Features
 Stickerest provides several features. In particular, user can:
@@ -62,7 +62,7 @@ Stickerest provides several features. In particular, user can:
 - Drop a like on a sticker pack
 - Save stickers as favorite
 - See your saved favorite stickers
-- Create sticker packs, by adding a title, a maximum of 9 tags and a maximum of 15 images
+- Create sticker packs, by adding a title, a maximum of 9 tags and your favorite images
 - You can discover new stickers on the Discovery section by turning quickly your device around
 - You can see your personal information in Profile section and update them / change them
 
@@ -82,7 +82,7 @@ Stickerest provides several features. In particular, user can:
 The project has been developed by accomplishing three main tasks: creation of frontend, backend and database.
 ### Frontend
 
-The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. [It is under the folder "code"](./code/).
+The frontend is built with React Native using typescript (and javascript just combined with css for styling) and it exploits some APIs for providing all the features for the user. [It is under the folder "code"](https://github.com/STICKEREST/stickerest/tree/main/code).
 
 The internal structure we followed is basically:  
 - assets, it contains all the external resources needed that have nothing to do with code, like images, fonts,...   
@@ -103,7 +103,7 @@ Other than this there is a singleton file for getting the Database connection an
 
 ### Database
 
-It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. [It can be found under the folder "database"](./database/).
+It was initially realized for PostgresSQL so it required some convertions and changes also due to decisions made during the app creation process and due to its hosting, PlanetScale which uses MySQL and has some constraints, like not to use foreign keys, for a security reason. [It can be found under the folder "database"](https://github.com/STICKEREST/stickerest/tree/main/database).
 
 Although the original idea of stickerest was composed of many tables for many future possible features, only a part of them has been kept for the current state of the application. The tables used are:  
 - Utilizer, for keeping all user information

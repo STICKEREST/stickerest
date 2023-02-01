@@ -117,7 +117,7 @@ const createTelegramPack = async (name : string, idPack : number) : Promise<void
         .then(async (result : User) : Promise<void> => {
         
         if(result.telegram === 0)
-            throw new Error("Telegram Id is missing");
+            throw new Error("Sticker Pack uploaded but Telegram Id is missing. Please fill in your telegram ID in the profile to be able to publish them also on Telegram");
 
         const imagesQuery = `https://stickerest.herokuapp.com/stickers/images-${idPack}`;
 

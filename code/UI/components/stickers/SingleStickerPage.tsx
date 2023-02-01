@@ -4,7 +4,7 @@ import { Text, View, Image } from 'react-native';
 
 import { styles } from "../../styles/Styles";
 import { ImagesAssets } from '../../../assets/img/ImagesAssets';
-import { StickerPack, StickerImage } from '../../../core/types';
+import { StickerPack, StickerImage, SetStickerPack, SetStickerImageArray } from '../../../core/types';
 import { FlexibleAlbum } from '../general/FlexibleAlbum';
 
 import { useRoute } from '@react-navigation/native';
@@ -24,7 +24,7 @@ const windowHeight = Dimensions.get('window').height;
  * 'text' is the text to display on the button.
  * 'onPress' is the function to execute when pressing the button.
  */
-const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
+const ImportButton = ({text, onPress}: {text: string, onPress: VoidFunction}) => (
   <View>
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{text}</Text>
@@ -36,7 +36,7 @@ const ImportButton = ({text, onPress}: {text: string, onPress: () => void}) => (
  * Button using ImportButton for uploading the sticker pack in telegram (only if this results available from
  * what the DB says, so only if the creator has inseted his telegram ID before uploading the Pack) 
  */
-const ImportTelegramButton = ({StickerInfo, updatePage} : {StickerInfo : StickerPack, updatePage : any}) => {
+const ImportTelegramButton = ({StickerInfo, updatePage} : {StickerInfo : StickerPack, updatePage : VoidFunction}) => {
 
   const importToTelegram = () => {
     Telegram.importPack(StickerInfo.telegram_name);
@@ -76,11 +76,11 @@ export const SingleSticker = () => {
   
   const [downloading, setDownloading] = React.useState<boolean>(false);
 
-  const loadSticker = async (setSticker : any) : Promise<void> => {
+  const loadSticker = async (setSticker : SetStickerPack) : Promise<void> => {
       setSticker(await getStickerFromId(id));
   }
 
-  const loadImages = async (setStickerImage : any) : Promise<void> => {
+  const loadImages = async (setStickerImage : SetStickerImageArray) : Promise<void> => {
     setStickerImage(await getStickerImagesFromId(id));
   }
 

@@ -2,7 +2,9 @@ import { getData } from "../access/profile";
 import { StickerImage, User } from "../types";
 import * as Telegram from '../api/Telegram';
 
-
+/**
+ * Function that prepares information to be used by 'uploadPack', returning the form. 
+ */
 export const prepareCredentials = (name: string, tags: string[], images: string[]) : FormData => {
 
     let formdata : FormData = new FormData();
@@ -24,7 +26,9 @@ export const prepareCredentials = (name: string, tags: string[], images: string[
     return formdata;
 }
 
-
+/**
+ * Function that uploads a Sticker Pack
+ */
 export const uploadPack = async (form: FormData, name : string): Promise<void> => {
     
     await fetch("https://stickerest.herokuapp.com/auth/create-sticker-pack", {
@@ -52,11 +56,17 @@ export const uploadPack = async (form: FormData, name : string): Promise<void> =
     .catch(error => {console.log(error); throw new Error(error.message);});
 }
 
+/**
+ * Function tthat converts sticker images in a sticker object usable by the Telegram API
+ */
 const prepareTelegramStickers = (stickers : StickerImage[]) : Telegram.Sticker[] =>{
     return stickers.map((sticker : StickerImage) : Telegram.Sticker => 
                 { return {url: sticker.image_file, emoji: "😀"}; });
 }
 
+/**
+ * Function that prepares an header as the Telegram API requires
+ */
 const prepareTelegramPackHeader = (idPack : number, name : string, userId : number) : Telegram.StickerPack => {
 
     const telegramName : string = "stickerest_" + idPack + "_" + name.replace(/\s/g, '');
@@ -70,6 +80,10 @@ const prepareTelegramPackHeader = (idPack : number, name : string, userId : numb
     return stickerPackHeader;
 }
 
+/**
+ * Function that uploads the remaining stickers of a pack to its pack on Telegram through its API 
+ *  (since through the API only one sticker at time can be uploaded)
+ */
 const uploadRestTelegramPack = async (idPack : number, telegramPackHeader : Telegram.StickerPack, restTelegramStickers : Telegram.Sticker[]) : Promise<void> => {
 
     const promisesTelUpload = restTelegramStickers.map((telStick : Telegram.Sticker) => Telegram.addStickerToPack(telegramPackHeader, telStick));
@@ -94,6 +108,9 @@ const uploadRestTelegramPack = async (idPack : number, telegramPackHeader : Tele
     .catch(error => {throw new Error(error.message)});
 }
 
+/**
+ * Function that uploads a sticker pack in telegram
+ */
 const createTelegramPack = async (name : string, idPack : number) : Promise<void> => {
 
     await getData()

@@ -3,6 +3,7 @@ import { TextInput, TouchableOpacity, Text, View, NativeSyntheticEvent, TextInpu
 
 import { tagInputStyle } from '../../styles/TagInput';
 import { styles } from '../../styles/Styles';
+import { InputChangeEvent, KeyPressedEvent, OnStickerFunction, SetBoolean, SetString, SetStringArray } from '../../../core/types';
 
 /**
  * This class provides the UI input tag container with all its functions
@@ -13,7 +14,7 @@ const allowedTagsNmbr = 9;
 /**
  * UI representation of a tag
  */
-const TagUI = ({index, tag, deleteTag} : {index : number, tag : string, deleteTag : (value : number) => void}) => {
+const TagUI = ({index, tag, deleteTag} : {index : number, tag : string, deleteTag : OnStickerFunction}) => {
 
   const TagTitle = () => (
     <View style={{flex: tag.length}}>
@@ -42,7 +43,7 @@ const TagUI = ({index, tag, deleteTag} : {index : number, tag : string, deleteTa
 /**
  * Components that represents a container of tags UI
  */
-const TagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: Dispatch<SetStateAction<string[]>>, setEdit: Dispatch<SetStateAction<boolean>>}) => {
+const TagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: SetStringArray, setEdit: SetBoolean}) => {
   
   const deleteTag = (index : number) => {
     setTags((prevState : string[]) => prevState.filter((tag : string, i : number) => i !== index))
@@ -68,7 +69,7 @@ const TagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: Dispatc
  * Component that represents the footer of a container providing information and actions such as counter of 
  * Tags inserted in the container and possibility to remove all of them in once
  */
-const FooterTagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: Dispatch<SetStateAction<string[]>>, setEdit: Dispatch<SetStateAction<boolean>>}) => {
+const FooterTagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: SetStringArray, setEdit: SetBoolean}) => {
   
   const RemoveAll = () => (
     <TouchableOpacity onPress ={() => {
@@ -94,7 +95,7 @@ const FooterTagsContainer = ({tags, setTags, setEdit}:{tags:string[], setTags: D
 /**
  * Components that allows to insert tag inside the container creating TagUI. It is an input field with special interactions
  */
-const InputTagField = ( {tags, setTags, isEditable, setEdit, input, setInput } : {tags : string[], setTags : any, isEditable : boolean, setEdit : any, input : string, setInput : any}) => {
+const InputTagField = ( {tags, setTags, isEditable, setEdit, input, setInput } : {tags : string[], setTags : SetStringArray, isEditable : boolean, setEdit : SetBoolean, input : string, setInput : SetString}) => {
 
   /**
    * Changes the edibility when the maximal number of tags is exceeded 
@@ -111,7 +112,7 @@ const InputTagField = ( {tags, setTags, isEditable, setEdit, input, setInput } :
    * If the user presses ',' or 'Enter' or 'Space', trim and add to the tags array the input text.
    * Then clear the input text and call handleTagsNmb() 
    */
-  const handleOnChangeText = (e:NativeSyntheticEvent<TextInputChangeEventData>) => {
+  const handleOnChangeText = (e: InputChangeEvent) => {
   
     const text = e.nativeEvent.text;
     setInput(text);
@@ -131,7 +132,7 @@ const InputTagField = ( {tags, setTags, isEditable, setEdit, input, setInput } :
    * Set the input to the popped tag
    * @param e Key pressed
    */
-  const handleOnKeyDown = (e : NativeSyntheticEvent<TextInputKeyPressEventData>) => {
+  const handleOnKeyDown = (e : KeyPressedEvent) => {
       const {key} = e.nativeEvent;
 
       if (key === "Backspace" && !input.length && tags.length) {
@@ -157,7 +158,7 @@ const InputTagField = ( {tags, setTags, isEditable, setEdit, input, setInput } :
  * Component that gathers all the other parts and manages the state of the tags themselves and the input where
  * they come from
  */
-export const TagInput = ({tags, setTags}:{tags:string[], setTags: Dispatch<SetStateAction<string[]>>}) => {
+export const TagInput = ({tags, setTags}:{tags:string[], setTags: SetStringArray}) => {
 
   const [isEditable, setEdit] = React.useState<boolean>(true);
   const [input, setInput] = React.useState<string>('');

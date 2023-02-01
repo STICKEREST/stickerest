@@ -6,7 +6,7 @@ import { ImagesAssets } from '../../../assets/img/ImagesAssets';
 
 import { styles } from '../../styles/Styles';
 
-import { StickerPack, StickerImage } from '../../../core/types';
+import { StickerPack, StickerImage, SetStickerPackArray } from '../../../core/types';
 import { getSavedStickers } from '../../../core/stickers/stickerUtilities';
 import { errorAlert } from '../general/GeneralComponents';
 
@@ -17,7 +17,7 @@ const windowHeight = Dimensions.get('window').height;
  * This function manages the constant update of the favorite page that can be changed by actions of the
  * user taken elsewhere
  */
-const getUpdated = (setQueriedStickers : any) => {
+const getUpdated = (setQueriedStickers : SetStickerPackArray) => {
 
   React.useEffect(() => {
     console.log("Getting saved stickers...");

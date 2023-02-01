@@ -10,7 +10,7 @@ import{ ImagesAssets } from '../../../assets/img/ImagesAssets';
 import { ButtonToSign, FieldComponent } from './Access';
 import { getData, prepareCredentials, update } from '../../../core/access/profile';
 import { validateCredentials } from '../../../core/access/accessUtilities';
-import { User } from '../../../core/types';
+import { SetNumber, SetString, User } from '../../../core/types';
 import { errorAlert, successAlert } from '../general/GeneralComponents';
 
 /**
@@ -56,7 +56,7 @@ const attemptUpdate = (nickname: string, telegramId : number): void => {
   }
 }
 
-const TextFields = ({email, setEmail, nickname, setNickname, telegramId, setTelegramId} : {email : string, setEmail : any, nickname : string, setNickname : any, telegramId : number, setTelegramId : any}) => {
+const TextFields = ({email, setEmail, nickname, setNickname, telegramId, setTelegramId} : {email : string, setEmail : SetString, nickname : string, setNickname : SetString, telegramId : number, setTelegramId : SetNumber}) => {
 
     React.useEffect(() => {
 

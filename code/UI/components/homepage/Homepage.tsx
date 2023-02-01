@@ -7,7 +7,7 @@ import { styles } from '../../styles/Styles';
 import { SearchBar } from './SearchBar';
 import { SmallStickerCarousel, BigStickerCarousel } from '../general/StickerCarousel';
 
-import { StickerPack } from '../../../core/types';
+import { OnStickerPackArrayFunction, QueryStickerPack, StickerPack } from '../../../core/types';
 import { getByName, getByTags, getMostDownloaded, getMostFavorited, getMostSaved } from '../../../core/stickers/stickerUtilities';
 import { errorAlert } from '../general/GeneralComponents';
 
@@ -15,7 +15,7 @@ import { errorAlert } from '../general/GeneralComponents';
  * Component that represents a section of the homepage which is mainly composed of a title and a carousel of 
  * stickers derived from a query
  */
-const HomePageSection = ({title, query, carousel} : {title: string, query: any, carousel: (stickers: StickerPack[]) => React.ReactNode}) => {
+const HomePageSection = ({title, query, carousel} : {title: string, query: QueryStickerPack, carousel: OnStickerPackArrayFunction}) => {
  
   const [queriedStickers, setQueriedStickers] = React.useState<StickerPack[]>([]);
   //it's always updated (every 8 seconds) because there could be also new additions of sticker packs and we

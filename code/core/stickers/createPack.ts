@@ -1,6 +1,6 @@
 import { getData } from "../access/profile";
 import { StickerImage, User } from "../types";
-import * as Telegram from '../../api/Telegram';
+import * as Telegram from '../api/Telegram';
 
 
 export const prepareCredentials = (name: string, tags: string[], images: string[]) : FormData => {

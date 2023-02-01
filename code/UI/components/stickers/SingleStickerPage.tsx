@@ -9,7 +9,7 @@ import { FlexibleAlbum } from '../general/FlexibleAlbum';
 
 import { useRoute } from '@react-navigation/native';
 
-import * as Telegram from '../../../api/Telegram';
+import * as Telegram from '../../../core/api/Telegram';
 import { errorAlert, UploadingAnimation } from '../general/GeneralComponents';
 import { DetailedBigStickerPack } from './StickerPack';
 import { addDownload, getStickerFromId, getStickerImagesFromId } from '../../../core/stickers/stickerUtilities';

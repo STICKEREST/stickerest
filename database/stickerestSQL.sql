@@ -21,28 +21,7 @@ CREATE TABLE `Utilizer` (
 ) ENGINE InnoDB,
   CHARSET utf8mb4,
   COLLATE utf8mb4_0900_ai_ci;
-
-CREATE TABLE `Designer` (
-	`email` varchar(30) NOT NULL,
-	`email_payment` varchar(30) NOT NULL,
-	`level` smallint NOT NULL,
-	`VAT` varchar(30),
-	PRIMARY KEY (`email`),
-	CONSTRAINT `Designer_chk_1` CHECK (`level` >= 1 AND `level` <= 6)
-) ENGINE InnoDB,
-  CHARSET utf8mb4,
-  COLLATE utf8mb4_0900_ai_ci;
-
   
-CREATE TABLE `Image` (
-	`ID` int NOT NULL,
-	`ordinal_order` int NOT NULL,
-	`image_file` varchar(150) NOT NULL,
-	PRIMARY KEY (`ID`, `ordinal_order`),
-	UNIQUE KEY `ID` (`ID`, `image_file`)
-) ENGINE InnoDB,
-  CHARSET utf8mb4,
-  COLLATE utf8mb4_0900_ai_ci;
 
 CREATE TABLE `WhatsappStickerPack` (
 	`ID` int NOT NULL AUTO_INCREMENT,
@@ -61,6 +40,16 @@ CREATE TABLE `WhatsappStickerPack` (
   CHARSET utf8mb4,
   COLLATE utf8mb4_0900_ai_ci;
 
+CREATE TABLE `Image` (
+	`ID` int NOT NULL,
+	`ordinal_order` int NOT NULL,
+	`image_file` varchar(150) NOT NULL,
+	PRIMARY KEY (`ID`, `ordinal_order`),
+	UNIQUE KEY `ID` (`ID`, `image_file`)
+) ENGINE InnoDB,
+  CHARSET utf8mb4,
+  COLLATE utf8mb4_0900_ai_ci;
+  
 /*
     New Additions, due to changes in the project during the creation
 */
@@ -103,6 +92,17 @@ CREATE TABLE `sessions` (
 /*    
     Not used at the current state of the project yet
 */
+
+CREATE TABLE `Designer` (
+	`email` varchar(30) NOT NULL,
+	`email_payment` varchar(30) NOT NULL,
+	`level` smallint NOT NULL,
+	`VAT` varchar(30),
+	PRIMARY KEY (`email`),
+	CONSTRAINT `Designer_chk_1` CHECK (`level` >= 1 AND `level` <= 6)
+) ENGINE InnoDB,
+  CHARSET utf8mb4,
+  COLLATE utf8mb4_0900_ai_ci;
 
 CREATE TABLE `Address` (
 	`province` varchar(7) NOT NULL,
